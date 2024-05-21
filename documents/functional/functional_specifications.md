@@ -54,7 +54,7 @@
 
 | Document name | Document owner | Date of last update |
 | --- | --- | --- |
-| Functional specifications | Evan UHRING | 5/17/2024 |
+| Functional specifications | Evan UHRING | 5/21/2024 |
 
 
 ## Document validation
@@ -88,7 +88,6 @@ We will have a complete interface that was validated by the client. Every reques
 - Make a complete interface for an app
 - Has to be made using Flutter
 - Can be used on smartphone, tablet and computer
-
 
 ### Scope 
 ---
@@ -139,15 +138,15 @@ Defined by the project owner (ALGOSUP):
 
 ## 1. Personas definition
 
-<b>Young candidate:</b><br>
+**Young candidate:**<br>
 Description: He just finished school and got his diploma, but he needs to find efficiently a job.<br>
 
 
-<b>Experienced worker:</b><br>
+**Experienced worker:**<br>
 Description: His contract is coming to an end and needs to find another one.
 
 
-<b>The company:</b><br>
+**The company:**<br>
 Description: The company needs to find candidate on who they can trust and that they know how he will be socially with the other members of the company.
 
 ## 2. Features
@@ -155,6 +154,8 @@ Description: The company needs to find candidate on who they can trust and that 
 
 
 ## 3. Graphic charter
+
+! All colors are shown with its hexadecimal code !
 
 ### Logo
 ---
@@ -177,8 +178,6 @@ For the colors, we will separate them into different categories:
 - Theme main colors
 - Soft-skills
 - Compatibility percentage
-
-All colors are shown with its hexadecimal code.
 
 **Light and dark background**<br>
 For the background, we will have two different type: a light and a dark. The user will be able to choose between them following their preferences.
@@ -210,6 +209,46 @@ For the compatibility percentage, to make it more visible, we decided to use 5 c
 ### Image and icons
 ---
 
+To have an pleasant interface, we have made multiple icons and images. For the first 4 icons, the unselected versions have a color depending the theme color of the user, while the selected version is pure white (FFFFFF):
+
+- Swipe page icon (selected - unselected): <img src="../images/functional/icons/swip_page_selected.png" width="4%" align="center"> - <img src="../images/functional/icons/swip_page_unselected.png" width="4%" align="center">
+
+- Chat page icon (selected - unselected): <img src="../images/functional/icons/chat_page_selected.png" width="6%" align="center"> - <img src="../images/functional/icons/chat_page_unselected.png" width="6%" align="center">
+
+- Account page icon (selected - unselected): <img src="../images/functional/icons/account_page_selected.png" width="5%" align="center"> - <img src="../images/functional/icons/account_page_unselected.png" width="5%" align="center">
+
+- Settings page icon (selected - unselected): <img src="../images/functional/icons/settings_page_selected.png" width="5%" align="center"> - <img src="../images/functional/icons/settings_page_unselected.png" width="5%" align="center">
+
+Those icons are used on the main selection bar, to switch between the different main pages.
+
+The other icons are used for more generic utilization, with fixed colors:
+
+- "Burger" menu icon: <img src="../images/functional/icons/burger_menu_icon.png" width="5%" align="center"> (color: FFFFFF)
+
+- Undo icon: <img src="../images/functional/icons/anticlockwise_icon.png" width="4%" align="center"> (color: 939393)
+
+- Click icon: <img src="../images/functional/icons/click_icon.png" width="3%" align="center"> (color: FFFFFF)
+
+- Crop tool icon: <img src="../images/functional/icons/crop_tool_icon.png" width="4%" align="center"> (color: 939393)
+
+- Enhance tool icon: <img src="../images/functional/icons/enhance_effect_icon.png" width="4%" align="center"> (color: 939393)
+
+- Pencil icon: <img src="../images/functional/icons/pencil_icon.png" width="4%" align="center"> (color: 939393)
+
+- Randomize icon: <img src="../images/functional/icons/random_icon.png" width="4%" align="center"> (color: 939393)
+
+- Filter icon: <img src="../images/functional/icons/filter_icon.png" width="4%" align="center"> (color: B0B0B0)
+
+- Search icon: <img src="../images/functional/icons/research_icon.png" width="4%" align="center"> (color: 939393)
+
+- Return icon: <img src="../images/functional/icons/return_button.png" width="5%" align="center"> (color: 939393)
+
+- Save icon: <img src="../images/functional/icons/save_button.png" width="4%" align="center"> (color: 939393)
+<br><br>
+
+To assure that the candidates are correctly anonymized while keeping the interface attractive, we will be using animal images for the profile picture for the candidates: 
+
+<img src="../images/functional/profile_images/profile_images.png" width="50%">
 
 
 ## 4. UI/UX
@@ -220,11 +259,25 @@ For the computer version, the format used is the standard 16/9 screen ratio.
 ### Logging in
 ---
 
-The first page the user will arrive on is the connecting page:<br>
-<img src="../images/>
+The first page the user will arrive on is the connecting page:
+
+<img src="../images/functional/ui/connecting.png" width="25%">
+
+On this page the user can choose to connect by entering his email address or by using other ways to connect by using Google, Apple or LinkedIn. If the user don't have an account, he can create one by clicking the button "créer" (create) just below.
+
+If the user chooses to connect by entering your email address and presses 'enter' or clicks on the arrow at the right of the text box, he is redirected on a page where he has to enter his password where his name is shown for the candidate (left) or the company name for the company (right):
+
+<img src="../images/functional/ui/enter_password_candidate.png" width="25%">
+<img src="../images/functional/ui/enter_password_company.png" width="25%">
+
+Then if the user has correctly entered his password and pressed 'enter' or clicked on the arrow, he will enter the app.
 
 ### Registering
 ---
+
+If the user is using the app for the first time and does not have an account, he will click on the button "créer" (create) on the connecting page then he will be redirected to a page where he has to tell if he is a candidate or a company:
+
+<img src="../images/functional/ui" width="25%">
 
 #### Job seeker
 
@@ -292,3 +345,6 @@ The first page the user will arrive on is the connecting page:<br>
 
 
 # D. Glossary
+
+| Word | Definition | Source |
+| --- | --- | --- |
