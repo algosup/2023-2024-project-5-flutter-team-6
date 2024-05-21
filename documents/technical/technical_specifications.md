@@ -12,6 +12,27 @@
   - [2. System Requirements](#2-system-requirements)
     - [2.1 Functional Requirements](#21-functional-requirements)
     - [2.2 Non-Functional Requirements](#22-non-functional-requirements)
+  - [3. System Architecture](#3-system-architecture)
+    - [3.1 Overview](#31-overview)
+    - [3.2 Component Diagram](#32-component-diagram)
+    - [3.3 Data Flow Diagram](#33-data-flow-diagram)
+  - [4. Detailed Design](#4-detailed-design)
+    - [4.1 User Interface Design](#41-user-interface-design)
+    - [4.2 Backend Design](#42-backend-design)
+    - [4.3 Database Schema](#43-database-schema)
+      - [Collections and Documents](#collections-and-documents)
+  - [5. Development Approach](#5-development-approach)
+    - [5.1 Methodology](#51-methodology)
+    - [5.2 Tools and Technologies](#52-tools-and-technologies)
+  - [6. Testing](#6-testing)
+    - [6.1 Testing Strategy](#61-testing-strategy)
+    - [6.2 Tools](#62-tools)
+  - [7. Deployment](#7-deployment)
+    - [7.1 Deployment Pipeline](#71-deployment-pipeline)
+    - [7.2 Maintenance](#72-maintenance)
+  - [8. Security](#8-security)
+    - [8.1 Data Security](#81-data-security)
+    - [8.2 Compliance](#82-compliance)
 
 </details>
 
@@ -99,3 +120,157 @@ This document is intended for:
 - **Usability**
 
   - The interface should be intuitive and accessible to users of all age groups.
+
+## 3. System Architecture
+
+### 3.1 Overview
+
+The system architecture is designed to ensure a seamless and efficient user experience across all platforms. It comprises the following components:
+
+Mobile Applications: Android and iOS apps developed using Flutter.
+Desktop Application: Developed using Flutter for compatibility across Linux, Windows, and MacOS.
+Backend System: Using Cloud Firestore (Database) and Firebase Storage (Cloud Storage).
+Authentication Service: Using Firebase Authentication to manage user sign-ups and logins.
+Notification Service: Using Firebase Cloud Messaging (FCM) for push notifications.
+
+### 3.2 Component Diagram
+
+<!-- TODO: [Insert Component Diagram Here] -->
+
+### 3.3 Data Flow Diagram
+
+<!-- TODO: [Insert Data Flow Diagram Here] -->
+
+## 4. Detailed Design
+
+### 4.1 User Interface Design
+
+The UI design focuses on providing a clean, intuitive, and user-friendly interface. It includes:
+
+<!-- TODO: Add detail -->
+
+### 4.2 Backend Design
+
+The backend is structured to handle multiple requests efficiently and securely. Key components include:
+
+<!-- TODO: Add detail -->
+
+### 4.3 Database Schema
+
+The database schema is designed to store user profiles, job postings, matches, messages, and notifications.
+
+#### Collections and Documents
+
+| Users                        |
+| ---------------------------- |
+| userId                       |
+| name                         |
+| email                        |
+| passwordHash                 |
+| profileInfo                  |
+| softSkills                   |
+| type (job seeker or company) |
+| Jobs                         |
+
+| Jobs         |
+| ------------ |
+| jobId        |
+| companyId    |
+| title        |
+| description  |
+| requirements |
+| softSkills   |
+| location     |
+| postDate     |
+| status       |
+| Matches      |
+
+| match     |
+| --------- |
+| matchId   |
+| userId    |
+| jobId     |
+| companyId |
+| status    |
+| Messages  |
+
+| messages      |
+| ------------- |
+| messageId     |
+| matchId       |
+| senderId      |
+| receiverId    |
+| messageText   |
+| timestamp     |
+| Notifications |
+
+| notifications  |
+| -------------- |
+| notificationId |
+| userId         |
+| type           |
+| message        |
+| timestamp      |
+| readStatus     |
+
+## 5. Development Approach
+
+### 5.1 Methodology
+
+The project will follow the Agile methodology, with development broken down into sprints. Each sprint will focus on specific features and improvements, allowing for iterative development and continuous feedback.
+
+### 5.2 Tools and Technologies
+
+Frontend: Flutter for cross-platform development.
+Backend: Firebase.
+Database: Cloud Firestore.
+Authentication: Firebase Authentication.
+Notifications: Firebase Cloud Messaging.
+Version Control: Git with GitHub.
+CI/CD: GitHub Actions for continuous integration and deployment.
+
+## 6. Testing
+
+### 6.1 Testing Strategy
+
+Unit Testing: For individual components and functions.
+Integration Testing: To ensure different parts of the application work together.
+System Testing: To test the complete system as a whole.
+User Acceptance Testing (UAT): To validate the app with end users.
+
+### 6.2 Tools
+
+Unit Testing: Mockito and JUnit for Flutter.
+CI/CD Testing: Automated testing using GitHub Actions.
+UAT: Test With random people in the street or uninvolved acquaintance.
+
+## 7. Deployment
+
+### 7.1 Deployment Pipeline
+
+Staging Environment: For pre-production testing.
+Production Environment: For the live application.
+
+### 7.2 Maintenance
+
+Regular updates and bug fixes based on user feedback and performance metrics.
+
+## 8. Security
+
+### 8.1 Data Security
+
+Encryption: <!-- TODO: Write the encryption system -->
+Authentication: Secure authentication using Firebase Authentication.
+Authorization: Role-based access control (RBAC) for different user roles.
+
+### 8.2 Compliance
+
+GDPR: Ensure compliance with General Data Protection Regulation for user data protection.
+HIPAA: If handling health-related job postings, ensure compliance with Health Insurance Portability and Accountability Act.
+
+<!-- TODO: Roboto font -->
+<!-- TODO: Android 31 to 34 -->
+<!-- TODO: IOS 15 to latest -->
+<!-- TODO: Add glossary -->
+<!-- TODO: Add Appendix -->
+<!-- TODO: Add link to test plan -->
