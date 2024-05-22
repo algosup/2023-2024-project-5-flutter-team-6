@@ -54,7 +54,7 @@
 
 | Document name | Document owner | Date of last update |
 | --- | --- | --- |
-| Functional specifications | Evan UHRING | 5/21/2024 |
+| Functional specifications | Evan UHRING | 5/22/2024 |
 
 
 ## Document validation
@@ -166,7 +166,7 @@ The logo of the app was given by the client:<br>
 ### Fonts
 ---
 
-The chosen fonts are **Roboto** and **Quicksand**. It mixes refined and modern styles together for a more attractive interface.
+The chosen fonts are **Roboto** and **Quicksand**. It mixes refined and modern styles together for a more attractive interface. **Quicksand** is mostly used for big texts and buttons' texts while **Roboto** is used for descriptions, box field texts and other texts.
 
 ### Colors
 ---
@@ -209,7 +209,7 @@ For the compatibility percentage, to make it more visible, we decided to use 5 c
 ### Image and icons
 ---
 
-To have an pleasant interface, we have made multiple icons and images. For the first 4 icons, the unselected versions have a color depending the theme color of the user, while the selected version is pure white (FFFFFF):
+To have an pleasant interface, we have made multiple icons and images. For the first 3 icons, the unselected versions have a color depending the theme color of the user, while the selected version is pure white (FFFFFF):
 
 - Swipe page icon (selected - unselected): <img src="../images/functional/icons/swip_page_selected.png" width="4%" align="center"> - <img src="../images/functional/icons/swip_page_unselected.png" width="4%" align="center">
 
@@ -217,11 +217,9 @@ To have an pleasant interface, we have made multiple icons and images. For the f
 
 - Account page icon (selected - unselected): <img src="../images/functional/icons/account_page_selected.png" width="5%" align="center"> - <img src="../images/functional/icons/account_page_unselected.png" width="5%" align="center">
 
-- Settings page icon (selected - unselected): <img src="../images/functional/icons/settings_page_selected.png" width="5%" align="center"> - <img src="../images/functional/icons/settings_page_unselected.png" width="5%" align="center">
-
 Those icons are used on the main selection bar, to switch between the different main pages.
 
-The other icons are used for more generic utilization, with fixed colors:
+The other icons are used for more generic utilization, with fixed colors for each type of background (light and dark):
 
 - "Burger" menu icon: <img src="../images/functional/icons/burger_menu_icon.png" width="5%" align="center"> (color: FFFFFF)
 
@@ -249,6 +247,7 @@ The other icons are used for more generic utilization, with fixed colors:
 To assure that the candidates are correctly anonymized while keeping the interface attractive, we will be using animal images for the profile picture for the candidates: 
 
 <img src="../images/functional/profile_images/profile_images.png" width="50%">
+<p style="font-size:10px">made by AI</p>
 
 
 ## 4. UI/UX
@@ -277,9 +276,50 @@ Then if the user has correctly entered his password and pressed 'enter' or click
 
 If the user is using the app for the first time and does not have an account, he will click on the button "créer" (create) on the connecting page then he will be redirected to a page where he has to tell if he is a candidate or a company:
 
-<img src="../images/functional/ui" width="25%">
+<img src="../images/functional/ui/selecting_type_of_account.png" width="25%">
+
+When in this page, the user can still go back to the connection page by clicking the button "connexion" (connection) just below.
 
 #### Job seeker
+
+If the user clicks on the button "un candidat" (a candidate), he will arrive at first on page where he will enter his name and surname. Those information will stay anonymized by the other users:
+
+<img src="../images/functional/ui/name_candidate.png" width="25%">
+
+If he has chosen the wrong button (candidate other than company), he can still go back to the selection page by clicking the black arrow below on the left.
+
+If the user decides to continue, he will have to input his email address. The email address will be useful when he will have to connect to the app or when he will show his email address the a company:
+
+<img src="../images/functional/ui/email_candidate.png" width="25%">
+
+To be sure that the correct name was given by the user just before, his name will be shown where "(prénom)" (name) is.
+
+After giving his email address, the candidate arrives on a email address verification page. This will help to input the correct email address:
+
+<img src="../images/functional/ui/verification_candidate.png" width="25%">
+
+If the wrong email was input, the user can still go back to input the correct email address.
+
+When the correct verification code is given by the user, he will arrive on a new page where he will input a password for his account. He will have to input it twice to be sure that he is not mistaking:
+
+<img src="../images/functional/ui/password_candidate.png" width="25%">
+
+Then on the next page after validating his password, the user will have to give some information about his professional status, what type of job does he want and his professional experiences. Those information will stay anonymized for the other users, it is mostly to collect data on which sector of activity is the most requested:
+
+<img src="../images/functional/ui/information_candidate.png" width="25%">
+
+After all the information given by the user, the user will have now to choose what will be visible to others, starting by a nickname. The nickname is randomly generated using two words from the dictionary that go well together. It can not be manually input by the user to stay anonymized, as said in the message:
+
+<img src="../images/functional/ui/information_nickname_candidate.png" width="25%">
+<img src="../images/functional/ui/nickname_candidate.png" width="25%">
+
+If the user is not happy by the nickname, he can still reroll for a new one by clicking the randomize button at the right of the nickname.
+
+Then a profile picture will be given to the user, also randomly. The profile pictures are all an animal:
+
+<img src="../images/functional/ui/profile_picture_candidate.png" width="25%">
+
+As well as the nickname, the user will be able to reroll for a better profile picture if he does not like the one that was given. Every profile pictures are shown in the graphic charter section in ["images and icons"](#image-and-icons).
 
 
 
