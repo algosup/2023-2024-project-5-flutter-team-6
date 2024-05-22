@@ -39,6 +39,8 @@
   - [8. Security](#8-security)
     - [8.1 Data Security](#81-data-security)
     - [8.2 Compliance](#82-compliance)
+  - [9. Glossary](#9-glossary)
+  - [10. Appendix](#10-appendix)
 
 </details>
 
@@ -163,6 +165,8 @@ The UI design focuses on providing a clean, intuitive, and user-friendly interfa
 | **Chat Menu Screen** | Shows a list of matches and enabled communication between job seekers and companies.              |
 | **Chat Screen**      | Display a chat conversation between a company and a user.                                         |
 
+We assume to use Roboto font which is very common on mobile app developement.
+
 ### 4.2 Backend Design
 
 The backend is structured to handle multiple requests efficiently and securely. Key components include:
@@ -278,7 +282,7 @@ The project will follow the Agile methodology, with development broken down into
 
 ### 5.6 Target
 
-We decided to target Android 12 and latest, and IOS 15 and latest, for following reasons:
+We decided to target Android 12 to Android 14, and IOS 15 and latest, for following reasons:
 
 #### 5.6.1 Android usage
 
@@ -301,6 +305,8 @@ We decided to target Android 12 and latest, and IOS 15 and latest, for following
 | **17.4**    | 42.72%                         |
 | **Total**   | 79.38%                         |
 
+***Android 15 has been release but it's still in beta that's why we choose to not focus on it, and this new version will probably handle application built in 12 and latest.***
+
 ## 6. Testing
 
 ### 6.1 Testing Strategy
@@ -309,6 +315,9 @@ Unit Testing: For individual components and functions.
 Integration Testing: To ensure different parts of the application work together.
 System Testing: To test the complete system as a whole.
 User Acceptance Testing (UAT): To validate the app with end users.
+
+<!-- TODO: Add link to test plan -->
+The detailed testing strategy can be saw in the test plan: [HERE]()
 
 ### 6.2 Tools
 
@@ -340,9 +349,6 @@ Authorization: Role-based access control (RBAC) for different user roles.
 GDPR: Ensure compliance with General Data Protection Regulation for user data protection.
 HIPAA: If handling health-related job postings, ensure compliance with Health Insurance Portability and Accountability Act.
 
-<!-- TODO: Roboto font -->
-<!-- TODO: Android 31 to 34 -->
-<!-- TODO: IOS 15 to latest -->
-<!-- TODO: Add glossary -->
-<!-- TODO: Add Appendix -->
-<!-- TODO: Add link to test plan -->
+## 9. Glossary
+
+## 10. Appendix
