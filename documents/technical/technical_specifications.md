@@ -183,7 +183,6 @@ The database schema is designed to store user profiles, job postings, matches, m
 | profileInfo                  |
 | softSkills                   |
 | type (job seeker or company) |
-| Jobs                         |
 
 | Jobs         |
 | ------------ |
@@ -196,18 +195,16 @@ The database schema is designed to store user profiles, job postings, matches, m
 | location     |
 | postDate     |
 | status       |
-| Matches      |
 
-| match     |
+| Matches     |
 | --------- |
 | matchId   |
 | userId    |
 | jobId     |
 | companyId |
 | status    |
-| Messages  |
 
-| messages      |
+| Messages      |
 | ------------- |
 | messageId     |
 | matchId       |
@@ -215,9 +212,8 @@ The database schema is designed to store user profiles, job postings, matches, m
 | receiverId    |
 | messageText   |
 | timestamp     |
-| Notifications |
 
-| notifications  |
+| Notifications  |
 | -------------- |
 | notificationId |
 | userId         |
