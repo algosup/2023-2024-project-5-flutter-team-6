@@ -6,8 +6,6 @@
 | Creation date | 05/17/2024 |
 | Last update date | 05/21/2024 | 
 
----
-
 <details>
 
 <summary style="font-size:1.2em; font-weight:bold;">Table of content</summary>
@@ -24,6 +22,8 @@
 
 
 </details>
+
+---
 
 ### Project Overview
 
