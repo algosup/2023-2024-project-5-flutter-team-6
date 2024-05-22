@@ -25,6 +25,11 @@
     - [5.1 Methodology](#51-methodology)
     - [5.2 Tools and Technologies](#52-tools-and-technologies)
     - [5.3 Packages used](#53-packages-used)
+    - [5.4 Software](#54-software)
+    - [5.5 node.js Packages](#55-nodejs-packages)
+    - [5.6 Target](#56-target)
+      - [5.6.1 Android usage](#561-android-usage)
+      - [5.6.2 IOS usage](#562-ios-usage)
   - [6. Testing](#6-testing)
     - [6.1 Testing Strategy](#61-testing-strategy)
     - [6.2 Tools](#62-tools)
@@ -196,7 +201,7 @@ The database schema is designed to store user profiles, job postings, matches, m
 | postDate     |
 | status       |
 
-| Matches     |
+| Matches   |
 | --------- |
 | matchId   |
 | userId    |
@@ -204,14 +209,14 @@ The database schema is designed to store user profiles, job postings, matches, m
 | companyId |
 | status    |
 
-| Messages      |
-| ------------- |
-| messageId     |
-| matchId       |
-| senderId      |
-| receiverId    |
-| messageText   |
-| timestamp     |
+| Messages    |
+| ----------- |
+| messageId   |
+| matchId     |
+| senderId    |
+| receiverId  |
+| messageText |
+| timestamp   |
 
 | Notifications  |
 | -------------- |
@@ -242,20 +247,59 @@ The project will follow the Agile methodology, with development broken down into
 
 ### 5.3 Packages used
 
-| Flutter Package Name | Description | Links                                                                                                                    |
-| -------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
-| freezed              |             | [Doc](https://pub.dev/documentation/freezed/latest/) / [Install](https://pub.dev/packages/freezed)                       |
-| riverpod             |             | [Doc](https://riverpod.dev/docs/introduction/why_riverpod) / [install](https://riverpod.dev/)                            |
-| firebase-core        |             | [Doc](https://pub.dev/documentation/firebase_core/latest/) / [Install](https://pub.dev/packages/firebase_core)           |
-| firebase-auth        |             | [Doc](https://pub.dev/documentation/firebase_auth/latest/) / [Install](https://pub.dev/packages/firebase_auth)           |
-| cloud_firestore      |             | [Doc](https://pub.dev/documentation/cloud_firestore/latest/) / [Install](https://pub.dev/packages/cloud_firestore)       |
-| shared_preferences   |             | [Doc](https://pub.dev/documentation/shared_preferences/latest/) / [Install](https://pub.dev/packages/shared_preferences) |
-| go_router            |             | [Doc](https://pub.dev/documentation/go_router/latest/) / [Install](https://pub.dev/packages/go_router)                   |
-| firebase_storage     |             | [Doc](https://pub.dev/documentation/firebase_storage/latest/) / [Install](https://pub.dev/packages/firebase_storage)     |
-| flutter_svg          |             | [Doc](https://pub.dev/documentation/flutter_svg/latest/) / [Install](https://pub.dev/packages/flutter_svg)               |
-| image_picker         |             | [Doc](https://pub.dev/documentation/image_picker/latest/) / [Install](https://pub.dev/packages/image_picker)             |
-| geolocator           |             | [Doc](https://pub.dev/documentation/geolocator/latest/) / [Install](https://pub.dev/packages/geolocator)                 |
-| flip_card            |             | [Doc](https://pub.dev/documentation/flip_card/latest/) / [Install](https://pub.dev/packages/flip_card)                   |
+| Flutter Package Name | Version      | Description                                                                                                  | Links                                                                                                                    |
+| -------------------- | ------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| freezed              | **2.5.2**    | Code generation library that helps simplify and enhance the development of immutable data classes.           | [Doc](https://pub.dev/documentation/freezed/latest/) / [Install](https://pub.dev/packages/freezed)                       |
+| riverpod             | **2.5.1**    | A provider which will help us to implement common UI patterns.                                               | [Doc](https://riverpod.dev/docs/introduction/why_riverpod) / [install](https://riverpod.dev/)                            |
+| firebase-core        | **2.31.0**   | Grant access to Firebase services through the app.                                                           | [Doc](https://pub.dev/documentation/firebase_core/latest/) / [Install](https://pub.dev/packages/firebase_core)           |
+| firebase-auth        | **4.19.5**   | Give the possibility for the app to use the firebase authentication systems.                                 | [Doc](https://pub.dev/documentation/firebase_auth/latest/) / [Install](https://pub.dev/packages/firebase_auth)           |
+| cloud_firestore      | **4.17.3**   | Allow us to use the firebase Firestore database.                                                             | [Doc](https://pub.dev/documentation/cloud_firestore/latest/) / [Install](https://pub.dev/packages/cloud_firestore)       |
+| shared_preferences   | **2.0.8**    | Used to store data localy on the user's device.                                                              | [Doc](https://pub.dev/documentation/shared_preferences/latest/) / [Install](https://pub.dev/packages/shared_preferences) |
+| go_router            | **14.1.2**   | Allow us to create custom route with multiple parameters.                                                    | [Doc](https://pub.dev/documentation/go_router/latest/) / [Install](https://pub.dev/packages/go_router)                   |
+| firebase_storage     | **11.7.5**   | Allow the app to access to an online cloud storage to stock files or images.                                 | [Doc](https://pub.dev/documentation/firebase_storage/latest/) / [Install](https://pub.dev/packages/firebase_storage)     |
+| flutter_svg          | **2.0.10+1** | Permit to use SVG images in the app.                                                                         | [Doc](https://pub.dev/documentation/flutter_svg/latest/) / [Install](https://pub.dev/packages/flutter_svg)               |
+| image_picker         | **1.1.1**    | Is used to easily access to the gallery or local folders to help user to upload a picture on the app server. | [Doc](https://pub.dev/documentation/image_picker/latest/) / [Install](https://pub.dev/packages/image_picker)             |
+| geolocator           | **12.0.0**   | Can use a address to get the exact location with latitude and longitude, can also do the reverse process.    | [Doc](https://pub.dev/documentation/geolocator/latest/) / [Install](https://pub.dev/packages/geolocator)                 |
+| appinio_swiper       | **2.0.0**    | Easy swipe system to drag and drop a card like on tinder.                                                    | [Doc](https://pub.dev/documentation/appinio_swiper/latest/) / [Install](https://pub.dev/packages/appinio_swiper)         |
+| flip_card            | **0.7.0**    | As it's name said it, it's to add a flip animation to a card.                                                | [Doc](https://pub.dev/documentation/flip_card/latest/) / [Install](https://pub.dev/packages/flip_card)                   |
+
+### 5.4 Software
+
+| Name         | Link                                                                     |
+| ------------ | ------------------------------------------------------------------------ |
+| Firebase CLI | [Install](https://firebase.google.com/docs/cli#install_the_firebase_cli) |
+| nodejs       | [Install](https://nodejs.org/en)                                         |
+
+### 5.5 node.js Packages
+
+| Name           | Version     | Link                                                    |
+| -------------- | ----------- | ------------------------------------------------------- |
+| firebase-tools | **13.10.0** | [Install](https://www.npmjs.com/package/firebase-tools) |
+
+### 5.6 Target
+
+We decided to target Android 12 and latest, and IOS 15 and latest, for following reasons:
+
+#### 5.6.1 Android usage
+
+| Android Version | API Version                 | Pourcentage of users (in 2024) |
+| --------------- | --------------------------- | ------------------------------ |
+| **12.0**        | **31** *(Snow Cone)*        | 15.01%                         |
+| **13.0**        | **33** *(Tiramisu)*         | 26.02%                         |
+| **14.0**        | **34** *(Upside Down Cake)* | 22.44%                         |
+|                 | **Total**                   | 63.47%                         |
+
+#### 5.6.2 IOS usage
+
+| IOS Version | Pourcentage of users (in 2024) |
+| ----------- | ------------------------------ |
+| **15.8**    | 3.23%                          |
+| **16.1**    | 3.24%                          |
+| **16.6**    | 4.18%                          |
+| **16.7**    | 6.02%                          |
+| **17.3**    | 19.99%                         |
+| **17.4**    | 42.72%                         |
+| **Total**   | 79.38%                         |
 
 ## 6. Testing
 
