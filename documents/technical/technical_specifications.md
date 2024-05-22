@@ -14,7 +14,7 @@
     - [2.2 Non-Functional Requirements](#22-non-functional-requirements)
   - [3. System Architecture](#3-system-architecture)
     - [3.1 Overview](#31-overview)
-    - [3.2 Component Diagram](#32-component-diagram)
+    - [3.2 Flow Chart Diagram](#32-flow-chart-diagram)
     - [3.3 Data Flow Diagram](#33-data-flow-diagram)
   - [4. Detailed Design](#4-detailed-design)
     - [4.1 User Interface Design](#41-user-interface-design)
@@ -133,9 +133,9 @@ Backend System: Using Cloud Firestore (Database) and Firebase Storage (Cloud Sto
 Authentication Service: Using Firebase Authentication to manage user sign-ups and logins.
 Notification Service: Using Firebase Cloud Messaging (FCM) for push notifications.
 
-### 3.2 Component Diagram
+### 3.2 Flow Chart Diagram
 
-<!-- TODO: [Insert Component Diagram Here] -->
+![Flow Chart](../images/technical/flow_chart.svg)
 
 ### 3.3 Data Flow Diagram
 
@@ -147,13 +147,9 @@ Notification Service: Using Firebase Cloud Messaging (FCM) for push notification
 
 The UI design focuses on providing a clean, intuitive, and user-friendly interface. It includes:
 
-<!-- TODO: Add detail -->
-
 ### 4.2 Backend Design
 
 The backend is structured to handle multiple requests efficiently and securely. Key components include:
-
-<!-- TODO: Add detail -->
 
 ### 4.3 Database Schema
 
