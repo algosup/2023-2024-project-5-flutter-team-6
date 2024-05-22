@@ -24,6 +24,7 @@
   - [5. Development Approach](#5-development-approach)
     - [5.1 Methodology](#51-methodology)
     - [5.2 Tools and Technologies](#52-tools-and-technologies)
+    - [5.3 Packages used](#53-packages-used)
   - [6. Testing](#6-testing)
     - [6.1 Testing Strategy](#61-testing-strategy)
     - [6.2 Tools](#62-tools)
@@ -161,6 +162,12 @@ The UI design focuses on providing a clean, intuitive, and user-friendly interfa
 
 The backend is structured to handle multiple requests efficiently and securely. Key components include:
 
+User Management: Handling user registrations, logins, and profile management.
+Job Management: CRUD operations for job postings and applications.
+Matching Algorithm: Logic to match job seekers with job postings based on softskills.
+Messaging Service: Enabling in-app communication between matched users.
+Notification Service: Managing push notifications for matches and messages.
+
 ### 4.3 Database Schema
 
 The database schema is designed to store user profiles, job postings, matches, messages, and notifications.
@@ -227,13 +234,32 @@ The project will follow the Agile methodology, with development broken down into
 
 ### 5.2 Tools and Technologies
 
-Frontend: Flutter for cross-platform development.
-Backend: Firebase.
-Database: Cloud Firestore.
-Authentication: Firebase Authentication.
-Notifications: Firebase Cloud Messaging.
-Version Control: Git with GitHub.
-CI/CD: GitHub Actions for continuous integration and deployment.
+| Category        | Tools/Technologies used                                   |
+| --------------- | --------------------------------------------------------- |
+| Frontend        | Flutter for cross-platform development.                   |
+| Backend         | Firebase.                                                 |
+| Database        | Cloud Firestore.                                          |
+| Authentication  | Firebase Authentication.                                  |
+| Notifications   | Firebase Cloud Messaging.                                 |
+| Version Control | Git with GitHub.                                          |
+| CI/CD           | GitHub Actions for continuous integration and deployment. |
+
+### 5.3 Packages used
+
+| Flutter Package Name | Description | Links                                                                                                                    |
+| -------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
+| freezed              |             | [Doc](https://pub.dev/documentation/freezed/latest/) / [Install](https://pub.dev/packages/freezed)                       |
+| riverpod             |             | [Doc](https://riverpod.dev/docs/introduction/why_riverpod) / [install](https://riverpod.dev/)                            |
+| firebase-core        |             | [Doc](https://pub.dev/documentation/firebase_core/latest/) / [Install](https://pub.dev/packages/firebase_core)           |
+| firebase-auth        |             | [Doc](https://pub.dev/documentation/firebase_auth/latest/) / [Install](https://pub.dev/packages/firebase_auth)           |
+| cloud_firestore      |             | [Doc](https://pub.dev/documentation/cloud_firestore/latest/) / [Install](https://pub.dev/packages/cloud_firestore)       |
+| shared_preferences   |             | [Doc](https://pub.dev/documentation/shared_preferences/latest/) / [Install](https://pub.dev/packages/shared_preferences) |
+| go_router            |             | [Doc](https://pub.dev/documentation/go_router/latest/) / [Install](https://pub.dev/packages/go_router)                   |
+| firebase_storage     |             | [Doc](https://pub.dev/documentation/firebase_storage/latest/) / [Install](https://pub.dev/packages/firebase_storage)     |
+| flutter_svg          |             | [Doc](https://pub.dev/documentation/flutter_svg/latest/) / [Install](https://pub.dev/packages/flutter_svg)               |
+| image_picker         |             | [Doc](https://pub.dev/documentation/image_picker/latest/) / [Install](https://pub.dev/packages/image_picker)             |
+| geolocator           |             | [Doc](https://pub.dev/documentation/geolocator/latest/) / [Install](https://pub.dev/packages/geolocator)                 |
+| flip_card            |             | [Doc](https://pub.dev/documentation/flip_card/latest/) / [Install](https://pub.dev/packages/flip_card)                   |
 
 ## 6. Testing
 
