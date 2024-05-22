@@ -147,6 +147,16 @@ Notification Service: Using Firebase Cloud Messaging (FCM) for push notification
 
 The UI design focuses on providing a clean, intuitive, and user-friendly interface. It includes:
 
+| Screen               | Description                                                                                       |
+| -------------------- | ------------------------------------------------------------------------------------------------- |
+| **Login Screen**     | Allow the users or company to connect to the app with their ids.                                  |
+| **Register Screen**  | Display all fields require for a users or a company registration.                                 |
+| **Home Screen**      | Displays a feed of job postings for job seekers and a list of potential candidates for companies. |
+| **Profile Screen**   | Allows users to view and edit their profile information.                                          |
+| **Favorite Screen**  | Shows the list of favorites cards, the user has saved.                                            |
+| **Chat Menu Screen** | Shows a list of matches and enabled communication between job seekers and companies.              |
+| **Chat Screen**      | Display a chat conversation between a company and a user.                                         |
+
 ### 4.2 Backend Design
 
 The backend is structured to handle multiple requests efficiently and securely. Key components include:
