@@ -167,7 +167,9 @@ The UI design focuses on providing a clean, intuitive, and user-friendly interfa
 | **Chat Menu Screen** | Shows a list of matches and enabled communication between job seekers and companies.              |
 | **Chat Screen**      | Display a chat conversation between a company and a user.                                         |
 
-We assume to use Roboto font which is very common on mobile app developement.
+We assume to use **Roboto** font which is very common on mobile app developement.
+
+![Roboto fonts](../images/technical/roboto_fonts.jpg)
 
 ### 4.2 Backend Design
 
