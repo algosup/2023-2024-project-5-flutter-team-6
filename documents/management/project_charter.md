@@ -48,8 +48,8 @@ The scope of this project is to create an application that allow job seekers to 
 
 ## Stakeholders
 
-| **Name** | **Role** | **Represented by** | **Contact** |
-|---        |---       |---       |---                  |
+| **Name** | **Role** | **Represented by** |
+|---        |---       |---       |
 | WE ARE EVOLUTION. | Client | JOURDANNAUD Lilou |
 | ALGOSUP | School director | JEANNIN Franck |
 
