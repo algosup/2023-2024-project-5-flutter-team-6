@@ -20,6 +20,8 @@
     - [2. Features](#2-features)
         - [Soft-skills](#soft-skills)
         - [Anonymized candidates](#anonymized-candidates)
+        - [Matching system](#matching-system)
+        - [Saving system](#saving-system)
     - [3. Graphic charter](#3-graphic-charter)
         - [Logo](#logo)
         - [Font](#font)
@@ -164,7 +166,7 @@ Description: The company needs to find candidate on who they can trust and that 
 
 ## 2. Features
 
-We were asked to focus on two main features: the soft-skills prioritization and anonymizing candidates. 
+We were asked to focus on two main features: the soft-skills prioritization and anonymizing candidates. Also two other features will be implemented, which one was requested and the other is decided by us to add more possibilities for the app: a matching system and a saving system.
 
 
 ### Soft-skills
@@ -215,6 +217,14 @@ They are not evenly distributed and some of them are in multiple categories but 
 ### Anonymized candidates
 
 As we were tasked to focus on soft-skills, it requires anonymizing the candidates that was also what we were requested to do. By anonymizing the candidates, only their soft-skills will be shown to the other users, to eliminate discrimination, bias selection by competences, to focus more on the human aspect of the recruitment. If the company needs to know more about a candidate, they will be able to chat via a chat system implemented in the app.
+
+### Matching system
+
+The goal of the matching system is to detect when a candidate and a company validated each other's profile. When a matching occurs, they will be able to talk to each other via a private chat implemented in the app.
+
+### Saving system
+
+The saving system that we will implement will be used to save profiles that can be useful later but on which we don't want them to be prioritized. As such, when a profile is saved, it does not mean that it is validated and so the matching system will not work. Saved profiles will be accessible and then the user will be able to finally decides if he reject or validate the profile.
 
 ## 3. Graphic charter
 
@@ -410,71 +420,170 @@ Then, after the verification validated, the user will be able to put every infor
 
 <img src="../images/functional/ui/logo_company.png" width="24%">
 
-
+The user will then be able to create a description for the company:
 
 <img src="../images/functional/ui/description_company.png" width="24%">
 
+As well as what type a job he offers:
+
 <img src="../images/functional/ui/information_company.png" width="24%">
+
+Then he will choose which soft-skills are required to be selected :
 
 <img src="../images/functional/ui/softskills_company1.png" width="24%">
 <img src="../images/functional/ui/softskills_company2.png" width="24%">
 <img src="../images/functional/ui/softskills_company3.png" width="24%">
 <img src="../images/functional/ui/softskills_company4.png" width="24%">
 
+After finishing everything, the user will directly arrive on the main page of the app described in the [Searching candidates](#searching-candidates) section later in the document.
+
 ### Job seeker interface
 ---
 
 #### Searching companies
 
+As a main feature of the app, the candidate will be able to look for a company that perfectly suits his needs.
+
+To do so, the candidate will have "cards" on which the company will be described on:
+
 <img src="../images/functional/ui/searching_candidate1.png" width="24%">
+
+If you click on it, the card will flip to show the complete description that the company had provided:
+
 <img src="../images/functional/ui/searching_candidate2.png" width="24%">
+
+To validate the company, the user will have to click on the green button with a check mark, or slide the card to the right. In the case where the user don't validate the company, he will have to click on the red button with a cross, or slide the card to the left.
+
+Also if the user reject or validate the company by mistake, the return button at the left of the red button will let the user to bring back the last card and do again the choice.
+
+If the user don't really know if he will reject or validate the company, the save button at the right of the green button will let the user to save the company so he will be able to do the choice later, without interfering with the match system (saved profiles will not create a match).
+
+When the user changes page, this page will be accessible by clicking on the middle button on the navigation bar at the bottom of the screen.
 
 #### Discussion with companies
 
+When a match occurs, the job seeker will be able to chat with the company. He will be free to ask or tell what they want, as long as they respect the rules of communication.
+
+To chat with a company, he will have to select to which company he wants to chat with from a list of every matches:
+
 <img src="../images/functional/ui/chat_candidate.png" width="24%">
+
+The last message will be directly visible as well as when it was send.
+
+When the user had chosen to which company he wants to chat with, he will arrive on a chat page that looks like a standard chat interface but using the main style of the app:
 
 <img src="../images/functional/ui/inchat_candidate.png" width="24%">
 
+If he wants to change the company he wants to chat with, he can click on the arrow on the top left of the screen.
+
+When the user changes page, this page will be accessible by clicking on the left button on the navigation bar at the bottom of the screen.
+
 #### Account page
 
-<img src="../images/functional/ui/account_candidate.png" width="24%">
+On the account pages, every information that the user had previously given will be shown:
+
+<img alt="TO DO" src="../images/functional/ui/.png" width="24%">
+
+Some clickable texts will be available:
+- Modify the information
+- See the saved companies
+- Disconnect
+- Delete the account
+
+More details about those clickable texts on the sections below.
+
+When the user changes page, this page will be accessible by clicking on the right button on the navigation bar at the bottom of the screen.
 
 #### Saved companies
 
+When clicking on the clickable text "Saved companies" on the account page, the user will be able to see every company's profiles that he saved. The companies cards have a reduced size to see more companies at the same time:
 
+<img alt="TO DO" src="../images/functional/ui/.png" width="24%">
+
+Upon clicking on a chosen company, the company's card will increase its size to show every details as if the user is choosing to reject or validate the company from the company selection page:
+
+Then he can select to either reject or validate the company, or if he doesn't want to make a choice for now, he can click again on the card and its size will go back as how it was before.
+
+To quit this page, an arrow at the top left is available. It will lead to the account page.
 
 <h4 id="candidate-others">Others</h4>
 
+> TO DO
 
+<img alt="TO DO" src="../images/functional/ui/.png" width="24%">
 
 ### Company interface
 ---
 
+The company side of the app looks pretty much the same as the candidate side apart some changes that are adapted for the companies
+
 #### Searching candidates
+
+The interface works the same way as the candidate side, but clicking on the card will not make the card flip to see a description:
 
 <img src="../images/functional/ui/searching_company.png" width="24%">
 
+To validate the candidate, the user will have to click on the green button with a check mark, or slide the card to the right. In the case where the user don't validate the candidate, he will have to click on the red button with a cross, or slide the card to the left.
+
+Also if the user reject or validate the candidate by mistake, the return button at the left of the red button will let the user to bring back the last card and do again the choice.
+
+If the user don't really know if he will reject or validate the candidate, the save button at the right of the green button will let the user to save the candidate so he will be able to do the choice later, without interfering with the match system (saved profiles will not create a match).
+
+When the user changes page, this page will be accessible by clicking on the middle button on the navigation bar at the bottom of the screen.
+
 #### Discussion with candidates
+
+The interface for the chat page in the same as for the candidate side of the app with for only difference the fact that they see the candidates with which a match occurred:
 
 <img src="../images/functional/ui/chat_company.png" width="24%">
 
+The last message will be directly visible as well as when it was send.
+
+When the user had chosen to which candidate he wants to chat with, he will arrive on a chat page that looks like a standard chat interface but using the main style of the app:
+
 <img src="../images/functional/ui/inchat_company.png" width="24%">
+
+If he wants to change the candidate he wants to chat with, he can click on the arrow on the top left of the screen.
+
+When the user changes page, this page will be accessible by clicking on the left button on the navigation bar at the bottom of the screen.
 
 #### Account page
 
+On the account pages, every information that the user had previously given will be shown:
 
+<img alt="TO DO" src="../images/functional/ui/.png" width="24%">
+
+Some clickable texts will be available:
+- Modify the information
+- See the saved candidates
+- Disconnect
+- Delete the account
+
+More details about those clickable texts on the sections below.
+
+When the user changes page, this page will be accessible by clicking on the right button on the navigation bar at the bottom of the screen.
 
 #### Saved candidates
 
+When clicking on the clickable text "Saved candidates" on the account page, the user will be able to see every candidate's profiles that he saved. The candidates cards have a reduced size to see more candidates at the same time:
 
+<img alt="TO DO" src="../images/functional/ui/.png" width="24%">
+
+Upon clicking on a chosen candidate, the candidate's card will increase its size to show every details as if the user is choosing to reject or validate the candidate from the candidate selection page:
+
+Then he can select to either reject or validate the candidate, or if he doesn't want to make a choice for now, he can click again on the card and its size will go back as how it was before.
+
+To quit this page, an arrow at the top left is available. It will lead to the account page.
 
 <h4 id="company-others">Others</h4>
 
+> TO DO
 
+<img alt="TO DO" src="../images/functional/ui/.png" width="24%">
 
 #### Computer version
 
-
+Fot the computer version, the interface will be the same as for the smartphone version. Everything will be centered on the screen.
 <br><br>
 
 
