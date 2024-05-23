@@ -59,7 +59,7 @@
 
 | Document name | Document owner | Date of last update |
 | --- | --- | --- |
-| Functional specifications | Evan UHRING | 5/22/2024 |
+| Functional specifications | Evan UHRING | 5/23/2024 |
 
 
 ## Document validation
