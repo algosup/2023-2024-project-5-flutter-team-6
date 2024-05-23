@@ -159,12 +159,13 @@ Description: He just finished school and got his diploma, but he needs to find e
 Description: His contract is coming to an end and needs to find another one.
 
 
-**The company:**<br>
+**A company:**<br>
 Description: The company needs to find candidate on who they can trust and that they know how he will be socially with the other members of the company.
 
 ## 2. Features
 
 We were asked to focus on two main features: the soft-skills prioritization and anonymizing candidates. 
+
 
 ### Soft-skills
 
@@ -284,15 +285,7 @@ The other icons are used for more generic utilization, with fixed colors for eac
 
 - "Burger" menu icon: <img src="../images/functional/icons/burger_menu_icon.png" width="5%" align="center"> (color: FFFFFF)
 
-- Undo icon: <img src="../images/functional/icons/anticlockwise_icon.png" width="4%" align="center"> (color: 939393)
-
 - Click icon: <img src="../images/functional/icons/click_icon.png" width="3%" align="center"> (color: FFFFFF)
-
-- Crop tool icon: <img src="../images/functional/icons/crop_tool_icon.png" width="4%" align="center"> (color: 939393)
-
-- Enhance tool icon: <img src="../images/functional/icons/enhance_effect_icon.png" width="4%" align="center"> (color: 939393)
-
-- Pencil icon: <img src="../images/functional/icons/pencil_icon.png" width="4%" align="center"> (color: 939393)
 
 - Randomize icon: <img src="../images/functional/icons/random_icon.png" width="4%" align="center"> (color: 939393)
 
@@ -355,7 +348,7 @@ If the user decides to continue, he will have to input his email address. The em
 
 <img src="../images/functional/ui/email_candidate.png" width="24%">
 
-To be sure that the correct name was given by the user just before, his name will be shown where "(prénom)" (name) is.
+To be sure that the correct name was given by the user just before, his name will be shown where "(prénom)" (name) is. If not, he will be able to go back.
 
 After giving his email address, the candidate arrives on a email address verification page. This will help to input the correct email address:
 
@@ -395,11 +388,25 @@ After finishing everything, the user will directly arrive on the main page of th
 
 #### Company
 
+If the user clicks on the button "une entreprise" (a company), he will arrive at first on page where he will have to enter the name of the company:
+
 <img src="../images/functional/ui/email_company.png" width="24%">
+
+If he has chosen the wrong button (company other than candidate), he can still go back to the selection page by clicking the black arrow below on the left.
+
+If the user decides to continue, he will have to input the main email address of the company as well as the "numéro de siret" (specific to French organization) to authenticate that the company is real and the the user create an account is not faking:
 
 <img src="../images/functional/ui/authentication_company.png" width="24%">
 
+If the user has given a wrong name or is not sure, he will be able to go back.
+
+After giving the email address and the "numéro de siret", the user arrives on a email address verification page. This will help to verify the identity of the user:
+
 <img src="../images/functional/ui/verification_company.png" width="24%">
+
+If the user has not received any code, he will be able to go back to verify that the correct email was input.
+
+Then, after the verification validated, the user will be able to put every information necessary, starting with the logo:
 
 <img src="../images/functional/ui/logo_company.png" width="24%">
 
@@ -417,7 +424,8 @@ After finishing everything, the user will directly arrive on the main page of th
 
 #### Searching companies
 
-<img src="../images/functional/ui/searching_candidate.png" width="24%">
+<img src="../images/functional/ui/searching_candidate1.png" width="24%">
+<img src="../images/functional/ui/searching_candidate2.png" width="24%">
 
 #### Discussion with companies
 
@@ -442,11 +450,13 @@ After finishing everything, the user will directly arrive on the main page of th
 
 #### Searching candidates
 
-
+<img src="../images/functional/ui/searching_company.png" width="24%">
 
 #### Discussion with candidates
 
+<img src="../images/functional/ui/chat_company.png" width="24%">
 
+<img src="../images/functional/ui/inchat_company.png" width="24%">
 
 #### Account page
 
@@ -457,6 +467,10 @@ After finishing everything, the user will directly arrive on the main page of th
 
 
 <h4 id="company-others">Others</h4>
+
+
+
+#### Computer version
 
 
 <br><br>
