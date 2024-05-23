@@ -410,6 +410,8 @@ Then, after the verification validated, the user will be able to put every infor
 
 <img src="../images/functional/ui/logo_company.png" width="24%">
 
+
+
 <img src="../images/functional/ui/description_company.png" width="24%">
 
 <img src="../images/functional/ui/information_company.png" width="24%">
