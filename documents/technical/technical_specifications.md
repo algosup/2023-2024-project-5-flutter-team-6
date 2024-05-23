@@ -145,6 +145,8 @@ Notification Service: Using Firebase Cloud Messaging (FCM) for push notification
 
 ![Flow Chart](../images/technical/flow_chart.svg)
 
+You can also click [HERE](../images/technical/flow_chart.svg) to see a fullscreen version.
+
 ### 3.3 Data Flow Diagram
 
 <!-- TODO: [Insert Data Flow Diagram Here] -->
@@ -340,7 +342,7 @@ Regular updates and bug fixes based on user feedback and performance metrics.
 
 ### 8.1 Data Security
 
-Encryption: <!-- TODO: Write the encryption system -->
+Encryption: HTTPS & SSL.
 Authentication: Secure authentication using Firebase Authentication.
 Authorization: Role-based access control (RBAC) for different user roles.
 
@@ -350,5 +352,11 @@ GDPR: Ensure compliance with General Data Protection Regulation for user data pr
 HIPAA: If handling health-related job postings, ensure compliance with Health Insurance Portability and Accountability Act.
 
 ## 9. Glossary
+
+| Id                       | Term  | Definition                                                                                    |
+| ------------------------ | ----- | --------------------------------------------------------------------------------------------- |
+| <p id="glossary-1">1</p> | CI/CD | Continuous Integration/Continuous Deployment, a software development practice.                |
+| <p id="glossary-2">2</p> | GDPR  | General Data Protection Regulation, a regulation for data protection and privacy in the EU.   |
+| <p id="glossary-3">3</p> | HIPAA | Health Insurance Portability and Accountability Act, a US law for healthcare data protection. |
 
 ## 10. Appendix
