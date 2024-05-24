@@ -79,7 +79,7 @@
 
 ## 1. Overview
 
-Our team was asked to design and develope an interface[^1] of an application[^2] called Adopte Un Candidat. It is a recruitment app between job seekers and companies, while completely anonymizing the job seekers to focus on their soft-skills[^3] rather than their gender, how they look and their experiences. It has to be available on smartphones, tablets and computers.
+Our team was asked to design and develope an interface<sup><a href="#1">[1]</a></sup> of an application<sup><a href="#2">[2]</a></sup> called Adopte Un Candidat. It is a recruitment app between job seekers and companies, while completely anonymizing the job seekers to focus on their soft-skills<sup><a href="#3">[3]</a></sup> rather than their gender, how they look and their experiences. It has to be available on smartphones, tablets and computers.
 
 ## 2. Project definition
 
@@ -92,7 +92,7 @@ We will have a complete interface that was validated by the client. Every reques
 ---
 
 - Make a complete interface for the app
-- Has to be made using Flutter[^4]
+- Has to be made using Flutter<sup><a href="#4">[4]</a></sup>
 - Can be used on smartphone, tablet and computer
 
 ### Scope 
@@ -101,7 +101,7 @@ We will have a complete interface that was validated by the client. Every reques
 | In scope |
 | --- |
 | Design the interface of the app |
-| Deliver the front-end[^5] of the app |
+| Deliver the front-end<sup><a href="#5">[5]</a></sup> of the app |
 | Must be programmed using Flutter |
 | Make it usable on smartphone, tablet and computer |
 | Focus on the soft-skills feature and candidates' anonyma |
@@ -111,7 +111,7 @@ We will have a complete interface that was validated by the client. Every reques
 | --- |
 | Every information of the user are visible by other users |
 | Change the name and the logo of the app |
-| Make it usable on only one platform[^6] |
+| Make it usable on only one platform<sup><a href="#6">[6]</a></sup> |
 
 
 ### Deliverables
@@ -650,9 +650,9 @@ When the message is closed, the user will be redirected to the connection page.
 
 | Word | Definition | Source |
 | --- | --- | --- |
-| [^1]: Interface | A connection between a person and a computer. | [Cambridge Dictionary](https://dictionary.cambridge.org/dictionary/english/interface) |
-| [^2]: Application | Also called app, it is a computer program that is designed for a particular purpose. | [Cambridge Dictionary](https://dictionary.cambridge.org/dictionary/english/application) |
-| [^3]: Soft-skills | People's abilities to communicate with each other and work well together. | [Cambridge Dictionary](https://dictionary.cambridge.org/dictionary/english/soft-skills) |
-| [^4]: Flutter | Flutter is an open-source UI software development kit created by Google. | [Wikipedia](https://en.wikipedia.org/wiki/Flutter_(software)) |
-| [^5]: Front-end | In software engineering, front-end means the presentation layer of a piece of software. | [Wikipedia](https://en.wikipedia.org/wiki/Frontend_and_backend) |
-| [^6]: Platform | In software engineering, it is any hardware or software used to host an application or service. | [TechTarget](https://www.techtarget.com/searchitoperations/definition/platform#:~:text=In%20IT%2C%20a%20platform%20is,a%20particular%20processor%20or%20microprocessor.) |
+| <p id="1">[1]</p>: Interface | A connection between a person and a computer. | [Cambridge Dictionary](https://dictionary.cambridge.org/dictionary/english/interface) |
+| <p id="2">[2]</p>: Application | Also called app, it is a computer program that is designed for a particular purpose. | [Cambridge Dictionary](https://dictionary.cambridge.org/dictionary/english/application) |
+| <p id="3">[3]</p>: Soft-skills | People's abilities to communicate with each other and work well together. | [Cambridge Dictionary](https://dictionary.cambridge.org/dictionary/english/soft-skills) |
+| <p id="4">[4]</p>: Flutter | Flutter is an open-source UI software development kit created by Google. | [Wikipedia](https://en.wikipedia.org/wiki/Flutter_(software)) |
+| <p id="5">[5]</p>: Front-end | In software engineering, front-end means the presentation layer of a piece of software. | [Wikipedia](https://en.wikipedia.org/wiki/Frontend_and_backend) |
+| <p id="6">[6]</p>: Platform | In software engineering, it is any hardware or software used to host an application or service. | [TechTarget](https://www.techtarget.com/searchitoperations/definition/platform#:~:text=In%20IT%2C%20a%20platform%20is,a%20particular%20processor%20or%20microprocessor.) |
