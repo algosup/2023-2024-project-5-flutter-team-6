@@ -70,7 +70,7 @@
 | Tech Lead | Mathias GAGNEPAIN |  |  |
 | Software Developer | Ian LAURENT |  |  |
 | Quality Assurance | Pierre GORIN |  |  |
-| Technical Writer | Guillaume DESPAUX |  |  |
+| Technical Writer | Guillaume DESPAUX | ✅ | 5/24/2024 |
 
 <br><br>
 
