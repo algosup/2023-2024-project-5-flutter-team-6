@@ -3,9 +3,10 @@ This project started the 05/13/2024, we had 4 project times during the week. Our
 
 ## Cheat Sheet
 
-| Progression | 0%                          | 0% - 10%                                                                      | 10% - 50% | 50% < 75% | 75% < 99% | 100% |
+
+| Progression | 0%                          | 0% - 10%                                                                      | 10% - 50% | 50% - 75% | 75% - 99% | 100% |
 | ----------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ------------------------------- | ------------------------------- | ------------------------------ |
-| Meaning     | The task didn't started yet | The task is at these beginnings and only the basis are made or are being made | The task is progressing well and the team enter in the heart of it | The end of the task approach and the team must continue at a good pace | This is the last part of the task, finish the task and pass it in review. | The task is entirely done and included. |
+| Meaning     | The task haven't started yet. | The ongoing task is still in progress and well started. | The task is progressing well and coming to life. | The task is coming to an end, however few changes has to be done. | the final phase of the task has been completed and is currently being reviewed by the QA.  | The task is entirely completed and integrated in the repository. |
 
 ## Ongoing Tasks
 
@@ -13,33 +14,27 @@ This project started the 05/13/2024, we had 4 project times during the week. Our
 | :----------------------:| :------------------: | :-------------------------------: | :---------: | :--------------------: | :--------: |
 |     Project Charter     |        HIGH          |     Camille - Project Manager     |     20%     |          20%           | 05/17/2024 |
 |        Mock-ups         |        VERY HIGH     |     All team                      |     70%     |          100%          | 05/13/2024 |
-| Functional specification|        HIGH          |     Evan - Program Manager        |     10%     |          10%           | 05/17/2024 |
+
+| Functional Specifications |        HIGH          |     Evan - Program Manager        |     10%     |          10%           | 05/17/2024 |
 
 ## Finished Tasks
 
 |          Task              | Member Assigned                  | Start Date |  End Date  |
 | :---------------------:    | :------------------------------: | :--------: | :--------: |
-| Github Repository creation |    Mathias - Technical Lead      | 05/16/2024 | 05/16/2024 |
+| Creation of the Github Repository |    Mathias - Technical Lead      | 05/16/2024 | 05/16/2024 |
 
 ## Team meeting
 
-- A meeting was made the 05/13/2024 at the beginning of the project to setup the project.
-- Another one was made the 05/16/2024 10 minutes before the end to keep track of the project.
-- Two else were made the 05/17/2024 at the beginning and the end of the project to share the progress and motivate the team.
+- A meeting was done the 05/13/2024 at the beginning of the project to setup the project.
+- Another one was done the 05/16/2024 10 minutes before the end of the day to keep track of the project.
+- Two else were made the 05/17/2024 at the start of the day and at the end of the day to maintain progression of the project.
 
 ## Week feedback
 
-This week the project advanced a lot, The decision to all make a different mock-up and then sharing them together to keep the best ideas of everyone was made, then with these ideas, 2 groups were made to prepare two mock-ups to present to the client. But we need to be careful about the deadline for the Functional specifications.
+The kick-off of the project was fairly satisfying, we decided as a team to come up with different mock-ups which we will present to the client. Two main mock-ups has been kept, and will be sent next week to the client.
 
-Globally, all the members of the team worked a lot and brought of their own in the advancement. They are motivated and feels great, some are confident with flutter and dart.
+Globally, all team members has contributing to allow the team to come up with theses final mock-ups, the team members motivation is on-point and few team members feels confident with Dart and Flutter technologies.
 
 ## Next week planning
 
-The next week we will focus on the Functional specifications mainly.
-
-Next week concern's:
-- Finish entirely the Functional specifications
-- Finish the Project charter
-- Finish the Mock-ups
-- Gantt
-- RACII
+The next weeks main concern will be focus on the Functional Specifications, and in parallel completing the Project Charter, Wait for the response of the client, finishing the GANTT Charter and finishing the RACI Matrix.
