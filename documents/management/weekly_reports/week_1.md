@@ -3,6 +3,7 @@ This project started the 05/13/2024, we had 4 project times during the week. Our
 
 ## Cheat Sheet
 
+
 | Progression | 0%                          | 0% - 10%                                                                      | 10% - 50% | 50% - 75% | 75% - 99% | 100% |
 | ----------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ------------------------------- | ------------------------------- | ------------------------------ |
 | Meaning     | The task haven't started yet. | The ongoing task is still in progress and well started. | The task is progressing well and coming to life. | The task is coming to an end, however few changes has to be done. | the final phase of the task has been completed and is currently being reviewed by the QA.  | The task is entirely completed and integrated in the repository. |
@@ -13,6 +14,7 @@ This project started the 05/13/2024, we had 4 project times during the week. Our
 | :----------------------:| :------------------: | :-------------------------------: | :---------: | :--------------------: | :--------: |
 |     Project Charter     |        HIGH          |     Camille - Project Manager     |     20%     |          20%           | 05/17/2024 |
 |        Mock-ups         |        VERY HIGH     |     All team                      |     70%     |          100%          | 05/13/2024 |
+
 | Functional Specifications |        HIGH          |     Evan - Program Manager        |     10%     |          10%           | 05/17/2024 |
 
 ## Finished Tasks
