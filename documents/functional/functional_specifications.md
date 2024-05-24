@@ -473,11 +473,14 @@ When the user changes page, this page will be accessible by clicking on the left
 
 On the account pages, every information that the user had previously given will be shown:
 
-<img alt="TO DO" src="../images/functional/ui/.png" width="24%">
+<img src="../images/functional/ui/account_candidate1.png" width="24%"> <img src="../images/functional/ui/account_candidate2.png" width="24%">
 
 Some clickable texts will be available:
 - Modify the information
 - See the saved companies
+- Privacy policy
+- General terms of use
+- License
 - Disconnect
 - Delete the account
 
@@ -524,6 +527,8 @@ If he still chooses to delete his account, a message will be shown that an email
 
 <img alt="TO DO" src="../images/functional/ui/.png" width="24%">
 
+The privacy policy, the general terms of use and the license are accessible via the account page. They are necessary for the rights of the app.
+
 When the message is closed, the user will be redirected to the connection page.
 
 ### Company interface
@@ -565,11 +570,14 @@ When the user changes page, this page will be accessible by clicking on the left
 
 On the account pages, every information that the user had previously given will be shown:
 
-<img alt="TO DO" src="../images/functional/ui/.png" width="24%">
+<img src="../images/functional/ui/account_company1.png" width="24%"> <img src="../images/functional/ui/account_company2.png" width="24%">
 
 Some clickable texts will be available:
 - Modify the information
-- See the saved candidates
+- See the saved companies
+- Privacy policy
+- General terms of use
+- License
 - Disconnect
 - Delete the account
 
@@ -612,6 +620,8 @@ Finally, when he clicks on "Supprimer le compte" (delete the account), a message
 If he still chooses to delete his account, a message will be shown that an email has been send to validate the deletion of the account:
 
 <img alt="TO DO" src="../images/functional/ui/.png" width="24%">
+
+The privacy policy, the general terms of use and the license are accessible via the account page. They are necessary for the rights of the app.
 
 When the message is closed, the user will be redirected to the connection page.
 <br><br>
