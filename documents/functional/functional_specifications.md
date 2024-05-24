@@ -331,8 +331,7 @@ On this page the user can choose to connect by entering his email address or by 
 
 If the user chooses to connect by entering your email address and presses 'enter' or clicks on the arrow at the right of the text box, he is redirected on a page where he has to enter his password where his name is shown for the candidate (left) or the company name for the company (right):
 
-<img src="../images/functional/ui/enter_password_candidate.png" width="24%">
-<img src="../images/functional/ui/enter_password_company.png" width="24%">
+<img src="../images/functional/ui/enter_password_candidate.png" width="24%"> <img src="../images/functional/ui/enter_password_company.png" width="24%">
 
 Then if the user has correctly entered his password and pressed 'enter' or clicked on the arrow, he will enter the app.
 
@@ -375,8 +374,7 @@ Then on the next page after validating his password, the user will have to give 
 
 After all the information given by the user, the user will have now to choose what will be visible to others, starting by a nickname. The nickname is randomly generated using two words from the dictionary that go well together. It can not be manually input by the user to stay anonymized, as said in the message:
 
-<img src="../images/functional/ui/information_nickname_candidate.png" width="24%">
-<img src="../images/functional/ui/nickname_candidate.png" width="24%">
+<img src="../images/functional/ui/information_nickname_candidate.png" width="24%"> <img src="../images/functional/ui/nickname_candidate.png" width="24%">
 
 If the user is not happy by the nickname, he can still reroll for a new one by clicking the randomize button at the right of the nickname.
 
@@ -388,10 +386,7 @@ As well as the nickname, the user will be able to reroll for a better profile pi
 
 Then, as a main feature of the app, the user will have to choose his soft-skills that best describe him. He will be limited to 12 soft-skills to select, and the soft-skills are separated in 4 categories. You can find every detail on the soft-skills feature in the feature section in [Soft-skills](#soft-skills).
 
-<img src="../images/functional/ui/softskills_candidate_1.png" width="24%">
-<img src="../images/functional/ui/softskills_candidate_2.png" width="24%">
-<img src="../images/functional/ui/softskills_candidate_3.png" width="24%">
-<img src="../images/functional/ui/softskills_candidate_4.png" width="24%">
+<img src="../images/functional/ui/softskills_candidate_1.png" width="24%"> <img src="../images/functional/ui/softskills_candidate_2.png" width="24%"> <img src="../images/functional/ui/softskills_candidate_3.png" width="24%"> <img src="../images/functional/ui/softskills_candidate_4.png" width="24%">
 
 After finishing everything, the user will directly arrive on the main page of the app described in the [Searching companies](#searching-companies) section later in the document.
 
@@ -429,10 +424,7 @@ As well as what type a job he offers:
 
 Then he will choose which soft-skills are required to be selected :
 
-<img src="../images/functional/ui/softskills_company1.png" width="24%">
-<img src="../images/functional/ui/softskills_company2.png" width="24%">
-<img src="../images/functional/ui/softskills_company3.png" width="24%">
-<img src="../images/functional/ui/softskills_company4.png" width="24%">
+<img src="../images/functional/ui/softskills_company1.png" width="24%"> <img src="../images/functional/ui/softskills_company2.png" width="24%"> <img src="../images/functional/ui/softskills_company3.png" width="24%"> <img src="../images/functional/ui/softskills_company4.png" width="24%">
 
 After finishing everything, the user will directly arrive on the main page of the app described in the [Searching candidates](#searching-candidates) section later in the document.
 
@@ -501,8 +493,7 @@ When clicking on the clickable text "Saved companies" on the account page, the u
 
 After clicking on a chosen company, the company's card will increase its size to show every details as if the user is choosing to reject or validate the company from the company selection page:
 
-<img src="../images/functional/ui/saved_companies2.png" width="24%">
-<img src="../images/functional/ui/saved_companies3.png" width="24%">
+<img src="../images/functional/ui/saved_companies2.png" width="24%"> <img src="../images/functional/ui/saved_companies3.png" width="24%">
 
 Then he can select to either reject or validate the company, or if he doesn't want to make a choice for now, he can click again on the card and its size will go back as how it was before.
 
@@ -521,10 +512,7 @@ First, if the user click on "Modifier les informations" (modify the information)
 
 <img src="../images/functional/ui/modify_account.png" width="24%">
 
-<img src="../images/functional/ui/modify_softskills1.png" width="24%">
-<img src="../images/functional/ui/modify_softskills2.png" width="24%">
-<img src="../images/functional/ui/modify_softskills3.png" width="24%">
-<img src="../images/functional/ui/modify_softskills4.png" width="24%">
+<img src="../images/functional/ui/modify_softskills1.png" width="24%"> <img src="../images/functional/ui/modify_softskills2.png" width="24%"> <img src="../images/functional/ui/modify_softskills3.png" width="24%"> <img src="../images/functional/ui/modify_softskills4.png" width="24%">
 
 Second, if he clicks on "Déconnexion" (disconnect), he will be directly disconnected and redirected to the connection page.
 
