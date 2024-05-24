@@ -67,7 +67,7 @@
 | Role | Name | Signature | Date |
 |---|---|---|---|
 | Project Manager | Camille GAYAT | ✅ | 05/24/2024 |
-| Tech Lead | Mathias GAGNEPAIN |  |  |
+| Tech Lead | Mathias GAGNEPAIN | ✅ | 5/24/2024 |
 | Software Developer | Ian LAURENT |  |  |
 | Quality Assurance | Pierre GORIN |  |  |
 | Technical Writer | Guillaume DESPAUX | ✅ | 5/24/2024 |
