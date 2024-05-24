@@ -35,13 +35,13 @@
         - [Job seeker interface](#job-seeker-interface)
             - [Searching companies](#searching-companies)
             - [Discussion with companies](#discussion-with-companies)
-            - [Profile page](#profile-page)
+            - [Account page](#candidate-account)
             - [Saved companies](#saved-companies)
             - [Others](#candidate-others)
         - [Company interface](#job-seeker-interface)
             - [Searching candidates](#searching-candidates)
             - [Discussion with candidates](#discussion-with-candidates)
-            - [Profile page](#profile-page)
+            - [Account page](#company-account)
             - [Saved candidates](#saved-candidates)
             - [Others](#company-others)
             - [Computer version](#computer-version)
@@ -145,7 +145,6 @@ We will have a complete interface that was validated by the client. Every reques
 | Software engineer | Writes the code.<br>Writes documentation<br>Participate in the technical design. | Ian LAURENT |
 | Quality assurance |  Tests all the functionalities of a product to find bugs and issue.<br>Document bugs and issues.<br>Write the test plan.<br>Check that issues have been fixed.| Pierre GORIN |
 | Technical writer | Is in charge of writing a user manual | Guillaume DESPAUX |
-
 <br><br>
 
 
@@ -153,16 +152,13 @@ We will have a complete interface that was validated by the client. Every reques
 
 ## 1. Personas definition
 
-**Young candidate:**<br>
-Description: He just finished school and got his diploma, but he needs to find efficiently a job.<br>
-
-
-**Experienced worker:**<br>
-Description: His contract is coming to an end and needs to find another one.
-
-
-**A company:**<br>
-Description: The company needs to find candidate on who they can trust and that they know how he will be socially with the other members of the company.
+| **Young candidate:** | **Experienced worker:** | **A company:** |
+| --- | --- | --- |
+| ![](../images/functional/personas/young_worker.jpg) | ![](../images/functional/personas/worker.jpg) | ![](../images/functional/personas/company.jpg) |
+| Name: Ethan James | Name: Liam Alexander | Name: Sophie Grace |
+| Age: 21 | Age: 44 | Age: 37 |
+| Problem: He just finished school and got his diploma, but he needs to find efficiently a job. | Problem: His contract is coming to an end and needs to find another one. | Problem: The company needs to find candidate on who they can trust and that they know how he will be socially with the other members of the company. |
+| What he wants: he would appreciate something that will help him finding a job that can accept junior worker. | What he wants: he wants something that can help him to find a new job efficiently without the need of doing a lot of things to be recruited. | What she wants: a way of looking for candidates easily without the need of looking through thousands of websites and social-networks and on which she can recruit by looking for the best soft-skills. |
 
 ## 2. Features
 
@@ -478,7 +474,7 @@ If he wants to change the company he wants to chat with, he can click on the arr
 
 When the user changes page, this page will be accessible by clicking on the left button on the navigation bar at the bottom of the screen.
 
-#### Account page
+<h4 id="candidate-account">Account page</h4>
 
 On the account pages, every information that the user had previously given will be shown:
 
@@ -498,9 +494,12 @@ When the user changes page, this page will be accessible by clicking on the righ
 
 When clicking on the clickable text "Saved companies" on the account page, the user will be able to see every company's profiles that he saved. The companies cards have a reduced size to see more companies at the same time:
 
-<img alt="TO DO" src="../images/functional/ui/.png" width="24%">
+<img src="../images/functional/ui/saved_companies1.png" width="24%">
 
-Upon clicking on a chosen company, the company's card will increase its size to show every details as if the user is choosing to reject or validate the company from the company selection page:
+After clicking on a chosen company, the company's card will increase its size to show every details as if the user is choosing to reject or validate the company from the company selection page:
+
+<img src="../images/functional/ui/saved_companies2.png" width="24%">
+<img src="../images/functional/ui/saved_companies3.png" width="24%">
 
 Then he can select to either reject or validate the company, or if he doesn't want to make a choice for now, he can click again on the card and its size will go back as how it was before.
 
@@ -508,9 +507,33 @@ To quit this page, an arrow at the top left is available. It will lead to the ac
 
 <h4 id="candidate-others">Others</h4>
 
-> TO DO
+The user will be able to get through other pages with secondary use that are still needed to have a complete app. Those pages are:
+- Modify the account information
+- Disconnect
+- Delete the account
+
+Those pages are accessible through the account page, by clicking on the correct clickable text (interface details in the [Account page](#candidate-account) section).
+
+First, if the user click on "Modifier les informations" (modify the information), the user will be able to modify every information that he gave when registering, as well as the soft-skills:
+
+<img src="../images/functional/ui/modify_account.png" width="24%">
+
+<img src="../images/functional/ui/modify_softskills1.png" width="24%">
+<img src="../images/functional/ui/modify_softskills2.png" width="24%">
+<img src="../images/functional/ui/modify_softskills3.png" width="24%">
+<img src="../images/functional/ui/modify_softskills4.png" width="24%">
+
+Second, if he clicks on "Déconnexion" (disconnect), he will be directly disconnected and redirected to the connection page.
+
+Finally, when he clicks on "Supprimer le compte" (delete the account), a message will appear to ask if the user really wants to delete his account:
 
 <img alt="TO DO" src="../images/functional/ui/.png" width="24%">
+
+If he still chooses to delete his account, a message will be shown that an email has been send to validate the deletion of the account:
+
+<img alt="TO DO" src="../images/functional/ui/.png" width="24%">
+
+When the message is closed, the user will be redirected to the connection page.
 
 ### Company interface
 ---
@@ -547,7 +570,7 @@ If he wants to change the candidate he wants to chat with, he can click on the a
 
 When the user changes page, this page will be accessible by clicking on the left button on the navigation bar at the bottom of the screen.
 
-#### Account page
+<h4 id="company-account">Account page</h4>
 
 On the account pages, every information that the user had previously given will be shown:
 
@@ -577,13 +600,29 @@ To quit this page, an arrow at the top left is available. It will lead to the ac
 
 <h4 id="company-others">Others</h4>
 
-> TO DO
+As well as the candidate side, the company side will have access to the same secondary pages.
+Those pages are:
+- Modify the account information
+- Disconnect
+- Delete the account
+
+They are also accessible through the account page, by clicking on the correct clickable text (interface details in the [Account page](#company-account) section).
+
+First, if the user click on "Modifier les informations" (modify the information), the user will be able to modify every information that he gave when registering, as well as the soft-skills:
 
 <img alt="TO DO" src="../images/functional/ui/.png" width="24%">
 
-#### Computer version
+Second, if he clicks on "Déconnexion" (disconnect), he will be directly disconnected and redirected to the connection page.
 
-Fot the computer version, the interface will be the same as for the smartphone version. Everything will be centered on the screen.
+Finally, when he clicks on "Supprimer le compte" (delete the account), a message will appear to ask if the user really wants to delete his account:
+
+<img alt="TO DO" src="../images/functional/ui/.png" width="24%">
+
+If he still chooses to delete his account, a message will be shown that an email has been send to validate the deletion of the account:
+
+<img alt="TO DO" src="../images/functional/ui/.png" width="24%">
+
+When the message is closed, the user will be redirected to the connection page.
 <br><br>
 
 
