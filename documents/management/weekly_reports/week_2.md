@@ -14,7 +14,7 @@ This week we had four project sessions. The primary focus was on continuing the 
 | Gantt Chart             | HIGH                 | Late    | Camille - Project Manager         | 0%          | 75%                    |     /      |  
 | Risks & Assumptions     | HIGH                 | Late    | Camille - Project Manager         | 60%         | 75%                    | 05/22/2024 |
 | Technical Specifications| MEDIUM               | On time | Mathias - Tech Lead               | 15%         | 10%                    | 05/21/2024 |
-| Test Plan               | MEDIUM               | On time | Pierre - Quality Assurance        | ????%       | ????%                  | ????       |
+| Test Plan               | MEDIUM               | On time | Pierre - Quality Assurance        | 10%         | 10%                    | 05/22/2024 |
 | Code                    | HIGH                 | Late    | Ian - Software Engineer           | 5%          | 5%                     | 05/22/2024 |
 
 
