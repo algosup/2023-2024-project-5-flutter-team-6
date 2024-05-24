@@ -59,7 +59,7 @@
 
 | Document name | Document owner | Date of last update |
 | --- | --- | --- |
-| Functional specifications | Evan UHRING | 5/23/2024 |
+| Functional specifications | Evan UHRING | 5/24/2024 |
 
 
 ## Document validation
@@ -79,7 +79,7 @@
 
 ## 1. Overview
 
-Our team was asked to design and develope an interface[^1] of an application[^2] called Adopte Un Candidat. It is a recruitment app between job seekers and companies, while completely anonymizing the job seekers to focus on their soft-skills[^3] other than their gender, how they look and their experiences. It has to be available on smartphones, tablets and computers.
+Our team was asked to design and develope an interface[^1] of an application[^2] called Adopte Un Candidat. It is a recruitment app between job seekers and companies, while completely anonymizing the job seekers to focus on their soft-skills[^3] rather than their gender, how they look and their experiences. It has to be available on smartphones, tablets and computers.
 
 ## 2. Project definition
 
@@ -105,6 +105,7 @@ We will have a complete interface that was validated by the client. Every reques
 | Must be programmed using Flutter |
 | Make it usable on smartphone, tablet and computer |
 | Focus on the soft-skills feature and candidates' anonyma |
+| Must be in French |
 
 | Out of scope |
 | --- |
@@ -131,7 +132,7 @@ We will have a complete interface that was validated by the client. Every reques
 
 | Name | Occupation | Links |
 | --- | --- | --- |
-| we are evolution | Client | [Website](https://www.we-are-evolution.com) |
+| we are evolution. | Client | [Website](https://www.we-are-evolution.com) |
 | ALGOSUP | Third party | [Website](https://algosup.com) |
 
 ### Project team
@@ -287,7 +288,7 @@ To have an pleasant interface, we have made multiple icons and images. For the f
 
 Those icons are used on the main selection bar, to switch between the different main pages.
 
-The other icons are used for more generic utilization, with fixed colors for each type of background (light and dark):
+The other icons are used for more generic utilization, with fixed colors:
 
 - "Burger" menu icon: <img src="../images/functional/icons/burger_menu_icon.png" width="5%" align="center"> (color: FFFFFF)
 
@@ -302,6 +303,8 @@ The other icons are used for more generic utilization, with fixed colors for eac
 - Return icon: <img src="../images/functional/icons/return_button.png" width="5%" align="center"> (color: 939393)
 
 - Save icon: <img src="../images/functional/icons/save_button.png" width="4%" align="center"> (color: 939393)
+
+- Arrow icon: <img src="../images/functional/icons/arrow_right.png" width="4%" align="center"> <img src="../images/functional/icons/arrow_left.png" width="4%" align="center"> (color: 000000)
 <br><br>
 
 To assure that the candidates are correctly anonymized while keeping the interface attractive, we will be using animal images for the profile picture for the candidates: 
