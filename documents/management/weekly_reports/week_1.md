@@ -13,7 +13,7 @@ This project started the 05/13/2024, we had 4 project times during the week. Our
 | :----------------------:| :------------------: | :-------------------------------: | :---------: | :--------------------: | :--------: |
 |     Project Charter     |        HIGH          |     Camille - Project Manager     |     20%     |          20%           | 05/17/2024 |
 |        Mock-ups         |        VERY HIGH     |     All team                      |     70%     |          100%          | 05/13/2024 |
-| Functional specification|        HIGH          |     Evan - Program Manager        |     10%     |          10%           | 05/17/2024 |
+| Functional Specifications |        HIGH          |     Evan - Program Manager        |     10%     |          10%           | 05/17/2024 |
 
 ## Finished Tasks
 
