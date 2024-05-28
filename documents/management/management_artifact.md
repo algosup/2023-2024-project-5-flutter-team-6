@@ -15,6 +15,13 @@ A RACI Matrix is a project management tool that clarifies roles and responsibili
 Please find below the link to access the RACI Matrix: 
 [Click here to access the RACI Matrix](https://docs.google.com/spreadsheets/d/10ZbWIpqn-2SadDrWjFHDADPKnfyFeKjgmvkHfTlshJc/edit?usp=sharing)
 
+## Key Performance Indicators
+
+KPIs are metrics used to evaluate the success of an organization or project in meeting its objectives.
+
+Please find the link to access the Key Performance Indicators (KPIs):
+[Click here to access the KPIs](https://docs.google.com/spreadsheets/d/1_NtD3N7J1JXPJ5G0PueC0aTPjuULL5pNOoYmKntFY4M/edit?usp=sharing)
+
 ## Risks & Assumptions
 
 | ID  | Description                                                                                         | Risks                                                                                                                | Impact | Likelihood | Solution                                                                                                                                      |
