@@ -18,12 +18,12 @@ void main() {
 class LargeFloatingActionButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Widget child;
-  final Color color;
+  final List<Color> color;
 
   LargeFloatingActionButton({
     required this.onPressed,
     required this.child,
-    this.color = Colors.blue,
+    required this.color,
   });
 
   @override
@@ -31,11 +31,19 @@ class LargeFloatingActionButton extends StatelessWidget {
     return Container(
       width:  MediaQuery.of(context).size.width > 600 ? MediaQuery.of(context).size.width * 0.15 : MediaQuery.of(context).size.width * 0.20,
       child: FittedBox(
-        child: FloatingActionButton(
-          onPressed: onPressed,
-          child: child,
-          backgroundColor: color,
-          shape: CircleBorder()
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            gradient: LinearGradient(
+              colors: color,
+              tileMode: TileMode.mirror,
+            )
+            
+          ),
+          child: GestureDetector(
+            onTap: onPressed,
+            child: child,
+          )
         ),
       ),
     );
@@ -184,17 +192,20 @@ class MyApp extends StatelessWidget {
                         onPressed: () {
                           // Refuse button logic
                         },
-                        child: Icon(Icons.clear, size: 40.0), // Increase the size of the icon
-                        color: Colors.red,
+                        child: Icon(Icons.clear, size: 40.0, color: Colors.white), // Increase the size of the icon
+                        //color: Colors.red,
+                        color: [Color(0xFFE5BF93),Color(0xFFD23030)],
                         
                       ),
 
                       LargeFloatingActionButton(
                         onPressed: () {
                           // Accept button logic
+                          
                         },
-                        child: Icon(Icons.check_rounded, size: 40.0), // Increase the size of the icon
-                        color: Colors.green,
+                        child: Icon(Icons.check_rounded, size: 40.0, color: Colors.white), // Increase the size of the icon
+                        //color: Colors.green,
+                        color: [Color(0xFF5AD230),Color(0xFFD4E593)],
                         
                       ),
 
