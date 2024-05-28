@@ -18,6 +18,7 @@
         - [Class](#class)
         - [packages, directories, and source files](#packages-directories-and-source-files)
         - [import prefixes](#import-prefixes)
+      - [1.4.3 Comments](#143-comments)
   - [2. System Requirements](#2-system-requirements)
     - [2.1 Functional Requirements](#21-functional-requirements)
     - [2.2 Non-Functional Requirements](#22-non-functional-requirements)
@@ -231,6 +232,31 @@ The code will follow dart & flutter convention as follow:
 > &nbsp;
 
 </details>
+
+#### 1.4.3 Comments
+
+```dart
+  /*
+  * Description
+  * @param void
+  * @return void
+  */
+  void myFunction()
+```
+
+**example:**
+
+```dart
+  /*
+  * Add number b to number a
+  * @param a: int
+  * @param b: int
+  * @return int
+  */
+  void additionNumbers(int a, int b){
+    return a + b;
+  }
+```
 
 ## 2. System Requirements
 
