@@ -18,9 +18,16 @@
     - [3.3 Data Flow Diagram](#33-data-flow-diagram)
   - [4. Detailed Design](#4-detailed-design)
     - [4.1 User Interface Design](#41-user-interface-design)
+      - [4.1.1 Roboto Font](#411-roboto-font)
+      - [4.1.2 Quicksand Font](#412-quicksand-font)
     - [4.2 Backend Design](#42-backend-design)
     - [4.3 Database Schema](#43-database-schema)
       - [Collections and Documents](#collections-and-documents)
+        - [Legend](#legend)
+        - [Company](#company)
+        - [User](#user)
+        - [Conversation](#conversation)
+      - [Soft-Skill](#soft-skill)
   - [5. Development Approach](#5-development-approach)
     - [5.1 Methodology](#51-methodology)
     - [5.2 Tools and Technologies](#52-tools-and-technologies)
@@ -167,9 +174,15 @@ The UI design focuses on providing a clean, intuitive, and user-friendly interfa
 | **Chat Menu Screen** | Shows a list of matches and enabled communication between job seekers and companies.              |
 | **Chat Screen**      | Display a chat conversation between a company and a user.                                         |
 
-We assume to use **Roboto** font which is very common on mobile app developement.
+We assume to use **Roboto** and **Quicksand** fonts which are very common on mobile app developement.
+
+#### 4.1.1 Roboto Font
 
 ![Roboto fonts](../images/technical/roboto_fonts.jpg)
+
+#### 4.1.2 Quicksand Font
+
+![Quicksand fonts](../images/technical/quicksand_fonts.png)
 
 ### 4.2 Backend Design
 
@@ -187,53 +200,89 @@ The database schema is designed to store user profiles, job postings, matches, m
 
 #### Collections and Documents
 
-| Users                        |
-| ---------------------------- |
-| userId                       |
-| name                         |
-| email                        |
-| passwordHash                 |
-| profileInfo                  |
-| softSkills                   |
-| type (job seeker or company) |
+##### Legend
 
-| Jobs         |
-| ------------ |
-| jobId        |
-| companyId    |
-| title        |
-| description  |
-| requirements |
-| softSkills   |
-| location     |
-| postDate     |
-| status       |
+🗃️ - Collection
+🗂️ - Subcollection
+📑 - Document (type)
+📎 - Item (type)
 
-| Matches   |
-| --------- |
-| matchId   |
-| userId    |
-| jobId     |
-| companyId |
-| status    |
+##### Company
 
-| Messages    |
-| ----------- |
-| messageId   |
-| matchId     |
-| senderId    |
-| receiverId  |
-| messageText |
-| timestamp   |
+```md
+🗃️ company:
+└─── 🗂️ company_id:
+     ├─── 🗃️ proposal:
+     │    └─── 🗂️ proposal_id:
+     │         ├─── 📑 activity_sector (string):
+     │         ├─── 📑 contract (string):
+     │         ├─── 📑 job_name (string):
+     │         ├─── 📑 location (map):
+     │         │    ├─── 📎 address (string)
+     │         │    ├─── 📎 country (string)
+     │         │    ├─── 📎 on_remote (integer)
+     │         │    ├─── 📎 town (string)
+     │         │    └─── 📎 zip_code (integer)
+     │         ├─── 📑 salary (string):
+     │         └─── 📑 soft_skill (reference):
+     ├─── 📑 colors (array[2]):
+     │    ├─── 📎 [0]: color1
+     │    └─── 📎 [1]: color2
+     ├─── 📑 description (string):
+     ├─── 📑 email (string):
+     ├─── 📑 location (map):
+     │    ├─── 📎 address (string)
+     │    ├─── 📎 country (string)
+     │    ├─── 📎 town (string)
+     │    └─── 📎zip_code (integer)
+     ├─── 📑 motto (string):
+     ├─── 📑 name (string):
+     ├─── 📑 password (string):
+     └─── 📑 picture_profile (string):
+```
 
-| Notifications  |
-| -------------- |
-| notificationId |
-| userId         |
-| type           |
-| message        |
-| timestamp      |
-| readStatus     |
+##### User
+
+```md
+🗃️ user:
+└─── 🗂️ user_id:
+     ├─── 📑 activity_sector (string):
+     ├─── 📑 email (string):
+     ├─── 📑 experience (array[]):
+     ├─── 📑 favorite (reference):
+     ├─── 📑 first_name (string):
+     ├─── 📑 last_name (string):
+     ├─── 📑 location (string):
+     ├─── 📑 password (string):
+     ├─── 📑 professional_status (string):
+     └─── 📑 soft_skill (reference):
+```
+
+##### Conversation
+
+```md
+🗃️ conversation:
+└─── 🗂️ conversation_id:
+     ├─── 📑 from_uid (integer):
+     ├─── 📑 messages (array[]):
+     │    └─── 📎 [0] (map):
+     │         ├─── 📎 date (timestamp):
+     │         ├─── 📎 message (string):
+     │         └─── 📎 sender (integer):
+     ├─── 📑 seen (boolean):
+     └─── 📑 to_uid (integer):
+```
+
+#### Soft-Skill
+
+```md
+🗃️ soft_skill:
+└─── 🗂️ list:
+     ├─── 📑 analytical (array[]):
+     ├─── 📑 interpersonal (array[]):
+     ├─── 📑 self-management (array[]):
+     └─── 📑 Social (array[]):
+```
 
 ## 5. Development Approach
 
@@ -321,7 +370,7 @@ System Testing: To test the complete system as a whole.
 User Acceptance Testing (UAT): To validate the app with end users.
 
 <!-- TODO: Add link to test plan -->
-The detailed testing strategy can be saw in the test plan: [HERE]()
+The detailed testing strategy can be saw in the test plan: [HERE (SOON)](../technical/technical_specifications.md)
 
 ### 6.2 Tools
 
