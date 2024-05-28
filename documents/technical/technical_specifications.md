@@ -9,6 +9,9 @@
     - [1.1 Purpose](#11-purpose)
     - [1.2 Scope](#12-scope)
     - [1.3 Audience](#13-audience)
+    - [1.4 Convention](#14-convention)
+      - [1.4.1 File tree and documents](#141-file-tree-and-documents)
+      - [1.4.2 Code](#142-code)
   - [2. System Requirements](#2-system-requirements)
     - [2.1 Functional Requirements](#21-functional-requirements)
     - [2.2 Non-Functional Requirements](#22-non-functional-requirements)
@@ -79,6 +82,42 @@ This document is intended for:
 - UI/UX Designers
 - Quality Assurance Testers
 - Stakeholders
+
+### 1.4 Convention
+
+#### 1.4.1 File tree and documents
+
+#### 1.4.2 Code
+
+The code will follow dart & flutter convention as follow:
+
+| Type | Convention|
+|---|---|
+| Variable | lowercase_with_underscores |
+| Function | lowerCamelCase |
+| Class | UpperCamelCase |
+| packages, directories, and source files | lowercase_with_underscores |
+| import prefixes | lowercase_with_underscores|
+
+>[!TIP]
+>Good
+> ```md
+>my_package
+> └─ lib
+>   └─ file_system.dart
+>   └─ slider_menu.dart
+> ```
+> &nbsp;
+
+>[!CAUTION]
+>Bad
+>```md
+>mypackage
+> └─ lib
+>    └─ file-system.dart
+>    └─ SliderMenu.dart
+>```
+> &nbsp;
 
 ## 2. System Requirements
 
