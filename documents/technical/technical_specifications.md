@@ -25,6 +25,12 @@
   - [3. System Architecture](#3-system-architecture)
     - [3.1 Overview](#31-overview)
     - [3.2 Flow Chart Diagram](#32-flow-chart-diagram)
+      - [3.2.1 Connexion](#321-connexion)
+      - [3.2.2 Registration](#322-registration)
+      - [3.2.3 Candidate Home Page](#323-candidate-home-page)
+      - [3.2.4 Candidate Chat](#324-candidate-chat)
+      - [3.2.5 Company Home Page](#325-company-home-page)
+      - [3.2.6 Company Chat](#326-company-chat)
     - [3.3 Data Flow Diagram](#33-data-flow-diagram)
   - [4. Detailed Design](#4-detailed-design)
     - [4.1 User Interface Design](#41-user-interface-design)
@@ -331,6 +337,40 @@ Notification Service: Using Firebase Cloud Messaging (FCM) for push notification
 ![Flow Chart](../images/technical/flow_chart.svg)
 
 You can also click [HERE](../images/technical/flow_chart.svg) to see a fullscreen version.
+
+#### 3.2.1 Connexion
+
+![Flow Chart Connexion](../images/technical/flow_chart_connexion.png)
+
+#### 3.2.2 Registration
+
+![Flow Chart Registration](../images/technical/flow_chart_registration_1.png)
+
+![Flow Chart Registration](../images/technical/flow_chart_registration_2.png)
+
+When the registration is complete the new user is redirected to a short tutorial which explain how does the app works and after that he is sent back to the connexion service.
+
+#### 3.2.3 Candidate Home Page
+
+![Flow Chart Candidate Home Page](../images/technical/flow_chart_candidate_home_page.png)
+
+![Flow Chart Candidate Home Page](../images/technical/flow_chart_candidate_home_page_2.png)
+
+#### 3.2.4 Candidate Chat
+
+![Flow Chart Candidate Chat](../images/technical/flow_chart_candidate_chat.png)
+
+#### 3.2.5 Company Home Page
+
+![Flow Chart Company Home Page](../images/technical/flow_chart_company_home_page.png)
+![Flow Chart Company Home Page](../images/technical/flow_chart_company_home_page_2.png)
+
+#### 3.2.6 Company Chat
+
+![Flow Chart Company Chat](../images/technical/flow_chart_company_chat.png)
+
+<!-- TODO: Add Dashboard flow chart -->
+<!-- TODO: Complete the flow chart where it's wrote "SOON" -->
 
 ### 3.3 Data Flow Diagram
 
