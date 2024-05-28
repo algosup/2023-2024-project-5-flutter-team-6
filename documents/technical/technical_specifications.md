@@ -94,6 +94,27 @@ This document is intended for:
 
 #### 1.4.1 File tree and documents
 
+documents and folder should be in **lowercase_with_underscores** as follow:
+
+```md
+2023-2024-project-5-flutter-team-6
+└───documents
+    ├───functional
+    │   └─── functional_specifications.md
+    ├───images
+    │   ├───functional
+    │   │   ├───colors
+    │   │   ├───icons
+    │   │   ├───logo
+    │   │   ├───personas
+    │   │   ├───profile_images
+    │   │   └───ui
+    │   └───technical
+    ├───quality
+    └───technical
+        └─── technical_specifications.md
+```
+
 #### 1.4.2 Code
 
 The code will follow dart & flutter convention as follow:
