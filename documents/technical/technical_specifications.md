@@ -13,7 +13,6 @@
       - [1.4.1 File tree and documents](#141-file-tree-and-documents)
       - [1.4.2 Code](#142-code)
         - [Reminder](#reminder)
-        - [Example](#example)
         - [Variable](#variable)
         - [Function](#function)
         - [Class](#class)
@@ -129,9 +128,8 @@ The code will follow dart & flutter convention as follow:
 | packages, directories, and source files | lowercase_with_underscores |
 | import prefixes | lowercase_with_underscores|
 
-##### <summary>Example</summary>
-
 <details>
+<summary>Example</summary>
 
 ##### Variable
 
