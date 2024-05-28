@@ -12,6 +12,13 @@
     - [1.4 Convention](#14-convention)
       - [1.4.1 File tree and documents](#141-file-tree-and-documents)
       - [1.4.2 Code](#142-code)
+        - [Reminder](#reminder)
+        - [Example](#example)
+        - [Variable](#variable)
+        - [Function](#function)
+        - [Class](#class)
+        - [packages, directories, and source files](#packages-directories-and-source-files)
+        - [import prefixes](#import-prefixes)
   - [2. System Requirements](#2-system-requirements)
     - [2.1 Functional Requirements](#21-functional-requirements)
     - [2.2 Non-Functional Requirements](#22-non-functional-requirements)
@@ -91,6 +98,8 @@ This document is intended for:
 
 The code will follow dart & flutter convention as follow:
 
+##### Reminder
+
 | Type | Convention|
 |---|---|
 | Variable | lowercase_with_underscores |
@@ -98,6 +107,69 @@ The code will follow dart & flutter convention as follow:
 | Class | UpperCamelCase |
 | packages, directories, and source files | lowercase_with_underscores |
 | import prefixes | lowercase_with_underscores|
+
+##### Example
+
+---
+
+##### Variable
+
+>[!TIP]
+>Good
+> ```dart
+>var variable
+>var my_long_variable
+> ```
+> &nbsp;
+
+>[!CAUTION]
+>Bad
+> ```dart
+>var Variable
+>var mylongvariable
+>var anotherLongVariable
+> ```
+> &nbsp;
+
+##### Function
+
+>[!TIP]
+>Good
+> ```dart
+>void function()
+>void myFunction()
+> ```
+> &nbsp;
+
+>[!CAUTION]
+>Bad
+> ```dart
+>var Function()
+>var MyFunction()
+>var anotherfunction()
+> ```
+> &nbsp;
+
+##### Class
+
+>[!TIP]
+>Good
+> ```dart
+>class Class
+>class MyClass
+> ```
+> &nbsp;
+
+>[!CAUTION]
+>Bad
+> ```dart
+>class class
+>class myClass
+>class Another_Class
+> ```
+> &nbsp;
+
+##### packages, directories, and source files
 
 >[!TIP]
 >Good
@@ -116,6 +188,26 @@ The code will follow dart & flutter convention as follow:
 > └─ lib
 >    └─ file-system.dart
 >    └─ SliderMenu.dart
+>```
+> &nbsp;
+
+##### import prefixes
+
+>[!TIP]
+>Good
+> ```dart
+>import 'dart:math' as math;
+>import 'package:angular_components/angular_components.dart' as angular_components;
+>import 'package:js/js.dart' as js;
+> ```
+> &nbsp;
+
+>[!CAUTION]
+>Bad
+>```dart
+>import 'dart:math' as Math;
+>import 'package:angular_components/angular_components.dart' as angularComponents;
+>import 'package:js/js.dart' as JS;
 >```
 > &nbsp;
 
