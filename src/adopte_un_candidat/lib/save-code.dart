@@ -1,14 +1,12 @@
-//import 'dart:ffi';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
-//import 'package:appinio_swiper/appinio_swiper.dart';
-//import 'dart:developer';
-//
-//import 'package:line_icons/line_icon.dart';
+import 'package:appinio_swiper/appinio_swiper.dart';
+import 'dart:developer';
 
-// imported libraries that are in comments are not used for the moment
+
 
 void main() {
   runApp(MyApp());
@@ -30,21 +28,29 @@ class LargeFloatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width > 600 ? MediaQuery.of(context).size.width * 0.15 : MediaQuery.of(context).size.width * 0.20,
+    return Container(
+      width:  MediaQuery.of(context).size.width > 600 ? MediaQuery.of(context).size.width * 0.15 : MediaQuery.of(context).size.width * 0.20,
       child: FittedBox(
-        child: FloatingActionButton(
-          onPressed: onPressed,
-          shape: CircleBorder(),
-          child: Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                colors: color,
-              ),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            gradient: LinearGradient(
+              colors: color,
+              tileMode: TileMode.mirror,
             ),
-            child: child,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.30),
+                spreadRadius: 0,
+                blurRadius: 2,
+                offset: Offset(0, 2), // changes position of shadow
+              ),
+            ],
           ),
+          child: GestureDetector(
+            onTap: onPressed,
+            child: child,
+          )
         ),
       ),
     );
@@ -73,9 +79,9 @@ class SideFloatingActionButton  extends StatelessWidget {
       child: FittedBox(
         child: FloatingActionButton(
           onPressed: onPressed,
+          child: child,
           backgroundColor: color,
-          shape: const CircleBorder(),
-          child: child
+          shape: CircleBorder()
         ),
       ),
     );
@@ -103,7 +109,7 @@ class MyApp extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: Container(
-                        padding: const EdgeInsets.all(10.0), // Add padding to the container to center the image !!!WIP - Need to find solution to avoid being placed next to iphone notch.
+                        padding: EdgeInsets.all(10.0), // Add padding to the container to center the image !!!WIP - Need to find solution to avoid being placed next to iphone notch.
                         //color: Colors.yellow, // Set the background color of the top section for viewing purposes
                         child: Center(
                           child: Image.network('https://github.com/algosup/2023-2024-project-5-flutter-team-6/raw/dev/src/Assets/adopte-logo.png'), // Logo image for GIT
@@ -115,7 +121,7 @@ class MyApp extends StatelessWidget {
                       child: Container(
                         //Color: Colors.red, // Set the background color of the top section for viewing purposes
                         //child: Center(
-                        //child: Text('Top Section'), // Text for the top section for viewing purposes
+                        //child: Text('Top Sectionn'), // Text for the top section for viewing purposes
                         //), // VIEWING PURPOSES Line 99 - 102
                       ),
                     ),
@@ -136,7 +142,7 @@ class MyApp extends StatelessWidget {
                     flex: 1,
                     child: Container(
                       color: Colors.blue, //for viewing purposes
-                      child: const Center(
+                      child: Center(
                         child: Text('Left Section'),
                       ),
                     ),
@@ -145,7 +151,7 @@ class MyApp extends StatelessWidget {
                     flex: 3,
                     child: Container(
                       color: Colors.green, //for viewing purposes
-                      child: const Center(
+                      child: Center(
                         child: Text('Center Section'),
 
                         // Start of Swiper
@@ -161,7 +167,7 @@ class MyApp extends StatelessWidget {
                     flex: 1,
                     child: Container(
                       color: Colors.yellow, //for viewing purposes
-                      child: const Center(
+                      child: Center(
                         child: Text('Right Section'),
                       ),
                     ),
@@ -196,7 +202,7 @@ class MyApp extends StatelessWidget {
                         }, // Increase the size of the icon
                         //color: Colors.red,
                         color: const [Color(0xFFE5BF93),Color(0xFFD23030)],
-                        child: const Icon(Icons.clear_rounded, size: 56.0, color: Colors.white),
+                        child: const Icon(Icons.clear_rounded, size: 40.0, color: Colors.white),
                         
                       ),
 
@@ -207,7 +213,7 @@ class MyApp extends StatelessWidget {
                         }, // Increase the size of the icon
                         //color: Colors.green,
                         color: const [Color(0xFF5AD230),Color(0xFFD4E593)],
-                        child: const Icon(Icons.check_rounded, size: 56.0, color: Colors.white),
+                        child: const Icon(Icons.check_rounded, size: 40.0, color: Colors.white),
                         
                       ),
 
@@ -232,37 +238,39 @@ class MyApp extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 50.0), // Add space on the sides and at the bottom
                 child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: const Color(0xFF939393)), //Add gradient color to the border
-                    borderRadius: BorderRadius.circular(100),    
-                  ),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                decoration: BoxDecoration(
+                border: Border.all(color: Color(0xFF939393)), //Add gradient color to the border
+                borderRadius: BorderRadius.circular(100),    
+                ),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // Chat button logic
+                        },
+                        icon: Icon(CupertinoIcons.chat_bubble_2, size: MediaQuery.of(context).size.width > 600 ? MediaQuery.of(context).size.width * 0.08 : MediaQuery.of(context).size.width * 0.10), // Chat Icon
+                      ),
 
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            // Chat button logic
-                          },
-                          icon: Icon(CupertinoIcons.chat_bubble_2, size: MediaQuery.of(context).size.width > 600 ? MediaQuery.of(context).size.width * 0.08 : MediaQuery.of(context).size.width * 0.10), // Chat Icon
-                        ),
+                      IconButton( //need to add the background! WIP! @Ian
+                        onPressed: () {
+                          // Swipe (rectangle stack) button logic
+                        },
+                        icon: Icon(CupertinoIcons.rectangle_stack, size: MediaQuery.of(context).size.width > 600 ? MediaQuery.of(context).size.width * 0.08 : MediaQuery.of(context).size.width * 0.10),
+                      ),
 
-                        IconButton( //need to add the background! WIP! @Ian
-                          onPressed: () {
-                            // Swipe (rectangle stack) button logic
-                          },
-                          icon: Icon(CupertinoIcons.rectangle_stack, size: MediaQuery.of(context).size.width > 600 ? MediaQuery.of(context).size.width * 0.08 : MediaQuery.of(context).size.width * 0.10),
-                        ),
-                        
-                        IconButton(
-                          onPressed: () {
-                            // Profile button logic
-                          },
-                          icon: Icon(CupertinoIcons.person_fill, size: MediaQuery.of(context).size.width > 600 ? MediaQuery.of(context).size.width * 0.08 : MediaQuery.of(context).size.width * 0.10), // Chat Icon
-                        ),
-                      ],
-                    )
+                      IconButton(
+                        onPressed: () {
+                          // Profile button logic
+                        },
+                        icon: Icon(CupertinoIcons.person_fill, size: MediaQuery.of(context).size.width > 600 ? MediaQuery.of(context).size.width * 0.08 : MediaQuery.of(context).size.width * 0.10), // Chat Icon
+                    ),
+                    
+                    ],
+
+                  )
                   ),
                 ),
               ),
