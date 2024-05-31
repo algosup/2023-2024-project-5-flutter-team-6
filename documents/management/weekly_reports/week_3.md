@@ -13,7 +13,7 @@ This week, we had one project session. Our main focuses were on fixing the Fireb
 |           Task          |      Priority        | State   | Member Assigned                   | Progression | End Of Week objective  | Start Date |
 | :----------------------:| :------------------: |:-------:|:--------------------------------: | :---------: | :--------------------: | :--------: |
 | Technical Specifications| MEDIUM               | On time | Mathias - Tech Lead               | 25%         | 40%                    | 05/21/2024 |
-| Test Plan               | MEDIUM               | On time | Pierre - Quality Assurance        | 80%         | 50%                    | 05/22/2024 |
+| Test Plan               | MEDIUM               | On time | Pierre - Quality Assurance        | 70%         | 50%                    | 05/22/2024 |
 | Code                    | HIGH                 | Late    | Ian - Software Engineer           | 20%         | 30%                    | 05/22/2024 |
 | User Manual             | LOW                  | On Time | Guillaume - Technical Writer      | 5%          | 5%                     | 05/28/2024 |
 | Fixing firebase issue   | VERY HIGH            | Late    | Ian - Software Engineer           | /           | 100%                   | 05/28/2024 |
