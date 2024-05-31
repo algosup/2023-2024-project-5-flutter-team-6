@@ -13,7 +13,7 @@ This week, we had one project session. Our main focuses were on fixing the Fireb
 |           Task          |      Priority        | State   | Member Assigned                   | Progression | End Of Week objective  | Start Date |
 | :----------------------:| :------------------: |:-------:|:--------------------------------: | :---------: | :--------------------: | :--------: |
 | Technical Specifications| MEDIUM               | On time | Mathias - Tech Lead               | 25%         | 40%                    | 05/21/2024 |
-| Test Plan               | MEDIUM               | On time | Pierre - Quality Assurance        | 50%         | 50%                    | 05/22/2024 |
+| Test Plan               | MEDIUM               | On time | Pierre - Quality Assurance        | 80%         | 50%                    | 05/22/2024 |
 | Code                    | HIGH                 | Late    | Ian - Software Engineer           | 20%         | 30%                    | 05/22/2024 |
 | User Manual             | LOW                  | On Time | Guillaume - Technical Writer      | 5%          | 5%                     | 05/28/2024 |
 | Fixing firebase issue   | VERY HIGH            | Late    | Ian - Software Engineer           | /           | 100%                   | 05/28/2024 |
@@ -34,7 +34,7 @@ Due to the limited project time this week, we did not hold any meetings. The tea
 
 ## Week feedback
 
-This week, we caught up on the delayed management documents, making it easier to keep track of the project. However, the advancement of the Technical Specifications did not meet the expected objective, and we need to double down on this next time. The Test Plan progressed well, and its advancement was satisfying. The User Manual also started, and the code progressed well but was suddenly slowed down due to the Firebase issue that needs to be fixed quickly.
+This week, we caught up on the delayed management documents, making it easier to keep track of the project. However, the advancement of the Technical Specifications did not meet the expected objective, and we need to double down on this next time. The Test Plan progressed very well and exceeded expectations, and its advancement was satisfying. The User Manual also started, and the code progressed well but was suddenly slowed down due to the Firebase issue that needs to be fixed quickly.
 
 Overall, the team atmosphere was positive, with everyone focused on their tasks.
 
