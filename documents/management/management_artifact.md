@@ -6,7 +6,13 @@ The purpose of this document is to consolidate various management documents, inc
 - Key Performance Indicators (KPIs)
 - Weekly Reports
 - Gantt Chart
-- Schedule
+
+## Task management
+
+Task management involves planning, tracking, and overseeing tasks to ensure project goals are achieved efficiently and on time.
+
+Please find the link to access the task management system for the project:
+[Click here to access the Tasks management](https://github.com/orgs/algosup/projects/38/views/2)
 
 ## RACI Matrix
 
