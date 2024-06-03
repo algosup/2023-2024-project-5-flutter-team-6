@@ -145,6 +145,7 @@ The code will follow dart & flutter convention as follow:
 ##### Variable
 
 >[!TIP]
+><br>
 >Good
 >```dart
 >var variable
