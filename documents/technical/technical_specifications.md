@@ -601,8 +601,7 @@ Integration Testing: To ensure different parts of the application work together.
 System Testing: To test the complete system as a whole.
 User Acceptance Testing (UAT): To validate the app with end users.
 
-<!-- TODO: Add link to test plan -->
-The detailed testing strategy can be saw in the test plan: [HERE (SOON)](../technical/technical_specifications.md)
+The detailed testing strategy can be saw in the test plan: [HERE](../quality/test_plan.md)
 
 ### 6.2 Tools
 
