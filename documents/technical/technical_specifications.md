@@ -146,70 +146,70 @@ The code will follow dart & flutter convention as follow:
 
 >[!TIP]
 >Good
-> ```dart
+>```dart
 >var variable
 >var my_long_variable
-> ```
-> &nbsp;
+>```
+>&nbsp;
 
 >[!CAUTION]
 >Bad
-> ```dart
+>```dart
 >var Variable
 >var mylongvariable
 >var anotherLongVariable
-> ```
-> &nbsp;
+>```
+>&nbsp;
 
 ##### Function
 
 >[!TIP]
 >Good
-> ```dart
+>```dart
 >void function()
 >void myFunction()
-> ```
-> &nbsp;
+>```
+>&nbsp;
 
 >[!CAUTION]
 >Bad
-> ```dart
+>```dart
 >var Function()
 >var MyFunction()
 >var anotherfunction()
-> ```
-> &nbsp;
+>```
+>&nbsp;
 
 ##### Class
 
 >[!TIP]
 >Good
-> ```dart
+>```dart
 >class Class
 >class MyClass
-> ```
-> &nbsp;
+>```
+>&nbsp;
 
 >[!CAUTION]
 >Bad
-> ```dart
+>```dart
 >class class
 >class myClass
 >class Another_Class
-> ```
-> &nbsp;
+>```
+>&nbsp;
 
 ##### packages, directories, and source files
 
 >[!TIP]
 >Good
-> ```md
+>```md
 >my_package
 > └─ lib
 >   └─ file_system.dart
 >   └─ slider_menu.dart
-> ```
-> &nbsp;
+>```
+>&nbsp;
 
 >[!CAUTION]
 >Bad
@@ -219,18 +219,18 @@ The code will follow dart & flutter convention as follow:
 >    └─ file-system.dart
 >    └─ SliderMenu.dart
 >```
-> &nbsp;
+>&nbsp;
 
 ##### import prefixes
 
 >[!TIP]
 >Good
-> ```dart
+>```dart
 >import 'dart:math' as math;
 >import 'package:angular_components/angular_components.dart' as angular_components;
 >import 'package:js/js.dart' as js;
-> ```
-> &nbsp;
+>```
+>&nbsp;
 
 >[!CAUTION]
 >Bad
@@ -239,7 +239,7 @@ The code will follow dart & flutter convention as follow:
 >import 'package:angular_components/angular_components.dart' as angularComponents;
 >import 'package:js/js.dart' as JS;
 >```
-> &nbsp;
+>&nbsp;
 
 </details>
 
