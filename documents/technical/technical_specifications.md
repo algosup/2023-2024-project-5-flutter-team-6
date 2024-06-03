@@ -131,15 +131,13 @@ The code will follow dart & flutter convention as follow:
 
 ##### Reminder
 
-| Type | Convention|
-|---|---|
-| Variable | lowercase_with_underscores |
-| Function | lowerCamelCase |
-| Class | UpperCamelCase |
-| packages, directories, and source files | lowercase_with_underscores |
-| import prefixes | lowercase_with_underscores|
-
-
+| Type                                                                              | Convention                 |
+| --------------------------------------------------------------------------------- | -------------------------- |
+| [Variable](#variable)                                                             | lowercase_with_underscores |
+| [Function](#function)                                                             | lowerCamelCase             |
+| [Class](#class)                                                                   | UpperCamelCase             |
+| [packages, directories, and source files](#packages-directories-and-source-files) | lowercase_with_underscores |
+| [import prefixes](#import-prefixes)                                               | lowercase_with_underscores |
 
 ##### Variable
 
