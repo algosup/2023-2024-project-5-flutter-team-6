@@ -73,6 +73,8 @@ The application aims to facilitate connections between job seekers and companies
 
 ## 1. Introduction
 
+<br>
+
 ### 1.1 Purpose
 
 The purpose of this document is to outline the technical specifications for the development of the job-matching application. It provides a comprehensive overview of the system requirements, architecture, functionality, and development approach.
@@ -97,6 +99,8 @@ This document is intended for:
 - Stakeholders
 
 ### 1.4 Convention
+
+<br>
 
 #### 1.4.1 File tree and documents
 
@@ -266,6 +270,8 @@ The code will follow dart & flutter convention as follow:
 
 ## 2. System Requirements
 
+<br>
+
 ### 2.1 Functional Requirements
 
 - **User Authentication**
@@ -322,6 +328,8 @@ The code will follow dart & flutter convention as follow:
 
 ## 3. System Architecture
 
+<br>
+
 ### 3.1 Overview
 
 The system architecture is designed to ensure a seamless and efficient user experience across all platforms. It comprises the following components:
@@ -377,6 +385,8 @@ When the registration is complete the new user is redirected to a short tutorial
 <!-- TODO: [Insert Data Flow Diagram Here] -->
 
 ## 4. Detailed Design
+
+<br>
 
 ### 4.1 User Interface Design
 
@@ -504,6 +514,8 @@ The database schema is designed to store user profiles, job postings, matches, m
 
 ## 5. Development Approach
 
+<br>
+
 ### 5.1 Methodology
 
 The project will follow the Agile methodology, with development broken down into sprints. Each sprint will focus on specific features and improvements, allowing for iterative development and continuous feedback.
@@ -580,6 +592,8 @@ We decided to target Android 12 to Android 14, and IOS 15 and latest, for follow
 
 ## 6. Testing
 
+<br>
+
 ### 6.1 Testing Strategy
 
 Unit Testing: For individual components and functions.
@@ -598,6 +612,8 @@ UAT: Test With random people in the street or uninvolved acquaintance.
 
 ## 7. Deployment
 
+<br>
+
 ### 7.1 Deployment Pipeline
 
 Staging Environment: For pre-production testing.
@@ -608,6 +624,8 @@ Production Environment: For the live application.
 Regular updates and bug fixes based on user feedback and performance metrics.
 
 ## 8. Security
+
+<br>
 
 ### 8.1 Data Security
 
