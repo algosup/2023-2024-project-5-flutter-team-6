@@ -43,7 +43,7 @@
         - [Company](#company)
         - [User](#user)
         - [Conversation](#conversation)
-      - [Soft-Skill](#soft-skill)
+      - [Soft Skill](#soft-skill)
   - [5. Development Approach](#5-development-approach)
     - [5.1 Methodology](#51-methodology)
     - [5.2 Tools and Technologies](#52-tools-and-technologies)
@@ -501,7 +501,7 @@ The database schema is designed to store user profiles, job postings, matches, m
      └─── 📑 to_uid (integer):
 ```
 
-#### Soft-Skill
+#### Soft Skill
 
 ```md
 🗃️ soft_skill:
