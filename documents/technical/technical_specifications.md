@@ -139,13 +139,11 @@ The code will follow dart & flutter convention as follow:
 | packages, directories, and source files | lowercase_with_underscores |
 | import prefixes | lowercase_with_underscores|
 
-<details>
-<summary>Example</summary>
+
 
 ##### Variable
 
 >[!TIP]
-><br>
 >Good
 >```dart
 >var variable
@@ -241,8 +239,6 @@ The code will follow dart & flutter convention as follow:
 >import 'package:js/js.dart' as JS;
 >```
 >&nbsp;
-
-</details>
 
 #### 1.4.3 Comments
 
