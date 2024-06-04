@@ -1,9 +1,14 @@
 //import 'dart:ffi';
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
+import 'package:flutter/services.dart';
+import 'swiper_feature.dart';
+import 'example_buttons.dart';
 
 
 //import 'dart:developer';
@@ -13,44 +18,6 @@ import 'package:appinio_swiper/appinio_swiper.dart';
 // imported libraries that are in comments are not used for the moment
 void main() {
   runApp(MyApp());
-}
-
-
-enum AppinioSwiperDirection {
-  left,
-  right,
-}
-
-typedef CardsBuilder = Widget Function(BuildContext context, int index);
-
-class AppinioSwiper extends StatelessWidget {
-  final int cardsCount;
-  final Function(AppinioSwiperDirection) onSwiping;
-  final CardsBuilder cardsBuilder;
-
-  const AppinioSwiper({
-    Key? key,
-    required this.cardsCount,
-    required this.onSwiping,
-    required this.cardsBuilder,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: cardsCount,
-      itemBuilder: (context, index) => GestureDetector(
-        onHorizontalDragEnd: (details) {
-          if (details.velocity.pixelsPerSecond.dx > 0) {
-            onSwiping(AppinioSwiperDirection.right);
-          } else if (details.velocity.pixelsPerSecond.dx < 0) {
-            onSwiping(AppinioSwiperDirection.left);
-          }
-        },
-        child: cardsBuilder(context, index),
-      ),
-    );
-  }
 }
 
 // Gradient for Refuse button
@@ -163,10 +130,43 @@ class SideFloatingActionButton extends StatelessWidget {
 
 //--//
 
+
+class TutorialAnimationButton extends StatelessWidget {
+  const TutorialAnimationButton(this.onTap, {super.key});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: const Icon(
+        Icons.question_mark,
+        color: CupertinoColors.systemGrey2,
+      ),
+    );
+  }
+}
+
+class SwipeRight {
+  
+  void swipeRight(AppinioSwiperController controller) {
+        controller.swipeRight();
+  }
+}
+
+
+
+
+
 class MyApp extends StatelessWidget {
+    const MyApp({
+    Key? key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+    debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Column(
           children: [
@@ -184,8 +184,10 @@ class MyApp extends StatelessWidget {
                             10.0), // Add padding to the container to center the image !!!WIP - Need to find solution to avoid being placed next to iphone notch.
                         //color: Colors.yellow, // Set the background color of the top section for viewing purposes
                         child: Center(
-                          child: Image.network(
-                              'https://github.com/algosup/2023-2024-project-5-flutter-team-6/raw/dev/src/Assets/adopte-logo.png'), // Logo image for GIT
+                        child: Container(
+                          alignment: Alignment.bottomCenter,
+                          child: Image.network('https://github.com/algosup/2023-2024-project-5-flutter-team-6/raw/dev/src/Assets/adopte-logo.png'), // Logo image for GIT
+                        ),
                         ),
                       ),
                     ),
@@ -211,19 +213,19 @@ class MyApp extends StatelessWidget {
               flex: 4,
               child: Row(
                 children: [
-                  
                   Expanded(
                     flex: 3,
                     child: Container(
-                      color: Colors.green, //for viewing purposes
+                      //color: Colors.green, //for viewing purposes
 
-                      //swipper section
+                      //swiper section
+                      child: Example(),
                       
+
+                      //end of swiper section
 
                     ),
                   ),
-                  
-                  
                 ],
               ),
             ),
@@ -235,14 +237,18 @@ class MyApp extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Container(
+                
                 //color: Colors.orange,// Set the background color of the bottom section for viewing purposes
                 child: Center(
+
                   child: Row(
+                   
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SideFloatingActionButton(
                         onPressed: () {
                           // Back button logic
+                          HapticFeedback.lightImpact();
                         },
                         child: const Icon(Icons.arrow_back_rounded,
                             size: 35, color: Color(0xFF959595)),
@@ -250,6 +256,7 @@ class MyApp extends StatelessWidget {
                       LargeFloatingActionButton(
                         onPressed: () {
                           // Refuse button logic
+                          HapticFeedback.mediumImpact();
                         },
                         child: const Icon(Icons.clear_rounded,
                             size: 60.0, color: Colors.white),
@@ -257,7 +264,10 @@ class MyApp extends StatelessWidget {
                       ),
                       LargeFloatingActionButton(
                         onPressed: () {
-                          // Accept button logic
+                            // Accept button logic
+                            HapticFeedback.mediumImpact();
+
+                            // End of Accept Button logic
                         }, // Increase the size of the icon
 
                         child: const Icon(Icons.check_rounded,
@@ -267,6 +277,7 @@ class MyApp extends StatelessWidget {
                       SideFloatingActionButton(
                         onPressed: () {
                           // Save button logic
+                          HapticFeedback.lightImpact();
                         },
                         child: const Icon(Icons.bookmark_rounded,
                             size: 35, color: Color(0xFF959595)),
@@ -349,3 +360,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
