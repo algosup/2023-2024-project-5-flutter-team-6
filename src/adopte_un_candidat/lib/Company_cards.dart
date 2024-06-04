@@ -3,78 +3,78 @@ import 'package:flutter/cupertino.dart';
 //will be replaced with firebase data
 
 
-class Company_card {
+class CompanyCard {
   
-  String? company_name;
+  String? companyName;
   String? job;
-  String? job_sub;
-  String?  Company_description;
+  String? jobSub;
+  String?  companyDescription;
   LinearGradient? color;
 
-  Company_card({
-    this.company_name,
+  CompanyCard({
+    this.companyName,
     this.job,
-    this.job_sub, 
-    this.Company_description,
+    this.jobSub, 
+    this.companyDescription,
     this.color,
   });
 }
 
-List<Company_card> candidates = [
-  Company_card(
-    company_name: 'ALGOSUP',
+List<CompanyCard> candidates = [
+  CompanyCard(
+    companyName: 'ALGOSUP',
     job: 'International Software Development school',
-    job_sub: 'Development school',
-    Company_description: 'Town',
+    jobSub: 'Development school',
+    companyDescription: 'Town',
     color: gradientPink,
   ),
-  Company_card(
-    company_name: 'Seven, 7',
+  CompanyCard(
+    companyName: 'Seven, 7',
     job: 'Manager',
-    job_sub: '',
-    Company_description: 'Town',
+    jobSub: '',
+    companyDescription: 'Town',
     color: gradientBlue,
   ),
-  Company_card(
-    company_name: 'Six, 6',
+  CompanyCard(
+    companyName: 'Six, 6',
     job: 'Manager',
-    job_sub: '',
-    Company_description: 'Town',
+    jobSub: '',
+    companyDescription: 'Town',
     color: gradientPurple,
   ),
-  Company_card(
-    company_name: 'Five, 5',
+  CompanyCard(
+    companyName: 'Five, 5',
     job: 'Manager',
-    job_sub: '',
-    Company_description: 'Town',
+    jobSub: '',
+    companyDescription: 'Town',
     color: gradientRed,
   ),
-  Company_card(
-    company_name: 'Four, 4',
+  CompanyCard(
+    companyName: 'Four, 4',
     job: 'Manager',
-    job_sub: '',
-    Company_description: 'Town',
+    jobSub: '',
+    companyDescription: 'Town',
     color: gradientPink,
   ),
-  Company_card(
-    company_name: 'Three, 3',
+  CompanyCard(
+    companyName: 'Three, 3',
     job: 'Manager',
-    job_sub: '',
-    Company_description: 'Town',
+    jobSub: '',
+    companyDescription: 'Town',
     color: gradientBlue,
   ),
-  Company_card(
-    company_name: 'Two, 2',
+  CompanyCard(
+    companyName: 'Two, 2',
     job: 'Manager',
-    job_sub: '',
-    Company_description: 'Town',
+    jobSub: '',
+    companyDescription: 'Town',
     color: gradientPurple,
   ),
-  Company_card(
-    company_name: 'One, 1',
+  CompanyCard(
+    companyName: 'One, 1',
     job: 'Manager',
-    job_sub: '',
-    Company_description: 'Town',
+    jobSub: '',
+    companyDescription: 'Town',
     color: gradientRed,
   ),
 ];

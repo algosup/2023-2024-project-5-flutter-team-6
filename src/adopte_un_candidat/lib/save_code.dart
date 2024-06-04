@@ -1,15 +1,10 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:appinio_swiper/appinio_swiper.dart';
-import 'dart:developer';
 
 
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 
@@ -20,7 +15,7 @@ class LargeFloatingActionButton extends StatelessWidget {
   final Widget child;
   final List<Color> color;
 
-  LargeFloatingActionButton({
+  const LargeFloatingActionButton({super.key, 
     required this.onPressed,
     required this.child,
     required this.color,
@@ -28,7 +23,7 @@ class LargeFloatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width:  MediaQuery.of(context).size.width > 600 ? MediaQuery.of(context).size.width * 0.15 : MediaQuery.of(context).size.width * 0.20,
       child: FittedBox(
         child: Container(
@@ -43,7 +38,7 @@ class LargeFloatingActionButton extends StatelessWidget {
                 color: Colors.black.withOpacity(0.30),
                 spreadRadius: 0,
                 blurRadius: 2,
-                offset: Offset(0, 2), // changes position of shadow
+                offset: const Offset(0, 2), // changes position of shadow
               ),
             ],
           ),
@@ -66,7 +61,7 @@ class SideFloatingActionButton  extends StatelessWidget {
   final Widget child;
   final Color color;
 
-  SideFloatingActionButton({
+  const SideFloatingActionButton({super.key, 
     required this.onPressed,
     required this.child,
     this.color = const Color(0xFFDEDEDE),
@@ -74,14 +69,14 @@ class SideFloatingActionButton  extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width:  MediaQuery.of(context).size.width > 600 ? MediaQuery.of(context).size.width * 0.10 : MediaQuery.of(context).size.width * 0.15,
       child: FittedBox(
         child: FloatingActionButton(
           onPressed: onPressed,
-          child: child,
           backgroundColor: color,
-          shape: CircleBorder()
+          shape: const CircleBorder(),
+          child: child
         ),
       ),
     );
@@ -92,6 +87,8 @@ class SideFloatingActionButton  extends StatelessWidget {
 //--//
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -102,31 +99,28 @@ class MyApp extends StatelessWidget {
             //Start of Top Section (logo, top)
             Expanded(
               flex: 1,
-              child: Container(
-                //color: Colors.pink, // Set the background color of the top section for viewing purposes
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        padding: EdgeInsets.all(10.0), // Add padding to the container to center the image !!!WIP - Need to find solution to avoid being placed next to iphone notch.
-                        //color: Colors.yellow, // Set the background color of the top section for viewing purposes
-                        child: Center(
-                          child: Image.network('https://github.com/algosup/2023-2024-project-5-flutter-team-6/raw/dev/src/Assets/adopte-logo.png'), // Logo image for GIT
-                        ),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      padding: const EdgeInsets.all(10.0), // Add padding to the container to center the image !!!WIP - Need to find solution to avoid being placed next to iphone notch.
+                      //color: Colors.yellow, // Set the background color of the top section for viewing purposes
+                      child: Center(
+                        child: Image.network('https://github.com/algosup/2023-2024-project-5-flutter-team-6/raw/dev/src/Assets/adopte-logo.png'), // Logo image for GIT
                       ),
                     ),
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        //Color: Colors.red, // Set the background color of the top section for viewing purposes
-                        //child: Center(
-                        //child: Text('Top Sectionn'), // Text for the top section for viewing purposes
-                        //), // VIEWING PURPOSES Line 99 - 102
-                      ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      //Color: Colors.red, // Set the background color of the top section for viewing purposes
+                      //child: Center(
+                      //child: Text('Top Sectionn'), // Text for the top section for viewing purposes
+                      //), // VIEWING PURPOSES Line 99 - 102
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             //End of Top Section (logo, top) 
@@ -142,7 +136,7 @@ class MyApp extends StatelessWidget {
                     flex: 1,
                     child: Container(
                       color: Colors.blue, //for viewing purposes
-                      child: Center(
+                      child: const Center(
                         child: Text('Left Section'),
                       ),
                     ),
@@ -151,7 +145,7 @@ class MyApp extends StatelessWidget {
                     flex: 3,
                     child: Container(
                       color: Colors.green, //for viewing purposes
-                      child: Center(
+                      child: const Center(
                         child: Text('Center Section'),
 
                         // Start of Swiper
@@ -167,7 +161,7 @@ class MyApp extends StatelessWidget {
                     flex: 1,
                     child: Container(
                       color: Colors.yellow, //for viewing purposes
-                      child: Center(
+                      child: const Center(
                         child: Text('Right Section'),
                       ),
                     ),
@@ -182,49 +176,46 @@ class MyApp extends StatelessWidget {
             //Start of Bottom Section (yes,no,save,back)
             Expanded(
               flex: 1,
-              child: Container(
-                //color: Colors.orange,// Set the background color of the bottom section for viewing purposes
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SideFloatingActionButton(
-                        onPressed: () {
-                          // Back button logic
-                        },
-                        child: const Icon(Icons.arrow_back_rounded, size: 35, color: Color(0xFF959595)),
-                      ),
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SideFloatingActionButton(
+                      onPressed: () {
+                        // Back button logic
+                      },
+                      child: const Icon(Icons.arrow_back_rounded, size: 35, color: Color(0xFF959595)),
+                    ),
+                    
+                    LargeFloatingActionButton(
+                      onPressed: () {
+                        // Refuse button logic
+                        
+                      }, // Increase the size of the icon
+                      //color: Colors.red,
+                      color: const [Color(0xFFE5BF93),Color(0xFFD23030)],
+                      child: const Icon(Icons.clear_rounded, size: 40.0, color: Colors.white),
                       
-                      LargeFloatingActionButton(
-                        onPressed: () {
-                          // Refuse button logic
-                          
-                        }, // Increase the size of the icon
-                        //color: Colors.red,
-                        color: const [Color(0xFFE5BF93),Color(0xFFD23030)],
-                        child: const Icon(Icons.clear_rounded, size: 40.0, color: Colors.white),
+                    ),
+              
+                    LargeFloatingActionButton(
+                      onPressed: () {
+                        // Accept button logic
                         
-                      ),
-
-                      LargeFloatingActionButton(
-                        onPressed: () {
-                          // Accept button logic
-                          
-                        }, // Increase the size of the icon
-                        //color: Colors.green,
-                        color: const [Color(0xFF5AD230),Color(0xFFD4E593)],
-                        child: const Icon(Icons.check_rounded, size: 40.0, color: Colors.white),
-                        
-                      ),
-
-                      SideFloatingActionButton(
-                        onPressed: () {
-                          // Save button logic
-                        },
-                        child: const Icon(Icons.bookmark_rounded, size: 35, color: Color(0xFF959595)),
-                      ),
-                    ],
-                  ),
+                      }, // Increase the size of the icon
+                      //color: Colors.green,
+                      color: const [Color(0xFF5AD230),Color(0xFFD4E593)],
+                      child: const Icon(Icons.check_rounded, size: 40.0, color: Colors.white),
+                      
+                    ),
+              
+                    SideFloatingActionButton(
+                      onPressed: () {
+                        // Save button logic
+                      },
+                      child: const Icon(Icons.bookmark_rounded, size: 35, color: Color(0xFF959595)),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -239,7 +230,7 @@ class MyApp extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 50.0), // Add space on the sides and at the bottom
                 child: Container(
                 decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFF939393)), //Add gradient color to the border
+                border: Border.all(color: const Color(0xFF939393)), //Add gradient color to the border
                 borderRadius: BorderRadius.circular(100),    
                 ),
                 child: Center(

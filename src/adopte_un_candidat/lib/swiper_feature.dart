@@ -1,14 +1,10 @@
 import 'dart:developer';
-import 'dart:ffi';
 
 import 'package:appinio_swiper/appinio_swiper.dart';
-import 'package:flutter_application_1/main.dart';
-import 'Company_cards.dart';
+import 'company_cards.dart';
 import 'example_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'example_buttons.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,8 +12,8 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +26,8 @@ class MyApp extends StatelessWidget {
 
 class Example extends StatefulWidget {
   const Example({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<Example> createState() => _ExamplePageState();

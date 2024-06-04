@@ -1,20 +1,11 @@
-import 'dart:ffi';
-import 'dart:math';
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-import 'Company_cards.dart';
+import 'company_cards.dart';
 
 class ExampleCard extends StatelessWidget {
-  final Company_card candidate;
+  final CompanyCard candidate;
 
-  const ExampleCard({
-    Key? key,
-    required this.candidate,
-  }) : super(key: key);
+  const ExampleCard({super.key, required this.candidate});
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +65,7 @@ class ExampleCard extends StatelessWidget {
                           ),
 
                             Text(
-                            candidate.company_name!,
+                            candidate.companyName!,
                             style: const TextStyle(
                               color: CupertinoColors.black,
                               fontSize: 20,
