@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:appinio_swiper/appinio_swiper.dart';
+// import 'package:appinio_swiper/appinio_swiper.dart';
 
 // Gradient for Refuse button
 const myGradientRefuse = LinearGradient(
@@ -127,13 +127,6 @@ class TutorialAnimationButton extends StatelessWidget {
         color: CupertinoColors.systemGrey2,
       ),
     );
-  }
-}
-
-class SwipeRight {
-  
-  void swipeRight(AppinioSwiperController controller) {
-        controller.swipeRight();
   }
 }
 

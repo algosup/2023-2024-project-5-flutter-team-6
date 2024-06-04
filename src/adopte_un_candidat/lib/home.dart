@@ -56,7 +56,7 @@ class Home extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 3,
-                    child: Example(),
+                    child: SwiperFeature(),
                   ),
                 ],
               ),
@@ -71,7 +71,6 @@ class Home extends StatelessWidget {
               child: Center(
               
                 child: Row(
-                 
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SideFloatingActionButton(
@@ -96,6 +95,7 @@ class Home extends StatelessWidget {
                           // Accept button logic
                           HapticFeedback.mediumImpact();
               
+
                           // End of Accept Button logic
                       },
                       gradient: myGradientAccept, // Increase the size of the icon

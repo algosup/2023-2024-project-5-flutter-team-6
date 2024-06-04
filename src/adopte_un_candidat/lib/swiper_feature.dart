@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'company_cards.dart';
-import 'example_card.dart';
+import 'modules/cards.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,21 +19,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const CupertinoApp(
       debugShowCheckedModeBanner: false,
-      home: Example(),
+      home: SwiperFeature(),
     );
   }
 }
 
-class Example extends StatefulWidget {
-  const Example({
+class SwiperFeature extends StatefulWidget {
+  const SwiperFeature({
     super.key,
   });
 
   @override
-  State<Example> createState() => _ExamplePageState();
+  State<SwiperFeature> createState() => _PageState();
 }
 
-class _ExamplePageState extends State<Example> {
+class _PageState extends State<SwiperFeature> {
   final AppinioSwiperController controller = AppinioSwiperController();
 
   @override
@@ -63,7 +63,7 @@ class _ExamplePageState extends State<Example> {
                 child: AppinioSwiper(
                   invertAngleOnBottomDrag: true,
                   backgroundCardCount: 1,
-                  swipeOptions: const SwipeOptions.all(),
+                  swipeOptions: const SwipeOptions.symmetric(horizontal: true,),
                   controller: controller,
                   onCardPositionChanged: (
                     SwiperPosition position,
@@ -76,15 +76,15 @@ class _ExamplePageState extends State<Example> {
                   onEnd: _onEnd,
                   cardCount: candidates.length,
                   cardBuilder: (BuildContext context, int index) {
-                    return ExampleCard(candidate: candidates[index]);
+                    return Cards(candidate: candidates[index]);
                   },
                 ),
               ),
             ),
-         
+          
           ],
         
-      ),
+        ),
       ),
     );
   }
@@ -134,4 +134,5 @@ class _ExamplePageState extends State<Example> {
       curve: Curves.easeInOut,
     );
   }
+
 }
