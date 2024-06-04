@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
-import 'company_cards.dart';
+import '../company_cards.dart';
 
-class ExampleCard extends StatelessWidget {
+class Cards extends StatelessWidget {
   final CompanyCard candidate;
 
-  const ExampleCard({super.key, required this.candidate});
+  const Cards({super.key, required this.candidate});
 
   @override
   Widget build(BuildContext context) {
