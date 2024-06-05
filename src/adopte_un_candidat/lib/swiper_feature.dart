@@ -1,28 +1,10 @@
 import 'dart:developer';
 
+import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
-import 'company_cards.dart';
 import 'modules/cards.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const CupertinoApp(
-      debugShowCheckedModeBanner: false,
-      home: SwiperFeature(),
-    );
-  }
-}
 
 class SwiperFeature extends StatefulWidget {
   const SwiperFeature({
@@ -30,11 +12,14 @@ class SwiperFeature extends StatefulWidget {
   });
 
   @override
-  State<SwiperFeature> createState() => _PageState();
+  SwiperFeatureState createState() => SwiperFeatureState();
 }
 
-class _PageState extends State<SwiperFeature> {
+class SwiperFeatureState extends State<SwiperFeature> {
   final AppinioSwiperController controller = AppinioSwiperController();
+
+  Database database = Database();
+  List<dynamic>? cardStack;
 
   @override
   void initState() {
@@ -42,50 +27,12 @@ class _PageState extends State<SwiperFeature> {
       _shakeCard();
     });
     super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      child: CupertinoPageScaffold(
-         //child: SingleChildScrollView( // Check
-        child: Column(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * .55,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 25,
-                  right: 25,
-                  top: 0,
-                  bottom: 0,
-                ),
-                child: AppinioSwiper(
-                  invertAngleOnBottomDrag: true,
-                  backgroundCardCount: 1,
-                  swipeOptions: const SwipeOptions.symmetric(horizontal: true,),
-                  controller: controller,
-                  onCardPositionChanged: (
-                    SwiperPosition position,
-                  ) {
-                    //debugPrint('${position.offset.toAxisDirection()}, '
-                    //    '${position.offset}, '
-                    //    '${position.angle}');
-                  },
-                  onSwipeEnd: _swipeEnd,
-                  onEnd: _onEnd,
-                  cardCount: candidates.length,
-                  cardBuilder: (BuildContext context, int index) {
-                    return Cards(candidate: candidates[index]);
-                  },
-                ),
-              ),
-            ),
-          
-          ],
-        
-        ),
-      ),
+    database.getStack().then(
+      (value) {
+        setState(() {
+          cardStack = value;
+        });
+      },
     );
   }
 
@@ -113,7 +60,7 @@ class _PageState extends State<SwiperFeature> {
   }
 
   // Animates the card back and forth to teach the user that it is swipable.
-  Future<void> _shakeCard() async {
+ Future<void> _shakeCard() async {
     const double distance = 30;
     // We can animate back and forth by chaining different animations.
     await controller.animateTo(
@@ -135,4 +82,73 @@ class _PageState extends State<SwiperFeature> {
     );
   }
 
+  Widget cards() {
+    if (cardStack != null) {
+      return AppinioSwiper(
+        invertAngleOnBottomDrag: true,
+        backgroundCardCount: 1,
+        swipeOptions: const SwipeOptions.symmetric(horizontal: true,),
+        controller: controller,
+        onCardPositionChanged: (
+          SwiperPosition position,
+        ) {
+          //debugPrint('${position.offset.toAxisDirection()}, '
+          //    '${position.offset}, '
+          //    '${position.angle}');
+        },
+        onSwipeEnd: _swipeEnd,
+        onEnd: _onEnd,
+        cardCount: cardStack!.length,
+        cardBuilder: (BuildContext context, int index) {
+          return Cards(company: cardStack![index]);
+        },
+      );
+    } else {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: CupertinoPageScaffold(
+         //child: SingleChildScrollView( // Check
+        child: Column(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .55,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: 25,
+                  right: 25,
+                  top: 0,
+                  bottom: 0,
+                ),
+                child: FutureBuilder<List<dynamic>?>(
+                  future: database.getStack(),
+                  builder: (BuildContext context, AsyncSnapshot<List<dynamic>?> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      cardStack = snapshot.data;
+                      return cards();
+                    }
+                  },
+                )
+                  
+              ),
+            ),
+          
+          ],
+        
+        ),
+      ),
+    );
+  } 
 }

@@ -1,20 +1,12 @@
-import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import '../company_cards.dart';
-import 'package:adopte_un_candidat/modules/database.dart';
 
 class Cards extends StatelessWidget {
-  final CompanyCard candidate;
+  final company;
 
-  Cards({super.key, required this.candidate});
-
-  Database database = Database();
+  Cards({super.key, required this.company});
 
   @override
   Widget build(BuildContext context) {
-      var user = database.getUser(0);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -36,7 +28,14 @@ class Cards extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(15), // Add padding here
               decoration: BoxDecoration(
-                gradient: candidate.color,
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(int.parse("0xFF${company["colors"][0]}")),
+                    Color(int.parse("0xFF${company["colors"][1]}")),
+                  ],
+                ),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(25),
                   topRight: Radius.circular(25),
@@ -67,13 +66,13 @@ class Cards extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Image.network(
-                                  "snapshot.data!",
+                                  company["picture_profile"],
                                   width: 100,
                                   height: 100,
                                 )
                           ),
                           Text(
-                            "company.name",
+                            company["name"],
                             style: const TextStyle(
                               color: CupertinoColors.black,
                               fontSize: 20,
@@ -82,7 +81,7 @@ class Cards extends StatelessWidget {
                           ),
                       
                           Text(
-                            candidate.job!,
+                            company["proposal"]["job_name"],
                             style: const TextStyle(
                               color: CupertinoColors.white,
                               fontSize: 15,
