@@ -1,11 +1,15 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 
 class Database {
-  
+
   Future<Map?> getCompany(int id) async {
     var company = {};
     final DocumentSnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("company").doc(id.toString()).get();
+
     
     if (querySnapshot.exists) {
       company = querySnapshot.data()!;
@@ -16,6 +20,28 @@ class Database {
       }
       return null;
     }
+  }
+
+  Future<List?> getStack() async {
+    var cardStack = [];
+    Map<String, dynamic>? company;
+    final QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("company").get();
+      for (final QueryDocumentSnapshot doc in querySnapshot.docs) {
+        company = doc.data() as Map<String, dynamic>?;
+        QuerySnapshot<Map<String, dynamic>> proposalList = await doc.reference.collection("proposal").get();
+        int porposalIndex = Random().nextInt(proposalList.docs.length) - 1;
+
+        company?['proposal'] = proposalList.docs[porposalIndex].data();
+        //
+        String proposalId = proposalList.docs[porposalIndex].id.toString();
+        // TODO: check if the user has already liked this card
+
+        cardStack.add(company);
+        if (cardStack.length >= 20 || cardStack.length >= querySnapshot.docs.length) {
+          return cardStack;
+        }
+      }
+    return cardStack;
   }
 
   Future<Map?> getUser(int id) async {
@@ -58,6 +84,21 @@ class Database {
     } else {
       if (kDebugMode) {
         print("No such document!");
+      }
+      return null;
+    }
+  }
+
+  Future<String?> getPicture(int id) async {
+    final Reference storageRef = FirebaseStorage.instance.ref().child('users/$id.png');
+
+    print("storageRef: $storageRef");
+    try {
+      final String downloadURL = await storageRef.getDownloadURL();
+      return downloadURL;
+    } catch (e) {
+      if (kDebugMode) {
+      print("Error getting picture: $e");
       }
       return null;
     }

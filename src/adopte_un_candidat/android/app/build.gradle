@@ -55,7 +55,7 @@ android {
         applicationId = "com.example.adopte_un_candidat"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdk = 31//flutter.minSdkVersion
+        minSdk = 29//flutter.minSdkVersion
         targetSdk = 34//flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
