@@ -26,6 +26,7 @@ dependencies:
   async: ^2.11.0
   appinio_swiper: ^2.1.1
   flutter_card_swiper: ^7.0.1
+  google_fonts: ^6.2.1
 
 
 dev_dependencies:
@@ -35,3 +36,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets: 
+    - assets/images/

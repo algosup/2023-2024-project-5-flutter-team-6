@@ -28,7 +28,7 @@ class Home extends StatelessWidget {
                       child: Center(
                       child: Container(
                         alignment: Alignment.bottomCenter,
-                        child: Image.network('https://github.com/algosup/2023-2024-project-5-flutter-team-6/raw/dev/src/Assets/adopte-logo.png'), // Logo image for GIT
+                        child: Image.asset('assets/images/adopte-logo.png'), // Logo image for GIT
                       ),
                       ),
                     ),
