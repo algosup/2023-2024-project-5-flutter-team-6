@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class Cards extends StatelessWidget {
   final company;
@@ -20,6 +21,7 @@ class Cards extends StatelessWidget {
     return company["proposal"]["soft_skill"] != null 
   ? GridView.count(
       crossAxisCount: 3,
+      padding: const EdgeInsets.all(0),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       childAspectRatio: 4,
@@ -48,6 +50,7 @@ class Cards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // debugPaintSizeEnabled = true;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -80,14 +83,13 @@ class Cards extends StatelessWidget {
                 ),
               ),
               child: 
-                  Expanded(
-                    child: Container(
+                  Container(
                       decoration: BoxDecoration(
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
@@ -167,7 +169,6 @@ class Cards extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(15),
                             child: Column(
-                              mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
@@ -178,15 +179,16 @@ class Cards extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                GridView.count(
+                                Container(
+                                child: GridView.count(
                                   crossAxisCount: 3,
+                                  padding: const EdgeInsets.all(0),
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
                                   childAspectRatio: 4,
                                   mainAxisSpacing: 5,
                                   crossAxisSpacing: 5,
                                   children: [
-                                    // Add your grid elements here
                                     Container(
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
@@ -264,26 +266,27 @@ class Cards extends StatelessWidget {
                                     ),
                                   ],
                                 ),
+                                ),
+
+
                                 Divider(
                                 color: Colors.grey[300],
                                 thickness: 2,
                                 ),
 
-                                Container(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        "Soft skills en commun:",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Soft skills en commun:",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 8,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                      displayCommonSoftSkills()
-                                    ],
-                                  )
+                                    ),
+                                    displayCommonSoftSkills()
+                                  ],
                                 ),
 
                                 Divider(
@@ -308,7 +311,6 @@ class Cards extends StatelessWidget {
                                         width: 72,
                                         height: 72,
                                         decoration: BoxDecoration(
-                                          // color: const Color(0xFF38A0FF),
                                           borderRadius: BorderRadius.circular(100),
                                           border: Border.all(
                                           color: Colors.green,
@@ -344,7 +346,6 @@ class Cards extends StatelessWidget {
                       ),
                     ),
                   ),
-            ),
     );
   }
 }
