@@ -1,14 +1,20 @@
+import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../company_cards.dart';
+import 'package:adopte_un_candidat/modules/database.dart';
 
 class Cards extends StatelessWidget {
   final CompanyCard candidate;
 
-  const Cards({super.key, required this.candidate});
+  Cards({super.key, required this.candidate});
+
+  Database database = Database();
 
   @override
   Widget build(BuildContext context) {
+      var user = database.getUser(0);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -60,12 +66,14 @@ class Cards extends StatelessWidget {
                               color: CupertinoColors.white,
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            //child:
-                          //Image.network('https://github.com/algosup/2023-2024-project-5-flutter-team-6/blob/dev/src/Assets/Algosup_logo.png')
+                            child: Image.network(
+                                  "snapshot.data!",
+                                  width: 100,
+                                  height: 100,
+                                )
                           ),
-
-                            Text(
-                            candidate.companyName!,
+                          Text(
+                            "company.name",
                             style: const TextStyle(
                               color: CupertinoColors.black,
                               fontSize: 20,
