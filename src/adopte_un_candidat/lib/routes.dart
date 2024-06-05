@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'home.dart';
+import 'register.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
@@ -50,7 +51,7 @@ final GoRouter router = GoRouter(
       path: '/register',
       name: 'register',
       builder: (BuildContext context, GoRouterState state) {
-        return const Home(); // TODO: Replace with the register page
+        return const Register(); // TODO: Replace with the register page
       },
     )
   ],
