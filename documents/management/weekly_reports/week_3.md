@@ -12,11 +12,11 @@ This week, we had one project session. Our main focuses were on fixing the Fireb
 
 |           Task          |      Priority        | State   | Member Assigned                   | Progression | End Of Week objective  | Start Date |
 | :----------------------:| :------------------: |:-------:|:--------------------------------: | :---------: | :--------------------: | :--------: |
-| Technical Specifications| MEDIUM               | On time | Mathias - Tech Lead               | 25%         | 40%                    | 05/21/2024 |
-| Test Plan               | MEDIUM               | On time | Pierre - Quality Assurance        | 70%         | 50%                    | 05/22/2024 |
-| Code                    | HIGH                 | Late    | Ian - Software Engineer           | 20%         | 30%                    | 05/22/2024 |
-| User Manual             | LOW                  | On Time | Guillaume - Technical Writer      | 5%          | 5%                     | 05/28/2024 |
-| Fixing firebase issue   | VERY HIGH            | Late    | Ian - Software Engineer           | /           | 100%                   | 05/28/2024 |
+| Technical Specifications| ![Medium](https://img.shields.io/badge/Medium-e6b400)               | On time | Mathias - Tech Lead               | 25%         | 40%                    | 05/21/2024 |
+| Test Plan               | ![Medium](https://img.shields.io/badge/Medium-e6b400)               | On time | Pierre - Quality Assurance        | 70%         | 50%                    | 05/22/2024 |
+| Code                    | ![High](https://img.shields.io/badge/High-bb2124)                 | Late    | Ian - Software Engineer           | 20%         | 30%                    | 05/22/2024 |
+| User Manual             | ![Low](https://img.shields.io/badge/Low-0b6623)                  | On Time | Guillaume - Technical Writer      | 5%          | 5%                     | 05/28/2024 |
+| Fixing firebase issue   | ![Very high](https://img.shields.io/badge/Very%20high-871A1C)            | Late    | Ian - Software Engineer           | /           | 100%                   | 05/28/2024 |
 
 
 ## Finished Tasks

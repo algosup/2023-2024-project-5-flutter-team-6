@@ -1,11 +1,20 @@
 # 2023-2024-Project-5-Flutter-Team-6-Management-Artifact
 
+<details>
+
 The purpose of this document is to consolidate various management documents, including:
 
-- Risks & Assumptions
-- Key Performance Indicators (KPIs)
-- Weekly Reports
-- Gantt Chart
+<summary style="font-size:1.2em; font-weight:bold;">📒 Table of content</summary>
+
+- [Task management](#task-management)
+- [RACI Matrix](#raci-matrix)
+- [Key Performance Indicators](#key-performance-indicators)
+- [Risks & Assumptions](#risks--assumptions)
+- [Weekly reports](#weekly-reports)
+
+</details>
+
+--- 
 
 ## Task management
 
@@ -41,3 +50,14 @@ Please find the link to access the Key Performance Indicators (KPIs):
 | 7 | Failure to meet project requirements or misunderstandings | Depending on the misunderstanding, it can render our work completely useless. | ![High](https://img.shields.io/badge/High-bb2124) | ![Low](https://img.shields.io/badge/Low-0b6623) | Stay calm and rework the project by attempting to salvage any salvageable features. |
 | 8 | Work style | Members of the team may experience misunderstandings if there are differences in documentation and coding styles. | ![Medium](https://img.shields.io/badge/Medium-e6b400) | ![Medium](https://img.shields.io/badge/Medium-e6b400) | Establish the style and coding conventions to be used in advance. |
 | 9 | Team burnout | One or multiple team members experience burnout, resulting in either a halt in their work or a decline in the quality of their deliverables. | ![High](https://img.shields.io/badge/High-bb2124) | ![Low](https://img.shields.io/badge/Low-0b6623) | Do not leave the member(s) alone and provide support by offering mental assistance, aiding with their tasks, and offering advice. |
+
+## Weekly reports
+
+#### 1. [Weekly report week 1](/documents/management/weekly_reports/week_1.md)
+#### 2. [Weekly report week 2](/documents/management/weekly_reports/week_2.md)
+#### 3. [Weekly report week 3](/documents/management/weekly_reports/week_3.md)
+#### 4. [Weekly report week 4](/documents/management/weekly_reports/week_4.md)
+#### 5. [Weekly report week 5](/documents/management/weekly_reports/week_5.md)
+#### 6. [Weekly report week 6](/documents/management/weekly_reports/week_6.md)
+
+#### Weekly reports cumulative: [Weekly reports cumulative](/documents/management/weekly_reports/cumulative.md)

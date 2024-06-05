@@ -11,11 +11,11 @@ This week we had four project sessions. The primary focus was on continuing the 
 
 |           Task          |      Priority        | State   | Member Assigned                   | Progression | End Of Week objective  | Start Date |
 | :----------------------:| :------------------: |:-------:|:--------------------------------: | :---------: | :--------------------: | :--------: |
-| Gantt Chart             | HIGH                 | Late    | Camille - Project Manager         | 0%          | 75%                    |     /      |  
-| Risks & Assumptions     | HIGH                 | Late    | Camille - Project Manager         | 60%         | 75%                    | 05/22/2024 |
-| Technical Specifications| MEDIUM               | On time | Mathias - Tech Lead               | 15%         | 10%                    | 05/21/2024 |
-| Test Plan               | MEDIUM               | On time | Pierre - Quality Assurance        | 10%         | 10%                    | 05/22/2024 |
-| Code                    | HIGH                 | Late    | Ian - Software Engineer           | 5%          | 5%                     | 05/22/2024 |
+| Gantt Chart             | ![High](https://img.shields.io/badge/High-bb2124)                 | Late    | Camille - Project Manager         | 0%          | 75%                    |     /      |  
+| Risks & Assumptions     | ![High](https://img.shields.io/badge/High-bb2124)                 | Late    | Camille - Project Manager         | 60%         | 75%                    | 05/22/2024 |
+| Technical Specifications| ![Medium](https://img.shields.io/badge/Medium-e6b400)               | On time | Mathias - Tech Lead               | 15%         | 10%                    | 05/21/2024 |
+| Test Plan               | ![Medium](https://img.shields.io/badge/Medium-e6b400)               | On time | Pierre - Quality Assurance        | 10%         | 10%                    | 05/22/2024 |
+| Code                    | ![High](https://img.shields.io/badge/High-bb2124)                 | Late    | Ian - Software Engineer           | 5%          | 5%                     | 05/22/2024 |
 
 
 ## Finished Tasks
