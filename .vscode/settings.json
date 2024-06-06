@@ -7,5 +7,6 @@
         "swipable",
         "Swiper",
         "Unswipe"
-    ]
+    ],
+    "cmake.configureOnOpen": false
 }
