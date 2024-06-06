@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'home.dart';
 import 'register.dart';
 import 'login.dart';
+import 'profile.dart';
 import 'messages.dart';
 
 final GoRouter router = GoRouter(
@@ -37,7 +38,7 @@ final GoRouter router = GoRouter(
       path: '/profile',
       name: 'profile',
       builder: (BuildContext context, GoRouterState state) {
-        return const Home(); // TODO: Replace with the profile page
+        return const Profile();
       },
     ),
     GoRoute(
