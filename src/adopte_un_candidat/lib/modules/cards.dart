@@ -1,27 +1,34 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
-class Cards extends StatelessWidget {
-  final company;
+class Cards extends StatefulWidget {
+  final dynamic company;
 
-  Cards({super.key, required this.company});
+  const Cards({super.key, required this.company});
+
+   @override
+  CardsState createState() => CardsState();
+}
+
+
+class CardsState extends State<Cards> {
+
+  dynamic company;
+  bool versoShowed = false;
+
+  @override
+  void initState() {
+    super.initState();
+    company = widget.company;
+  }
 
   Widget displayCommonSoftSkills(){
-    // int i = 0;
-    // for (var softskills in company["soft_skills"]) {
-    //   ++i;
-    //   for (var softskill in softskills) {
-        
-    //   }
-    // }
-    // int i = 0;
 
     return company["proposal"]["soft_skill"] != null 
   ? GridView.count(
       crossAxisCount: 3,
-      padding: const EdgeInsets.all(0),
+      padding: const EdgeInsets.all(5),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       childAspectRatio: 4,
@@ -48,47 +55,8 @@ class Cards extends StatelessWidget {
   : Container();  // return an empty Container if softskill is null
   }
 
-  @override
-  Widget build(BuildContext context) {
-    // debugPaintSizeEnabled = true;
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: CupertinoColors.systemGrey.withOpacity(0.2),
-            spreadRadius: 3,
-            blurRadius: 7,
-            offset: const Offset(0, 3),
-          )
-        ],
-      ),
-      alignment: Alignment.center,
-          child: Container(
-              padding: const EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(int.parse("0xFF${company["colors"][0]}")),
-                    Color(int.parse("0xFF${company["colors"][1]}")),
-                  ],
-                ),
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(25),
-                  topRight: Radius.circular(25),
-                  bottomLeft: Radius.circular(25),
-                  bottomRight: Radius.circular(25),
-                ),
-              ),
-              child: 
-                  Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Column(
+  Widget cardRecto() {
+    return   Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -144,7 +112,9 @@ class Cards extends StatelessWidget {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        // TODO: Add the card flip
+                                        setState(() {
+                                          versoShowed = true;
+                                        });
                                         if (kDebugMode) {
                                           print("Read more has been pressed");
                                         }
@@ -179,10 +149,9 @@ class Cards extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Container(
-                                child: GridView.count(
+                                GridView.count(
                                   crossAxisCount: 3,
-                                  padding: const EdgeInsets.all(0),
+                                  padding: const EdgeInsets.all(5),
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
                                   childAspectRatio: 4,
@@ -266,7 +235,6 @@ class Cards extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                ),
 
 
                                 Divider(
@@ -294,22 +262,28 @@ class Cards extends StatelessWidget {
                                   thickness: 2,
                                 ),
 
-                                Container(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        "Taux de compatibilité:",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Taux de compatibilité:",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 8,
+                                        fontWeight: FontWeight.bold,
                                       ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child:
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
                                       Container(
                                         alignment: Alignment.center,
-                                        width: 72,
-                                        height: 72,
+                                        width: 82,
+                                        height: 82,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(100),
                                           border: Border.all(
@@ -318,6 +292,8 @@ class Cards extends StatelessWidget {
                                         ),
                                         ), 
                                         child: const Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
                                             Text(
                                               "Bon",
@@ -335,17 +311,176 @@ class Cards extends StatelessWidget {
                                             ),
                                           ]
                                         )
-                                      ),
-                                    ],
-                                  )
+                                        ),
+                                      ]
+                                    )
+                                    )
+                                  ],
                                 )
                               ]
                             )
                           ),
                         ],
+                      );
+  
+  }
+
+  Widget cardVerso() {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          versoShowed = false;
+        });
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: CupertinoColors.white,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+              Image.network(
+                  company["picture_profile"],
+                  width: 48,
+                  height: 48,
+                ),
+                const SizedBox(width: 10),
+              Expanded(
+                child:Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      company["name"],
+                      textAlign: TextAlign.left,
+                      style: const TextStyle(
+                        color: CupertinoColors.black,
+                        fontFamily: 'QuickSand',
+                        fontSize: 14,
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.bold
                       ),
                     ),
+                    Text(
+                      company["motto"],
+                      style: const TextStyle(
+                        color: CupertinoColors.black,
+                        fontSize: 12,
+                        fontFamily: 'Roboto',          
+                      ),
+                    ),
+                    const Text(
+                      textAlign: TextAlign.left,
+                      "4 recrutements effectués en 2 Ans.",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: TextStyle(
+                        color: CupertinoColors.black,
+                        fontSize: 8,
+                        fontFamily: 'Roboto',
+                      ),
+                    ),
+                    ],
+                  )
+                )
+              ],
+            ),
+          ),
+
+        Expanded(
+           child: Padding(
+            padding: const EdgeInsets.all(15),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    company["description"]["fr"],
+                    style: const TextStyle(
+                      color: CupertinoColors.black,
+                      fontSize: 12,
+                      fontFamily: 'Roboto',
+                    ),
                   ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: GestureDetector(
+                      onTap: () {
+                        if (kDebugMode) {
+                          print("Website has been pressed");
+                        }
+                      },
+                      child: Text(
+                        company["website"],
+                        style: const TextStyle(
+                          color: CupertinoColors.activeBlue,
+                          fontSize: 12,
+                          fontFamily: 'Roboto',
+                        ),
+                      )
+                    )
+                  )
+                ]
+              ),
+            ),
+          )
+        ]
+      )
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // debugPaintSizeEnabled = true;
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: CupertinoColors.systemGrey.withOpacity(0.2),
+            spreadRadius: 3,
+            blurRadius: 7,
+            offset: const Offset(0, 3),
+          )
+        ],
+      ),
+      alignment: Alignment.center,
+          child: Container(
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(int.parse("0xFF${company["colors"][0]}")),
+                    Color(int.parse("0xFF${company["colors"][1]}")),
+                  ],
+                ),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(25),
+                  topRight: Radius.circular(25),
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25),
+                ),
+              ),
+              child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: versoShowed ? cardVerso() :
+                 cardRecto(),
+              ),
+          )
     );
   }
 }

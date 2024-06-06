@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'modules/cards.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
