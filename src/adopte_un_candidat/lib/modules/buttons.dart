@@ -25,8 +25,14 @@ const myGradientAccept = LinearGradient(
 // Gradient for menu border
 const myGradientMenu = LinearGradient(
   colors: [Color(0xffa7207d), Color(0xff6e297c)],
-  begin: Alignment.centerLeft,
-  end: Alignment.centerRight,
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
+);
+
+const myGradientButtons = LinearGradient(
+  colors: [Color(0xffa7207d), Color(0xff6e297c)],
+  begin: Alignment.centerRight,
+  end: Alignment.centerLeft,
 );
 // End of Gradient for menu border
 
@@ -70,7 +76,6 @@ class LargeFloatingActionButton extends StatelessWidget {
         padding: EdgeInsets.all(screenWidth *
             0.03),
         child: child, // Adjust padding as a percentage of screen width
-        //fillColor: Colors.transparent, // Make the button background transparent
       ),
     );
   }
@@ -103,7 +108,8 @@ class SideFloatingActionButton extends StatelessWidget {
             onPressed: onPressed,
             backgroundColor: color,
             shape: const CircleBorder(),
-            child: child),
+            child: child
+          ),
       ),
     );
   }
@@ -111,7 +117,115 @@ class SideFloatingActionButton extends StatelessWidget {
 // End: SideFloatingActionButton class (Save, Back buttons)
 
 //--//
+class RegisterChoice extends StatelessWidget {
+  final VoidCallback onPressed;
+  final String choice;
 
+  const RegisterChoice({
+    required this.onPressed,
+    required this.choice,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.8,
+      height: MediaQuery.of(context).size.height * 0.07,
+      decoration: BoxDecoration(
+        gradient: myGradientButtons,
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(70),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5), // Define the shadow color here
+            spreadRadius: 3,
+            blurRadius: 7,
+            offset: const Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      child: RawMaterialButton(
+        onPressed: onPressed,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(70)),
+        child: Center(
+          child: Row(
+            children: [
+              Expanded(
+                flex: 4,
+                child: Center(
+                  child: Text(
+                    choice,
+                    style: const TextStyle(
+                      fontFamily: 'Quicksand',
+                      color: CupertinoColors.white,
+                      fontSize: 26,
+                    ),
+                  )
+                )
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.06,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Center(
+                    child: Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 40.0, 
+                      color: Color(0xFFa7207d),
+                    ),
+                  )
+                )
+              )
+            ]
+          )
+        )
+      ),
+    );
+  }
+}
+
+class ConnectionButton extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const ConnectionButton({
+    required this.onPressed,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.2,
+      height: MediaQuery.of(context).size.height * 0.045,
+      decoration: BoxDecoration(
+        gradient: myGradientButtons,
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(70),
+      ),
+      child: RawMaterialButton(
+        onPressed: onPressed,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(70)),
+        child: const Center(
+          child: Text(
+            'Connexion',
+            style: TextStyle(
+              fontFamily: 'Quicksand',
+              color: CupertinoColors.white,
+              fontSize: 12,
+            ),
+          )
+        ),
+      )
+    );
+  }
+}
 
 class TutorialAnimationButton extends StatelessWidget {
   const TutorialAnimationButton(this.onTap, {super.key});
@@ -129,6 +243,4 @@ class TutorialAnimationButton extends StatelessWidget {
     );
   }
 }
-
-
 

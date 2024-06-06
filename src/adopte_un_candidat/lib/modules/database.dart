@@ -29,7 +29,7 @@ class Database {
       for (final QueryDocumentSnapshot doc in querySnapshot.docs) {
         company = doc.data() as Map<String, dynamic>?;
         QuerySnapshot<Map<String, dynamic>> proposalList = await doc.reference.collection("proposal").get();
-        int porposalIndex = Random().nextInt(proposalList.docs.length) - 1;
+        int porposalIndex = proposalList.docs.length > 1 ? Random().nextInt(proposalList.docs.length) - 1 : 0;
 
         company?['proposal'] = proposalList.docs[porposalIndex].data();
         //
@@ -92,13 +92,12 @@ class Database {
   Future<String?> getPicture(int id) async {
     final Reference storageRef = FirebaseStorage.instance.ref().child('users/$id.png');
 
-    print("storageRef: $storageRef");
     try {
       final String downloadURL = await storageRef.getDownloadURL();
       return downloadURL;
     } catch (e) {
       if (kDebugMode) {
-      print("Error getting picture: $e");
+        print("Error getting picture: $e");
       }
       return null;
     }
