@@ -4,40 +4,38 @@ import 'package:flutter/cupertino.dart';
 import 'modules/buttons.dart';
 // import 'package:flutter/services.dart';
 
+void registerChoicePage() {
+  
+}
+
 class Register extends StatelessWidget {
   const Register({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Column(
           children: [
             Expanded(
               flex: 2,
               child: Container(
-                padding: const EdgeInsets.all(10.0), // Add padding to the container to center the image !!!WIP - Need to find solution to avoid being placed next to iphone notch.
-                child: Center(
-                  child: Container(
-                    alignment: Alignment.bottomCenter,
-                    child: Image.asset('assets/images/adopte-logo.png', width: MediaQuery.of(context).size.width * 0.8), // Logo image for GIT
-                  ),
-                ),
+                padding: const EdgeInsets.only(bottom: 5, top: 50),
+                child: Image.asset('assets/images/adopte-logo-cropped.png', width: MediaQuery.of(context).size.width * 0.7),
               ),
             ),
-            Expanded(
+            const Expanded(
               flex: 2,
               child: Center(
-              child: Container(
-              child: const Text(
-                "Vous êtes ...",
-                style: TextStyle(
-                  fontFamily: 'Quicksand',
-                  color: CupertinoColors.black,
-                  fontSize: 32,
-                ),
-              )
-              )
+                child: Text(
+                  "Vous êtes ...",
+                  style: TextStyle(
+                    fontFamily: 'Quicksand',
+                    color: CupertinoColors.black,
+                    fontSize: 32,
+                  ),
+                )
               )
             ),
             Expanded(
@@ -81,6 +79,7 @@ class Register extends StatelessWidget {
                           flex: 1,
                           child: Container(
                             alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.only(right: 5, left: 50),
                             child: const Text(
                               "Déjà un compte ?\nConnectez-vous !",
                               style: TextStyle(
@@ -95,6 +94,7 @@ class Register extends StatelessWidget {
                           flex: 1,
                           child: Container(
                             alignment: Alignment.centerLeft,
+                            padding: const EdgeInsets.only(left: 5, right: 50),
                             child: ConnectionButton(
                               onPressed: () {
 
