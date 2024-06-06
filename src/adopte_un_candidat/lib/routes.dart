@@ -9,7 +9,7 @@ final GoRouter router = GoRouter(
       path: '/',
       name: 'home',
       builder: (BuildContext context, GoRouterState state) {
-        return const Profile();
+        return const Home();
       },
     ),
     GoRoute(

@@ -10,7 +10,10 @@ class Profile extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Profile'),
       ),
-      bottomNavigationBar: const SuperNavigationBar(),
+      body: Container(
+        color: Colors.deepOrangeAccent,
+      ),
+      bottomNavigationBar: const SuperNavigationBar(index: 2),
     );
   }
 }
