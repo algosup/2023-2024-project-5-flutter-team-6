@@ -5,6 +5,7 @@ import 'home.dart';
 import 'register.dart';
 import 'login.dart';
 import 'profile.dart';
+import 'messages.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
@@ -27,10 +28,10 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: '/discussion',
-      name: 'discussion',
+      path: '/messages',
+      name: 'messages',
       builder: (BuildContext context, GoRouterState state) {
-        return const Home(); // TODO: Replace with the discussion page
+        return const Messages();
       },
     ),
     GoRoute(
