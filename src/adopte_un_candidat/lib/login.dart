@@ -1,15 +1,8 @@
-import 'dart:ffi';
-import 'dart:io';
+import 'package:adopte_un_candidat/modules/authentication.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
+import 'package:go_router/go_router.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:flutter/services.dart';
-
-void main() {
-  runApp(MyApp());
-}
 
 const myGradientMenu = LinearGradient(
   colors: [Color(0xffa7207d), Color(0xff6e297c)],
@@ -22,12 +15,12 @@ class ActionButtonNext extends StatelessWidget {
   final Widget row;
   final LinearGradient? gradient;
 
-  ActionButtonNext({
+  const ActionButtonNext({
     required this.onPressed,
     required this.row,
     this.gradient,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +38,7 @@ class ActionButtonNext extends StatelessWidget {
             color: Colors.grey.withOpacity(0.5), // Define the shadow color here
             spreadRadius: 5,
             blurRadius: 7,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
@@ -54,11 +47,11 @@ class ActionButtonNext extends StatelessWidget {
         // Adjust the width as a percentage of screen width
         child: RawMaterialButton(
             onPressed: onPressed,
-            child: row,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            padding: EdgeInsets.all(10)
+            padding: const EdgeInsets.all(10),
+            child: row
             // Adjust padding as a percentage of screen width
             ),
       ),
@@ -66,14 +59,19 @@ class ActionButtonNext extends StatelessWidget {
   }
 }
 
-class MyApp extends StatelessWidget {
-  //class Login extends StatelessWidget {
-  //Login ({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
+
+  @override
+  LoginState createState() => LoginState();
+}
+
+class LoginState extends State<Login> {
+  final TextEditingController _emailcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         primaryColor: Colors.white,
@@ -88,11 +86,11 @@ class MyApp extends StatelessWidget {
               flex: 1,
               child: Container(
                 alignment: Alignment.bottomCenter,
+                padding: const EdgeInsets.only(top: 35, bottom: 0),
                 child: Image.network(
                   'https://github.com/algosup/2023-2024-project-5-flutter-team-6/blob/dev/src/adopte_un_candidat/assets/images/adopte-logo.png?raw=true',
                   height: 150, // Adjust the height as desired
                 ),
-                padding: EdgeInsets.only(top: 35, bottom: 0),
               ),
             ),
             // Middle Section
@@ -101,9 +99,9 @@ class MyApp extends StatelessWidget {
               flex: 1,
               child: Container(
                 padding:
-                    EdgeInsets.only(top: 0, left: 30, right: 30, bottom: 0),
+                    const EdgeInsets.only(top: 0, left: 30, right: 30, bottom: 0),
                 alignment: Alignment.center,
-                child: Text(
+                child: const Text(
                   'The choice of your future is in your hands.',
                   textAlign: TextAlign.left,
                   style: TextStyle(
@@ -123,7 +121,7 @@ class MyApp extends StatelessWidget {
 
                 children: [
                   Container(
-                    padding: EdgeInsets.only(left: 30, right: 30, top: 0),
+                    padding: const EdgeInsets.only(left: 30, right: 30, top: 0),
                     child: const Text(
                       'Login',
                       style: TextStyle(
@@ -138,6 +136,7 @@ class MyApp extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 30, right: 30),
                     child: TextField(
+                      controller: _emailcontroller,
                       decoration: const InputDecoration(
                         labelText: 'Email',
                       ),
@@ -165,7 +164,7 @@ class MyApp extends StatelessWidget {
                         ),
                         IconButton(
                           padding: const EdgeInsets.only(left: 10, right: 10),
-                          icon: Icon(LineIcons.apple),
+                          icon: const Icon(LineIcons.apple),
                           color: CupertinoColors.systemGrey2,
                           onPressed: () {
                             // Add your logic here
@@ -173,8 +172,8 @@ class MyApp extends StatelessWidget {
                           iconSize: 35,
                         ),
                         IconButton(
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          icon: Icon(LineIcons.linkedin),
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          icon: const Icon(LineIcons.linkedin),
                           color: CupertinoColors.systemGrey2,
                           onPressed: () {
                             // Add your logic here
@@ -185,12 +184,17 @@ class MyApp extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 30, right: 30, top: 0),
+                    padding: const EdgeInsets.only(left: 30, right: 30, top: 0),
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: ActionButtonNext(
-                        onPressed: () {
-                          // Add your logic here
+                        onPressed: () async {
+                          bool isloggedin = await Authentication().signIn(context, _emailcontroller.text, 'azerty');
+                          if (context.mounted) {
+                            if (isloggedin) {
+                              context.replaceNamed('/home');
+                            }
+                          }
                         },
                         row: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -223,18 +227,18 @@ class MyApp extends StatelessWidget {
                   Container(
                 //color: Colors.orange,
                 alignment: Alignment.bottomCenter,
-                padding: EdgeInsets.all(30),
+                padding: const EdgeInsets.all(30),
                 child: Center(
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         '© 2023 WE ARE EVOLUTION',
                         style: TextStyle(
                           fontSize: 10,
                           color: Colors.black,
                         ),
                       ),
-                      Padding(padding: EdgeInsets.only(top: 20)), // Add space
+                      const Padding(padding: EdgeInsets.only(top: 20)), // Add space
 
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -246,7 +250,7 @@ class MyApp extends StatelessWidget {
                               color: Colors.grey[800],
                             ),
                           ),
-                          Padding(
+                          const Padding(
                               padding: EdgeInsets.only(
                                   top: 10, right: 10, left: 10)), // Add space
                           Text(
@@ -256,7 +260,7 @@ class MyApp extends StatelessWidget {
                               color: Colors.grey[800],
                             ),
                           ),
-                          Padding(
+                          const Padding(
                               padding: EdgeInsets.only(
                                   top: 10, right: 10, left: 10)), // Add space
                           Text(
