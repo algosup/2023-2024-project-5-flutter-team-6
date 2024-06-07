@@ -1,6 +1,7 @@
 import 'package:adopte_un_candidat/widgets/navigation_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Messages extends StatefulWidget {
   const Messages({super.key});
@@ -50,9 +51,8 @@ class MessagesState extends State<Messages> {
                   child: GestureDetector(
                       onTap: () {
                         if (kDebugMode) {
-                          print("Tapped");
+                          context.pushNamed('chat');
                         }
-                        // TODO: Navigate to chat screen
                       },
                       child: Container(
                           decoration: BoxDecoration(
