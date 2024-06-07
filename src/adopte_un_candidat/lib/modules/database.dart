@@ -102,4 +102,26 @@ class Database {
       return null;
     }
   }
+
+  Future<void> createUser(String uid) async {
+    String? pictureLink = await getPicture(Random().nextInt(47));
+    await FirebaseFirestore.instance.collection("user").doc(uid).set({
+      'activity_sector': 'Restauration',
+      'card_liked': {},//{'0-0': FieldValue.serverTimestamp()},
+      'email': "email",
+      'experience': ['Cuisinier', 'Hacker'],
+      'favorite': [],
+      'first_name': 'Tom',
+      'last_name': 'Hanks',
+      'location': 'Paris',
+      'professional_status': 'Etudiant',
+      'profile_picture': pictureLink != null ? pictureLink : '',
+      'soft_skills': {
+        "Analytical": [],
+        "Interpersonal": [],
+        "Self-management": [],
+        "Social": [],
+      }
+    });
+  }
 }
