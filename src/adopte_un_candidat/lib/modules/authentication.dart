@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class Authentication {
 
-  Future<bool> signIn(BuildContext context, String email, String password) async {
+  Future<bool> signIn(String email, String password) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email.trim(),
