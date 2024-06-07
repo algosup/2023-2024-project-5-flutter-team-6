@@ -168,18 +168,17 @@ class RegisterChoice extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.06,
+                  height: MediaQuery.of(context).size.height * 0.05,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.circle,
                   ),
-                  child: const Center(
-                    child: Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: 40.0, 
-                      color: Color(0xFFa7207d),
-                    ),
-                  )
+                  alignment: Alignment.center,
+                  child: const Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 35.0, 
+                    color: Color(0xFFa7207d),
+                  ),
                 )
               )
             ]
