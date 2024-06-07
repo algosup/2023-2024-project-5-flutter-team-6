@@ -1,3 +1,4 @@
+import 'package:adopte_un_candidat/modules/authentication.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class Login extends StatefulWidget {
 
 class LoginState extends State<Login> {
   final TextEditingController _emailcontroller = TextEditingController();
+  final TextEditingController _passwordcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -72,47 +74,46 @@ class LoginState extends State<Login> {
                   ),
                   Expanded(
                     flex: 3,
-                    child: Container(
-                      // color: Colors.blue,
-                      child: Column(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: const Color(0xFFEEEEEE),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  hintText: 'Adresse E-mail',
+                    child: Column(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
+                            child: TextField(
+                              controller: _emailcontroller,
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: const Color(0xFFEEEEEE),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(50),
                                 ),
-                              )
-                            )
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
-                              child: TextField(
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: const Color(0xFFEEEEEE),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  hintText: 'Mot de passe',
-                                ),
-                              )
+                                hintText: 'Adresse E-mail',
+                              ),
                             )
                           )
-                        ],
-                      )
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
+                            child: TextField(
+                              controller: _passwordcontroller,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: const Color(0xFFEEEEEE),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                hintText: 'Mot de passe',
+                              ),
+                            )
+                          )
+                        )
+                      ],
                     )
                   ),
                   Expanded(
@@ -126,7 +127,8 @@ class LoginState extends State<Login> {
                             padding: const EdgeInsets.only(right: 40),
                             child: ConnectionRegisterButton(
                               onPressed: () {
-                              
+                                Authentication().signIn(_emailcontroller.text.trim(), _passwordcontroller.text.trim());
+                                context.replaceNamed('home');
                               },
                               connectRegister: 'Valider',
                             )
