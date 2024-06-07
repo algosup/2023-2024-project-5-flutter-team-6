@@ -23,9 +23,9 @@ class SwiperFeatureState extends State<SwiperFeature> {
 
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 1)).then((_) {
-      _shakeCard();
-    });
+    // Future.delayed(const Duration(seconds: 1)).then((_) {
+    //   _shakeCard();
+    // });
     super.initState();
     database.getStack().then(
       (value) {
@@ -60,27 +60,27 @@ class SwiperFeatureState extends State<SwiperFeature> {
   }
 
   // Animates the card back and forth to teach the user that it is swipable.
- Future<void> _shakeCard() async {
-    const double distance = 30;
-    // We can animate back and forth by chaining different animations.
-    await controller.animateTo(
-      const Offset(-distance, 0),
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.easeInOut,
-    );
-    await controller.animateTo(
-      const Offset(distance, 0),
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.easeInOut,
-    );
-    // We need to animate back to the center because `animateTo` does not center
-    // the card for us.
-    await controller.animateTo(
-      const Offset(0, 0),
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.easeInOut,
-    );
-  }
+  // Future<void> _shakeCard() async {
+  //   const double distance = 30;
+  //   // We can animate back and forth by chaining different animations.
+  //   await controller.animateTo(
+  //     const Offset(-distance, 0),
+  //     duration: const Duration(milliseconds: 200),
+  //     curve: Curves.easeInOut,
+  //   );
+  //   await controller.animateTo(
+  //     const Offset(distance, 0),
+  //     duration: const Duration(milliseconds: 400),
+  //     curve: Curves.easeInOut,
+  //   );
+  //   // We need to animate back to the center because `animateTo` does not center
+  //   // the card for us.
+  //   await controller.animateTo(
+  //     const Offset(0, 0),
+  //     duration: const Duration(milliseconds: 200),
+  //     curve: Curves.easeInOut,
+  //   );
+  // }
 
   Widget cards() {
     if (cardStack != null) {
