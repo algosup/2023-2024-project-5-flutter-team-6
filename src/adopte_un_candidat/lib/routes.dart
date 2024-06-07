@@ -6,6 +6,7 @@ import 'register.dart';
 import 'login.dart';
 import 'profile.dart';
 import 'messages.dart';
+import 'chat.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
@@ -52,7 +53,7 @@ final GoRouter router = GoRouter(
       path: '/chat',
       name: 'chat',
       builder: (BuildContext context, GoRouterState state) {
-        return const Home(); // TODO: Replace with the chat page
+        return Chat();
       },
     ),
     GoRoute(
