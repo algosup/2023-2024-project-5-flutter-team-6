@@ -1,3 +1,5 @@
+import 'package:adopte_un_candidat/modules/authentication.dart';
+import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
@@ -129,12 +131,18 @@ class _SuperNavigationBarState extends State<SuperNavigationBar> {
           currentIndex: _selectedIndex,
           showSelectedLabels: false, // Hide labels for selected items
           showUnselectedLabels: false, // Hide labels for unselected items
-          onTap: (int index) {
+          onTap: (int index) async {
             setState(() {
               _selectedIndex = index;
             });
             switch (index) {
               case 0:
+                var user = await Authentication().getCurrentUser();
+                if (user == null) {
+                  context.replaceNamed('login');
+                  return;
+                }
+                await Database().createUser(user.uid);
                 context.replaceNamed('messages');
                 break;
               case 1:
