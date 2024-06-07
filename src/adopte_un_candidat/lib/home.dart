@@ -13,6 +13,7 @@ class Home extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
+          backgroundColor: Colors.white,
           body: Column(
             children: [
               //Start of Top Section (logo, top)

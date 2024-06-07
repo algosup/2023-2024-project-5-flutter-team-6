@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-// import 'package:appinio_swiper/appinio_swiper.dart';
 
 // Gradient for Refuse button
 const myGradientRefuse = LinearGradient(
@@ -159,7 +157,7 @@ class RegisterChoice extends StatelessWidget {
                     choice,
                     style: const TextStyle(
                       fontFamily: 'Quicksand',
-                      color: CupertinoColors.white,
+                      color: Colors.white,
                       fontSize: 26,
                     ),
                   )
@@ -189,11 +187,13 @@ class RegisterChoice extends StatelessWidget {
   }
 }
 
-class ConnectionButton extends StatelessWidget {
+class ConnectionRegisterButton extends StatelessWidget {
   final VoidCallback onPressed;
+  final String connectRegister;
 
-  const ConnectionButton({
+  const ConnectionRegisterButton({
     required this.onPressed,
+    required this.connectRegister,
     super.key,
   });
 
@@ -211,12 +211,12 @@ class ConnectionButton extends StatelessWidget {
       child: RawMaterialButton(
         onPressed: onPressed,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(70)),
-        child: const Center(
+        child: Center(
           child: Text(
-            'Connexion',
-            style: TextStyle(
+            connectRegister,
+            style: const TextStyle(
               fontFamily: 'Quicksand',
-              color: CupertinoColors.white,
+              color: Colors.white,
               fontSize: 12,
             ),
           )
@@ -226,20 +226,73 @@ class ConnectionButton extends StatelessWidget {
   }
 }
 
-class TutorialAnimationButton extends StatelessWidget {
-  const TutorialAnimationButton(this.onTap, {super.key});
+class NextButton extends StatelessWidget {
+  final VoidCallback onPressed;
 
-  final VoidCallback onTap;
+  const NextButton({
+    required this.onPressed,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: const Icon(
-        Icons.question_mark,
-        color: CupertinoColors.systemGrey2,
+
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.25,
+      height: MediaQuery.of(context).size.height * 0.05,
+      decoration: BoxDecoration(
+        gradient: myGradientButtons,
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(70),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5), // Define the shadow color here
+            spreadRadius: 3,
+            blurRadius: 7,
+            offset: const Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      child: RawMaterialButton(
+        onPressed: onPressed,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(70)),
+        child: Center(
+          child: Row(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Container(
+                  alignment: Alignment.centerRight,
+                  child: const Text(
+                    'Suivant',
+                    style: TextStyle(
+                      fontFamily: 'Quicksand',
+                      color: Colors.white,
+                      fontSize: 14,
+                    ),
+                  )
+                )
+              ),
+              Expanded(
+                flex: 2,
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                  ),
+                  alignment: Alignment.center,
+                  child: const Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 20.0, 
+                    color: Color(0xFFa7207d),
+                  ),
+                )
+              )
+            ]
+          )
+        )
       ),
     );
   }
 }
-
