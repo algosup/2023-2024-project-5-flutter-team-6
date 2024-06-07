@@ -34,10 +34,10 @@ Due to the limited project time this week, we did not hold any meetings. The tea
 
 ## Week feedback
 
-This week, we caught up on the delayed management documents, making it easier to keep track of the project. However, the advancement of the Technical Specifications did not meet the expected objective, and we need to double down on this next time. The Test Plan progressed very well and exceeded expectations, and its advancement was satisfying. The User Manual also started, and the code progressed well but was suddenly slowed down due to the Firebase issue that needs to be fixed quickly.
+This week, we caught up on the delayed management documents, including the Gantt Chart, Risks & Assumptions, and KPIs, making it easier to keep track of the project. However, the advancement of the Technical Specifications did not meet the expected objective and only progressed slightly beyond its initial stages. We need to double down on this next time. The Test Plan progressed very well and exceeded expectations, nearing the review stage. The User Manual also started, with its overall plan created. The code progressed well but was suddenly slowed down due to the Firebase issue that needs to be fixed quickly.
 
 Overall, the team atmosphere was positive, with everyone focused on their tasks.
 
 ## Next week planning
 
-Next week's focus will be on the Technical Specifications, Test Plan, code, resolving the Firebase issue, User Manual, and tracking the project with management documents.
+Next week's focus will be on the Technical Specifications, Test Plan, code, User Manual, and tracking the project with management documents.

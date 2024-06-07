@@ -9,11 +9,11 @@ This project started the 05/13/2024, we had 4 project times during the week. Our
 
 ## Ongoing Tasks
 
-|           Task          |      Priority        | Member Assigned                   | Progression | End Of Week objective  | Start Date |
-| :----------------------:| :------------------: | :-------------------------------: | :---------: | :--------------------: | :--------: |
-|     Project Charter     |        ![High](https://img.shields.io/badge/High-bb2124)          |     Camille - Project Manager     |     20%     |          20%           | 05/17/2024 |
-|        Mock-ups         |        ![Very high](https://img.shields.io/badge/Very%20high-871A1C)     |     All team                      |     70%     |          100%          | 05/13/2024 |
-| Functional Specifications |        ![High](https://img.shields.io/badge/High-bb2124)          |     Evan - Program Manager        |     10%     |          10%           | 05/17/2024 |
+|           Task          |      Priority        |  State  |  Member Assigned                  | Progression | End Of Week objective  | Start Date |
+| :----------------------:| :------------------: |:-------:| :-------------------------------: | :---------: | :--------------------: | :--------: |
+|     Project Charter     |        ![High](https://img.shields.io/badge/High-bb2124)          | On time |    Camille - Project Manager     |     20%     |          20%           | 05/17/2024 |
+|        Mock-ups         |        ![Very high](https://img.shields.io/badge/Very%20high-871A1C)     | On time |     All team                      |     70%     |          100%          | 05/13/2024 |
+| Functional Specifications |        ![High](https://img.shields.io/badge/High-bb2124)          | Late |    Evan - Program Manager        |     10%     |          10%           | 05/17/2024 |
 
 ## Finished Tasks
 
