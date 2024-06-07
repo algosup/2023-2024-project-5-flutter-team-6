@@ -13,7 +13,7 @@
 
 **Created on:** May 22<sup>nd</sup>, 2024
 
-**Last updated:** May 30<sup>th</sup>, 2024
+**Last updated:** June 7<sup>th</sup>, 2024
 
 ---
 <br><details>
@@ -21,14 +21,14 @@
 
 ### Approvals
 
-| Reviewer          | Role              | Approved | Date |
-| ----------------- | ----------------- | -------- | ---- |
-| Pierre GORIN      | Quality Assurance |          |      |
-| Camille GAYAT     | Project Manager   |          |      |
-| Evan UHRING       | Program Manager   |          |      |
-| Mathias GAGNEPAIN | Technical Lead    |          |      |
-| Guillaume DESPAUX | Technical Writer  |          |      |
-| Ian LAURENT       | Software Engineer |          |      |
+| Reviewer          | Role              | Approved | Date       |
+| ----------------- | ----------------- | -------- | ---------- |
+| Pierre GORIN      | Quality Assurance | ✅        | 06/07/2024 |
+| Camille GAYAT     | Project Manager   | ✅        | 06/07/2024 |
+| Evan UHRING       | Program Manager   | ✅        | 06/07/2024 |
+| Mathias GAGNEPAIN | Technical Lead    | ✅        | 06/07/2024 |
+| Guillaume DESPAUX | Technical Writer  | ✅        | 06/07/2024 |
+| Ian LAURENT       | Software Engineer | ✅        | 06/07/2024 |
 
 </details>
 
@@ -71,240 +71,292 @@
     - [5.2 Mobile Devices](#52-mobile-devices)
       - [iPhone 12 Pro](#iphone-12-pro)
       - [iPhone 15 Pro (Emulated)](#iphone-15-pro-emulated)
+      - [Xiaomi 13T](#xiaomi-13t)
   - [6. SOFTWARE TEST ENVIRONMENT](#6-software-test-environment)
     - [6.1 Main Frame](#61-main-frame)
-    - [6.2 Workstation](#62-workstation)
   - [7. FEATURES TO BE TESTED](#7-features-to-be-tested)
-  - [8. FEATURES NOT TO BE TESTED](#8-features-not-to-be-tested)
-  - [9. RESOURCES/ROLES \& RESPONSIBILITIES](#9-resourcesroles--responsibilities)
-  - [10. DEPENDENCIES](#10-dependencies)
-  - [11. TOOLS](#11-tools)
-  - [12. GLOSSARY](#12-glossary)
+    - [7.1 Profile Management](#71-profile-management)
+    - [7.2 Swipe and Match System](#72-swipe-and-match-system)
+    - [7.3 Messaging System](#73-messaging-system)
+    - [7.4 Multi-Languages](#74-multi-languages)
+  - [8. TOOLS](#8-tools)
+    - [8.1 Development Tools](#81-development-tools)
+    - [8.2 Version Control](#82-version-control)
+    - [8.3 Testing Tools](#83-testing-tools)
+  - [9. GLOSSARY](#9-glossary)
 
 </details>
 
-## 1. INTRODUCTION
+  ## 1. INTRODUCTION
 
-The application aims to facilitate connections between job seekers and companies through a user-friendly interface that is easily understandable for everyone, from young adults to those nearing retirement. The app uses a swipe and match system similar to popular dating apps like Tinder. It will be available on Android and iOS devices, as well as a desktop version for Linux, Windows, and MacOS.
+  The application aims to facilitate connections between job seekers and companies through a user-friendly interface that is easily understandable for everyone, from young adults to those nearing retirement. The app uses a swipe and match system similar to popular dating apps like Tinder. It will be available on Android and iOS devices, as well as a desktop version for Linux, Windows, and MacOS.
 
-For additional information, please refer to the [Functional Specifications](documents\functional\functional_specifications.md).
+  For additional information, please refer to the [Functional Specifications](documents\functional\functional_specifications.md).
 
-## 2. OBJECTIVES AND TASKS
+  ## 2. OBJECTIVES AND TASKS
 
-### 2.1 Objectives
+  ### 2.1 Objectives
 
-The objectives of this test plan include the following:
+  The objectives of this test plan include the following:
 
-- Ensure the application meets all functional requirements.
-- Validate the performance and scalability of the application.
-- Identify and resolve any issues or bugs.
-- Ensure the application is user-friendly and intuitive.
-- Validate the security and compliance of the application.
-- Ensure the application is compatible with all target platforms.
-- Validate the data security and privacy of the application.
+  - Ensure the application meets all functional requirements.
+  - Validate the performance and scalability of the application.
+  - Identify and resolve any issues or bugs.
+  - Ensure the application is user-friendly and intuitive.
+  - Validate the security and compliance of the application.
+  - Ensure the application is compatible with all target platforms.
+  - Validate the data security and privacy of the application.
 
-### 2.2 Tasks
+  ### 2.2 Tasks
 
-the tasks required to ensure application quality are as follows:
+  the tasks required to ensure application quality are as follows:
 
-- Write test cases for all functional requirements.
-- Conduct unit testing for individual components.
-- Conduct system and integration testing for the complete application.
-- Perform performance and stress testing to validate scalability.
-- Ensure that the application is consistent (colors, fonts, etc.)
+  - Write test cases for all functional requirements.
+  - Conduct unit testing for individual components.
+  - Conduct system and integration testing for the complete application.
+  - Perform performance and stress testing to validate scalability.
+  - Ensure that the application is consistent (colors, fonts, etc.)
 
-## 3. SCOPE
+  ## 3. SCOPE
 
-### General
+  ### General
 
-The scope of the test plan includes all aspects of the application, including functional requirements, performance, security, and user experience. The plan outlines the testing strategy, schedule, and resources required to ensure the quality of the application.
+  The scope of the test plan includes all aspects of the application, including functional requirements, performance, security, and user experience. The plan outlines the testing strategy, schedule, and resources required to ensure the quality of the application.
 
-## 4. TESTING STRATEGY
+  ## 4. TESTING STRATEGY
 
-The testing strategy outlines the approach to testing various aspects of the product.
+  The testing strategy outlines the approach to testing various aspects of the product.
 
-### 4.1 Unit Testing
+  ### 4.1 Unit Testing
 
-#### Definition:
+  #### Definition:
 
-Unit testing is the process of testing individual components or functions to ensure they work as expected.
+  Unit testing is the process of testing individual components or functions to ensure they work as expected.
 
-#### Participants:
+  #### Participants:
 
-| Role | Responsibilities | RACI |
-| ---- | ---------------- | ---- |
-| Quality Assurance  | Write test cases and conduct unit testing. | Responsible |
-| Software Engineer  | Develop unit tests for individual components. | Accountable |
-| Technical Lead     | Review unit test results and provide feedback. | Consulted |
-| Project Manager    | Approve unit test results and provide final sign-off. | Informed |
+  | Role              | Responsibilities                                      | RACI        |
+  | ----------------- | ----------------------------------------------------- | ----------- |
+  | Quality Assurance | Write test cases and conduct unit testing.            | Responsible |
+  | Software Engineer | Develop unit tests for individual components.         | Accountable |
+  | Technical Lead    | Review unit test results and provide feedback.        | Consulted   |
+  | Project Manager   | Approve unit test results and provide final sign-off. | Informed    |
 
-#### Methodology:
+  #### Methodology:
 
-1. Write test cases for individual components.
-2. Conduct unit testing for each component.
-3. Review test results and identify any issues.
-4. Resolve any issues and retest components.
-5. Document test results and provide feedback.
-6. Repeat the process until all components pass unit testing.
+  1. Write test cases for individual components.
+  2. Conduct unit testing for each component.
+  3. Review test results and identify any issues.
+  4. Resolve any issues and retest components.
+  5. Document test results and provide feedback.
+  6. Repeat the process until all components pass unit testing.
 
-### 4.2 System Testing
+  ### 4.2 System Testing
 
-#### Definition:
+  #### Definition:
 
-System testing is the process of testing the complete application to ensure all components work together as expected.
+  System testing is the process of testing the complete application to ensure all components work together as expected.
 
-#### Participants:
+  #### Participants:
 
-| Role | Responsibilities | RACI |
-| ---- | ---------------- | ---- |
-| Quality Assurance  | Write test cases and conduct system testing. | Responsible |
+  | Role              | Responsibilities                             | RACI        |
+  | ----------------- | -------------------------------------------- | ----------- |
+  | Quality Assurance | Write test cases and conduct system testing. | Responsible |
 
-#### Methodology:
+  #### Methodology:
 
-1. Write test cases for the complete application.
-2. Conduct system testing to validate all components work together.
-3. Identify and resolve any issues or bugs.
-4. Document test results and provide feedback.
-5. Repeat the process until the application passes system testing.
+  1. Write test cases for the complete application.
+  2. Conduct system testing to validate all components work together.
+  3. Identify and resolve any issues or bugs.
+  4. Document test results and provide feedback.
+  5. Repeat the process until the application passes system testing.
 
-### 4.3 Performance and Stress Testing
+  ### 4.3 Performance and Stress Testing
 
-#### Definition:
+  #### Definition:
 
-Performance and stress testing is the process of testing the application under various conditions to validate performance and scalability.
+  Performance and stress testing is the process of testing the application under various conditions to validate performance and scalability.
 
-#### Participants:
+  #### Participants:
 
-| Role | Responsibilities | RACI |
-| ---- | ---------------- | ---- |
-| Quality Assurance  | Write test cases and conduct performance and stress testing. | Responsible |
+  | Role              | Responsibilities                                             | RACI        |
+  | ----------------- | ------------------------------------------------------------ | ----------- |
+  | Quality Assurance | Write test cases and conduct performance and stress testing. | Responsible |
 
-#### Methodology:
+  #### Methodology:
 
-1. Write test cases for performance and stress testing.
-2. Conduct performance testing to validate application performance.
-3. Conduct stress testing to validate application scalability.
-4. Identify and resolve any performance issues.
-5. Document test results and provide feedback.
+  1. Write test cases for performance and stress testing.
+  2. Conduct performance testing to validate application performance.
+  3. Conduct stress testing to validate application scalability.
+  4. Identify and resolve any performance issues.
+  5. Document test results and provide feedback.
 
-#### Tools:
+  #### Tools:
 
-- [Flutter DevTools](https://docs.flutter.dev/tools/devtools/overview)
-- [Dart Observatory](https://dart.dev/tools/dart-devtools)
-- [Firebase Performance Monitoring](https://firebase.google.com/docs/perf-mon)
+  - [Flutter DevTools](https://docs.flutter.dev/tools/devtools/overview)
+  - [Dart Observatory](https://dart.dev/tools/dart-devtools)
+  - [Firebase Performance Monitoring](https://firebase.google.com/docs/perf-mon)
 
 
-### 4.4 Automated Regression Testing
+  ### 4.4 Automated Regression Testing
 
-#### Definition:
+  #### Definition:
 
-Automated regression testing is the process of automatically testing the application to validate that new code changes do not introduce bugs or issues.
+  Automated regression testing is the process of automatically testing the application to validate that new code changes do not introduce bugs or issues.
 
-#### Participants:
+  #### Participants:
 
-| Role | Responsibilities | RACI |
-| ---- | ---------------- | ---- |
-| Quality Assurance  | Write test cases and conduct automated regression testing. | Responsible |
+  | Role              | Responsibilities                                           | RACI        |
+  | ----------------- | ---------------------------------------------------------- | ----------- |
+  | Quality Assurance | Write test cases and conduct automated regression testing. | Responsible |
 
-#### Methodology:
+  #### Methodology:
 
-1. Write test cases for automated regression testing.
-2. Write the automated test scripts.
-3. Conduct automated regression testing after each code change.
-4. Identify and resolve any issues or bugs.
-5. Document test results and provide feedback.
-6. Repeat the process until the application passes automated regression testing.
+  1. Write test cases for automated regression testing.
+  2. Write the automated test scripts.
+  3. Conduct automated regression testing after each code change.
+  4. Identify and resolve any issues or bugs.
+  5. Document test results and provide feedback.
+  6. Repeat the process until the application passes automated regression testing.
 
-#### Tools:
+  #### Tools:
 
-- [Selenium](https://www.selenium.dev/)
-- [Rainforest QA](https://www.rainforestqa.com/)
+  - [Selenium](https://www.selenium.dev/)
+  - [Rainforest QA](https://www.rainforestqa.com/)
 
-## 5. HARDWARE TEST ENVIRONMENT
+  ## 5. HARDWARE TEST ENVIRONMENT
 
-### 5.1 Computers/Laptops
+  ### 5.1 Computers/Laptops
 
-#### MacBook Air (M1, 2020)
+  #### MacBook Air (M1, 2020)
 
-- **Processor:** Apple M1 chip with 8-core CPU, 7-core GPU, and 16-core Neural Engine.
-- **Memory:** 8GB unified memory.
-- **Storage:** 256GB SSD.
-- **Operating System:** macOS Monterey.
-- **Display:** 13.3-inch Retina display with True Tone.
-- **Resolution:** 2560 x 1600 pixels.
-- **Battery Life:** Up to 15 hours of web browsing.
-- **Connectivity:** Wi-Fi 6, Bluetooth 5.0, Thunderbolt 2 ports.
+  | **Specification**    | **Details**                                 |
+  | -------------------- | ------------------------------------------- |
+  | **Processor**        | Apple M1 chip with Neural Engine 8-core     |
+  | **Memory**           | 8GB unified memory                          |
+  | **Storage**          | 256GB SSD                                   |
+  | **Operating System** | macOS Sonoma 14.5                           |
+  | **Display**          | 13.3-inch Retina display                    |
+  | **Resolution**       | 2560 x 1600 pixels                          |
+  | **Connectivity**     | Wi-Fi 6, Bluetooth 5.0, Thunderbolt 2 ports |
 
-<!-- to check if goods information -->
-#### Lenovo ThinkBook (2021)
+  #### Lenovo ThinkBook (2021)
 
-- **Processor:** Intel Core i7-1165G7 11th Gen.
-- **Memory:** 16GB DDR4 RAM.
-- **Storage:** 512GB SSD.
-- **Operating System:** Windows 10 Pro.
-- **Display:** 14-inch FHD IPS display.
-- **Resolution:** 1920 x 1080 pixels.
-- **Battery Life:** Up to 8 hours.
-- **Connectivity:** Wi-Fi 6, Bluetooth 5.0, USB-C, HDMI, and USB 3.0 ports.
+  | **Specification**    | **Details**                                            |
+  | -------------------- | ------------------------------------------------------ |
+  | **Processor**        | Intel Core i7-1065G7 10th Gen                          |
+  | **Memory**           | 16GB RAM                                               |
+  | **Storage**          | 512GB SSD                                              |
+  | **Operating System** | Windows 11                                             |
+  | **Resolution**       | 1920 x 1080 pixels                                     |
+  | **Connectivity**     | Wi-Fi 6, Bluetooth 5.0, USB-C, HDMI, and USB 3.0 ports |
 
-### 5.2 Mobile Devices
+  ### 5.2 Mobile Devices
 
+  #### iPhone 12 Pro 
 
-#### iPhone 12 Pro 
+  | **Specification**    | **Details**                                |
+  | -------------------- | ------------------------------------------ |
+  | **Processor**        | A14 Bionic chip with Neural Engine 16-core |
+  | **Memory**           | 6GB RAM                                    |
+  | **Storage**          | 128GB                                      |
+  | **Operating System** | iOS 17.5.1                                 |
+  | **Display**          | 6.1-inch Super Retina XDR display          |
+  | **Resolution**       | 2532 x 1170 pixels                         |
+  | **Connectivity**     | 5G, Wi-Fi 6, Bluetooth 5.0                 |
 
-- **Processor:** A14 Bionic chip with Neural Engine 16-core.
-- **Memory:** 6GB RAM.
-- **Storage:** 128GB.
-- **Operating System:** iOS 17.4.1.
-- **Display:** 6.1-inch Super Retina XDR display.
-- **Resolution:** 2532 x 1170 pixels.
-- **Battery Life:** Up to 17 hours of video playback.
-- **Connectivity:** 5G, Wi-Fi 6, Bluetooth 5.0.
-- **Camera:** Triple 12MP camera system with LiDAR scanner.
-- **Security:** Face ID.
+  #### iPhone 15 Pro (Emulated)
 
-#### iPhone 15 Pro (Emulated)
+  | **Specification**      | **Details**     |
+  | ---------------------- | --------------- |
+  | **Viewport Size**      | 430px × 932px   |
+  | **Screen Size**        | 1290px × 2796px |
+  | **Device Pixel Ratio** | DPR 3           |
+  | **Operating System**   | iOS 17.5        |
 
-- **Viewport Size:** 430px × 932px
-- **Screen Size:** 1290px × 2796px
-- **Device Pixel Ratio:** DPR 3
-- **Operating System:** iOS 17.5.1.
+  #### Xiaomi 13T
 
-## 6. SOFTWARE TEST ENVIRONMENT
+  | **Specification**    | **Details**                               |
+  | -------------------- | ----------------------------------------- |
+  | **Screen**           | 6.67-inch OLED                            |
+  | **Resolution**       | 1220px x 2712px                           |
+  | **Processor**        | MediaTek Dimensity 8200 Ultra             |
+  | **RAM**              | 12GB                                      |
+  | **Storage**          | 256GB                                     |
+  | **Connectivity**     | Bluetooth 5.4, WiFi 6, NFC, GPS, Infrared |
+  | **Operating System** | Android 14                                |
 
-<!-- WIP -->
 
-### 6.1 Main Frame
+  ## 6. SOFTWARE TEST ENVIRONMENT
 
-[Specify necessary and desired properties of the test environment]
+  ### 6.1 Main Frame
 
-### 6.2 Workstation
+  We will use the following software for testing:
 
-[Specify necessary and desired properties of the test environment]
+  - **Operating System**: Windows 11, macOS Sonoma 14.5, Android 14, iOS 17.5.1
+  - **Browsers**: Chrome, Firefox, Safari, Edge
+  - **IDE**: Visual Studio Code, Android Studio, Xcode
+  - **Database**: Firebase
+  - **Version Control**: GitHub
 
-<!-- WIP -->
+  ## 7. FEATURES TO BE TESTED
 
-## 7. FEATURES TO BE TESTED
+  ### 7.1 Profile Management
 
-[List all software features to be tested]
+  - **User Registration**: Ensure users can create accounts with valid information.
+  - **User Login**: Ensure users can log in with valid credentials.
+  - **User Profile**: Ensure users can view and edit their profile information.
 
-## 8. FEATURES NOT TO BE TESTED
+  - **Company Registration**: Ensure companies can create accounts with valid information.
+  - **Company Login**: Ensure companies can log in with valid credentials.
+  - **Company Profile**: Ensure companies can view and edit their profile information.
 
-[List features not to be tested and reasons]
+  - **Soft Skills**: Ensure users and companies can add and edit soft skills.
+  - **Location**: Ensure users and companies can add and edit their location.
+  - **Profile Picture**: Ensure companies can add and edit their profile picture(Company logo).
 
-## 9. RESOURCES/ROLES & RESPONSIBILITIES
+  ### 7.2 Swipe and Match System
 
-[List staff members involved in the test project and their roles]
+  - **Swipe Right**: Ensure users can swipe right to express interest in job postings.
+  - **Swipe Left**: Ensure users can swipe left to skip job postings.
+  - **Match**: Ensure users can match with job postings they have swiped right on.
 
-## 10. DEPENDENCIES
+### 7.3 Messaging System
 
-<!-- WIP -->
+- **Chat**: Ensure users can exchange messages with matched job postings.
+- **Notifications**: Ensure users receive notifications for new messages.
 
+### 7.4 Multi-Languages
 
-## 11. TOOLS
+- **Language Selection**: Ensure users can select their preferred language.
+- **Translation**: Ensure the app is translated into the selected language.
 
-<!-- WIP -->
+## 8. TOOLS
 
-## 12. GLOSSARY
+### 8.1 Development Tools
+- **Visual Studio Code:** Integrated Development Environment (IDE) for code editing.
+- **Android Studio:** IDE for Android app development.
+- **Xcode:** IDE for iOS app development.
+  
+### 8.2 Version Control
+- **GitHub:** Repository hosting service for version control and collaboration.
 
-<!-- WIP -->
+### 8.3 Testing Tools
+- **Selenium:** Tool for automated web application testing.
+- **Rainforest QA:** Tool for automated and manual testing.
+- **Flutter DevTools:** Suite of performance and debugging tools for Flutter applications.
+- **Dart Observatory:** Debugging and inspection tool for Dart applications.
+
+
+## 9. GLOSSARY
+
+| **Term**                                           | **Definition**                                                                                                                                                                                                                                                   |
+| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MVP (Minimum Viable Product)                       | The most basic version of a product that can be released to start the feedback loop with early users.                                                                                                                                                            |
+| CI/CD (Continuous Integration/Continuous Delivery) | A method to frequently deliver apps to customers by introducing automation into the stages of app development.                                                                                                                                                   |
+| QA (Quality Assurance)                             | A way of preventing mistakes or defects in manufactured products and avoiding problems when delivering solutions or services to customers.                                                                                                                       |
+| UI/UX (User Interface/User Experience)             | UI refers to the screens, buttons, toggles, icons, and other visual elements you interact with when using a website, app, or other electronic device. UX refers to the entire interaction you have with a product, including how you feel about the interaction. |
+| Unit Testing                                       | A level of software testing where individual units/components of a software are tested.                                                                                                                                                                          |
+| System Testing                                     | Testing the complete and integrated software to evaluate the system's compliance with its specified requirements.                                                                                                                                                |
+| Performance Testing                                | Testing performed to determine how a system performs in terms of responsiveness and stability under a particular workload.                                                                                                                                       |
+| Stress Testing                                     | Testing conducted to evaluate a system or component at or beyond the limits of its specified requirements to determine the load under which it fails and how.                                                                                                    |
