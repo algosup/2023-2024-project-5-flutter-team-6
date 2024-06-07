@@ -86,7 +86,7 @@ Our team was asked to design and develope an interface<sup><a href="#1">[1]</a><
 ### Vision
 ---
 
-We will have a complete interface that was validated by the client. Every requested features have to be implemented.
+We will have a complete interface that has been validated by the client. Every requested features have to be implemented.
 
 ### Objectives 
 ---
@@ -142,9 +142,9 @@ We will have a complete interface that was validated by the client. Every reques
 |---|---|---|
 | Project manager | Is in charge of organization, planing and budgeting.<br>Keep the team motivated. | Camille GAYAT |
 | Program manager | Makes sure the project meets expectation.<br>Is in charge of design.<br>Is responsible for writing the Functional Specifications | Evan UHRING |
-| Tech lead | Makes the technical decision in the project.<br>Translates the Functional Specification into Technical Specifications.<br> Does code review. | Mathias GAGNEPAIN |
+| Technical leader | Makes the technical decision in the project.<br>Translates the Functional Specification into Technical Specifications.<br> Does code review. | Mathias GAGNEPAIN |
 | Software engineer | Writes the code.<br>Writes documentation<br>Participate in the technical design. | Ian LAURENT |
-| Quality assurance |  Tests all the functionalities of a product to find bugs and issue.<br>Document bugs and issues.<br>Write the test plan.<br>Check that issues have been fixed.| Pierre GORIN |
+| Quality assurance |  Tests all the functionalities of a product to find bugs and issues.<br>Document bugs and issues.<br>Write the test plan.<br>Check that issues have been fixed.| Pierre GORIN |
 | Technical writer | Is in charge of writing a user manual | Guillaume DESPAUX |
 <br><br>
 
@@ -159,7 +159,7 @@ We will have a complete interface that was validated by the client. Every reques
 | Name: Ethan James | Name: Liam Alexander | Name: Sophie Grace |
 | Age: 21 | Age: 44 | Age: 37 |
 | Problem: He just finished school and got his diploma, but he needs to find efficiently a job. | Problem: His contract is coming to an end and needs to find another one. | Problem: The company needs to find candidate on who they can trust and that they know how he will be socially with the other members of the company. |
-| What he wants: he would appreciate something that will help him finding a job that can accept junior worker. | What he wants: he wants something that can help him to find a new job efficiently without the need of doing a lot of things to be recruited. | What she wants: a way of looking for candidates easily without the need of looking through thousands of websites and social-networks and on which she can recruit by looking for the best soft-skills. |
+| What he wants: he would appreciate something that will help him finding a job that can accept junior worker. | What he wants: he wants something that can help him finding a new job efficiently without the need of doing a lot of things to be recruited. | What she wants: a way of looking for candidates easily without the need of looking through thousands of websites and social-networks and on which she can recruit by looking for the best soft-skills. |
 
 ## 2. Features
 
@@ -249,7 +249,7 @@ For the colors, we will separate them into different categories:
 - Compatibility percentage
 
 **Light and dark background**<br>
-For the background, we will have two different type: a light and a dark. The user will be able to choose between them following their preferences.
+For the background, we will have two different types: a light and a dark. The user will be able to choose between them following their preferences.
 
 The light background will use a pure white:<br>
 <img src="../images/functional/colors/white.png" width="35%">
@@ -278,7 +278,7 @@ For the compatibility percentage, to make it more visible, we decided to use 5 c
 ### Image and icons
 ---
 
-To have an pleasant interface, we have made multiple icons and images. For the first 3 icons, the unselected versions have a color depending the theme color of the user, while the selected version is pure white (FFFFFF):
+To have an pleasant interface, we have made multiple icons and images. For the first 3 icons, the unselected versions have a color depending the user's theme color, while the selected version is pure white (FFFFFF):
 
 - Swipe page icon (selected - unselected): <img src="../images/functional/icons/swip_page_selected.png" width="4%" align="center"> - <img src="../images/functional/icons/swip_page_unselected.png" width="4%" align="center">
 
@@ -315,7 +315,7 @@ To assure that the candidates are correctly anonymized while keeping the interfa
 
 ## 4. UI/UX
 
-The format used for smartphone is the format of the Iphone X.<br>
+The format used for smartphone is the format of the Iphone X. It will still be compatible with other smartphones.<br>
 For the computer version, the format used is the standard 16/9 screen ratio.
 
 The interface for the computer platform is the same as the smartphone one but enlarged.
@@ -534,7 +534,7 @@ When the message is closed, the user will be redirected to the connection page.
 ### Company interface
 ---
 
-The company side of the app looks pretty much the same as the candidate side apart some changes that are adapted for the companies
+The company side of the app looks pretty much the same as the candidate side apart some changes that are adapted for the companies.
 
 #### Searching candidates
 
