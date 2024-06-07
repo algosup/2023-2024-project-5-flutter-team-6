@@ -36,6 +36,7 @@
     - [4.1 User Interface Design](#41-user-interface-design)
       - [4.1.1 Roboto Font](#411-roboto-font)
       - [4.1.2 Quicksand Font](#412-quicksand-font)
+      - [4.1.3 Languages](#413-languages)
     - [4.2 Backend Design](#42-backend-design)
     - [4.3 Database Schema](#43-database-schema)
       - [Collections and Documents](#collections-and-documents)
@@ -293,6 +294,10 @@ The code will follow dart & flutter convention as follow:
   - Job seekers can search for jobs based on various filters such as location, industry, and job type.
   - Companies can search for potential candidates based on softskills and compatibility score.
 
+- **Multiple Language Support**
+
+  - The application should be able to be run in French and in English following.
+
 - **Notifications**
 
   - Push notifications for matches, and new messages.
@@ -406,6 +411,12 @@ We assume to use **Roboto** and **Quicksand** fonts which are very common on mob
 #### 4.1.2 Quicksand Font
 
 ![Quicksand fonts](../images/technical/quicksand_fonts.png)
+
+#### 4.1.3 Languages
+
+- **Interface:** For all interface text we decided for the v1 to add them in the database and in json files to easily have the French and English but this method will not be optimal if multiple languages are added to the application.
+
+- **User Text:** For texts filled by a user or a company like a description or stuff like that we will save it in the original language and simply use the google API to translate to avoid the penible task of rewriting everything for each language.
 
 ### 4.2 Backend Design
 
