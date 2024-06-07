@@ -56,7 +56,7 @@ class _SuperNavigationBarState extends State<SuperNavigationBar> {
                   ),
                   shape: BoxShape.circle,
                 ),
-                padding: EdgeInsets.all(8.0), // Adjust padding as needed
+                padding: const EdgeInsets.all(8.0), // Adjust padding as needed
                 child: Icon(
                   CupertinoIcons.chat_bubble_2,
                   color: Colors.white, // Color of active icon
@@ -83,7 +83,7 @@ class _SuperNavigationBarState extends State<SuperNavigationBar> {
                   ),
                   shape: BoxShape.circle,
                 ),
-                padding: EdgeInsets.all(8.0), // Adjust padding as needed
+                padding: const EdgeInsets.all(8.0), // Adjust padding as needed
                 child: Icon(
                   CupertinoIcons.rectangle_stack,
                   color: Colors.white, // Color of active icon
@@ -114,7 +114,7 @@ class _SuperNavigationBarState extends State<SuperNavigationBar> {
                   ),
                   shape: BoxShape.circle,
                 ),
-                padding: EdgeInsets.all(8.0), // Adjust padding as needed
+                padding: const EdgeInsets.all(8.0), // Adjust padding as needed
                 child: Icon(
                   CupertinoIcons.person_fill,
                   color: Colors.white, // Color of active icon
@@ -135,7 +135,7 @@ class _SuperNavigationBarState extends State<SuperNavigationBar> {
             });
             switch (index) {
               case 0:
-                context.replaceNamed('discussion');
+                context.replaceNamed('messages');
                 break;
               case 1:
                 context.replaceNamed('home');

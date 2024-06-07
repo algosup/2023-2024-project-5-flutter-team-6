@@ -1,3 +1,4 @@
+import 'package:adopte_un_candidat/widgets/navigation_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -120,21 +121,7 @@ class MessagesState extends State<Messages> {
             ]))
           ],
         )),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.chat),
-              label: 'Messages',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            ),
-          ],
-        ));
+        bottomNavigationBar: const SuperNavigationBar(index: 0)
+    );
   }
 }
