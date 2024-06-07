@@ -9,18 +9,42 @@
     - [1.1 Purpose](#11-purpose)
     - [1.2 Scope](#12-scope)
     - [1.3 Audience](#13-audience)
+    - [1.4 Convention](#14-convention)
+      - [1.4.1 File tree and documents](#141-file-tree-and-documents)
+      - [1.4.2 Code](#142-code)
+        - [Reminder](#reminder)
+        - [Variable](#variable)
+        - [Function](#function)
+        - [Class](#class)
+        - [packages, directories, and source files](#packages-directories-and-source-files)
+        - [import prefixes](#import-prefixes)
+      - [1.4.3 Comments](#143-comments)
   - [2. System Requirements](#2-system-requirements)
     - [2.1 Functional Requirements](#21-functional-requirements)
     - [2.2 Non-Functional Requirements](#22-non-functional-requirements)
   - [3. System Architecture](#3-system-architecture)
     - [3.1 Overview](#31-overview)
     - [3.2 Flow Chart Diagram](#32-flow-chart-diagram)
+      - [3.2.1 Connexion](#321-connexion)
+      - [3.2.2 Registration](#322-registration)
+      - [3.2.3 Candidate Home Page](#323-candidate-home-page)
+      - [3.2.4 Candidate Chat](#324-candidate-chat)
+      - [3.2.5 Company Home Page](#325-company-home-page)
+      - [3.2.6 Company Chat](#326-company-chat)
     - [3.3 Data Flow Diagram](#33-data-flow-diagram)
   - [4. Detailed Design](#4-detailed-design)
     - [4.1 User Interface Design](#41-user-interface-design)
+      - [4.1.1 Roboto Font](#411-roboto-font)
+      - [4.1.2 Quicksand Font](#412-quicksand-font)
+      - [4.1.3 Languages](#413-languages)
     - [4.2 Backend Design](#42-backend-design)
     - [4.3 Database Schema](#43-database-schema)
       - [Collections and Documents](#collections-and-documents)
+        - [Legend](#legend)
+        - [Company](#company)
+        - [User](#user)
+        - [Conversation](#conversation)
+      - [Soft Skill](#soft-skill)
   - [5. Development Approach](#5-development-approach)
     - [5.1 Methodology](#51-methodology)
     - [5.2 Tools and Technologies](#52-tools-and-technologies)
@@ -50,6 +74,8 @@ The application aims to facilitate connections between job seekers and companies
 
 ## 1. Introduction
 
+<br>
+
 ### 1.1 Purpose
 
 The purpose of this document is to outline the technical specifications for the development of the job-matching application. It provides a comprehensive overview of the system requirements, architecture, functionality, and development approach.
@@ -73,7 +99,174 @@ This document is intended for:
 - Quality Assurance Testers
 - Stakeholders
 
+### 1.4 Convention
+
+<br>
+
+#### 1.4.1 File tree and documents
+
+documents and folder should be in **lowercase_with_underscores** as follows:
+
+```md
+2023-2024-project-5-flutter-team-6
+└───documents
+    ├───functional
+    │   └─── functional_specifications.md
+    ├───images
+    │   ├───functional
+    │   │   ├───colors
+    │   │   ├───icons
+    │   │   ├───logo
+    │   │   ├───personas
+    │   │   ├───profile_images
+    │   │   └───ui
+    │   └───technical
+    ├───quality
+    └───technical
+        └─── technical_specifications.md
+```
+
+#### 1.4.2 Code
+
+The code will follow the dart & flutter convention as follows:
+
+##### Reminder
+
+| Type                                                                              | Convention                 |
+| --------------------------------------------------------------------------------- | -------------------------- |
+| [Variable](#variable)                                                             | lowercase_with_underscores |
+| [Function](#function)                                                             | lowerCamelCase             |
+| [Class](#class)                                                                   | UpperCamelCase             |
+| [packages, directories, and source files](#packages-directories-and-source-files) | lowercase_with_underscores |
+| [import prefixes](#import-prefixes)                                               | lowercase_with_underscores |
+
+##### Variable
+
+>[!TIP]
+>Good
+>```dart
+>var variable
+>var my_long_variable
+>```
+>&nbsp;
+
+>[!CAUTION]
+>Bad
+>```dart
+>var Variable
+>var mylongvariable
+>var anotherLongVariable
+>```
+>&nbsp;
+
+##### Function
+
+>[!TIP]
+>Good
+>```dart
+>void function()
+>void myFunction()
+>```
+>&nbsp;
+
+>[!CAUTION]
+>Bad
+>```dart
+>var Function()
+>var MyFunction()
+>var anotherfunction()
+>```
+>&nbsp;
+
+##### Class
+
+>[!TIP]
+>Good
+>```dart
+>class Class
+>class MyClass
+>```
+>&nbsp;
+
+>[!CAUTION]
+>Bad
+>```dart
+>class class
+>class myClass
+>class Another_Class
+>```
+>&nbsp;
+
+##### packages, directories, and source files
+
+>[!TIP]
+>Good
+>```md
+>my_package
+> └─ lib
+>   └─ file_system.dart
+>   └─ slider_menu.dart
+>```
+>&nbsp;
+
+>[!CAUTION]
+>Bad
+>```md
+>mypackage
+> └─ lib
+>    └─ file-system.dart
+>    └─ SliderMenu.dart
+>```
+>&nbsp;
+
+##### import prefixes
+
+>[!TIP]
+>Good
+>```dart
+>import 'dart:math' as math;
+>import 'package:angular_components/angular_components.dart' as angular_components;
+>import 'package:js/js.dart' as js;
+>```
+>&nbsp;
+
+>[!CAUTION]
+>Bad
+>```dart
+>import 'dart:math' as Math;
+>import 'package:angular_components/angular_components.dart' as angularComponents;
+>import 'package:js/js.dart' as JS;
+>```
+>&nbsp;
+
+#### 1.4.3 Comments
+
+```dart
+  /*
+  * Description
+  * @param void
+  * @return void
+  */
+  void myFunction()
+```
+
+**Example:**
+
+```dart
+  /*
+  * Add number b to number a
+  * @param a: int
+  * @param b: int
+  * @return int
+  */
+  void additionNumbers(int a, int b){
+    return a + b;
+  }
+```
+
 ## 2. System Requirements
+
+<br>
 
 ### 2.1 Functional Requirements
 
@@ -83,14 +276,14 @@ This document is intended for:
 
 - **User Profiles**
 
-  - Job seekers can create and edit profiles, including personal informations, and softskills.
-  - Companies can create and edit profiles to showcase their organization and available jobs, softskilles researched.
+  - Job seekers can create and edit profiles, including personal information, and soft skills.
+  - Companies can create and edit profiles to showcase their organization and available jobs, soft skills researched.
 
 - **Swipe and Match System**
 
-  - Job seekers can swipe right to express interest in job postings, press the star to save the announce, and swipe left to skip.
-  - Companies can see the list of jobseekers interested for each job offer, softskills of the jobseekers, distance, compatibilty score, and choose to accept or deny the jobseekers.
-  - When both parties like the other, a match is made, and they can communicate via the app or the company can ask to the user if he agree to share his email address.
+  - Job seekers can swipe right to express interest in job postings, press the star to save the offer, and swipe left to skip.
+  - Companies can see the list of job seekers interested in each job offer, soft skills of the job seekers, distance, compatibility score, and choose to accept or deny the job seekers.
+  - When both parties like the other, a match is made, and they can communicate via the app or the company can ask the user if he agrees to share his email address.
   
 - **Messaging System**
 
@@ -99,7 +292,11 @@ This document is intended for:
 - **Job Search**
 
   - Job seekers can search for jobs based on various filters such as location, industry, and job type.
-  - Companies can search for potential candidates based on softskills and compatibility score.
+  - Companies can search for potential candidates based on soft skills and compatibility scores.
+
+- **Multiple Language Support**
+
+  - The applications should be able to be run in French and English following.
 
 - **Notifications**
 
@@ -131,6 +328,8 @@ This document is intended for:
 
 ## 3. System Architecture
 
+<br>
+
 ### 3.1 Overview
 
 The system architecture is designed to ensure a seamless and efficient user experience across all platforms. It comprises the following components:
@@ -147,11 +346,47 @@ Notification Service: Using Firebase Cloud Messaging (FCM) for push notification
 
 You can also click [HERE](../images/technical/flow_chart.svg) to see a fullscreen version.
 
+#### 3.2.1 Connexion
+
+![Flow Chart Connexion](../images/technical/flow_chart_connexion.png)
+
+#### 3.2.2 Registration
+
+![Flow Chart Registration](../images/technical/flow_chart_registration_1.png)
+
+![Flow Chart Registration](../images/technical/flow_chart_registration_2.png)
+
+When the registration is complete the new user is redirected to a short tutorial that explains how the app works and after that, he is sent back to the connection service.
+
+#### 3.2.3 Candidate Home Page
+
+![Flow Chart Candidate Home Page](../images/technical/flow_chart_candidate_home_page.png)
+
+![Flow Chart Candidate Home Page](../images/technical/flow_chart_candidate_home_page_2.png)
+
+#### 3.2.4 Candidate Chat
+
+![Flow Chart Candidate Chat](../images/technical/flow_chart_candidate_chat.png)
+
+#### 3.2.5 Company Home Page
+
+![Flow Chart Company Home Page](../images/technical/flow_chart_company_home_page.png)
+![Flow Chart Company Home Page](../images/technical/flow_chart_company_home_page_2.png)
+
+#### 3.2.6 Company Chat
+
+![Flow Chart Company Chat](../images/technical/flow_chart_company_chat.png)
+
+<!-- TODO: Add Dashboard flow chart -->
+<!-- TODO: Complete the flow chart where it's written "SOON" -->
+
 ### 3.3 Data Flow Diagram
 
 <!-- TODO: [Insert Data Flow Diagram Here] -->
 
 ## 4. Detailed Design
+
+<br>
 
 ### 4.1 User Interface Design
 
@@ -160,16 +395,28 @@ The UI design focuses on providing a clean, intuitive, and user-friendly interfa
 | Screen               | Description                                                                                       |
 | -------------------- | ------------------------------------------------------------------------------------------------- |
 | **Login Screen**     | Allow the users or company to connect to the app with their ids.                                  |
-| **Register Screen**  | Display all fields require for a users or a company registration.                                 |
+| **Register Screen**  | Display all fields require for a user or a company registration.                                 |
 | **Home Screen**      | Displays a feed of job postings for job seekers and a list of potential candidates for companies. |
 | **Profile Screen**   | Allows users to view and edit their profile information.                                          |
-| **Favorite Screen**  | Shows the list of favorites cards, the user has saved.                                            |
-| **Chat Menu Screen** | Shows a list of matches and enabled communication between job seekers and companies.              |
+| **Favorite Screen**  | Shows the list of favorite cards, the user has saved.                                            |
+| **Chat Menu Screen** | Shows a list of matches and enables communication between job seekers and companies.              |
 | **Chat Screen**      | Display a chat conversation between a company and a user.                                         |
 
-We assume to use **Roboto** font which is very common on mobile app developement.
+We assume to use **Roboto** and **Quicksand** fonts which are very common in mobile app development.
+
+#### 4.1.1 Roboto Font
 
 ![Roboto fonts](../images/technical/roboto_fonts.jpg)
+
+#### 4.1.2 Quicksand Font
+
+![Quicksand fonts](../images/technical/quicksand_fonts.png)
+
+#### 4.1.3 Languages
+
+- **Interface:** For all interface text we decided for the v1 to add them in the database and JSON files to easily have the French and English but this method will not be optimal if multiple languages are added to the application.
+
+- **User Text:** For texts filled by a user or a company like a description or stuff like that we will save it in the original language and simply use the Google Translation API to translate to avoid the hard task of rewriting everything for each language.
 
 ### 4.2 Backend Design
 
@@ -177,7 +424,7 @@ The backend is structured to handle multiple requests efficiently and securely. 
 
 User Management: Handling user registrations, logins, and profile management.
 Job Management: CRUD operations for job postings and applications.
-Matching Algorithm: Logic to match job seekers with job postings based on softskills.
+Matching Algorithm: Logic to match job seekers with job postings based on soft skills.
 Messaging Service: Enabling in-app communication between matched users.
 Notification Service: Managing push notifications for matches and messages.
 
@@ -187,55 +434,93 @@ The database schema is designed to store user profiles, job postings, matches, m
 
 #### Collections and Documents
 
-| Users                        |
-| ---------------------------- |
-| userId                       |
-| name                         |
-| email                        |
-| passwordHash                 |
-| profileInfo                  |
-| softSkills                   |
-| type (job seeker or company) |
+##### Legend
 
-| Jobs         |
-| ------------ |
-| jobId        |
-| companyId    |
-| title        |
-| description  |
-| requirements |
-| softSkills   |
-| location     |
-| postDate     |
-| status       |
+🗃️ - Collection
+🗂️ - Subcollection
+📑 - Document (type)
+📎 - Item (type)
 
-| Matches   |
-| --------- |
-| matchId   |
-| userId    |
-| jobId     |
-| companyId |
-| status    |
+##### Company
 
-| Messages    |
-| ----------- |
-| messageId   |
-| matchId     |
-| senderId    |
-| receiverId  |
-| messageText |
-| timestamp   |
+```md
+🗃️ company:
+└─── 🗂️ company_id:
+     ├─── 🗃️ proposal:
+     │    └─── 🗂️ proposal_id:
+     │         ├─── 📑 activity_sector (string):
+     │         ├─── 📑 contract (string):
+     │         ├─── 📑 job_name (string):
+     │         ├─── 📑 location (map):
+     │         │    ├─── 📎 address (string)
+     │         │    ├─── 📎 country (string)
+     │         │    ├─── 📎 on_remote (integer)
+     │         │    ├─── 📎 town (string)
+     │         │    └─── 📎 zip_code (integer)
+     │         ├─── 📑 salary (string):
+     │         └─── 📑 soft_skill (reference):
+     ├─── 📑 colors (array[2]):
+     │    ├─── 📎 [0]: color1
+     │    └─── 📎 [1]: color2
+     ├─── 📑 description (string):
+     ├─── 📑 email (string):
+     ├─── 📑 location (map):
+     │    ├─── 📎 address (string)
+     │    ├─── 📎 country (string)
+     │    ├─── 📎 town (string)
+     │    └─── 📎zip_code (integer)
+     ├─── 📑 motto (string):
+     ├─── 📑 name (string):
+     ├─── 📑 password (string):
+     └─── 📑 picture_profile (string):
+```
 
-| Notifications  |
-| -------------- |
-| notificationId |
-| userId         |
-| type           |
-| message        |
-| timestamp      |
-| readStatus     |
+##### User
+
+```md
+🗃️ user:
+└─── 🗂️ user_id:
+     ├─── 📑 activity_sector (string):
+     ├─── 📑 email (string):
+     ├─── 📑 experience (array[]):
+     ├─── 📑 favorite (reference):
+     ├─── 📑 first_name (string):
+     ├─── 📑 last_name (string):
+     ├─── 📑 location (string):
+     ├─── 📑 password (string):
+     ├─── 📑 professional_status (string):
+     └─── 📑 soft_skill (reference):
+```
+
+##### Conversation
+
+```md
+🗃️ conversation:
+└─── 🗂️ conversation_id:
+     ├─── 📑 from_uid (integer):
+     ├─── 📑 messages (array[]):
+     │    └─── 📎 [0] (map):
+     │         ├─── 📎 date (timestamp):
+     │         ├─── 📎 message (string):
+     │         └─── 📎 sender (integer):
+     ├─── 📑 seen (boolean):
+     └─── 📑 to_uid (integer):
+```
+
+#### Soft Skill
+
+```md
+🗃️ soft_skill:
+└─── 🗂️ list:
+     ├─── 📑 analytical (array[]):
+     ├─── 📑 interpersonal (array[]):
+     ├─── 📑 self-management (array[]):
+     └─── 📑 Social (array[]):
+```
 
 ## 5. Development Approach
+
+<br>
 
 ### 5.1 Methodology
 
@@ -258,18 +543,18 @@ The project will follow the Agile methodology, with development broken down into
 | Flutter Package Name | Version      | Description                                                                                                  | Links                                                                                                                    |
 | -------------------- | ------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
 | freezed              | **2.5.2**    | Code generation library that helps simplify and enhance the development of immutable data classes.           | [Doc](https://pub.dev/documentation/freezed/latest/) / [Install](https://pub.dev/packages/freezed)                       |
-| riverpod             | **2.5.1**    | A provider which will help us to implement common UI patterns.                                               | [Doc](https://riverpod.dev/docs/introduction/why_riverpod) / [install](https://riverpod.dev/)                            |
+| riverpod             | **2.5.1**    | A provider that will help us to implement common UI patterns.                                               | [Doc](https://riverpod.dev/docs/introduction/why_riverpod) / [install](https://riverpod.dev/)                            |
 | firebase-core        | **2.31.0**   | Grant access to Firebase services through the app.                                                           | [Doc](https://pub.dev/documentation/firebase_core/latest/) / [Install](https://pub.dev/packages/firebase_core)           |
 | firebase-auth        | **4.19.5**   | Give the possibility for the app to use the firebase authentication systems.                                 | [Doc](https://pub.dev/documentation/firebase_auth/latest/) / [Install](https://pub.dev/packages/firebase_auth)           |
-| cloud_firestore      | **4.17.3**   | Allow us to use the firebase Firestore database.                                                             | [Doc](https://pub.dev/documentation/cloud_firestore/latest/) / [Install](https://pub.dev/packages/cloud_firestore)       |
-| shared_preferences   | **2.0.8**    | Used to store data localy on the user's device.                                                              | [Doc](https://pub.dev/documentation/shared_preferences/latest/) / [Install](https://pub.dev/packages/shared_preferences) |
-| go_router            | **14.1.2**   | Allow us to create custom route with multiple parameters.                                                    | [Doc](https://pub.dev/documentation/go_router/latest/) / [Install](https://pub.dev/packages/go_router)                   |
-| firebase_storage     | **11.7.5**   | Allow the app to access to an online cloud storage to stock files or images.                                 | [Doc](https://pub.dev/documentation/firebase_storage/latest/) / [Install](https://pub.dev/packages/firebase_storage)     |
+| cloud_firestore      | **4.17.3**   | Allow us to use the Firebase Firestore database.                                                             | [Doc](https://pub.dev/documentation/cloud_firestore/latest/) / [Install](https://pub.dev/packages/cloud_firestore)       |
+| shared_preferences   | **2.0.8**    | Used to store data locally on the user's device.                                                              | [Doc](https://pub.dev/documentation/shared_preferences/latest/) / [Install](https://pub.dev/packages/shared_preferences) |
+| go_router            | **14.1.2**   | Allow us to create a custom route with multiple parameters.                                                    | [Doc](https://pub.dev/documentation/go_router/latest/) / [Install](https://pub.dev/packages/go_router)                   |
+| firebase_storage     | **11.7.5**   | Allow the app to access an online cloud storage to stock files or images.                                 | [Doc](https://pub.dev/documentation/firebase_storage/latest/) / [Install](https://pub.dev/packages/firebase_storage)     |
 | flutter_svg          | **2.0.10+1** | Permit to use SVG images in the app.                                                                         | [Doc](https://pub.dev/documentation/flutter_svg/latest/) / [Install](https://pub.dev/packages/flutter_svg)               |
-| image_picker         | **1.1.1**    | Is used to easily access to the gallery or local folders to help user to upload a picture on the app server. | [Doc](https://pub.dev/documentation/image_picker/latest/) / [Install](https://pub.dev/packages/image_picker)             |
-| geolocator           | **12.0.0**   | Can use a address to get the exact location with latitude and longitude, can also do the reverse process.    | [Doc](https://pub.dev/documentation/geolocator/latest/) / [Install](https://pub.dev/packages/geolocator)                 |
-| appinio_swiper       | **2.0.0**    | Easy swipe system to drag and drop a card like on tinder.                                                    | [Doc](https://pub.dev/documentation/appinio_swiper/latest/) / [Install](https://pub.dev/packages/appinio_swiper)         |
-| flip_card            | **0.7.0**    | As it's name said it, it's to add a flip animation to a card.                                                | [Doc](https://pub.dev/documentation/flip_card/latest/) / [Install](https://pub.dev/packages/flip_card)                   |
+| image_picker         | **1.1.1**    | Is used to easily access the gallery or local folders to help the user to upload a picture on the app server. | [Doc](https://pub.dev/documentation/image_picker/latest/) / [Install](https://pub.dev/packages/image_picker)             |
+| geolocator           | **12.0.0**   | Can use an address to get the exact location with latitude and longitude, can also do the reverse process.    | [Doc](https://pub.dev/documentation/geolocator/latest/) / [Install](https://pub.dev/packages/geolocator)                 |
+| appinio_swiper       | **2.0.0**    | Easy swipe system to drag and drop a card like on Tinder.                                                    | [Doc](https://pub.dev/documentation/appinio_swiper/latest/) / [Install](https://pub.dev/packages/appinio_swiper)         |
+| flip_card            | **0.7.0**    | As its name says it, it's to add a flip animation to a card.                                                | [Doc](https://pub.dev/documentation/flip_card/latest/) / [Install](https://pub.dev/packages/flip_card)                   |
 
 ### 5.4 Software
 
@@ -286,7 +571,7 @@ The project will follow the Agile methodology, with development broken down into
 
 ### 5.6 Target
 
-We decided to target Android 12 to Android 14, and IOS 15 and latest, for following reasons:
+We decided to target Android 12 to Android 14, and IOS 15 and latest, for the following reasons:
 
 #### 5.6.1 Android usage
 
@@ -309,9 +594,11 @@ We decided to target Android 12 to Android 14, and IOS 15 and latest, for follow
 | **17.4**    | 42.72%                         |
 | **Total**   | 79.38%                         |
 
-***Android 15 has been release but it's still in beta that's why we choose to not focus on it, and this new version will probably handle application built in 12 and latest.***
+***Android 15 has been released but it's still in beta that's why we chose to not focus on it, and this new version will probably handle applications built in 12 and the latest.***
 
 ## 6. Testing
+
+<br>
 
 ### 6.1 Testing Strategy
 
@@ -320,16 +607,17 @@ Integration Testing: To ensure different parts of the application work together.
 System Testing: To test the complete system as a whole.
 User Acceptance Testing (UAT): To validate the app with end users.
 
-<!-- TODO: Add link to test plan -->
-The detailed testing strategy can be saw in the test plan: [HERE]()
+The detailed testing strategy can be seen in the test plan: [HERE](../quality/test_plan.md)
 
 ### 6.2 Tools
 
 Unit Testing: Mockito and JUnit for Flutter.
 CI/CD Testing: Automated testing using GitHub Actions.
-UAT: Test With random people in the street or uninvolved acquaintance.
+UAT: Test With random people in the street or uninvolved acquaintances.
 
 ## 7. Deployment
+
+<br>
 
 ### 7.1 Deployment Pipeline
 
@@ -342,6 +630,8 @@ Regular updates and bug fixes based on user feedback and performance metrics.
 
 ## 8. Security
 
+<br>
+
 ### 8.1 Data Security
 
 Encryption: HTTPS & SSL.
@@ -350,8 +640,8 @@ Authorization: Role-based access control (RBAC) for different user roles.
 
 ### 8.2 Compliance
 
-GDPR: Ensure compliance with General Data Protection Regulation for user data protection.
-HIPAA: If handling health-related job postings, ensure compliance with Health Insurance Portability and Accountability Act.
+GDPR: Ensure compliance with the General Data Protection Regulation for user data protection.
+HIPAA: If handling health-related job postings, ensure compliance with the Health Insurance Portability and Accountability Act.
 
 ## 9. Glossary
 
