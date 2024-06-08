@@ -22,7 +22,7 @@ final GoRouter router = GoRouter(
             } else if (snapshot.data == true) {
               return const Home();
             } else {
-              return const Login();
+              return const Home();
             }
           }
         );
