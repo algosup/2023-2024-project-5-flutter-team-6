@@ -10,28 +10,55 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   
+    String typeAccount = 'company';  // look the root name of the db to get user OR company 
+    List<Widget> widgets = [];
+
+    if(typeAccount == 'user') {
+      widgets.add(const ProfileRowCategory(title: 'Personnel'),);
+      widgets.add(const ProfileRowUser(name: 'River' , lastName: 'Stone',),);
+      widgets.add(const ProfileRowCommon(title: 'Nom', content: 'John', type: TextInputType.name,),);
+      widgets.add(const ProfileRowCommon(title: 'Prénom', content: 'Doe', type: TextInputType.name),);
+      widgets.add(const ProfileRowCommon(title: 'Adresse E-Mail', content: 'mail@mail.com', type: TextInputType.emailAddress,),);
+      widgets.add(const ProfileRowCommon(title: 'Numéro de téléphone', content: '06 00 00 00 00', type: TextInputType.phone,),);          
+      widgets.add(const ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none,),);
+      widgets.add(const ProfileRowPage(title: 'Cartes enregistrées'),);
+      widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
+      widgets.add(const ProfileRowPage(title: 'Modifier les paramètres'),);
+      widgets.add(const ProfileRowCommon(title: 'Langue', content: 'Français', type: TextInputType.none,),);
+      widgets.add(const ProfileRowCategory(title: 'Légal'),);
+      widgets.add(const ProfileRowPage(title: 'Politique de confidentialité'),);
+      widgets.add(const ProfileRowPage(title: 'License'),);
+      widgets.add(const ProfileRowPage(title: 'Conditions générales d\'utilisitation'),);
+    }
+    else{
+      widgets.add(const ProfileRowCategory(title: 'Entreprise'),);
+      widgets.add(const ProfileRowCompany(name: 'ALGOSUP',),);
+      widgets.add(const ProfileRowCommon(title: 'Slogan', content: 'Lorem ispum', type: TextInputType.name,),);
+      widgets.add(const ProfileRowCommon(title: 'Description', content: 'Lorem ispum', type: TextInputType.name),);
+      widgets.add(const ProfileRowCommon(title: 'Adresse', content: '3 rue du poin 18100 Vierzon, France', type: TextInputType.streetAddress,),);
+      widgets.add(const ProfileRowCommon(title: 'Adresse E-Mail', content: 'mail@mail.com', type: TextInputType.emailAddress,),);
+      widgets.add(const ProfileRowCommon(title: 'Numéro de téléphone', content: '06 00 00 00 00', type: TextInputType.phone,),);          
+      widgets.add(const ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none,),);
+      widgets.add(const ProfileRowPage(title: 'Vos offres'),);
+      widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
+      widgets.add(const ProfileRowPage(title: 'Modifier les paramètres'),);
+      widgets.add(const ProfileRowCommon(title: 'Langue', content: 'Français', type: TextInputType.none,),);
+      widgets.add(const ProfileRowCategory(title: 'Légal'),);
+      widgets.add(const ProfileRowPage(title: 'Politique de confidentialité'),);
+      widgets.add(const ProfileRowPage(title: 'License'),);
+      widgets.add(const ProfileRowPage(title: 'Conditions générales d\'utilisitation'),);
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: const Text('Profil'),
         
       ),
       body: ListView(
         children:  [
-          const ProfileRowCategory(title: 'Personnel'),
-          const ProfileRowUser(name: 'River' , lastName: 'Stone',),
-          const ProfileRowCommon(title: 'Nom', content: 'John', type: TextInputType.name,),
-          const ProfileRowCommon(title: 'Prénom', content: 'Doe', type: TextInputType.name),
-          const ProfileRowCommon(title: 'Adresse E-Mail', content: 'mail@mail.com', type: TextInputType.emailAddress,),
-          const ProfileRowCommon(title: 'Numéro de téléphone', content: '06 00 00 00 00', type: TextInputType.phone,),
-          const ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none,),
-          const ProfileRowCategory(title: 'Paramètres'),
-          const ProfileRowPage(title: 'Modifier les paramètres'),
-          const ProfileRowCommon(title: 'Langue', content: 'Français', type: TextInputType.none,),
-          const ProfileRowCategory(title: 'Légal'),
-          const ProfileRowPage(title: 'Politique de confidentialité'),
-          const ProfileRowPage(title: 'License'),
-          const ProfileRowPage(title: 'Conditions générales d\'utilisitation'),
+          ...widgets,
           FloatingActionButton(
             elevation: 0,
             backgroundColor: const Color(0xFFFFFFFF),

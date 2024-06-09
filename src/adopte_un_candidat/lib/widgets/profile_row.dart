@@ -179,3 +179,41 @@ class ProfileRowUser extends StatelessWidget {
     );
   }
 }
+
+class ProfileRowCompany extends StatelessWidget {
+  final String name;
+
+  const ProfileRowCompany({super.key, required this.name});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 32),
+      height: MediaQuery.of(context).size.height * 0.10,
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Color(0xFFA7207D),
+          ),
+        ),
+      ),
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const CircleAvatar(
+              radius: 24,
+              backgroundColor: Colors.amber,
+              foregroundImage: NetworkImage(
+                "https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Falgosup.png?alt=media&token=34e1a449-5117-4333-8ed8-561cff132621",
+              ),
+            ),
+            const SizedBox(width: 16),
+            Text(name, style: const TextStyle(decoration: TextDecoration.underline),),
+          ],
+        ),
+      ),
+    );
+  }
+}
