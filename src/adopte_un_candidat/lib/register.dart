@@ -5,10 +5,17 @@ import 'package:go_router/go_router.dart';
 import 'modules/buttons.dart';
 // import 'package:flutter/services.dart';
 
-
-
-class Register extends StatelessWidget {
+class Register extends StatefulWidget {
   const Register({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _RegisterState createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
+
+  int? page;
 
   Widget registerChoicePage(BuildContext context) {
     return Column(
@@ -39,7 +46,9 @@ class Register extends StatelessWidget {
                 child: Center(
                   child: RegisterChoice(
                     onPressed: () {
-                    
+                      setState(() {
+                        page = 2;
+                      });
                     },
                     choice: 'Un candidat',
                   )
@@ -175,47 +184,43 @@ class Register extends StatelessWidget {
               ),
               Expanded(
                 flex: 3,
-                child: Container(
-                  // color: Colors.blue,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: const Color(0xFFEEEEEE),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              hintText: 'Nom',
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: const Color(0xFFEEEEEE),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(50),
                             ),
-                          )
-                        )
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
-                          child: TextField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: const Color(0xFFEEEEEE),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              hintText: 'Prénom',
-                            ),
-                          )
+                            hintText: 'Nom',
+                          ),
                         )
                       )
-                    ],
-                  )
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: const Color(0xFFEEEEEE),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            hintText: 'Prénom',
+                          ),
+                        )
+                      )
+                    )
+                  ],
                 )
               ),
               Expanded(
@@ -229,7 +234,9 @@ class Register extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 40,right: 1),
                         child: IconButton(
                           onPressed: () {
-
+                            setState(() {
+                              page = 1;
+                            });
                           },
                           icon: const Icon(Icons.arrow_back_rounded, size: 40),
                         )
@@ -242,6 +249,10 @@ class Register extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 40,left: 1),
                         child: NextButton(
                           onPressed: () {
+                            setState(() {
+                              page = 3;
+                            });
+                            // name validation
 
                           },
                         )
@@ -353,7 +364,9 @@ class Register extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 40,right: 1),
                         child: IconButton(
                           onPressed: () {
-
+                            setState(() {
+                              page = 2;
+                            });
                           },
                           icon: const Icon(Icons.arrow_back_rounded, size: 40),
                         )
@@ -366,6 +379,10 @@ class Register extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 40,left: 1),
                         child: NextButton(
                           onPressed: () {
+                            setState(() {
+                              page = 4;
+                            });
+                            // email validation
 
                           },
                         )
@@ -451,47 +468,44 @@ class Register extends StatelessWidget {
               ),
               Expanded(
                 flex: 3,
-                child: Container(
-                  // color: Colors.blue,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: const Color(0xFFEEEEEE),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              hintText: 'Mot de passe',
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: const Color(0xFFEEEEEE),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(50),
                             ),
-                          )
-                        )
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
-                          child: TextField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: const Color(0xFFEEEEEE),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              hintText: 'Confirmez le mot de passe',
-                            ),
-                          )
+                            hintText: 'Mot de passe',
+                          ),
                         )
                       )
-                    ],
-                  )
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
+                        child: TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: const Color(0xFFEEEEEE),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            hintText: 'Confirmez le mot de passe',
+                          ),
+                        )
+                      )
+                    )
+                  ],
                 )
               ),
               Expanded(
@@ -501,6 +515,10 @@ class Register extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 40,left: 1,top: 15),
                   child: NextButton(
                     onPressed: () {
+                      setState(() {
+                        page = 5;
+                      });
+                      // password validation ---
 
                     },
                   )
@@ -583,63 +601,60 @@ class Register extends StatelessWidget {
               ),
               Expanded(
                 flex: 4,
-                child: Container(
-                  // color: Colors.blue,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: const Color(0xFFEEEEEE),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              hintText: 'Statut professionnel',
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: const Color(0xFFEEEEEE),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(50),
                             ),
-                          )
-                        )
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: const Color(0xFFEEEEEE),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              hintText: 'Secteur d\'activité recherché',
-                            ),
-                          )
-                        )
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: const Color(0xFFEEEEEE),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              hintText: 'Expérience professionnel',
-                            ),
-                          )
+                            hintText: 'Statut professionnel',
+                          ),
                         )
                       )
-                    ],
-                  )
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: const Color(0xFFEEEEEE),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            hintText: 'Secteur d\'activité recherché',
+                          ),
+                        )
+                      )
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.only(right: 40,left: 40,top: 10),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: const Color(0xFFEEEEEE),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            hintText: 'Expérience professionnel',
+                          ),
+                        )
+                      )
+                    )
+                  ],
                 )
               ),
               Expanded(
@@ -649,6 +664,11 @@ class Register extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 40,left: 1),
                   child: NextButton(
                     onPressed: () {
+                      setState(() {
+                        page = 6;
+                      });
+                      // validate information
+
                     },
                   )
                 )
@@ -659,6 +679,167 @@ class Register extends StatelessWidget {
         Expanded(
           flex: 2,
           child: extraInformation(),
+        )
+      ]
+    );
+  }
+
+  Widget registerStep1Candidate(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          flex: 2,
+          child: logoAdopte(context)
+        ),
+        Expanded(
+          flex: 6,
+          child: Column(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Container(
+                  alignment: Alignment.bottomLeft,
+                  padding: const EdgeInsets.only(left: 40,right: 1),
+                  child: const Text(
+                    'Étape 1 :',
+                    style: TextStyle(
+                      fontFamily: 'Quicksand',
+                      color: Colors.black,
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  alignment: Alignment.bottomLeft,
+                  padding: const EdgeInsets.only(left: 40,right: 1),
+                  child: const Text(
+                    'Choisir un\npseudonyme',
+                    style: TextStyle(
+                      fontFamily: 'Quicksand',
+                      color: Colors.black,
+                      fontSize: 34,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 8,
+                child: Container(
+                  padding: const EdgeInsets.only(right: 40,left: 40,top: 20),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFEEEEEE),
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(70),
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 5,
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  padding: const EdgeInsets.only(left: 30),
+                                  child: Text(
+                                    '\"Nickname\"',
+                                    style: const TextStyle(
+                                      fontFamily: 'Quicksand',
+                                      color: Color(0xFF3C3C3C),
+                                      fontSize: 26,
+                                    ),
+                                  )
+                                )
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Center(
+                                  child: IconButton(
+                                    onPressed: () {
+                                      // Nickname randomizer
+                                      
+                                    },
+                                    icon: const Icon(Icons.shuffle_rounded, size: 40),
+                                  )
+                                )
+                              )
+                            ]
+                          )
+                        )
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                                child: Container(
+                                alignment: Alignment.topLeft,
+                                padding: const EdgeInsets.only(top: 10),
+                                child: const Text(
+                                  'Un fois choisi, vous ne pourrez pas changer de pseudonyme',
+                                  style: TextStyle(
+                                    fontFamily: 'Roboto',
+                                    color: Color(0xFF3C3C3C),
+                                    fontSize: 10,
+                                  ),
+                                )
+                              )
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Container(
+                                alignment: Alignment.topLeft,
+                                padding: const EdgeInsets.only(top: 5),
+                                child: RichText(
+                                  text: TextSpan(children: [
+                                    TextSpan(
+                                      text: "Pourquoi dois-je choisir un pseudonyme ?",
+                                      style: const TextStyle(
+                                        fontFamily: 'Roboto',
+                                        color: Color(0xFF6F6F6F),
+                                        fontSize: 10,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                      
+                                      }
+                                    ),
+                                  ])
+                                )
+                              )
+                            )
+                          ],
+                        )
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          alignment: Alignment.bottomRight,
+                          child: NextButton(
+                            onPressed: () {
+
+                            },
+                          ),
+                        ),
+                      )
+                    ]
+                  )
+                )
+              )
+            ]
+          )
+        ),
+        Expanded(
+          flex: 2,
+          child: Container(),
         )
       ]
     );
@@ -729,15 +910,33 @@ class Register extends StatelessWidget {
     );
   }
 
+  Widget _registerPage(BuildContext context) {
+    // print(page);
+    switch(page) {
+      case 1:
+        return registerChoicePage(context);
+      case 2:
+        return registerNameCandidate(context);
+      case 3:
+        return registerEmailCandidate(context);
+      case 4:
+        return registerPasswordCandidate(context);
+      case 5:
+        return registerInformationCandidate(context);
+      case 6:
+        return registerStep1Candidate(context);
+      default:
+        return registerChoicePage(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
         resizeToAvoidBottomInset : false,
-        body: registerChoicePage(context),
-        
+        body: _registerPage(context),
       ),
     );
   }
