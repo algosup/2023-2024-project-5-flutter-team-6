@@ -15,6 +15,7 @@ class MessagesState extends State<Messages> {
   Widget build(BuildContext context) {
     // debugPaintSizeEnabled = true;
     return Scaffold(
+      backgroundColor: Colors.white,
         body: SafeArea(
             child: Column(
           children: [

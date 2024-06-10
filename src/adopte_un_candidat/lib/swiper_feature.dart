@@ -87,7 +87,9 @@ class SwiperFeatureState extends State<SwiperFeature> {
       return AppinioSwiper(
         invertAngleOnBottomDrag: true,
         backgroundCardCount: 1,
-        swipeOptions: const SwipeOptions.symmetric(horizontal: true,),
+        swipeOptions: const SwipeOptions.symmetric(
+          horizontal: true,
+        ),
         controller: controller,
         onCardPositionChanged: (
           SwiperPosition position,
@@ -112,43 +114,35 @@ class SwiperFeatureState extends State<SwiperFeature> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: CupertinoPageScaffold(
-         //child: SingleChildScrollView( // Check
-        child: Column(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * .55,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 25,
-                  right: 25,
-                  top: 0,
-                  bottom: 0,
-                ),
-                child: FutureBuilder<List<dynamic>?>(
-                  future: database.getStack(),
-                  builder: (BuildContext context, AsyncSnapshot<List<dynamic>?> snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    } else {
-                      cardStack = snapshot.data;
-                      return cards();
-                    }
-                  },
-                )
-                  
+    return Column(
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .55,
+          child: Padding(
+              padding: const EdgeInsets.only(
+                left: 25,
+                right: 25,
+                top: 0,
+                bottom: 0,
               ),
-            ),
-          
-          ],
-        
+              child: FutureBuilder<List<dynamic>?>(
+                future: database.getStack(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<dynamic>?> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else {
+                    cardStack = snapshot.data;
+                    return cards();
+                  }
+                },
+              )),
         ),
-      ),
+      ],
     );
-  } 
+  }
 }

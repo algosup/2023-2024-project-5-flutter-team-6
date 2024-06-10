@@ -53,8 +53,8 @@ class Profile extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Text('Profil'),
-        
       ),
       body: ListView(
         children:  [

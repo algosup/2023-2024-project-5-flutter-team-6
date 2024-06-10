@@ -73,7 +73,9 @@ class ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Row(
            mainAxisSize: MainAxisSize.min, // Ensures the Row takes minimal space
             mainAxisAlignment: MainAxisAlignment.center,
