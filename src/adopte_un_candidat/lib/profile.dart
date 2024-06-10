@@ -46,15 +46,15 @@ class ProfileState extends State<Profile> {
     if(typeAccount == 'user') {
       widgets.add(const ProfileRowCategory(title: 'Personnel'),);
       widgets.add(ProfileRowUser(username: userData["username"], colors: userData["colors"], image: userData["profile_picture"],),);
-      widgets.add( ProfileRowCommon(title: 'Nom', content: userData["last_name"], type: TextInputType.name,),);
-      widgets.add( ProfileRowCommon(title: 'Prénom', content: userData["first_name"], type: TextInputType.name),);
-      widgets.add( ProfileRowCommon(title: 'Adresse E-Mail', content: userData["email"], type: TextInputType.emailAddress,),);
-      widgets.add( ProfileRowCommon(title: 'Numéro de téléphone', content: userData["phone"], type: TextInputType.phone,),);          
-      widgets.add(const ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none,),);
+      widgets.add( ProfileRowCommon(title: 'Nom', content: userData["last_name"], type: TextInputType.name,  uid: user.uid, functiontype: "lastname",),);
+      widgets.add( ProfileRowCommon(title: 'Prénom', content: userData["first_name"], type: TextInputType.name,  uid: user.uid, functiontype: "firstname",),);
+      widgets.add( ProfileRowCommon(title: 'Adresse E-Mail', content: userData["email"], type: TextInputType.emailAddress,  uid: user.uid, functiontype: "email",),);
+      widgets.add( ProfileRowCommon(title: 'Numéro de téléphone', content: userData["phone"], type: TextInputType.phone,  uid: user.uid, functiontype: "phone",),);          
+      widgets.add(ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none,  uid: user.uid, functiontype: "",),);
       widgets.add(const ProfileRowPage(title: 'Cartes enregistrées'),);
       widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
       widgets.add(const ProfileRowPage(title: 'Modifier les paramètres'),);
-      widgets.add(const ProfileRowCommon(title: 'Langue', content: 'Français', type: TextInputType.none,),);
+      widgets.add(ProfileRowCommon(title: 'Langue', content: 'Français', type: TextInputType.none,  uid: user.uid, functiontype: "",),);
       widgets.add(const ProfileRowCategory(title: 'Légal'),);
       widgets.add(const ProfileRowPage(title: 'Politique de confidentialité'),);
       widgets.add(const ProfileRowPage(title: 'License'),);
@@ -63,16 +63,16 @@ class ProfileState extends State<Profile> {
     else if (typeAccount == 'company'){
       widgets.add(const ProfileRowCategory(title: 'Entreprise'),);
       widgets.add(const ProfileRowCompany(name: 'ALGOSUP',),);
-      widgets.add(const ProfileRowCommon(title: 'Slogan', content: 'Lorem ispum', type: TextInputType.name,),);
-      widgets.add(const ProfileRowCommon(title: 'Description', content: 'Lorem ispum', type: TextInputType.name),);
-      widgets.add(const ProfileRowCommon(title: 'Adresse', content: '3 rue du poin 18100 Vierzon, France', type: TextInputType.streetAddress,),);
-      widgets.add(const ProfileRowCommon(title: 'Adresse E-Mail', content: 'mail@mail.com', type: TextInputType.emailAddress,),);
-      widgets.add(const ProfileRowCommon(title: 'Numéro de téléphone', content: '06 00 00 00 00', type: TextInputType.phone,),);          
-      widgets.add(const ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none,),);
+      widgets.add(ProfileRowCommon(title: 'Slogan', content: 'Lorem ispum', type: TextInputType.name, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowCommon(title: 'Description', content: 'Lorem ispum', type: TextInputType.name, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowCommon(title: 'Adresse', content: '3 rue du poin 18100 Vierzon, France', type: TextInputType.streetAddress, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowCommon(title: 'Adresse E-Mail', content: 'mail@mail.com', type: TextInputType.emailAddress, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowCommon(title: 'Numéro de téléphone', content: '06 00 00 00 00', type: TextInputType.phone, uid: user.uid, functiontype: "",),);          
+      widgets.add(ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none, uid: user.uid, functiontype: "",),);
       widgets.add(const ProfileRowPage(title: 'Vos offres'),);
       widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
       widgets.add(const ProfileRowPage(title: 'Modifier les paramètres'),);
-      widgets.add(const ProfileRowCommon(title: 'Langue', content: 'Français', type: TextInputType.none,),);
+      widgets.add(ProfileRowCommon(title: 'Langue', content: 'Français', type: TextInputType.none, uid: user.uid, functiontype: "",));
       widgets.add(const ProfileRowCategory(title: 'Légal'),);
       widgets.add(const ProfileRowPage(title: 'Politique de confidentialité'),);
       widgets.add(const ProfileRowPage(title: 'License'),);

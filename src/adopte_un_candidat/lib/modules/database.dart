@@ -95,6 +95,7 @@ class Database {
   Future<void> createUser(String uid) async {
     String? pictureLink = await getPicture(Random().nextInt(47));
     await FirebaseFirestore.instance.collection("user").doc(uid).set({
+      'username': "Mossy Pebble",
       'activity_sector': 'Restauration',
       'card_liked': {},//{'0-0': FieldValue.serverTimestamp()},
       'email': "email",
@@ -103,6 +104,8 @@ class Database {
       'first_name': 'Tom',
       'last_name': 'Hanks',
       'location': 'Paris',
+      'phone': '0123456789',
+      'colors': ["#FF0000", "#00FF00"],
       'professional_status': 'Etudiant',
       'profile_picture': pictureLink != null ? pictureLink : '',
       'soft_skills': {
@@ -113,4 +116,40 @@ class Database {
       }
     });
   }
+
+
+  // ------------------------------------------------
+  // ----------------- User Actions -----------------
+  // ------------------------------------------------
+
+  Future<void> lastNameUpdate(String id, String lastName) async {
+    await FirebaseFirestore.instance.collection("user").doc(id).update({
+      'last_name': lastName,
+    });
+  }
+
+  Future<void> firstNameUpdate(String id, String firstName) async {
+    await FirebaseFirestore.instance.collection("user").doc(id).update({
+      'first_name': firstName,
+    });
+  }
+
+  Future<void> emailUpdate(String id, String email) async {
+    await FirebaseFirestore.instance.collection("user").doc(id).update({
+      'email': email,
+    });
+  }
+
+  Future<void> phoneUpdate(String id, String phone) async {
+    await FirebaseFirestore.instance.collection("user").doc(id).update({
+      'phone': phone,
+    });
+  }
+
+  // Future<void> softSkillsUpdate(String id, Map softSkills) async {
+  //   await FirebaseFirestore.instance.collection("user").doc(id).update({
+  //     'soft_skills': softSkills,
+  //   });
+  // }
+
 }

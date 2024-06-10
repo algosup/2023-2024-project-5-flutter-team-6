@@ -41,19 +41,23 @@ class ProfileRowCommon extends StatelessWidget {
   final String title;
   final String content;
   final TextInputType type;
+  final String functiontype;
+  final String uid;
 
-  const ProfileRowCommon({
+  ProfileRowCommon({
     super.key,
     required this.title,
     required this.content,
     required this.type,
+    required this.functiontype,
+    required this.uid
   });
 
-  void _showChangeInfoDialog(BuildContext context, String title, TextInputType type) {
+  void _showChangeInfoDialog(BuildContext context, String title, TextInputType type, String uid, String functiontype) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return ChangeInfosProfile(title: title, type: type,);
+        return ChangeInfosProfile(title: title, type: type, uid: uid, functiontype: functiontype,);
       },
     );
   }
@@ -62,7 +66,7 @@ class ProfileRowCommon extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _showChangeInfoDialog(context, title, type);
+        _showChangeInfoDialog(context, title, type, uid, functiontype);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 32),
