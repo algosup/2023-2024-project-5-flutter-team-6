@@ -43,7 +43,7 @@ flutter:
   fonts:
     - family: Quicksand
       fonts:
-      - asset: fonts/Quicksand-Medium.ttf
+      - asset: assets/fonts/Quicksand-Medium.ttf
     - family: Roboto
       fonts:
-      - asset: fonts/Roboto-Regular.ttf
+      - asset: assets/fonts/Roboto-Regular.ttf
