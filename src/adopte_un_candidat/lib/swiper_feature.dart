@@ -86,7 +86,7 @@ class SwiperFeatureState extends State<SwiperFeature> {
     if (cardStack != null) {
       return AppinioSwiper(
         invertAngleOnBottomDrag: true,
-        backgroundCardCount: 1,
+        backgroundCardCount: cardStack!.length > 1 ? 2 : 1,
         swipeOptions: const SwipeOptions.symmetric(
           horizontal: true,
         ),
