@@ -204,6 +204,7 @@ class ProfileRowCompany extends StatelessWidget {
           children: [
             const CircleAvatar(
               radius: 24,
+              backgroundColor: Colors.transparent,
               foregroundImage: NetworkImage(
                 "https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Falgosup.png?alt=media&token=34e1a449-5117-4333-8ed8-561cff132621",
               ),
