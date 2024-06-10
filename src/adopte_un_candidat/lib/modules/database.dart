@@ -5,23 +5,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 
 class Database {
-
-  Future<Map?> getCompany(int id) async {
-    var company = {};
-    final DocumentSnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("company").doc(id.toString()).get();
-
-    
-    if (querySnapshot.exists) {
-      company = querySnapshot.data()!;
-      return company;
-    } else {
-      if (kDebugMode) {
-        print("No such document!");
-      }
-      return null;
-    }
-  }
-
   Future<List?> getStack() async {
     var cardStack = [];
     Map<String, dynamic>? company;
@@ -44,12 +27,18 @@ class Database {
     return cardStack;
   }
 
-  Future<Map?> getUser(int id) async {
+  Future<Map?> getUser(String id) async {
     var user = {};
-    final DocumentSnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("user").doc(id.toString()).get();
+    final DocumentSnapshot<Map<String, dynamic>> queryCandidatSnapshot = await FirebaseFirestore.instance.collection("user").doc(id).get();
+    final DocumentSnapshot<Map<String, dynamic>> queryCompanySnapshot = await FirebaseFirestore.instance.collection("company").doc(id).get();
     
-    if (querySnapshot.exists) {
-      user = querySnapshot.data()!;
+    if (queryCandidatSnapshot.exists) {
+      user = queryCandidatSnapshot.data()!;
+      user['type'] = 'user';
+      return user;
+    }else if (queryCompanySnapshot.exists) {
+      user = queryCompanySnapshot.data()!;
+      user['type'] = 'company';
       return user;
     } else {
       if (kDebugMode) {

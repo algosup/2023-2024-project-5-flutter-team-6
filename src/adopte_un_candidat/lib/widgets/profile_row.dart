@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import './alert_dialogue.dart';
 
@@ -138,10 +140,11 @@ class ProfileRowPage extends StatelessWidget {
 }
 
 class ProfileRowUser extends StatelessWidget {
-  final String name;
-  final String lastName;
+  final String username;
+  final List<dynamic> colors;
+  final String image;
 
-  const ProfileRowUser({super.key, required this.name, required this.lastName});
+  const ProfileRowUser({super.key, required this.username, required this.colors, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -160,19 +163,17 @@ class ProfileRowUser extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               radius: 24,
-              backgroundColor: Colors.amber, // Need to be colors choosen by the user 
+              backgroundColor: Color(int.parse("0xFF${colors[0]}")), // Need to be colors choosen by the user 
               foregroundImage: NetworkImage(
-                "https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Falgosup.png?alt=media&token=34e1a449-5117-4333-8ed8-561cff132621",
+                image,
               ),
             ),
             const SizedBox(width: 16),
             Text(
-              name,
+              username,
             ),
-            const SizedBox(width: 16),
-            Text(lastName),
           ],
         ),
       ),
