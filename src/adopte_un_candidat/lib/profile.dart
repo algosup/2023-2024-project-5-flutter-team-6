@@ -4,13 +4,14 @@ import 'package:go_router/go_router.dart';
 import './widgets/navigation_bar.dart';
 import './login.dart';
 import './widgets/profile_row.dart';
+import './modules/database.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
   @override
   Widget build(BuildContext context) {
-   
+    
     String typeAccount = 'company';  // look the root name of the db to get user OR company 
     List<Widget> widgets = [];
 
@@ -21,7 +22,7 @@ class Profile extends StatelessWidget {
       widgets.add(const ProfileRowCommon(title: 'Prénom', content: 'Doe', type: TextInputType.name),);
       widgets.add(const ProfileRowCommon(title: 'Adresse E-Mail', content: 'mail@mail.com', type: TextInputType.emailAddress,),);
       widgets.add(const ProfileRowCommon(title: 'Numéro de téléphone', content: '06 00 00 00 00', type: TextInputType.phone,),);          
-      widgets.add(const ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none,),);
+      widgets.add(const ProfileRowSoft(title: 'Soft skills', content: ['Test']));
       widgets.add(const ProfileRowPage(title: 'Cartes enregistrées'),);
       widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
       widgets.add(const ProfileRowPage(title: 'Modifier les paramètres'),);
@@ -39,7 +40,7 @@ class Profile extends StatelessWidget {
       widgets.add(const ProfileRowCommon(title: 'Adresse', content: '3 rue du poin 18100 Vierzon, France', type: TextInputType.streetAddress,),);
       widgets.add(const ProfileRowCommon(title: 'Adresse E-Mail', content: 'mail@mail.com', type: TextInputType.emailAddress,),);
       widgets.add(const ProfileRowCommon(title: 'Numéro de téléphone', content: '06 00 00 00 00', type: TextInputType.phone,),);          
-      widgets.add(const ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none,),);
+      widgets.add(const ProfileRowSoft(title: 'Soft skills', content: ['Test']),);
       widgets.add(const ProfileRowPage(title: 'Vos offres'),);
       widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
       widgets.add(const ProfileRowPage(title: 'Modifier les paramètres'),);
@@ -60,6 +61,7 @@ class Profile extends StatelessWidget {
         children:  [
           ...widgets,
           FloatingActionButton(
+            heroTag: 'disconnect',
             elevation: 0,
             backgroundColor: const Color(0xFFFFFFFF),
             onPressed: () {
@@ -69,7 +71,7 @@ class Profile extends StatelessWidget {
             child: const Text('Déconnexion',style: TextStyle(fontSize: 16, color: Colors.red),),
           ),
           FloatingActionButton(
-            
+            heroTag: 'deleteaccount',
             elevation: 0,
             backgroundColor: const Color(0xFFFFFFFF),
             onPressed: () {
