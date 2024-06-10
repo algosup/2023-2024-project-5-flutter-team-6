@@ -43,10 +43,10 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: '/settings',
-      name: 'settings',
+      path: '/softskills',
+      name: 'softskills',
       builder: (BuildContext context, GoRouterState state) {
-        return const Home(); // TODO: Replace with the settings page
+        return const Home(); // TODO: Replace with the softskills page
       },
     ),
     GoRoute(
@@ -57,17 +57,10 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: '/login',
-      name: 'login',
-      builder: (BuildContext context, GoRouterState state) {
-        return const Login(); // TODO: Replace with the login page
-      },
-    ),
-    GoRoute(
       path: '/register',
       name: 'register',
       builder: (BuildContext context, GoRouterState state) {
-        return const Register(); // TODO: Replace with the register page
+        return const Register();
       },
     )
   ],
