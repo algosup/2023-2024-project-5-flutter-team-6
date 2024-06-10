@@ -162,7 +162,7 @@ class ProfileRowUser extends StatelessWidget {
           children: [
             const CircleAvatar(
               radius: 24,
-              backgroundColor: Colors.amber,
+              backgroundColor: Colors.amber, // Need to be colors choosen by the user 
               foregroundImage: NetworkImage(
                 "https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Falgosup.png?alt=media&token=34e1a449-5117-4333-8ed8-561cff132621",
               ),
@@ -204,7 +204,6 @@ class ProfileRowCompany extends StatelessWidget {
           children: [
             const CircleAvatar(
               radius: 24,
-              backgroundColor: Colors.amber,
               foregroundImage: NetworkImage(
                 "https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Falgosup.png?alt=media&token=34e1a449-5117-4333-8ed8-561cff132621",
               ),
