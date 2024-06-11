@@ -14,12 +14,14 @@ class Database {
         QuerySnapshot<Map<String, dynamic>> proposalList = await doc.reference.collection("proposal").get();
         int porposalIndex = proposalList.docs.length > 1 ? Random().nextInt(proposalList.docs.length) - 1 : 0;
 
-        company?['proposal'] = proposalList.docs[porposalIndex].data();
-        //
-        String proposalId = proposalList.docs[porposalIndex].id.toString();
-        // TODO: check if the user has already liked this card
+        if (proposalList.docs.length > 0) {
+          company?['proposal'] = proposalList.docs[porposalIndex].data();
+          //
+          String proposalId = proposalList.docs[porposalIndex].id.toString();
+          // TODO: check if the user has already liked this card
 
-        cardStack.add(company);
+          cardStack.add(company);
+        }
         if (cardStack.length >= 20 || cardStack.length >= querySnapshot.docs.length) {
           return cardStack;
         }
