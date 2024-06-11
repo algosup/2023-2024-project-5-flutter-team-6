@@ -117,6 +117,27 @@ class Database {
     });
   }
 
+  Future<void> createCompany(String uid) async {
+    await FirebaseFirestore.instance.collection("company").doc(uid).set({
+
+      'colors': ["#FF0000", "#00FF00"],
+      'description': {
+        'en': "",
+        'fr': "",
+      },
+      'email': "macdo@mail.com",
+      'location': {
+        'address': "3 rue du poin",
+        'country': "France",
+        'town': 'Paris',
+        'zip': '75000',
+      },
+      'motto': "Venez comme vous êtes",
+      'name': 'Mc.Donalds',
+      'picture_profile': 'none',
+      'website': 'https://www.mcdonalds.fr/'
+    });
+  }
 
   // ------------------------------------------------
   // ----------------- User Actions -----------------
