@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:adopte_un_candidat/modules/authentication.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -7,38 +8,68 @@ import 'package:flutter/foundation.dart';
 class Database {
   Future<List?> getStack() async {
     var cardStack = [];
-    Map<String, dynamic>? company;
-    final QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("company").get();
+    var user;
+    var userData;
+    var typeAccount;
+
+    user = await Authentication().getCurrentUser();
+    userData = await getUser(user.uid);
+    typeAccount = userData['type'];
+
+    Map<String, dynamic>? userCard;
+    if (typeAccount == 'user') {
+      final QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("company").get();
+
       for (final QueryDocumentSnapshot doc in querySnapshot.docs) {
-        company = doc.data() as Map<String, dynamic>?;
+        userCard = doc.data() as Map<String, dynamic>?;
+        userCard?['type'] = 'company';
         QuerySnapshot<Map<String, dynamic>> proposalList = await doc.reference.collection("proposal").get();
         int porposalIndex = proposalList.docs.length > 1 ? Random().nextInt(proposalList.docs.length) - 1 : 0;
 
-        if (proposalList.docs.length > 0) {
-          company?['proposal'] = proposalList.docs[porposalIndex].data();
+        if (proposalList.docs.isNotEmpty) {
+          userCard?['proposal'] = proposalList.docs[porposalIndex].data();
           //
           String proposalId = proposalList.docs[porposalIndex].id.toString();
           // TODO: check if the user has already liked this card
 
-          cardStack.add(company);
+          cardStack.add(userCard);
         }
-        if (cardStack.length >= 20 || cardStack.length >= querySnapshot.docs.length) {
+        if (cardStack.length >= 20 ||
+            cardStack.length >= querySnapshot.docs.length) {
           return cardStack;
         }
       }
-    return cardStack;
+    } else if (typeAccount == 'company') {
+      final QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("user").get();
+
+      for (final QueryDocumentSnapshot doc in querySnapshot.docs) {
+        userCard = doc.data() as Map<String, dynamic>?;
+
+        userCard?['type'] = 'user';
+
+        cardStack.add(userCard);
+        if (cardStack.length >= 20 ||
+            cardStack.length >= querySnapshot.docs.length) {
+          return cardStack;
+        }
+      }
+    } else {
+      return null;
+    }
   }
 
   Future<Map?> getUser(String id) async {
     var user = {};
-    final DocumentSnapshot<Map<String, dynamic>> queryCandidatSnapshot = await FirebaseFirestore.instance.collection("user").doc(id).get();
-    final DocumentSnapshot<Map<String, dynamic>> queryCompanySnapshot = await FirebaseFirestore.instance.collection("company").doc(id).get();
-    
+    final DocumentSnapshot<Map<String, dynamic>> queryCandidatSnapshot =
+        await FirebaseFirestore.instance.collection("user").doc(id).get();
+    final DocumentSnapshot<Map<String, dynamic>> queryCompanySnapshot =
+        await FirebaseFirestore.instance.collection("company").doc(id).get();
+
     if (queryCandidatSnapshot.exists) {
       user = queryCandidatSnapshot.data()!;
       user['type'] = 'user';
       return user;
-    }else if (queryCompanySnapshot.exists) {
+    } else if (queryCompanySnapshot.exists) {
       user = queryCompanySnapshot.data()!;
       user['type'] = 'company';
       return user;
@@ -52,8 +83,12 @@ class Database {
 
   Future<Map?> softSkills() async {
     var softSkills = {};
-    final DocumentSnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("soft_skill").doc("list").get();
-    
+    final DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+        await FirebaseFirestore.instance
+            .collection("soft_skill")
+            .doc("list")
+            .get();
+
     if (querySnapshot.exists) {
       softSkills = querySnapshot.data()!;
       return softSkills;
@@ -67,8 +102,12 @@ class Database {
 
   Future<Map?> getMessages(int id) async {
     var messages = {};
-    final DocumentSnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("message").doc(id.toString()).get();
-    
+    final DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+        await FirebaseFirestore.instance
+            .collection("message")
+            .doc(id.toString())
+            .get();
+
     if (querySnapshot.exists) {
       messages = querySnapshot.data()!;
       return messages;
@@ -81,7 +120,8 @@ class Database {
   }
 
   Future<String?> getPicture(int id) async {
-    final Reference storageRef = FirebaseStorage.instance.ref().child('users/$id.png');
+    final Reference storageRef =
+        FirebaseStorage.instance.ref().child('users/$id.png');
 
     try {
       final String downloadURL = await storageRef.getDownloadURL();
@@ -99,7 +139,7 @@ class Database {
     await FirebaseFirestore.instance.collection("user").doc(uid).set({
       'username': "Mossy Pebble",
       'activity_sector': 'Restauration',
-      'card_liked': {},//{'0-0': FieldValue.serverTimestamp()},
+      'card_liked': {}, //{'0-0': FieldValue.serverTimestamp()},
       'email': "email",
       'experience': ['Cuisinier', 'Hacker'],
       'favorite': [],
@@ -121,7 +161,6 @@ class Database {
 
   Future<void> createCompany(String uid) async {
     await FirebaseFirestore.instance.collection("company").doc(uid).set({
-
       'colors': ["#FF0000", "#00FF00"],
       'description': {
         'en': "",
@@ -174,5 +213,4 @@ class Database {
   //     'soft_skills': softSkills,
   //   });
   // }
-
 }
