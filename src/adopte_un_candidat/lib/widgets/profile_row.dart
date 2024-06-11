@@ -44,20 +44,25 @@ class ProfileRowCommon extends StatelessWidget {
   final String functiontype;
   final String uid;
 
-  ProfileRowCommon({
-    super.key,
-    required this.title,
-    required this.content,
-    required this.type,
-    required this.functiontype,
-    required this.uid
-  });
+  const ProfileRowCommon(
+      {super.key,
+      required this.title,
+      required this.content,
+      required this.type,
+      required this.functiontype,
+      required this.uid});
 
-  void _showChangeInfoDialog(BuildContext context, String title, TextInputType type, String uid, String functiontype) {
+  void _showChangeInfoDialog(BuildContext context, String title,
+      TextInputType type, String uid, String functiontype) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return ChangeInfosProfile(title: title, type: type, uid: uid, functiontype: functiontype,);
+        return ChangeInfosProfile(
+          title: title,
+          type: type,
+          uid: uid,
+          functiontype: functiontype,
+        );
       },
     );
   }
@@ -98,9 +103,14 @@ class ProfileRowCommon extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    content,
-                  ),
+                  Flexible(
+                      child: SingleChildScrollView(
+                    child: Text(
+                      content,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 10,
+                    ),
+                  ))
                 ],
               ),
             ),
@@ -148,7 +158,11 @@ class ProfileRowUser extends StatelessWidget {
   final List<dynamic> colors;
   final String image;
 
-  const ProfileRowUser({super.key, required this.username, required this.colors, required this.image});
+  const ProfileRowUser(
+      {super.key,
+      required this.username,
+      required this.colors,
+      required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -169,7 +183,8 @@ class ProfileRowUser extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 24,
-              backgroundColor: Color(int.parse("0xFF${colors[0]}")), // Need to be colors choosen by the user 
+              backgroundColor: Color(int.parse(
+                  "0xFF${colors[0]}")), // Need to be colors choosen by the user
               foregroundImage: NetworkImage(
                 image,
               ),
@@ -215,7 +230,10 @@ class ProfileRowCompany extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 16),
-            Text(name, style: const TextStyle(decoration: TextDecoration.underline),),
+            Text(
+              name,
+              style: const TextStyle(decoration: TextDecoration.underline),
+            ),
           ],
         ),
       ),
