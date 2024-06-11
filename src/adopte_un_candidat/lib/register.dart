@@ -783,7 +783,7 @@ class _RegisterState extends State<Register> {
                                 alignment: Alignment.topLeft,
                                 padding: const EdgeInsets.only(top: 10),
                                 child: const Text(
-                                  'Un fois choisi, vous ne pourrez pas changer de pseudonyme',
+                                  'Une fois choisi, vous ne pourrez pas changer de pseudonyme',
                                   style: TextStyle(
                                     fontFamily: 'Roboto',
                                     color: Color(0xFF3C3C3C),
@@ -825,6 +825,10 @@ class _RegisterState extends State<Register> {
                           alignment: Alignment.bottomRight,
                           child: NextButton(
                             onPressed: () {
+                              setState(() {
+                                page = 7;
+                              });
+                              // Register nickname
 
                             },
                           ),
@@ -840,6 +844,380 @@ class _RegisterState extends State<Register> {
         Expanded(
           flex: 2,
           child: Container(),
+        )
+      ]
+    );
+  }
+
+  Widget registerStep2Candidate(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          flex: 2,
+          child: logoAdopte(context)
+        ),
+        Expanded(
+          flex: 6,
+          child: Column(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Container(
+                  alignment: Alignment.bottomLeft,
+                  padding: const EdgeInsets.only(left: 40,right: 1),
+                  child: const Text(
+                    'Étape 2 :',
+                    style: TextStyle(
+                      fontFamily: 'Quicksand',
+                      color: Colors.black,
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  alignment: Alignment.bottomLeft,
+                  padding: const EdgeInsets.only(left: 40,right: 1),
+                  child: const Text(
+                    'Choisir\nun avatar',
+                    style: TextStyle(
+                      fontFamily: 'Quicksand',
+                      color: Colors.black,
+                      fontSize: 34,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 8,
+                child: Container(
+                  padding: const EdgeInsets.only(right: 40,left: 40,top: 20),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 4,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: AvatarRandomizerButton(
+                                onPressed: () {
+                              
+                                },
+                                icon: Transform.flip(
+                                  flipX: true,
+                                  flipY: true,
+                                  child: const Icon(Icons.shuffle_rounded, color: Color(0xFF939393), size: 35,),
+                                ),
+                                text: 'Couleur',
+                              )
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Center(
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    gradient: LinearGradient(
+                                      colors: [Color(0xFFE02800), Color(0xFFF8CAC0)], // will be changeable 
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                    )
+                                  ),
+                                  child: Image.asset('assets/images/cat-avatar.png', width: MediaQuery.of(context).size.width * 0.5), // will be changeable
+                                ),
+                              )
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: AvatarRandomizerButton(
+                                onPressed: () {
+                              
+                                },
+                                icon: const Icon(Icons.shuffle_rounded, color: Color(0xFF939393), size: 35),
+                                text: 'Image',
+                              )
+                            ),
+                          ],
+                        )
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                                child: Container(
+                                alignment: Alignment.bottomLeft,
+                                padding: const EdgeInsets.only(top: 10),
+                                child: const Text(
+                                  'Une fois choisi, vous ne pourrez pas changer de d\'image et de couleur de profile',
+                                  style: TextStyle(
+                                    fontFamily: 'Roboto',
+                                    color: Color(0xFF3C3C3C),
+                                    fontSize: 10,
+                                  ),
+                                )
+                              )
+                            ),
+                          ],
+                        )
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          alignment: Alignment.bottomRight,
+                          child: NextButton(
+                            onPressed: () {
+                              setState(() {
+                                page = 8;
+                              });
+                              // register avatar
+
+                            },
+                          ),
+                        ),
+                      )
+                    ]
+                  )
+                )
+              )
+            ]
+          )
+        ),
+        Expanded(
+          flex: 2,
+          child: Container(),
+        )
+      ]
+    );
+  }
+
+  Widget registerStep3Candidate(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          flex: 2,
+          child: logoAdopte(context)
+        ),
+        Expanded(
+          flex: 8,
+          child: Column(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  alignment: Alignment.bottomLeft,
+                  padding: const EdgeInsets.only(left: 40,right: 1),
+                  child: const Text(
+                    'Étape 3 :',
+                    style: TextStyle(
+                      fontFamily: 'Quicksand',
+                      color: Colors.black,
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  padding: const EdgeInsets.only(left: 40,right: 40),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          alignment: Alignment.bottomLeft,
+                          child: const Text(
+                            'Vos soft-skills',
+                            style: TextStyle(
+                              fontFamily: 'Quicksand',
+                              color: Colors.black,
+                              fontSize: 34,
+                            ),
+                          ),
+                        )
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          child: const Text(
+                            'Sélectionnez vos soft skills qui seront visibles par les entreprises',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              color: Colors.black,
+                              fontSize: 10,
+                            ),
+                          ),
+                        )
+                      )
+                    ],
+                  )
+                ),
+              ),
+              Expanded(
+                flex: 9,
+                child: Container(
+                  padding: const EdgeInsets.only(left: 40, right: 40, bottom: 10, top: 10),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(30),
+                      color: const Color(0xFFE8E8E8)
+                    ),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  alignment: Alignment.bottomLeft,
+                                  padding: const EdgeInsets.only(left: 20, bottom: 5),
+                                  child: const Text(
+                                    '\"Soft-skill category\"',
+                                    style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                )
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  alignment: Alignment.topCenter,
+                                  padding: const EdgeInsets.only(left: 20, right: 20),
+                                  child: Container(
+                                    color: Colors.black,
+                                    height: 2,
+                                  )
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex: 5,
+                          child: Container(
+                            // Soft-skills area (not selected)
+
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 2,
+                                child: Center(
+                                  child: Container(
+                                    padding: const EdgeInsets.only(left: 130, right: 130, top: 5),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Color(0xFF747474), // color will be changeable depending the soft-skill category
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Color(0xFFC5C5C5), // color will be changeable depending the soft-skill category
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Color(0xFFC5C5C5), // color will be changeable depending the soft-skill category
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Color(0xFFC5C5C5), // color will be changeable depending the soft-skill category
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  padding: const EdgeInsets.only(left: 20, right: 20),
+                                  child: Container(
+                                    color: Colors.black,
+                                    height: 2,
+                                  )
+                                ),
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: const Text(
+                                    'Vos soft-skills sélectionnés',
+                                    style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: Container(
+                            // Soft-skills area (selected)
+                            
+                          ),
+                        ),
+                      ],
+                    )
+                  ),
+                )
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  alignment: Alignment.centerRight,
+                  padding: const EdgeInsets.only(right: 40),
+                  child: NextButton(
+                    onPressed: () {
+
+                    },
+                  ),
+                ),
+              )
+            ]
+          )
         )
       ]
     );
@@ -925,6 +1303,10 @@ class _RegisterState extends State<Register> {
         return registerInformationCandidate(context);
       case 6:
         return registerStep1Candidate(context);
+      case 7:
+        return registerStep2Candidate(context);
+      case 8:
+        return registerStep3Candidate(context);
       default:
         return registerChoicePage(context);
     }
