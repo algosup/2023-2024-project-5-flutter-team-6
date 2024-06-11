@@ -137,12 +137,6 @@ class _SuperNavigationBarState extends State<SuperNavigationBar> {
             });
             switch (index) {
               case 0:
-                // var user = await Authentication().getCurrentUser();
-                // if (user == null) {
-                //   context.replaceNamed('login');
-                //   return;
-                // }
-                // await Database().createUser(user.uid);
                 context.replaceNamed('messages');
                 break;
               case 1:
