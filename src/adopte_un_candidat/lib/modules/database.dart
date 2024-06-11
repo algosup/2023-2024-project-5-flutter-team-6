@@ -26,6 +26,8 @@ class Database {
         QuerySnapshot<Map<String, dynamic>> proposalList = await doc.reference.collection("proposal").get();
         int porposalIndex = proposalList.docs.length > 1 ? Random().nextInt(proposalList.docs.length) - 1 : 0;
 
+        if (porposalIndex < 0) porposalIndex = 0;
+
         if (proposalList.docs.isNotEmpty) {
           userCard?['proposal'] = proposalList.docs[porposalIndex].data();
           //
