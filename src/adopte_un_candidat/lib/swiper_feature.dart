@@ -27,13 +27,6 @@ class SwiperFeatureState extends State<SwiperFeature> {
     //   _shakeCard();
     // });
     super.initState();
-    database.getStack().then(
-      (value) {
-        setState(() {
-          cardStack = value;
-        });
-      },
-    );
   }
 
   void _swipeEnd(int previousIndex, int targetIndex, SwiperActivity activity) {
@@ -86,7 +79,7 @@ class SwiperFeatureState extends State<SwiperFeature> {
     if (cardStack != null) {
       return AppinioSwiper(
         invertAngleOnBottomDrag: true,
-        backgroundCardCount: cardStack!.length > 1 ? 2 : 1,
+        backgroundCardCount: cardStack!.length > 1 ? 1 : 0,
         swipeOptions: const SwipeOptions.symmetric(
           horizontal: true,
         ),

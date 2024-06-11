@@ -7,14 +7,7 @@ class Cards extends StatelessWidget {
 
   Cards({super.key, required this.user});
 
-  // dynamic user;
   bool versoShowed = false;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   user = widget.user;
-  // }
 
   Widget displayCommonSoftSkills() {
     return user["proposal"]["soft_skill"] != null
@@ -140,9 +133,7 @@ class Cards extends StatelessWidget {
                     ),
                     GestureDetector(
                         onTap: () {
-                          // setState(() {
-                          //   versoShowed = true;
-                          // });
+                          versoShowed = true;
                           if (kDebugMode) {
                             print("Read more has been pressed");
                           }
@@ -488,9 +479,7 @@ class Cards extends StatelessWidget {
   Widget cardVerso() {
     return GestureDetector(
         onTap: () {
-          // setState(() {
-          //   versoShowed = false;
-          // });
+          versoShowed = false;
         },
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
