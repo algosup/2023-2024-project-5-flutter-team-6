@@ -38,4 +38,4 @@ Despite the many absences, the project progressed well, and the team atmosphere 
 
 ## Next week planning
 
-Next week's focus will primarily be on software development, but also on the User Manual and tracking the project with management documents. The Work Breakdown Structure (WBS) also needs to be finalized and incorporated into the management documents.
+Next week's focus will primarily be on software development, but also on the User Manual and tracking the project with management documents.
