@@ -5,23 +5,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 
 class Database {
-
-  Future<Map?> getCompany(int id) async {
-    var company = {};
-    final DocumentSnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("company").doc(id.toString()).get();
-
-    
-    if (querySnapshot.exists) {
-      company = querySnapshot.data()!;
-      return company;
-    } else {
-      if (kDebugMode) {
-        print("No such document!");
-      }
-      return null;
-    }
-  }
-
   Future<List?> getStack() async {
     var cardStack = [];
     Map<String, dynamic>? company;
@@ -44,12 +27,18 @@ class Database {
     return cardStack;
   }
 
-  Future<Map?> getUser(int id) async {
+  Future<Map?> getUser(String id) async {
     var user = {};
-    final DocumentSnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("user").doc(id.toString()).get();
+    final DocumentSnapshot<Map<String, dynamic>> queryCandidatSnapshot = await FirebaseFirestore.instance.collection("user").doc(id).get();
+    final DocumentSnapshot<Map<String, dynamic>> queryCompanySnapshot = await FirebaseFirestore.instance.collection("company").doc(id).get();
     
-    if (querySnapshot.exists) {
-      user = querySnapshot.data()!;
+    if (queryCandidatSnapshot.exists) {
+      user = queryCandidatSnapshot.data()!;
+      user['type'] = 'user';
+      return user;
+    }else if (queryCompanySnapshot.exists) {
+      user = queryCompanySnapshot.data()!;
+      user['type'] = 'company';
       return user;
     } else {
       if (kDebugMode) {
@@ -106,6 +95,7 @@ class Database {
   Future<void> createUser(String uid) async {
     String? pictureLink = await getPicture(Random().nextInt(47));
     await FirebaseFirestore.instance.collection("user").doc(uid).set({
+      'username': "Mossy Pebble",
       'activity_sector': 'Restauration',
       'card_liked': {},//{'0-0': FieldValue.serverTimestamp()},
       'email': "email",
@@ -114,6 +104,8 @@ class Database {
       'first_name': 'Tom',
       'last_name': 'Hanks',
       'location': 'Paris',
+      'phone': '0123456789',
+      'colors': ["#FF0000", "#00FF00"],
       'professional_status': 'Etudiant',
       'profile_picture': pictureLink != null ? pictureLink : '',
       'soft_skills': {
@@ -124,4 +116,40 @@ class Database {
       }
     });
   }
+
+
+  // ------------------------------------------------
+  // ----------------- User Actions -----------------
+  // ------------------------------------------------
+
+  Future<void> lastNameUpdate(String id, String lastName) async {
+    await FirebaseFirestore.instance.collection("user").doc(id).update({
+      'last_name': lastName,
+    });
+  }
+
+  Future<void> firstNameUpdate(String id, String firstName) async {
+    await FirebaseFirestore.instance.collection("user").doc(id).update({
+      'first_name': firstName,
+    });
+  }
+
+  Future<void> emailUpdate(String id, String email) async {
+    await FirebaseFirestore.instance.collection("user").doc(id).update({
+      'email': email,
+    });
+  }
+
+  Future<void> phoneUpdate(String id, String phone) async {
+    await FirebaseFirestore.instance.collection("user").doc(id).update({
+      'phone': phone,
+    });
+  }
+
+  // Future<void> softSkillsUpdate(String id, Map softSkills) async {
+  //   await FirebaseFirestore.instance.collection("user").doc(id).update({
+  //     'soft_skills': softSkills,
+  //   });
+  // }
+
 }

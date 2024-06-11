@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import './alert_dialogue.dart';
@@ -40,19 +42,23 @@ class ProfileRowCommon extends StatelessWidget {
   final String title;
   final String content;
   final TextInputType type;
+  final String functiontype;
+  final String uid;
 
-  const ProfileRowCommon({
+  ProfileRowCommon({
     super.key,
     required this.title,
     required this.content,
     required this.type,
+    required this.functiontype,
+    required this.uid
   });
 
-  void _showChangeInfoDialog(BuildContext context, String title, TextInputType type) {
+  void _showChangeInfoDialog(BuildContext context, String title, TextInputType type, String uid, String functiontype) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return ChangeInfosProfile(title: title, type: type,);
+        return ChangeInfosProfile(title: title, type: type, uid: uid, functiontype: functiontype,);
       },
     );
   }
@@ -61,7 +67,7 @@ class ProfileRowCommon extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _showChangeInfoDialog(context, title, type);
+        _showChangeInfoDialog(context, title, type, uid, functiontype);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -199,10 +205,11 @@ class ProfileRowPage extends StatelessWidget {
 }
 
 class ProfileRowUser extends StatelessWidget {
-  final String name;
-  final String lastName;
+  final String username;
+  final List<dynamic> colors;
+  final String image;
 
-  const ProfileRowUser({super.key, required this.name, required this.lastName});
+  const ProfileRowUser({super.key, required this.username, required this.colors, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -221,19 +228,17 @@ class ProfileRowUser extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               radius: 24,
-              backgroundColor: Colors.amber, // Need to be colors choosen by the user 
+              backgroundColor: Color(int.parse("0xFF${colors[0]}")), // Need to be colors choosen by the user 
               foregroundImage: NetworkImage(
-                "https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Falgosup.png?alt=media&token=34e1a449-5117-4333-8ed8-561cff132621",
+                image,
               ),
             ),
             const SizedBox(width: 16),
             Text(
-              name,
+              username,
             ),
-            const SizedBox(width: 16),
-            Text(lastName),
           ],
         ),
       ),
@@ -265,6 +270,7 @@ class ProfileRowCompany extends StatelessWidget {
           children: [
             const CircleAvatar(
               radius: 24,
+              backgroundColor: Colors.transparent,
               foregroundImage: NetworkImage(
                 "https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Falgosup.png?alt=media&token=34e1a449-5117-4333-8ed8-561cff132621",
               ),
