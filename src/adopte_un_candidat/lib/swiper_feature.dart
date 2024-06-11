@@ -27,36 +27,29 @@ class SwiperFeatureState extends State<SwiperFeature> {
     //   _shakeCard();
     // });
     super.initState();
-    database.getStack().then(
-      (value) {
-        setState(() {
-          cardStack = value;
-        });
-      },
-    );
   }
 
   void _swipeEnd(int previousIndex, int targetIndex, SwiperActivity activity) {
     switch (activity) {
       case Swipe():
-        log('The card was swiped to the : ${activity.direction}');
-        log('previous index: $previousIndex, target index: $targetIndex');
+        print('The card was swiped to the : ${activity.direction}');
+        print('previous index: $previousIndex, target index: $targetIndex');
         break;
       case Unswipe():
-        log('A ${activity.direction.name} swipe was undone.');
-        log('previous index: $previousIndex, target index: $targetIndex');
+        print('A ${activity.direction.name} swipe was undone.');
+        print('previous index: $previousIndex, target index: $targetIndex');
         break;
       case CancelSwipe():
-        log('A swipe was cancelled');
+        print('A swipe was cancelled');
         break;
       case DrivenActivity():
-        log('Driven Activity');
+        print('Driven Activity');
         break;
     }
   }
 
   void _onEnd() {
-    log('end reached!');
+    print('end reached!');
   }
 
   // Animates the card back and forth to teach the user that it is swipable.
@@ -86,7 +79,7 @@ class SwiperFeatureState extends State<SwiperFeature> {
     if (cardStack != null) {
       return AppinioSwiper(
         invertAngleOnBottomDrag: true,
-        backgroundCardCount: cardStack!.length > 1 ? 2 : 1,
+        backgroundCardCount: cardStack!.length > 1 ? 1 : 0,
         swipeOptions: const SwipeOptions.symmetric(
           horizontal: true,
         ),
@@ -94,15 +87,13 @@ class SwiperFeatureState extends State<SwiperFeature> {
         onCardPositionChanged: (
           SwiperPosition position,
         ) {
-          //debugPrint('${position.offset.toAxisDirection()}, '
-          //    '${position.offset}, '
-          //    '${position.angle}');
+        
         },
         onSwipeEnd: _swipeEnd,
         onEnd: _onEnd,
         cardCount: cardStack!.length,
         cardBuilder: (BuildContext context, int index) {
-          return Cards(company: cardStack![index]);
+          return Cards(user: cardStack![index]);
         },
       );
     } else {
