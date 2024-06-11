@@ -1,5 +1,4 @@
 import 'package:adopte_un_candidat/modules/database.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ChangeInfosProfile extends StatelessWidget {

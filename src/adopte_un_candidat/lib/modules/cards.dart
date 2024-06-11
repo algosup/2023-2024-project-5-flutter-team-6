@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 class Cards extends StatelessWidget {
   final dynamic user;
 
-  Cards({super.key, required this.user});
+  const Cards({super.key, required this.user});
 
-  bool versoShowed = false;
+  final bool versoShowed = false;
 
   Widget displayCommonSoftSkills() {
     return user["proposal"]["soft_skill"] != null
@@ -133,7 +133,7 @@ class Cards extends StatelessWidget {
                     ),
                     GestureDetector(
                         onTap: () {
-                          versoShowed = true;
+                          // versoShowed = true;
                           if (kDebugMode) {
                             print("Read more has been pressed");
                           }
@@ -479,7 +479,7 @@ class Cards extends StatelessWidget {
   Widget cardVerso() {
     return GestureDetector(
         onTap: () {
-          versoShowed = false;
+          // versoShowed = false;
         },
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

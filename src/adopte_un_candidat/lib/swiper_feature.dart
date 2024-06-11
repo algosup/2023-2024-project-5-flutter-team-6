@@ -1,9 +1,7 @@
-import 'dart:developer';
-
 import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
+import 'package:flutter/foundation.dart';
 import 'modules/cards.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SwiperFeature extends StatefulWidget {
@@ -32,24 +30,34 @@ class SwiperFeatureState extends State<SwiperFeature> {
   void _swipeEnd(int previousIndex, int targetIndex, SwiperActivity activity) {
     switch (activity) {
       case Swipe():
-        print('The card was swiped to the : ${activity.direction}');
-        print('previous index: $previousIndex, target index: $targetIndex');
+        if (kDebugMode) {
+          print('The card was swiped to the : ${activity.direction}');
+          print('previous index: $previousIndex, target index: $targetIndex');
+        }
         break;
       case Unswipe():
-        print('A ${activity.direction.name} swipe was undone.');
-        print('previous index: $previousIndex, target index: $targetIndex');
+        if (kDebugMode) {
+          print('A ${activity.direction.name} swipe was undone.');
+          print('previous index: $previousIndex, target index: $targetIndex');
+        }
         break;
       case CancelSwipe():
-        print('A swipe was cancelled');
+        if (kDebugMode) {
+          print('A swipe was cancelled');
+        }
         break;
       case DrivenActivity():
-        print('Driven Activity');
+        if (kDebugMode) {
+          print('Driven Activity');
+        }
         break;
     }
   }
 
   void _onEnd() {
-    print('end reached!');
+    if (kDebugMode) {
+      print('end reached!');
+    }
   }
 
   // Animates the card back and forth to teach the user that it is swipable.

@@ -69,14 +69,14 @@ final GoRouter router = GoRouter(
       path: '/softskills',
       name: 'softskills',
       builder: (BuildContext context, GoRouterState state) {
-        return const Softskills(); // TODO: Replace with the softskills page
+        return const Softskills();
       },
     ),
     GoRoute(
       path: '/chat',
       name: 'chat',
       builder: (BuildContext context, GoRouterState state) {
-        return Chat();
+        return const Chat();
       },
     ),
     GoRoute(

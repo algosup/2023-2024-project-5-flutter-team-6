@@ -1,7 +1,5 @@
 import 'package:adopte_un_candidat/firebase_options.dart';
-import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'routes.dart';
 

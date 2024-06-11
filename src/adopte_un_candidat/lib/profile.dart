@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import './widgets/navigation_bar.dart';
 import './widgets/profile_row.dart';
-import './modules/database.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -16,8 +15,8 @@ class Profile extends StatefulWidget {
 class ProfileState extends State<Profile> {
 
   Database database = Database();
-  var user;
-  var userData;
+  dynamic user;
+  dynamic userData;
   String typeAccount = 'none';
 
   @override

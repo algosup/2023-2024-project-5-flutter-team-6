@@ -2,19 +2,20 @@ import 'dart:math';
 
 import 'package:adopte_un_candidat/modules/authentication.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 
 class Database {
   Future<List?> getStack() async {
     var cardStack = [];
-    var user;
-    var userData;
-    var typeAccount;
+    User? user;
+    Map? userData;
+    String typeAccount;
 
     user = await Authentication().getCurrentUser();
-    userData = await getUser(user.uid);
-    typeAccount = userData['type'];
+    userData = await getUser(user!.uid);
+    typeAccount = userData!['type'];
 
     Map<String, dynamic>? userCard;
     if (typeAccount == 'user') {
@@ -30,7 +31,7 @@ class Database {
 
         if (proposalList.docs.isNotEmpty) {
           userCard?['proposal'] = proposalList.docs[porposalIndex].data();
-          //
+
           String proposalId = proposalList.docs[porposalIndex].id.toString();
           // TODO: check if the user has already liked this card
 
@@ -58,6 +59,7 @@ class Database {
     } else {
       return null;
     }
+    return null;
   }
 
   Future<Map?> getUser(String id) async {
@@ -151,7 +153,7 @@ class Database {
       'phone': '0123456789',
       'colors': ["#FF0000", "#00FF00"],
       'professional_status': 'Etudiant',
-      'profile_picture': pictureLink != null ? pictureLink : '',
+      'profile_picture': pictureLink ?? '',
       'soft_skills': {
         "Analytical": [],
         "Interpersonal": [],
