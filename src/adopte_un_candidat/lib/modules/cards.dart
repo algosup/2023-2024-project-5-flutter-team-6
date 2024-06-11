@@ -9,6 +9,21 @@ class Cards extends StatelessWidget {
 
   final bool versoShowed = false;
 
+  String getRemoteLabel(int on_remote){
+    switch (on_remote) {
+      case 0:
+        return "Non renseigné";
+      case 1:
+        return "Sur site";
+      case 2:
+        return "Télétravail";
+      case 3:
+        return "sur site/télétravail";
+      default:
+        return "Non renseigné";
+    }
+  }
+
   Widget displayCommonSoftSkills() {
     return user["proposal"]["soft_skill"] != null
         ? GridView.count(
@@ -192,7 +207,7 @@ class Cards extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Text(
-                        user["proposal"]["location"]["on_remote"].toString(),
+                        getRemoteLabel(user["proposal"]["location"]["on_remote"]),
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: Colors.white,

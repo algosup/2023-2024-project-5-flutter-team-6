@@ -58,6 +58,11 @@ class SwiperFeatureState extends State<SwiperFeature> {
     if (kDebugMode) {
       print('end reached!');
     }
+    database.getStack().then((value) {
+      setState(() {
+        cardStack!.add(value);
+      });
+    });
   }
 
   // Animates the card back and forth to teach the user that it is swipable.
