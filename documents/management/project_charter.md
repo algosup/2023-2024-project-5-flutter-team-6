@@ -8,7 +8,7 @@
 
 <details>
 
-<summary style="font-size:1.2em; font-weight:bold;">Table of content</summary>
+<summary style="font-size:1.2em; font-weight:bold;">📒 Table of content</summary>
 
 - [Project Overview](#project-overview)
 - [Project Scope](#project-scope)
