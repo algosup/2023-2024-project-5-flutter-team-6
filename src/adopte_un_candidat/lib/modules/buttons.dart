@@ -296,3 +296,51 @@ class NextButton extends StatelessWidget {
     );
   }
 }
+
+class AvatarRandomizerButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final Widget icon;
+  final String text;
+
+  const AvatarRandomizerButton ({
+    required this.onPressed,
+    required this.icon,
+    required this.text,
+    super.key,
+  });
+  
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          flex: 10,
+          child: Container(
+            alignment: Alignment.bottomCenter,
+            child: FloatingActionButton(
+              onPressed: onPressed,
+              backgroundColor: const Color(0xFFD9D9D9),
+              shape: const CircleBorder(),
+              elevation: 0,
+              child: icon,
+            )
+          )
+        ),
+        Expanded(
+          flex: 1,
+          child: Container(
+            alignment: Alignment.bottomCenter,
+            child: Text(
+              text,
+              style: const TextStyle(
+                fontFamily: 'Roboto',
+                color: Colors.black,
+                fontSize: 12,
+              ),
+            )
+          )
+        ),
+      ],
+    );
+  }
+}

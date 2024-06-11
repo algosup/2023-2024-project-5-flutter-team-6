@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import './widgets/navigation_bar.dart';
 import './widgets/profile_row.dart';
+import './modules/database.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -50,7 +51,7 @@ class ProfileState extends State<Profile> {
       widgets.add( ProfileRowCommon(title: 'Prénom', content: userData["first_name"], type: TextInputType.name,  uid: user.uid, functiontype: "firstname",),);
       widgets.add( ProfileRowCommon(title: 'Adresse E-Mail', content: userData["email"], type: TextInputType.emailAddress,  uid: user.uid, functiontype: "email",),);
       widgets.add( ProfileRowCommon(title: 'Numéro de téléphone', content: userData["phone"], type: TextInputType.phone,  uid: user.uid, functiontype: "phone",),);          
-      widgets.add(ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none,  uid: user.uid, functiontype: "",),);
+      widgets.add(const ProfileRowSoft(title: 'Soft skills', content: ['Parler'],),);
       widgets.add(const ProfileRowPage(title: 'Cartes enregistrées'),);
       widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
       widgets.add(const ProfileRowPage(title: 'Modifier les paramètres'),);
@@ -91,6 +92,7 @@ class ProfileState extends State<Profile> {
         children:  [
           ...widgets,
           FloatingActionButton(
+            heroTag: 'disconnect',
             elevation: 0,
             backgroundColor: const Color(0xFFFFFFFF),
             onPressed: () {
@@ -100,7 +102,7 @@ class ProfileState extends State<Profile> {
             child: const Text('Déconnexion',style: TextStyle(fontSize: 16, color: Colors.red),),
           ),
           FloatingActionButton(
-            
+            heroTag: 'deleteaccount',
             elevation: 0,
             backgroundColor: const Color(0xFFFFFFFF),
             onPressed: () {
