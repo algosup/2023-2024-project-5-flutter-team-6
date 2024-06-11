@@ -19,10 +19,9 @@ class _SoftskillsState extends State<Softskills> {
       ),
       body: const Column(
         children: [
-          SoftSkillsButton(
-            type: 'Social',
-            content: 'Insulte',
-          ),
+          SoftSkillsButton(type: 'Social',content: 'Insulte',),
+          SoftSkillsButton(type: 'Analytical',content: 'Super Mega Supra Long Texte De La Mort Qui Tue',),
+          SoftSkillsButton(type: 'Social',content: 'Insulte',),
         ],
       ),
       bottomNavigationBar: const SuperNavigationBar(

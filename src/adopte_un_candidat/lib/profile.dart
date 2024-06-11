@@ -51,7 +51,7 @@ class ProfileState extends State<Profile> {
       widgets.add( ProfileRowCommon(title: 'Prénom', content: userData["first_name"], type: TextInputType.name,  uid: user.uid, functiontype: "firstname",),);
       widgets.add( ProfileRowCommon(title: 'Adresse E-Mail', content: userData["email"], type: TextInputType.emailAddress,  uid: user.uid, functiontype: "email",),);
       widgets.add( ProfileRowCommon(title: 'Numéro de téléphone', content: userData["phone"], type: TextInputType.phone,  uid: user.uid, functiontype: "phone",),);          
-      widgets.add(ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none,  uid: user.uid, functiontype: "",),);
+      widgets.add(const ProfileRowSoft(title: 'Soft skills', content: ['Parler'],),);
       widgets.add(const ProfileRowPage(title: 'Cartes enregistrées'),);
       widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
       widgets.add(const ProfileRowPage(title: 'Modifier les paramètres'),);
@@ -69,7 +69,7 @@ class ProfileState extends State<Profile> {
       widgets.add(ProfileRowCommon(title: 'Adresse', content: '3 rue du poin 18100 Vierzon, France', type: TextInputType.streetAddress, uid: user.uid, functiontype: "",),);
       widgets.add(ProfileRowCommon(title: 'Adresse E-Mail', content: 'mail@mail.com', type: TextInputType.emailAddress, uid: user.uid, functiontype: "",),);
       widgets.add(ProfileRowCommon(title: 'Numéro de téléphone', content: '06 00 00 00 00', type: TextInputType.phone, uid: user.uid, functiontype: "",),);          
-      widgets.add(ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none, uid: user.uid, functiontype: "",),);
+      widgets.add(const ProfileRowSoft(title: 'Soft skills', content: ['Parler'],),);
       widgets.add(const ProfileRowPage(title: 'Vos offres'),);
       widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
       widgets.add(const ProfileRowPage(title: 'Modifier les paramètres'),);
