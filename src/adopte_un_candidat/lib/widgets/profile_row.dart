@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import './alert_dialogue.dart';
 
 class ProfileRowCategory extends StatelessWidget {
@@ -100,6 +101,66 @@ class ProfileRowCommon extends StatelessWidget {
                 children: [
                   Text(
                     content,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileRowSoft extends StatelessWidget {
+  final String title;
+  final List<dynamic> content;
+
+  const ProfileRowSoft({
+    super.key,
+    required this.title,
+    required this.content,
+  });
+
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        context.pushNamed('softskills');
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        height: MediaQuery.of(context).size.height * 0.10,
+        decoration: const BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: Color(0xFFA7207D),
+            ),
+          ),
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    content[0],
                   ),
                 ],
               ),

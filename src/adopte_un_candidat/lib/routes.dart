@@ -7,6 +7,7 @@ import 'login.dart';
 import 'profile.dart';
 import 'messages.dart';
 import 'chat.dart';
+import 'softskills.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
@@ -46,7 +47,7 @@ final GoRouter router = GoRouter(
       path: '/softskills',
       name: 'softskills',
       builder: (BuildContext context, GoRouterState state) {
-        return const Home(); // TODO: Replace with the softskills page
+        return const Softskills(); // TODO: Replace with the softskills page
       },
     ),
     GoRoute(
