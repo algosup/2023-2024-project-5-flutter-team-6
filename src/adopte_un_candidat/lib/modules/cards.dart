@@ -2,24 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class Cards extends StatefulWidget {
+class Cards extends StatelessWidget {
   final dynamic user;
 
-  const Cards({super.key, required this.user});
+  Cards({super.key, required this.user});
 
-  @override
-  CardsState createState() => CardsState();
-}
-
-class CardsState extends State<Cards> {
-  dynamic user;
+  // dynamic user;
   bool versoShowed = false;
 
-  @override
-  void initState() {
-    super.initState();
-    user = widget.user;
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   user = widget.user;
+  // }
 
   Widget displayCommonSoftSkills() {
     return user["proposal"]["soft_skill"] != null
@@ -145,9 +140,9 @@ class CardsState extends State<Cards> {
                     ),
                     GestureDetector(
                         onTap: () {
-                          setState(() {
-                            versoShowed = true;
-                          });
+                          // setState(() {
+                          //   versoShowed = true;
+                          // });
                           if (kDebugMode) {
                             print("Read more has been pressed");
                           }
@@ -493,9 +488,9 @@ class CardsState extends State<Cards> {
   Widget cardVerso() {
     return GestureDetector(
         onTap: () {
-          setState(() {
-            versoShowed = false;
-          });
+          // setState(() {
+          //   versoShowed = false;
+          // });
         },
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

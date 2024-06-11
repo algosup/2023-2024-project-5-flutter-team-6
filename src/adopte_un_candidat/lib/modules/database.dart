@@ -166,19 +166,19 @@ class Database {
       'colors': ["#FF0000", "#00FF00"],
       'description': {
         'en': "",
-        'fr': "",
+        'fr': "MONEY MONEY MONEY",
       },
-      'email': "macdo@mail.com",
+      'email': "ledger@mail.com",
       'location': {
         'address': "3 rue du poin",
         'country': "France",
         'town': 'Paris',
         'zip': '75000',
       },
-      'motto': "Venez comme vous êtes",
-      'name': 'Mc.Donalds',
-      'picture_profile': 'none',
-      'website': 'https://www.mcdonalds.fr/'
+      'motto': "On aime l'argent !",
+      'name': 'Ledger',
+      'picture_profile': 'https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Fformule1.png?alt=media&token=daddbbaa-0d0d-4fda-9c8e-7cb718d1101c',
+      'website': 'www.ledger.com',
     });
   }
 
