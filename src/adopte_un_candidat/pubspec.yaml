@@ -29,6 +29,7 @@ dependencies:
   google_fonts: ^6.2.1
   firebase_app_check: ^0.3.0
   firebase_core_platform_interface: ^5.0.0
+  carousel_slider: ^4.0.0
 
 
 dev_dependencies:
