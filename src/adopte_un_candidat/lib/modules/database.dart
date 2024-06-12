@@ -30,7 +30,9 @@ class Database {
         if (porposalIndex < 0) porposalIndex = 0;
 
         if (proposalList.docs.isNotEmpty) {
+          userCard?['id'] = doc.id;
           userCard?['proposal'] = proposalList.docs[porposalIndex].data();
+          userCard?['proposal']['id'] = proposalList.docs[porposalIndex].id;
 
           String proposalId = proposalList.docs[porposalIndex].id.toString();
 
@@ -50,7 +52,7 @@ class Database {
           }
         }
         if (cardStack.length >= 20 ||
-            cardStack.length >= querySnapshot.docs.length) {
+            cardStack.length >= querySnapshot.docs.length - userData['card_liked'].length) {
           return cardStack;
         }
       }
@@ -167,6 +169,42 @@ class Database {
       }
       return null;
     }
+  }
+
+  Future<void> likeCard(String id, dynamic card) async {
+    Map<dynamic, dynamic>? user = await getUser(id);
+    if (user!["type"] == 'company') {
+      // TODO: Add company liking logic
+      return;
+    } else if (user["type"] == 'user') {
+      await FirebaseFirestore.instance.collection("user").doc(id).update({
+        'card_liked.${card["id"]}-${card["proposal"]["id"]}': FieldValue.serverTimestamp(),
+      });
+    } else {
+      return;
+    }
+  }
+
+  Future<List?> getFavorites(String id) async {
+    var favorites = [];
+    final DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+        await FirebaseFirestore.instance.collection("user").doc(id).get();
+
+    if (querySnapshot.exists) {
+      favorites = querySnapshot.data()!['favorite'];
+      return favorites;
+    } else {
+      if (kDebugMode) {
+        print("No such document!");
+      }
+      return null;
+    }
+  }
+
+  void addFavorite(String id, dynamic card) async {
+      await FirebaseFirestore.instance.collection("user").doc(id).update({
+        'favorite': FieldValue.arrayUnion([{"company": card["id"], "proposal": card["proposal"]["id"]}]),
+      });
   }
 
   Future<void> createUser(String uid) async {
