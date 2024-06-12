@@ -1,9 +1,11 @@
 import 'package:adopte_un_candidat/modules/authentication.dart';
 import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:adopte_un_candidat/widgets/navigation_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 class Messages extends StatefulWidget {
   const Messages({super.key});
@@ -33,14 +35,41 @@ class MessagesState extends State<Messages> {
     });
   }
 
+  dynamic newMessageTag(dynamic message) {
+    if (message["seen"] == false && message["sender"] != user.uid) {
+      return Container(
+        padding: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25.0),
+          color: Colors.white,
+        ),
+        child: Text(
+            'NOUVEAU',
+            textAlign: TextAlign.end,
+            style: TextStyle(
+              fontSize: 24,
+              color: Colors.yellowAccent[700],
+              fontFamily: 'Quicksand',
+          ),
+          )
+      );
+    } else {
+      return Container();
+    }
+  }
+
   ListView messagesList(){
     return ListView(
                 children: messages.entries.map<Widget>((entry) {
                   final key = entry.key;
                   final value = entry.value;
 
-                  print(value);
+                  final lastmessageindex = value["messages"].length - 1;
+
+                  final timestamp = value["messages"][lastmessageindex]["date"] as Timestamp;
+                  final formattedDate = DateFormat('HH:mm, dd/MM/yyyy').format(timestamp.toDate());
                   
+
                   return Padding(
                       padding: const EdgeInsets.all(10),
                       child: GestureDetector(
@@ -70,7 +99,7 @@ class MessagesState extends State<Messages> {
                                             children: [
                                               Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.start,
+                                                    MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Text(
                                                     value["userData"]["name"],
@@ -83,6 +112,8 @@ class MessagesState extends State<Messages> {
                                                             TextDecoration
                                                                 .underline),
                                                   ),
+
+                                                  newMessageTag(value["messages"][lastmessageindex]),
                                                 ],
                                               ),
                                               Row(
@@ -90,7 +121,7 @@ class MessagesState extends State<Messages> {
                                                     MainAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    "${value["messages"][0]["sender"] == user.uid ? "Me:" : "They:"} ${value["messages"][0]["message"]}",
+                                                    "${value["messages"][lastmessageindex]["sender"] == user.uid ? "Me:" : "They:"} ${value["messages"][lastmessageindex]["message"]}",
                                                     style: const TextStyle(
                                                       fontSize: 12,
                                                       fontFamily: 'Quicksand',
@@ -100,12 +131,13 @@ class MessagesState extends State<Messages> {
                                                   ),
                                                 ],
                                               ),
+                                             
                                               Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.end,
                                                   children: [
                                                     Text(
-                                                      '7:37, 24/03/2024',
+                                                      formattedDate,
                                                       textAlign: TextAlign.end,
                                                       style: TextStyle(
                                                         fontSize: 8,
