@@ -36,17 +36,12 @@ class Database {
 
           String proposalId = proposalList.docs[porposalIndex].id.toString();
 
-          print("${doc.id}-$proposalId 1");
-
           if (userData['card_liked']["${doc.id}-$proposalId"] != null) {
             DateTime currentTimestamp = DateTime.now();
             Timestamp savedTimestamp = userData['card_liked']["${doc.id}-$proposalId"];
             DateTime savedTimestampdate = savedTimestamp.toDate();
 
-            print("${doc.id}-$proposalId 2");
-
             if (savedTimestampdate.isBefore(currentTimestamp.subtract(const Duration(days: 7)))) {
-              print("${doc.id}-$proposalId 3");
               await FirebaseFirestore.instance.collection("user").doc(user.uid).update({
                 'card_liked.${doc.id}-$proposalId': FieldValue.delete(),
               });
@@ -177,9 +172,16 @@ class Database {
   }
 
   Future<void> likeCard(String id, dynamic card) async {
-    await FirebaseFirestore.instance.collection("user").doc(id).update({
-      'card_liked.${card["id"]}-${card["proposal"]["id"]}': FieldValue.serverTimestamp(),
-    });
+    Map<dynamic, dynamic>? user = await getUser(id);
+    if (user!["type"] == 'company') {
+      return;
+    } else if (user["type"] == 'user') {
+      await FirebaseFirestore.instance.collection("user").doc(id).update({
+        'card_liked.${card["id"]}-${card["proposal"]["id"]}': FieldValue.serverTimestamp(),
+      });
+    } else {
+      return;
+    }
   }
 
   Future<void> createUser(String uid) async {

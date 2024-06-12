@@ -42,6 +42,7 @@ class SwiperFeatureState extends State<SwiperFeature> {
           print('The card was swiped to the : ${activity.direction}');
           print('previous index: $previousIndex, target index: $targetIndex');
         }
+
         if (activity.direction.name == 'right') {
           database.likeCard(user.uid, cardStack![previousIndex]);
         }
