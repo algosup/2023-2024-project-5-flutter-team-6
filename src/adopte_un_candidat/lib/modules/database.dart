@@ -33,9 +33,21 @@ class Database {
           userCard?['proposal'] = proposalList.docs[porposalIndex].data();
 
           String proposalId = proposalList.docs[porposalIndex].id.toString();
-          // TODO: check if the user has already liked this card
 
-          cardStack.add(userCard);
+          if (userData['card_liked']["${doc.id}-$proposalId"] != null) {
+            DateTime currentTimestamp = DateTime.now();
+            Timestamp savedTimestamp = userData['card_liked']["${doc.id}-$proposalId"];
+            DateTime savedTimestampdate = savedTimestamp.toDate();
+
+            if (savedTimestampdate.isBefore(currentTimestamp.subtract(const Duration(days: 7)))) {
+              await FirebaseFirestore.instance.collection("user").doc(user.uid).update({
+                'card_liked.${doc.id}-$proposalId': FieldValue.delete(),
+              });
+              cardStack.add(userCard);
+            }
+          } else {
+            cardStack.add(userCard);
+          }
         }
         if (cardStack.length >= 20 ||
             cardStack.length >= querySnapshot.docs.length) {
@@ -104,23 +116,33 @@ class Database {
     }
   }
 
-  Future<Map?> getMessages(int id) async {
-    var messages = {};
-    final DocumentSnapshot<Map<String, dynamic>> querySnapshot =
-        await FirebaseFirestore.instance
-            .collection("message")
-            .doc(id.toString())
-            .get();
+  Future<Map?> getMessages(String uid) async {
+    Map<dynamic, dynamic>? user = await getUser(uid);
 
-    if (querySnapshot.exists) {
-      messages = querySnapshot.data()!;
-      return messages;
-    } else {
-      if (kDebugMode) {
-        print("No such document!");
+    if (user != null) {
+
+      var conversationsids = user['messages'];
+
+      var messages = {};
+      for (var id in conversationsids) {
+        final DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+            await FirebaseFirestore.instance
+                .collection("message")
+                .doc(id.toString())
+                .get();
+
+        if (querySnapshot.exists) {
+          var message = querySnapshot.data()!;
+          messages.addAll({id: message});
+        } else {
+          if (kDebugMode) {
+            print("No such document!");
+          }
+        }
       }
-      return null;
+      return messages;
     }
+    return null;
   }
 
   Future<String?> getPicture(int id) async {
