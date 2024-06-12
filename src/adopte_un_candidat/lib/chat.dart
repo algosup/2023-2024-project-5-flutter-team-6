@@ -1,7 +1,6 @@
 import 'package:adopte_un_candidat/widgets/navigation_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class Chat extends StatefulWidget {
   const Chat({super.key});
@@ -12,7 +11,7 @@ class Chat extends StatefulWidget {
 
 class ChatState extends State<Chat> {
   final TextEditingController _controller = TextEditingController();
-  final List<String> _messages = <String>[];
+  final List<String> messages = <String>[];
 
   Widget senderMessage(){
     return ListTile(
@@ -105,7 +104,7 @@ class ChatState extends State<Chat> {
         children: <Widget>[
           Expanded(
             child: ListView.builder(
-              itemCount: 4,//_messages.length,
+              itemCount: 4,//messages.length,
               itemBuilder: (BuildContext context, int index) {
                 return loadMessages(index);
               },

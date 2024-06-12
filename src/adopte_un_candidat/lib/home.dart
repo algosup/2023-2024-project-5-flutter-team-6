@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'modules/buttons.dart';
 import 'swiper_feature.dart';
-import 'package:flutter/cupertino.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

@@ -1,44 +1,79 @@
 import 'dart:math';
 
+import 'package:adopte_un_candidat/modules/authentication.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 
 class Database {
   Future<List?> getStack() async {
     var cardStack = [];
-    Map<String, dynamic>? company;
-    final QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("company").get();
+    User? user;
+    Map? userData;
+    String typeAccount;
+
+    user = await Authentication().getCurrentUser();
+    userData = await getUser(user!.uid);
+    typeAccount = userData!['type'];
+
+    Map<String, dynamic>? userCard;
+    if (typeAccount == 'user') {
+      final QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("company").get();
+
       for (final QueryDocumentSnapshot doc in querySnapshot.docs) {
-        company = doc.data() as Map<String, dynamic>?;
+        userCard = doc.data() as Map<String, dynamic>?;
+        userCard?['type'] = 'company';
         QuerySnapshot<Map<String, dynamic>> proposalList = await doc.reference.collection("proposal").get();
         int porposalIndex = proposalList.docs.length > 1 ? Random().nextInt(proposalList.docs.length) - 1 : 0;
 
-        if (proposalList.docs.length > 0) {
-          company?['proposal'] = proposalList.docs[porposalIndex].data();
-          //
+        if (porposalIndex < 0) porposalIndex = 0;
+
+        if (proposalList.docs.isNotEmpty) {
+          userCard?['proposal'] = proposalList.docs[porposalIndex].data();
+
           String proposalId = proposalList.docs[porposalIndex].id.toString();
           // TODO: check if the user has already liked this card
 
-          cardStack.add(company);
+          cardStack.add(userCard);
         }
-        if (cardStack.length >= 20 || cardStack.length >= querySnapshot.docs.length) {
+        if (cardStack.length >= 20 ||
+            cardStack.length >= querySnapshot.docs.length) {
           return cardStack;
         }
       }
-    return cardStack;
+    } else if (typeAccount == 'company') {
+      final QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("user").get();
+
+      for (final QueryDocumentSnapshot doc in querySnapshot.docs) {
+        userCard = doc.data() as Map<String, dynamic>?;
+
+        userCard?['type'] = 'user';
+
+        cardStack.add(userCard);
+        if (cardStack.length >= 20 ||
+            cardStack.length >= querySnapshot.docs.length) {
+          return cardStack;
+        }
+      }
+    } else {
+      return null;
+    }
+    return null;
   }
 
   Future<Map?> getUser(String id) async {
     var user = {};
-    final DocumentSnapshot<Map<String, dynamic>> queryCandidatSnapshot = await FirebaseFirestore.instance.collection("user").doc(id).get();
-    final DocumentSnapshot<Map<String, dynamic>> queryCompanySnapshot = await FirebaseFirestore.instance.collection("company").doc(id).get();
-    
+    final DocumentSnapshot<Map<String, dynamic>> queryCandidatSnapshot =
+        await FirebaseFirestore.instance.collection("user").doc(id).get();
+    final DocumentSnapshot<Map<String, dynamic>> queryCompanySnapshot =
+        await FirebaseFirestore.instance.collection("company").doc(id).get();
+
     if (queryCandidatSnapshot.exists) {
       user = queryCandidatSnapshot.data()!;
       user['type'] = 'user';
       return user;
-    }else if (queryCompanySnapshot.exists) {
+    } else if (queryCompanySnapshot.exists) {
       user = queryCompanySnapshot.data()!;
       user['type'] = 'company';
       return user;
@@ -52,8 +87,12 @@ class Database {
 
   Future<Map?> softSkills() async {
     var softSkills = {};
-    final DocumentSnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("soft_skill").doc("list").get();
-    
+    final DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+        await FirebaseFirestore.instance
+            .collection("soft_skill")
+            .doc("list")
+            .get();
+
     if (querySnapshot.exists) {
       softSkills = querySnapshot.data()!;
       return softSkills;
@@ -67,8 +106,12 @@ class Database {
 
   Future<Map?> getMessages(int id) async {
     var messages = {};
-    final DocumentSnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("message").doc(id.toString()).get();
-    
+    final DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+        await FirebaseFirestore.instance
+            .collection("message")
+            .doc(id.toString())
+            .get();
+
     if (querySnapshot.exists) {
       messages = querySnapshot.data()!;
       return messages;
@@ -81,7 +124,8 @@ class Database {
   }
 
   Future<String?> getPicture(int id) async {
-    final Reference storageRef = FirebaseStorage.instance.ref().child('users/$id.png');
+    final Reference storageRef =
+        FirebaseStorage.instance.ref().child('users/$id.png');
 
     try {
       final String downloadURL = await storageRef.getDownloadURL();
@@ -99,7 +143,7 @@ class Database {
     await FirebaseFirestore.instance.collection("user").doc(uid).set({
       'username': "Mossy Pebble",
       'activity_sector': 'Restauration',
-      'card_liked': {},//{'0-0': FieldValue.serverTimestamp()},
+      'card_liked': {}, //{'0-0': FieldValue.serverTimestamp()},
       'email': "email",
       'experience': ['Cuisinier', 'Hacker'],
       'favorite': [],
@@ -109,7 +153,7 @@ class Database {
       'phone': '0123456789',
       'colors': ["#FF0000", "#00FF00"],
       'professional_status': 'Etudiant',
-      'profile_picture': pictureLink != null ? pictureLink : '',
+      'profile_picture': pictureLink ?? '',
       'soft_skills': {
         "Analytical": [],
         "Interpersonal": [],
@@ -121,23 +165,22 @@ class Database {
 
   Future<void> createCompany(String uid) async {
     await FirebaseFirestore.instance.collection("company").doc(uid).set({
-
       'colors': ["#FF0000", "#00FF00"],
       'description': {
         'en': "",
-        'fr': "",
+        'fr': "MONEY MONEY MONEY",
       },
-      'email': "macdo@mail.com",
+      'email': "ledger@mail.com",
       'location': {
         'address': "3 rue du poin",
         'country': "France",
         'town': 'Paris',
         'zip': '75000',
       },
-      'motto': "Venez comme vous êtes",
-      'name': 'Mc.Donalds',
-      'picture_profile': 'none',
-      'website': 'https://www.mcdonalds.fr/'
+      'motto': "On aime l'argent !",
+      'name': 'Ledger',
+      'picture_profile': 'https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Fformule1.png?alt=media&token=daddbbaa-0d0d-4fda-9c8e-7cb718d1101c',
+      'website': 'www.ledger.com',
     });
   }
 
@@ -174,5 +217,4 @@ class Database {
   //     'soft_skills': softSkills,
   //   });
   // }
-
 }

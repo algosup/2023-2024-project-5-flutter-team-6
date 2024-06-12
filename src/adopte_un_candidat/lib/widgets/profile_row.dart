@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import './alert_dialogue.dart';
@@ -104,9 +102,14 @@ class ProfileRowCommon extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    content,
-                  ),
+                  Flexible(
+                      child: SingleChildScrollView(
+                    child: Text(
+                      content,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 10,
+                    ),
+                  ))
                 ],
               ),
             ),

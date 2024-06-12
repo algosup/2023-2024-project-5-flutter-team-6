@@ -746,9 +746,9 @@ class _RegisterState extends State<Register> {
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   padding: const EdgeInsets.only(left: 30),
-                                  child: Text(
-                                    '\"Nickname\"',
-                                    style: const TextStyle(
+                                  child: const Text(
+                                    'Nickname',
+                                    style: TextStyle(
                                       fontFamily: 'Quicksand',
                                       color: Color(0xFF3C3C3C),
                                       fontSize: 26,
@@ -1080,7 +1080,7 @@ class _RegisterState extends State<Register> {
                                   alignment: Alignment.bottomLeft,
                                   padding: const EdgeInsets.only(left: 20, bottom: 5),
                                   child: const Text(
-                                    '\"Soft-skill category\"',
+                                    '"Soft-skill category"',
                                     style: TextStyle(
                                       fontFamily: 'Roboto',
                                       color: Colors.black,

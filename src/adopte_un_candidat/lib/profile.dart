@@ -17,8 +17,8 @@ class Profile extends StatefulWidget {
 class ProfileState extends State<Profile> {
 
   Database database = Database();
-  var user;
-  var userData;
+  dynamic user;
+  dynamic userData;
   String typeAccount = 'none';
 
   @override
@@ -64,13 +64,13 @@ class ProfileState extends State<Profile> {
     }
     else if (typeAccount == 'company'){
       widgets.add(const ProfileRowCategory(title: 'Entreprise'),);
-      widgets.add(const ProfileRowCompany(name: 'ALGOSUP',),);
-      widgets.add(ProfileRowCommon(title: 'Slogan', content: 'Lorem ispum', type: TextInputType.name, uid: user.uid, functiontype: "",),);
-      widgets.add(ProfileRowCommon(title: 'Description', content: 'Lorem ispum', type: TextInputType.name, uid: user.uid, functiontype: "",),);
-      widgets.add(ProfileRowCommon(title: 'Adresse', content: '3 rue du poin 18100 Vierzon, France', type: TextInputType.streetAddress, uid: user.uid, functiontype: "",),);
-      widgets.add(ProfileRowCommon(title: 'Adresse E-Mail', content: 'mail@mail.com', type: TextInputType.emailAddress, uid: user.uid, functiontype: "",),);
-      widgets.add(ProfileRowCommon(title: 'Numéro de téléphone', content: '06 00 00 00 00', type: TextInputType.phone, uid: user.uid, functiontype: "",),);          
-      widgets.add(const ProfileRowSoft(title: 'Soft skills', content: ['Parler'],),);
+      widgets.add(ProfileRowCompany(name: userData['name'],),);
+      widgets.add(ProfileRowCommon(title: 'Slogan', content: userData['motto'], type: TextInputType.name, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowCommon(title: 'Description', content: userData['description']['fr'], type: TextInputType.name, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowCommon(title: 'Adresse', content: '${userData['location']['address']} ${userData['location']['zip_code']} ${userData['location']['town']}, ${userData['location']['country']}', type: TextInputType.streetAddress, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowCommon(title: 'Adresse E-Mail', content: userData['email'], type: TextInputType.emailAddress, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowCommon(title: 'Numéro de téléphone', content: userData['phone'], type: TextInputType.phone, uid: user.uid, functiontype: "",),);          
+      widgets.add(ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none, uid: user.uid, functiontype: "",),);
       widgets.add(ProfileRowPage(title: 'Vos offres', onTap: () {}),);
       widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
       widgets.add(ProfileRowPage(title: 'Modifier les paramètres', onTap: () {}),);
