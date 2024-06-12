@@ -20,7 +20,7 @@ final GoRouter router = GoRouter(
           future: Authentication().isUserAuthenticated(),
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();  // Show a loading spinner while waiting
+              return const CircularProgressIndicator();
             } else if (snapshot.data == true) {
               return Home();
             } else {
@@ -38,7 +38,7 @@ final GoRouter router = GoRouter(
           future: Authentication().isUserAuthenticated(),
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();  // Show a loading spinner while waiting
+              return const CircularProgressIndicator();
             } else if (snapshot.data == true) {
               return const Messages();
             } else {
@@ -56,7 +56,7 @@ final GoRouter router = GoRouter(
           future: Authentication().isUserAuthenticated(),
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();  // Show a loading spinner while waiting
+              return const CircularProgressIndicator();
             } else if (snapshot.data == true) {
               return const Profile();
             } else {

@@ -177,7 +177,7 @@ class MessagesState extends State<Messages> {
                         suffixIcon: IconButton(
                           padding: const EdgeInsets.only(right: 10),
                           onPressed: () {
-                            // research the profile written
+                            // TODO: research the profile written
                           },
                           icon: Image.asset('assets/icons/search-icon.png', width: MediaQuery.of(context).size.width * 0.06),
                         )

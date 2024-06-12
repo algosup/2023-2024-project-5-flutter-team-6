@@ -6,11 +6,10 @@ class Favorites extends StatefulWidget {
   const Favorites({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _FavoritesState createState() => _FavoritesState();
+  FavoritesState createState() => FavoritesState();
 }
 
-class _FavoritesState extends State<Favorites> {
+class FavoritesState extends State<Favorites> {
 
   @override
   Widget build(BuildContext context) {

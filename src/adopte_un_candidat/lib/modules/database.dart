@@ -153,7 +153,6 @@ class Database {
           } else {
             receiver = await getUser(message["uids"][0]);
           }
-          // print(receiver);
           messages[id] = {
             "userData": {
               "type": receiver["type"],
@@ -163,7 +162,6 @@ class Database {
             },
             "messages": message["messages"]
           };
-          // print(messages);
         } else {
           if (kDebugMode) {
             print("No such document!");

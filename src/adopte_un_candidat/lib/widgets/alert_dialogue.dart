@@ -58,7 +58,6 @@ class ChangeInfosProfile extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              // Add your save functionality here
               getAction(context, functiontype);
               Navigator.of(context).pop();
             },
