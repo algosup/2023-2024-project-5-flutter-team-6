@@ -122,7 +122,7 @@ class ProfileRowCommon extends StatelessWidget {
 
 class ProfileRowSoft extends StatelessWidget {
   final String title;
-  final String content;
+  final Map<String, dynamic>? content;
 
   const ProfileRowSoft({
     super.key,
@@ -162,12 +162,12 @@ class ProfileRowSoft extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
+            const Expanded(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    content[0],
+                  "content[0],"
                   ),
                 ],
               ),

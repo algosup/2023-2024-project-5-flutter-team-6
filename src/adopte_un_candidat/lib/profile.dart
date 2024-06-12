@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import './widgets/navigation_bar.dart';
 import './widgets/profile_row.dart';
-import './modules/database.dart';
-import 'routes.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -48,11 +46,11 @@ class ProfileState extends State<Profile> {
     if(typeAccount == 'user') {
       widgets.add(const ProfileRowCategory(title: 'Personnel'),);
       widgets.add(ProfileRowUser(username: userData["name"], colors: userData["colors"], image: userData["profile_picture"],),);
-      widgets.add( ProfileRowCommon(title: 'Nom', content: userData["last_name"], type: TextInputType.name,  uid: user.uid, functiontype: "lastname",),);
-      widgets.add( ProfileRowCommon(title: 'Prénom', content: userData["first_name"], type: TextInputType.name,  uid: user.uid, functiontype: "firstname",),);
-      widgets.add( ProfileRowCommon(title: 'Adresse E-Mail', content: userData["email"], type: TextInputType.emailAddress,  uid: user.uid, functiontype: "email",),);
-      widgets.add( ProfileRowCommon(title: 'Numéro de téléphone', content: userData["phone"], type: TextInputType.phone,  uid: user.uid, functiontype: "phone",),);          
-      widgets.add(const ProfileRowSoft(title: 'Soft skills', content: userData["soft_skill"],),);
+      widgets.add(ProfileRowCommon(title: 'Nom', content: userData["last_name"], type: TextInputType.name,  uid: user.uid, functiontype: "lastname",),);
+      widgets.add(ProfileRowCommon(title: 'Prénom', content: userData["first_name"], type: TextInputType.name,  uid: user.uid, functiontype: "firstname",),);
+      widgets.add(ProfileRowCommon(title: 'Adresse E-Mail', content: userData["email"], type: TextInputType.emailAddress,  uid: user.uid, functiontype: "email",),);
+      widgets.add(ProfileRowCommon(title: 'Numéro de téléphone', content: userData["phone"], type: TextInputType.phone,  uid: user.uid, functiontype: "phone",),);          
+      widgets.add(ProfileRowSoft(title: 'Soft skills', content: userData["soft_skill"]),);
       widgets.add(ProfileRowPage(title: 'Cartes enregistrées', onTap: () { context.pushNamed('favorites'); },),);
       widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
       widgets.add(ProfileRowPage(title: 'Modifier les paramètres', onTap: () {},),);
@@ -70,7 +68,7 @@ class ProfileState extends State<Profile> {
       widgets.add(ProfileRowCommon(title: 'Adresse', content: '${userData['location']['address']} ${userData['location']['zip_code']} ${userData['location']['town']}, ${userData['location']['country']}', type: TextInputType.streetAddress, uid: user.uid, functiontype: "",),);
       widgets.add(ProfileRowCommon(title: 'Adresse E-Mail', content: userData['email'], type: TextInputType.emailAddress, uid: user.uid, functiontype: "",),);
       widgets.add(ProfileRowCommon(title: 'Numéro de téléphone', content: userData['phone'], type: TextInputType.phone, uid: user.uid, functiontype: "",),);          
-      widgets.add(ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none, uid: user.uid, functiontype: "",),);
+      widgets.add( ProfileRowSoft(title: 'Soft skills', content: userData["soft_skill"[0]]),);
       widgets.add(ProfileRowPage(title: 'Vos offres', onTap: () {}),);
       widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
       widgets.add(ProfileRowPage(title: 'Modifier les paramètres', onTap: () {}),);
