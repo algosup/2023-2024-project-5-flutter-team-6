@@ -22,7 +22,7 @@ final GoRouter router = GoRouter(
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();  // Show a loading spinner while waiting
             } else if (snapshot.data == true) {
-              return const Home();
+              return Home();
             } else {
               return const Login();
             }

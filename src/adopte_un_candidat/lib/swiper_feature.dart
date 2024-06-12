@@ -35,6 +35,14 @@ class SwiperFeatureState extends State<SwiperFeature> {
     });
   }
 
+  void swipeRight() {
+    controller.swipeRight();
+  }
+
+  void swipeLeft() {
+    controller.swipeLeft();
+  }
+
   void _swipeEnd(int previousIndex, int targetIndex, SwiperActivity activity) {
     switch (activity) {
       case Swipe():

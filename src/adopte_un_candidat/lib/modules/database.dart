@@ -174,6 +174,7 @@ class Database {
   Future<void> likeCard(String id, dynamic card) async {
     Map<dynamic, dynamic>? user = await getUser(id);
     if (user!["type"] == 'company') {
+      // TODO: Add company liking logic
       return;
     } else if (user["type"] == 'user') {
       await FirebaseFirestore.instance.collection("user").doc(id).update({
