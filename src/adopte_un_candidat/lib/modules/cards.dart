@@ -107,7 +107,7 @@ class Cards extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Image.network(
-                  user["picture_profile"],
+                  user["profile_picture"],
                   width: 48,
                   height: 48,
                 ),
@@ -362,7 +362,7 @@ class Cards extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      user["username"],
+                      user["name"],
                       textAlign: TextAlign.left,
                       style: const TextStyle(
                           color: CupertinoColors.black,
@@ -510,7 +510,7 @@ class Cards extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Image.network(
-                      user["picture_profile"],
+                      user["profile_picture"],
                       width: 48,
                       height: 48,
                     ),

@@ -47,7 +47,7 @@ class ProfileState extends State<Profile> {
 
     if(typeAccount == 'user') {
       widgets.add(const ProfileRowCategory(title: 'Personnel'),);
-      widgets.add(ProfileRowUser(username: userData["username"], colors: userData["colors"], image: userData["profile_picture"],),);
+      widgets.add(ProfileRowUser(username: userData["name"], colors: userData["colors"], image: userData["profile_picture"],),);
       widgets.add( ProfileRowCommon(title: 'Nom', content: userData["last_name"], type: TextInputType.name,  uid: user.uid, functiontype: "lastname",),);
       widgets.add( ProfileRowCommon(title: 'Prénom', content: userData["first_name"], type: TextInputType.name,  uid: user.uid, functiontype: "firstname",),);
       widgets.add( ProfileRowCommon(title: 'Adresse E-Mail', content: userData["email"], type: TextInputType.emailAddress,  uid: user.uid, functiontype: "email",),);

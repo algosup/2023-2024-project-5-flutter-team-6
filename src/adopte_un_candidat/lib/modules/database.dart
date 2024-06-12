@@ -33,9 +33,21 @@ class Database {
           userCard?['proposal'] = proposalList.docs[porposalIndex].data();
 
           String proposalId = proposalList.docs[porposalIndex].id.toString();
-          // TODO: check if the user has already liked this card
 
-          cardStack.add(userCard);
+          if (userData['card_liked']["${doc.id}-$proposalId"] != null) {
+            DateTime currentTimestamp = DateTime.now();
+            Timestamp savedTimestamp = userData['card_liked']["${doc.id}-$proposalId"];
+            DateTime savedTimestampdate = savedTimestamp.toDate();
+
+            if (savedTimestampdate.isBefore(currentTimestamp.subtract(const Duration(days: 7)))) {
+              await FirebaseFirestore.instance.collection("user").doc(user.uid).update({
+                'card_liked.${doc.id}-$proposalId': FieldValue.delete(),
+              });
+              cardStack.add(userCard);
+            }
+          } else {
+            cardStack.add(userCard);
+          }
         }
         if (cardStack.length >= 20 ||
             cardStack.length >= querySnapshot.docs.length) {
@@ -104,23 +116,42 @@ class Database {
     }
   }
 
-  Future<Map?> getMessages(int id) async {
-    var messages = {};
-    final DocumentSnapshot<Map<String, dynamic>> querySnapshot =
-        await FirebaseFirestore.instance
-            .collection("message")
-            .doc(id.toString())
-            .get();
+  Future<Map?> getMessages(String uid) async {
+    Map<dynamic, dynamic>? user = await getUser(uid);
 
-    if (querySnapshot.exists) {
-      messages = querySnapshot.data()!;
-      return messages;
-    } else {
-      if (kDebugMode) {
-        print("No such document!");
+    if (user != null) {
+
+      var conversationsids = user['messages'];
+
+      var messages = {};
+      for (var id in conversationsids) {
+        final DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+            await FirebaseFirestore.instance
+                .collection("message")
+                .doc(id.toString())
+                .get();
+
+        if (querySnapshot.exists) {
+          var message = querySnapshot.data()!;
+          dynamic receiver;
+          
+          if (message["uids"][0] == uid) {
+            receiver = await getUser(message["uids"][1]);
+          } else {
+            receiver = await getUser(message["uids"][0]);
+          }
+          // print(receiver);
+          messages[id] = {"userData": {"type": receiver["type"], "colors": receiver["colors"], "name": receiver["name"], "profile_picture": receiver["profile_picture"]}, "messages": message["messages"]};
+          // print(messages);
+        } else {
+          if (kDebugMode) {
+            print("No such document!");
+          }
+        }
       }
-      return null;
+      return messages;
     }
+    return null;
   }
 
   Future<String?> getPicture(int id) async {
@@ -141,7 +172,7 @@ class Database {
   Future<void> createUser(String uid) async {
     String? pictureLink = await getPicture(Random().nextInt(47));
     await FirebaseFirestore.instance.collection("user").doc(uid).set({
-      'username': "Mossy Pebble",
+      'name': "Mossy Pebble",
       'activity_sector': 'Restauration',
       'card_liked': {}, //{'0-0': FieldValue.serverTimestamp()},
       'email': "email",
@@ -179,7 +210,7 @@ class Database {
       },
       'motto': "On aime l'argent !",
       'name': 'Ledger',
-      'picture_profile': 'https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Fformule1.png?alt=media&token=daddbbaa-0d0d-4fda-9c8e-7cb718d1101c',
+      'profile_picture': 'https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Fformule1.png?alt=media&token=daddbbaa-0d0d-4fda-9c8e-7cb718d1101c',
       'website': 'www.ledger.com',
     });
   }
