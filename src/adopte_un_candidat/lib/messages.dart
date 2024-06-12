@@ -24,25 +24,23 @@ class MessagesState extends State<Messages> {
                 child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     alignment: Alignment.center,
-                    height: 25.0,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15.0),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 4.0,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: const TextField(
+                    height: 50,
+                    child: TextField(
                       decoration: InputDecoration(
-                        hintText: 'Rechercher...',
-                        border: InputBorder.none,
-                        suffixIcon: Icon(Icons.search),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 5), // Adjusted padding
+                        filled: true,
+                        fillColor: const Color(0xFFEEEEEE),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        hintText: 'Rechercher',
+                        suffixIcon: IconButton(
+                          padding: const EdgeInsets.only(right: 10),
+                          onPressed: () {
+                            // research the profile written
+                          },
+                          icon: Image.asset('assets/icons/search-icon.png', width: MediaQuery.of(context).size.width * 0.06),
+                        )
                       ),
                     ))),
             Expanded(

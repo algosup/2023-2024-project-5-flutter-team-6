@@ -76,9 +76,9 @@ class ChatState extends State<Chat> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Row(
-           mainAxisSize: MainAxisSize.min, // Ensures the Row takes minimal space
-            mainAxisAlignment: MainAxisAlignment.center,
-           children: [
+          mainAxisSize: MainAxisSize.min, // Ensures the Row takes minimal space
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             CircleAvatar(
                 radius: 20,
                 foregroundImage:
@@ -115,32 +115,25 @@ class ChatState extends State<Chat> {
             child:
             Container(
               height: 50,
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              child: 
-              TextField(
-                controller: _controller,
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: TextField(
                 decoration: InputDecoration(
-                  border: InputBorder.none,
-                  labelText: 'Message ...',
-                  labelStyle: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 8,
-                    fontFamily: 'Quicksand',
+                  filled: true,
+                  fillColor: const Color(0xFFEEEEEE),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(50),
                   ),
+                  hintText: 'Message ...',
                   suffixIcon: IconButton(
-                    padding: EdgeInsets.zero,
-                    icon: const Icon(Icons.send),
                     onPressed: () {
                       if (kDebugMode) {
                         print("Message sent: ${_controller.text.trim()}");
                       }
                       // TODO: Add message logic
                     },
-                  ),
+                    icon: const Icon(Icons.send),
+                  )
                 ),
               )
             )
