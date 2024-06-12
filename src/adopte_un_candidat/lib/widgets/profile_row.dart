@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import './alert_dialogue.dart';
+import './soft_skills_button.dart';
 
 class ProfileRowCategory extends StatelessWidget {
   final String title;
@@ -131,10 +132,10 @@ class ProfileRowSoft extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.pushNamed('softskills');
+        context.pushNamed("softskills");
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -147,37 +148,39 @@ class ProfileRowSoft extends StatelessWidget {
           ),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            content != null
+                ? Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: content!.entries.map((entry) {
+                          return ProfileSoftSkillView(
+                            title: entry.key,
+                            skill: entry.value[0],
+                          );
+                        }).toList(),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const Expanded(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                  "content[0],"
-                  ),
-                ],
-              ),
-            ),
+                  )
+                : const Text('Aucun soft skill séléctionné.'),
           ],
         ),
       ),
     );
   }
 }
+
 
 class ProfileRowPage extends StatelessWidget {
   final String title;

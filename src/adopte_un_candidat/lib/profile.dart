@@ -50,7 +50,7 @@ class ProfileState extends State<Profile> {
       widgets.add(ProfileRowCommon(title: 'Prénom', content: userData["first_name"], type: TextInputType.name,  uid: user.uid, functiontype: "firstname",),);
       widgets.add(ProfileRowCommon(title: 'Adresse E-Mail', content: userData["email"], type: TextInputType.emailAddress,  uid: user.uid, functiontype: "email",),);
       widgets.add(ProfileRowCommon(title: 'Numéro de téléphone', content: userData["phone"], type: TextInputType.phone,  uid: user.uid, functiontype: "phone",),);          
-      widgets.add(ProfileRowSoft(title: 'Soft skills', content: userData["soft_skill"]),);
+      widgets.add(ProfileRowSoft(title: 'Soft skills', content: userData["soft_skills"]),);
       widgets.add(ProfileRowPage(title: 'Cartes enregistrées', onTap: () { context.pushNamed('favorites'); },),);
       widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
       widgets.add(ProfileRowPage(title: 'Modifier les paramètres', onTap: () {},),);
