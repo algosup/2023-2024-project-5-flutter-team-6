@@ -20,6 +20,8 @@ class SwiperFeatureState extends State<SwiperFeature> {
   Database database = Database();
   List<dynamic>? cardStack;
   dynamic user;
+  int currentindex = 0;
+  String swipedirection = '';
 
   @override
   void initState() {
@@ -43,6 +45,19 @@ class SwiperFeatureState extends State<SwiperFeature> {
     controller.swipeLeft();
   }
 
+  void addFavorite() {
+    if (cardStack![currentindex] != null) {
+      database.addFavorite(user.uid, cardStack![currentindex]);
+      controller.swipeUp();
+    }
+  }
+
+  void unSwipe() {
+    if (swipedirection == 'left' && currentindex > 0) {
+      controller.unswipe();
+    }
+  }
+
   void _swipeEnd(int previousIndex, int targetIndex, SwiperActivity activity) {
     switch (activity) {
       case Swipe():
@@ -50,6 +65,9 @@ class SwiperFeatureState extends State<SwiperFeature> {
           print('The card was swiped to the : ${activity.direction}');
           print('previous index: $previousIndex, target index: $targetIndex');
         }
+
+        currentindex = targetIndex;
+        swipedirection = activity.direction.name;
 
         if (activity.direction.name == 'right') {
           database.likeCard(user.uid, cardStack![previousIndex]);
@@ -81,6 +99,7 @@ class SwiperFeatureState extends State<SwiperFeature> {
     database.getStack().then((value) {
       setState(() {
         cardStack!.add(value);
+        currentindex = 0;
       });
     });
   }
@@ -116,11 +135,12 @@ class SwiperFeatureState extends State<SwiperFeature> {
         swipeOptions: const SwipeOptions.symmetric(
           horizontal: true,
         ),
+        allowUnlimitedUnSwipe: false,
         controller: controller,
         onCardPositionChanged: (
           SwiperPosition position,
         ) {
-        
+
         },
         onSwipeEnd: _swipeEnd,
         onEnd: _onEnd,

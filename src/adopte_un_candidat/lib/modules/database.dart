@@ -185,6 +185,28 @@ class Database {
     }
   }
 
+  Future<List?> getFavorites(String id) async {
+    var favorites = [];
+    final DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+        await FirebaseFirestore.instance.collection("user").doc(id).get();
+
+    if (querySnapshot.exists) {
+      favorites = querySnapshot.data()!['favorite'];
+      return favorites;
+    } else {
+      if (kDebugMode) {
+        print("No such document!");
+      }
+      return null;
+    }
+  }
+
+  void addFavorite(String id, dynamic card) async {
+      await FirebaseFirestore.instance.collection("user").doc(id).update({
+        'favorite': FieldValue.arrayUnion([{"company": card["id"], "proposal": card["proposal"]["id"]}]),
+      });
+  }
+
   Future<void> createUser(String uid) async {
     String? pictureLink = await getPicture(Random().nextInt(47));
     await FirebaseFirestore.instance.collection("user").doc(uid).set({

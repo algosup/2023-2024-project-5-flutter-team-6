@@ -66,6 +66,7 @@ class Home extends StatelessWidget {
                         onPressed: () {
                           // Back button logic
                           HapticFeedback.lightImpact();
+                          _swiperFeatureKey.currentState?.unSwipe();
                         },
                         child: const Icon(Icons.arrow_back_rounded,
                             size: 35, color: Color(0xFF959595)),
@@ -96,6 +97,7 @@ class Home extends StatelessWidget {
                         onPressed: () {
                           // Save button logic
                           HapticFeedback.lightImpact();
+                          _swiperFeatureKey.currentState?.addFavorite();
                         },
                         child: const Icon(Icons.bookmark_rounded,
                             size: 35, color: Color(0xFF959595)),
