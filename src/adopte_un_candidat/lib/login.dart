@@ -126,9 +126,12 @@ class LoginState extends State<Login> {
                             alignment: Alignment.topRight,
                             padding: const EdgeInsets.only(right: 40),
                             child: ConnectionRegisterButton(
-                              onPressed: () {
-                                Authentication().signIn(_emailcontroller.text.trim(), _passwordcontroller.text.trim());
-                                context.replaceNamed('home');
+                              onPressed: () async {
+                                await Authentication().signIn(_emailcontroller.text.trim(), _passwordcontroller.text.trim());
+
+                                if (context.mounted) {
+                                  context.replaceNamed('home');
+                                }
                               },
                               connectRegister: 'Valider',
                             )

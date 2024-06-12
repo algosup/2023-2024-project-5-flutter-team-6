@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import './widgets/navigation_bar.dart';
 import './widgets/profile_row.dart';
 import './modules/database.dart';
+import 'routes.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -16,8 +17,8 @@ class Profile extends StatefulWidget {
 class ProfileState extends State<Profile> {
 
   Database database = Database();
-  var user;
-  var userData;
+  dynamic user;
+  dynamic userData;
   String typeAccount = 'none';
 
   @override
@@ -46,38 +47,38 @@ class ProfileState extends State<Profile> {
 
     if(typeAccount == 'user') {
       widgets.add(const ProfileRowCategory(title: 'Personnel'),);
-      widgets.add(ProfileRowUser(username: userData["username"], colors: userData["colors"], image: userData["profile_picture"],),);
+      widgets.add(ProfileRowUser(username: userData["name"], colors: userData["colors"], image: userData["profile_picture"],),);
       widgets.add( ProfileRowCommon(title: 'Nom', content: userData["last_name"], type: TextInputType.name,  uid: user.uid, functiontype: "lastname",),);
       widgets.add( ProfileRowCommon(title: 'Prénom', content: userData["first_name"], type: TextInputType.name,  uid: user.uid, functiontype: "firstname",),);
       widgets.add( ProfileRowCommon(title: 'Adresse E-Mail', content: userData["email"], type: TextInputType.emailAddress,  uid: user.uid, functiontype: "email",),);
       widgets.add( ProfileRowCommon(title: 'Numéro de téléphone', content: userData["phone"], type: TextInputType.phone,  uid: user.uid, functiontype: "phone",),);          
       widgets.add(const ProfileRowSoft(title: 'Soft skills', content: ['Parler'],),);
-      widgets.add(const ProfileRowPage(title: 'Cartes enregistrées'),);
+      widgets.add(ProfileRowPage(title: 'Cartes enregistrées', onTap: () { context.pushNamed('favorites'); },),);
       widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
-      widgets.add(const ProfileRowPage(title: 'Modifier les paramètres'),);
+      widgets.add(ProfileRowPage(title: 'Modifier les paramètres', onTap: () {},),);
       widgets.add(ProfileRowCommon(title: 'Langue', content: 'Français', type: TextInputType.none,  uid: user.uid, functiontype: "",),);
       widgets.add(const ProfileRowCategory(title: 'Légal'),);
-      widgets.add(const ProfileRowPage(title: 'Politique de confidentialité'),);
-      widgets.add(const ProfileRowPage(title: 'License'),);
-      widgets.add(const ProfileRowPage(title: 'Conditions générales d\'utilisitation'),);
+      widgets.add(ProfileRowPage(title: 'Politique de confidentialité', onTap: () {}),);
+      widgets.add(ProfileRowPage(title: 'License', onTap: () {}),);
+      widgets.add(ProfileRowPage(title: 'Conditions générales d\'utilisitation', onTap: () {}),);
     }
     else if (typeAccount == 'company'){
       widgets.add(const ProfileRowCategory(title: 'Entreprise'),);
-      widgets.add(const ProfileRowCompany(name: 'ALGOSUP',),);
-      widgets.add(ProfileRowCommon(title: 'Slogan', content: 'Lorem ispum', type: TextInputType.name, uid: user.uid, functiontype: "",),);
-      widgets.add(ProfileRowCommon(title: 'Description', content: 'Lorem ispum', type: TextInputType.name, uid: user.uid, functiontype: "",),);
-      widgets.add(ProfileRowCommon(title: 'Adresse', content: '3 rue du poin 18100 Vierzon, France', type: TextInputType.streetAddress, uid: user.uid, functiontype: "",),);
-      widgets.add(ProfileRowCommon(title: 'Adresse E-Mail', content: 'mail@mail.com', type: TextInputType.emailAddress, uid: user.uid, functiontype: "",),);
-      widgets.add(ProfileRowCommon(title: 'Numéro de téléphone', content: '06 00 00 00 00', type: TextInputType.phone, uid: user.uid, functiontype: "",),);          
-      widgets.add(const ProfileRowSoft(title: 'Soft skills', content: ['Parler'],),);
-      widgets.add(const ProfileRowPage(title: 'Vos offres'),);
+      widgets.add(ProfileRowCompany(name: userData['name'],),);
+      widgets.add(ProfileRowCommon(title: 'Slogan', content: userData['motto'], type: TextInputType.name, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowCommon(title: 'Description', content: userData['description']['fr'], type: TextInputType.name, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowCommon(title: 'Adresse', content: '${userData['location']['address']} ${userData['location']['zip_code']} ${userData['location']['town']}, ${userData['location']['country']}', type: TextInputType.streetAddress, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowCommon(title: 'Adresse E-Mail', content: userData['email'], type: TextInputType.emailAddress, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowCommon(title: 'Numéro de téléphone', content: userData['phone'], type: TextInputType.phone, uid: user.uid, functiontype: "",),);          
+      widgets.add(ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowPage(title: 'Vos offres', onTap: () {}),);
       widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
-      widgets.add(const ProfileRowPage(title: 'Modifier les paramètres'),);
+      widgets.add(ProfileRowPage(title: 'Modifier les paramètres', onTap: () {}),);
       widgets.add(ProfileRowCommon(title: 'Langue', content: 'Français', type: TextInputType.none, uid: user.uid, functiontype: "",));
       widgets.add(const ProfileRowCategory(title: 'Légal'),);
-      widgets.add(const ProfileRowPage(title: 'Politique de confidentialité'),);
-      widgets.add(const ProfileRowPage(title: 'License'),);
-      widgets.add(const ProfileRowPage(title: 'Conditions générales d\'utilisitation'),);
+      widgets.add(ProfileRowPage(title: 'Politique de confidentialité', onTap: () {}),);
+      widgets.add(ProfileRowPage(title: 'License', onTap: () {}),);
+      widgets.add(ProfileRowPage(title: 'Conditions générales d\'utilisitation', onTap: () {}),);
     } else {
       widgets.add(const CircularProgressIndicator());
     }

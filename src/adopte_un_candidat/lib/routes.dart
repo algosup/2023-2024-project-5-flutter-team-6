@@ -8,6 +8,7 @@ import 'profile.dart';
 import 'messages.dart';
 import 'chat.dart';
 import 'softskills.dart';
+import 'favorites.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
@@ -33,28 +34,50 @@ final GoRouter router = GoRouter(
       path: '/messages',
       name: 'messages',
       builder: (BuildContext context, GoRouterState state) {
-        return const Messages();
+        return FutureBuilder<bool>(
+          future: Authentication().isUserAuthenticated(),
+          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();  // Show a loading spinner while waiting
+            } else if (snapshot.data == true) {
+              return const Messages();
+            } else {
+              return const Login();
+            }
+          }
+        );
       },
     ),
     GoRoute(
       path: '/profile',
       name: 'profile',
       builder: (BuildContext context, GoRouterState state) {
-        return const Profile();
+        return FutureBuilder<bool>(
+          future: Authentication().isUserAuthenticated(),
+          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();  // Show a loading spinner while waiting
+            } else if (snapshot.data == true) {
+              return const Profile();
+            } else {
+              return const Login();
+            }
+          }
+        );
       },
     ),
     GoRoute(
       path: '/softskills',
       name: 'softskills',
       builder: (BuildContext context, GoRouterState state) {
-        return const Softskills(); // TODO: Replace with the softskills page
+        return const Softskills();
       },
     ),
     GoRoute(
       path: '/chat',
       name: 'chat',
       builder: (BuildContext context, GoRouterState state) {
-        return Chat();
+        return const Chat();
       },
     ),
     GoRoute(
@@ -70,6 +93,13 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state) {
         return const Register();
       },
-    )
+    ),
+    GoRoute(
+      path: '/favorites',
+      name: 'favorites',
+      builder: (BuildContext context, GoRouterState state) {
+        return const Favorites();
+      },
+    ),
   ],
 );

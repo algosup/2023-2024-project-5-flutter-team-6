@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'modules/buttons.dart';
 // import 'package:flutter/services.dart';
@@ -31,7 +30,7 @@ class _RegisterState extends State<Register> {
               "Vous êtes ...",
               style: TextStyle(
                 fontFamily: 'Quicksand',
-                color: CupertinoColors.black,
+                color: Colors.black,
                 fontSize: 32,
               ),
             )
@@ -85,7 +84,7 @@ class _RegisterState extends State<Register> {
                           "Déjà un compte ?\nConnectez-vous !",
                           style: TextStyle(
                             fontFamily: 'Quicksand',
-                            color: CupertinoColors.black,
+                            color: Colors.black,
                             fontSize: 12,
                           ),
                         )
@@ -747,9 +746,9 @@ class _RegisterState extends State<Register> {
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   padding: const EdgeInsets.only(left: 30),
-                                  child: Text(
-                                    '\"Nickname\"',
-                                    style: const TextStyle(
+                                  child: const Text(
+                                    'Nickname',
+                                    style: TextStyle(
                                       fontFamily: 'Quicksand',
                                       color: Color(0xFF3C3C3C),
                                       fontSize: 26,
@@ -1081,7 +1080,7 @@ class _RegisterState extends State<Register> {
                                   alignment: Alignment.bottomLeft,
                                   padding: const EdgeInsets.only(left: 20, bottom: 5),
                                   child: const Text(
-                                    '\"Soft-skill category\"',
+                                    '"Soft-skill category"',
                                     style: TextStyle(
                                       fontFamily: 'Roboto',
                                       color: Colors.black,
@@ -1240,7 +1239,7 @@ class _RegisterState extends State<Register> {
             text: "© WE ARE EVOLUTION,  2023\n\n\n",
             style: TextStyle(
               fontFamily: 'Roboto',
-              color: CupertinoColors.black,
+              color: Colors.black,
               fontSize: 12,
             ),
           ),
@@ -1323,4 +1322,3 @@ class _RegisterState extends State<Register> {
     );
   }
 }
-
