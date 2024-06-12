@@ -105,7 +105,7 @@ class ProfileState extends State<Profile> {
             elevation: 0,
             backgroundColor: const Color(0xFFFFFFFF),
             onPressed: () {
-              // Add the remove this.user on the database here
+              //TODO: Add the remove this.user on the database here
               Authentication().signOutUser();
               context.replaceNamed('login');
             },
