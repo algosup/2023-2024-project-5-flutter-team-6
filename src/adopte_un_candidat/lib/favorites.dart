@@ -1,9 +1,5 @@
-import 'package:async/async.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'modules/buttons.dart';
-import 'routes.dart';
 import 'widgets/navigation_bar.dart';
 
 class Favorites extends StatefulWidget {
