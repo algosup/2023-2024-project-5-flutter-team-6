@@ -38,6 +38,8 @@ class MessagesState extends State<Messages> {
                 children: messages.entries.map<Widget>((entry) {
                   final key = entry.key;
                   final value = entry.value;
+
+                  print(value);
                   
                   return Padding(
                       padding: const EdgeInsets.all(10),
@@ -45,6 +47,7 @@ class MessagesState extends State<Messages> {
                           onTap: () {
                             if (kDebugMode) {
                               context.pushNamed('chat');
+                              print("id: $key");
                             }
                           },
                           child: Container(
@@ -53,11 +56,10 @@ class MessagesState extends State<Messages> {
                                 borderRadius: BorderRadius.circular(25.0),
                               ),
                               child: Row(children: [
-                                const CircleAvatar(
+                                CircleAvatar(
                                   radius: 40,
-                                  foregroundImage: AssetImage(
-                                      'assets/images/Algosup_logo.png'),
-                                  backgroundColor: Color(0x00FFFFFF),
+                                  foregroundImage: NetworkImage(value["userData"]["profile_picture"]),
+                                  backgroundColor: value["userData"]["type"] == "company" ? const Color(0x00FFFFFF) : Color(int.parse("0xFF${value["userData"]["colors"][0]}")),
                                 ),
                                 Expanded(
                                     child: Padding(
@@ -66,13 +68,13 @@ class MessagesState extends State<Messages> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.end,
                                             children: [
-                                              const Row(
+                                              Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    'ALGOSUP',
-                                                    style: TextStyle(
+                                                    value["userData"]["name"],
+                                                    style: const TextStyle(
                                                         fontSize: 18,
                                                         fontFamily: 'Quicksand',
                                                         fontWeight:
@@ -83,13 +85,13 @@ class MessagesState extends State<Messages> {
                                                   ),
                                                 ],
                                               ),
-                                              const Row(
+                                              Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    'Moi: Bonjour!',
-                                                    style: TextStyle(
+                                                    "${value["messages"][0]["sender"] == user.uid ? "Me:" : "They:"} ${value["messages"][0]["message"]}",
+                                                    style: const TextStyle(
                                                       fontSize: 12,
                                                       fontFamily: 'Quicksand',
                                                       fontWeight:

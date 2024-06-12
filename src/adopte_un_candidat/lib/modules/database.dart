@@ -133,8 +133,16 @@ class Database {
 
         if (querySnapshot.exists) {
           var message = querySnapshot.data()!;
-          messages[id] = message;
-          print(messages);
+          dynamic receiver;
+          
+          if (message["uids"][0] == uid) {
+            receiver = await getUser(message["uids"][1]);
+          } else {
+            receiver = await getUser(message["uids"][0]);
+          }
+          // print(receiver);
+          messages[id] = {"userData": {"type": receiver["type"], "colors": receiver["colors"], "name": receiver["name"], "profile_picture": receiver["profile_picture"]}, "messages": message["messages"]};
+          // print(messages);
         } else {
           if (kDebugMode) {
             print("No such document!");
@@ -164,7 +172,7 @@ class Database {
   Future<void> createUser(String uid) async {
     String? pictureLink = await getPicture(Random().nextInt(47));
     await FirebaseFirestore.instance.collection("user").doc(uid).set({
-      'username': "Mossy Pebble",
+      'name': "Mossy Pebble",
       'activity_sector': 'Restauration',
       'card_liked': {}, //{'0-0': FieldValue.serverTimestamp()},
       'email': "email",
@@ -202,7 +210,7 @@ class Database {
       },
       'motto': "On aime l'argent !",
       'name': 'Ledger',
-      'picture_profile': 'https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Fformule1.png?alt=media&token=daddbbaa-0d0d-4fda-9c8e-7cb718d1101c',
+      'profile_picture': 'https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Fformule1.png?alt=media&token=daddbbaa-0d0d-4fda-9c8e-7cb718d1101c',
       'website': 'www.ledger.com',
     });
   }
