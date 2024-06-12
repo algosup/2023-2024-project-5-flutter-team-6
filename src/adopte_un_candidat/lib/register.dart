@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'modules/buttons.dart';
 // import 'package:flutter/services.dart';
@@ -31,7 +30,7 @@ class _RegisterState extends State<Register> {
               "Vous êtes ...",
               style: TextStyle(
                 fontFamily: 'Quicksand',
-                color: CupertinoColors.black,
+                color: Colors.black,
                 fontSize: 32,
               ),
             )
@@ -85,7 +84,7 @@ class _RegisterState extends State<Register> {
                           "Déjà un compte ?\nConnectez-vous !",
                           style: TextStyle(
                             fontFamily: 'Quicksand',
-                            color: CupertinoColors.black,
+                            color: Colors.black,
                             fontSize: 12,
                           ),
                         )
@@ -1240,7 +1239,7 @@ class _RegisterState extends State<Register> {
             text: "© WE ARE EVOLUTION,  2023\n\n\n",
             style: TextStyle(
               fontFamily: 'Roboto',
-              color: CupertinoColors.black,
+              color: Colors.black,
               fontSize: 12,
             ),
           ),
@@ -1323,4 +1322,3 @@ class _RegisterState extends State<Register> {
     );
   }
 }
-

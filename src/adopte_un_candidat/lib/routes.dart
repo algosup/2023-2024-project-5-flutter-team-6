@@ -8,6 +8,7 @@ import 'profile.dart';
 import 'messages.dart';
 import 'chat.dart';
 import 'softskills.dart';
+import 'favorites.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
@@ -70,6 +71,13 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state) {
         return const Register();
       },
-    )
+    ),
+    GoRoute(
+      path: '/favorites',
+      name: 'favorites',
+      builder: (BuildContext context, GoRouterState state) {
+        return const Favorites();
+      },
+    ),
   ],
 );
