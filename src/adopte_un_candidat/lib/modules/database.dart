@@ -133,7 +133,8 @@ class Database {
 
         if (querySnapshot.exists) {
           var message = querySnapshot.data()!;
-          messages.addAll({id: message});
+          messages[id] = message;
+          print(messages);
         } else {
           if (kDebugMode) {
             print("No such document!");
