@@ -122,7 +122,7 @@ class ProfileRowCommon extends StatelessWidget {
 
 class ProfileRowSoft extends StatelessWidget {
   final String title;
-  final List<dynamic> content;
+  final String content;
 
   const ProfileRowSoft({
     super.key,
