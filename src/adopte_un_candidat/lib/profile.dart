@@ -65,7 +65,7 @@ class ProfileState extends State<Profile> {
       widgets.add(ProfileRowCompany(name: userData['name'],),);
       widgets.add(ProfileRowCommon(title: 'Slogan', content: userData['motto'], type: TextInputType.name, uid: user.uid, functiontype: "",),);
       widgets.add(ProfileRowCommon(title: 'Description', content: userData['description']['fr'], type: TextInputType.name, uid: user.uid, functiontype: "",),);
-      widgets.add(ProfileRowCommon(title: 'Adresse', content: '${userData['location']['address']} ${userData['location']['zip_code']} ${userData['location']['town']}, ${userData['location']['country']}', type: TextInputType.streetAddress, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowCommon(title: 'Adresse', content: '${userData['location']['address']} ${userData['location']['zip']} ${userData['location']['town']}, ${userData['location']['country']}', type: TextInputType.streetAddress, uid: user.uid, functiontype: "",),);
       widgets.add(ProfileRowCommon(title: 'Adresse E-Mail', content: userData['email'], type: TextInputType.emailAddress, uid: user.uid, functiontype: "",),);
       widgets.add(ProfileRowCommon(title: 'Numéro de téléphone', content: userData['phone'], type: TextInputType.phone, uid: user.uid, functiontype: "",),);          
       widgets.add(ProfileRowCommon(title: 'Soft skills', content: '<List>', type: TextInputType.none, uid: user.uid, functiontype: "",),);
