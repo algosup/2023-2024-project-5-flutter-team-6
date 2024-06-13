@@ -14,7 +14,7 @@ class Softskills extends StatefulWidget {
 class _SoftskillsState extends State<Softskills> {
 
   Database database = Database();
-  dynamic categories;
+  dynamic categories= {};
   dynamic skills;
 
   @override
@@ -22,10 +22,11 @@ class _SoftskillsState extends State<Softskills> {
     super.initState();
     database.softSkills().then((value) {
       setState(() {
+        print(value?.entries.first.value.entries.first);
         categories = value?.keys.toList();
-        print(categories["skills"]);
+        // print(categories);
         for (var category in categories) {
-          print(category);
+          // print(category);
         }
       });
     });
