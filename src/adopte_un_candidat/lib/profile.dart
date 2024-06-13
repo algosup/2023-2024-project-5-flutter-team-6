@@ -3,7 +3,7 @@ import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import './widgets/navigation_bar.dart';
-import './widgets/profile_row.dart';
+import './widgets/profile_row.dart';  
 
 class Profile extends StatefulWidget {
   const Profile({super.key});

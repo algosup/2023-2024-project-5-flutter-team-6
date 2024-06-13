@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import '../modules/database.dart';
 
 class SoftSkillsButton extends StatefulWidget {
-  final String titles;
-  final String skills;
+  final String title;
+  final String skill;
 
   const SoftSkillsButton(
-      {super.key, required this.skills, required this.titles});
+      {super.key, required this.skill, required this.title});
 
   @override
   State<SoftSkillsButton> createState() => _SoftSkillsButtonState();
@@ -20,7 +19,7 @@ class _SoftSkillsButtonState extends State<SoftSkillsButton> {
     Color background;
     Color textColor;
 
-    switch (widget.titles) {
+    switch (widget.title) {
       case 'social':
         background = const Color(0xFF38A0FF);
         textColor = const Color(0xFFFFFFFF);
@@ -60,9 +59,9 @@ class _SoftSkillsButtonState extends State<SoftSkillsButton> {
                   ? Border.all(color: Colors.black, width: 2)
                   : Border.all(color: Colors.white, width: 2)),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-          margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
           child: Text(
-            widget.skills,
+            widget.skill,
             style: TextStyle(color: textColor),
           ),
         ),
