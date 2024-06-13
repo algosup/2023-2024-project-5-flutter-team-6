@@ -75,8 +75,7 @@ class MessagesState extends State<Messages> {
                       child: GestureDetector(
                           onTap: () {
                             if (kDebugMode) {
-                              context.pushNamed('chat');
-                              print("id: $key");
+                              context.pushNamed('chat', extra: {"convId": key});
                             }
                           },
                           child: Container(
