@@ -268,9 +268,6 @@ class Database {
       
       // Get the documents from the subcollection
       QuerySnapshot querySnapshot = await proposalCollection.get();
-      
-      // Return the list of documents
-      querySnapshot.docs;
 
       final DocumentSnapshot<Map<String, dynamic>> userCardLikedQuery =
         await FirebaseFirestore.instance.collection("user").doc(card["id"]).get();
@@ -312,6 +309,49 @@ class Database {
         'card_liked.${card["id"]}-${card["proposal"]["id"]}':
             FieldValue.serverTimestamp(),
       });
+
+      CollectionReference proposalCollection = FirebaseFirestore.instance
+          .collection('company')
+          .doc(card["id"])
+          .collection('proposal');
+      
+      // Get the documents from the subcollection
+      QuerySnapshot querySnapshot = await proposalCollection.get();
+
+      final DocumentSnapshot<Map<String, dynamic>> userCardLikedQuery =
+        await FirebaseFirestore.instance.collection("user").doc(id).get();
+
+      if (userCardLikedQuery.exists) {
+        for (var doc in querySnapshot.docs) {
+
+
+          var cardsLike = userCardLikedQuery.data()!['card_liked'];
+
+          for (var cardLike in cardsLike.keys) {
+
+            List<String> splitString = cardLike.split("-");
+
+            if (doc.id == splitString[1] && card["id"] == splitString[0]) { 
+              
+              String conversationId = "${card["id"]}${id}";
+
+              await FirebaseFirestore.instance.collection("message").doc(conversationId).set({
+                'uids': [id, card["id"]],
+                'messages': [],
+              });
+
+              await FirebaseFirestore.instance.collection("company").doc(card["id"]).update({
+                'messages': FieldValue.arrayUnion([conversationId]),
+              });
+
+              await FirebaseFirestore.instance.collection("user").doc(id).update({
+                'messages': FieldValue.arrayUnion([conversationId]),
+              });
+            }
+          }
+        }
+      }
+
     } else {
       return;
     }
