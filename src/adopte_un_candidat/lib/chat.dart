@@ -1,6 +1,7 @@
 import 'package:adopte_un_candidat/modules/authentication.dart';
 import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:adopte_un_candidat/widgets/navigation_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -91,18 +92,42 @@ class ChatState extends State<Chat> {
   }
 
   Widget conversation() {
-    return ListView.builder(
-      itemCount: messages.length,
-      itemBuilder: (context, index) {
-        final message = messages[index];
+    return StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('message')
+            .doc("0")
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
 
-        if (message['sender'] == user.uid) {
-          return reveiverMessage(message['message']);
-        } else {
-          return senderMessage(message['message'], secondaryUser["profile_picture"]);
-        }
-      },
-    );
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          // Ensure the document exists and has data
+          if (!snapshot.hasData || !snapshot.data!.exists) {
+            return Center(child: Text('Document does not exist'));
+          }
+
+          // Get the messages array
+          List<dynamic> messages = snapshot.data!.get('messages') ?? [];
+
+          return ListView.builder(
+            itemCount: messages.length,
+            itemBuilder: (context, index) {
+              final message = messages[index];
+
+              if (message['sender'] == user.uid) {
+                return reveiverMessage(message['message']);
+              } else {
+                return senderMessage(message['message'], secondaryUser["profile_picture"]);
+              }
+            },
+          );
+        },
+      );
   }
 
   @override
@@ -162,8 +187,6 @@ class ChatState extends State<Chat> {
                       if (kDebugMode) {
                         print("Message sent: ${messageController.text.trim()}");
                       }
-                      print(secondaryUser);
-                      print(user.uid);
                       Database().sendMessage(conversationId, user.uid, secondaryUser["uid"], messageController.text.trim());
                       messageController.clear();
                     },
