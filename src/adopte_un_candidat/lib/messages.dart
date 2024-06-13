@@ -17,6 +17,7 @@ class Messages extends StatefulWidget {
 class MessagesState extends State<Messages> {
   dynamic messages;
   dynamic user;
+  int currentLastmessageindex = 0;
 
   @override
   void initState() {
@@ -62,21 +63,81 @@ class MessagesState extends State<Messages> {
     }
   }
 
+  lastMessage(String conversationId) {
+    return StreamBuilder(
+      stream:
+          FirebaseFirestore.instance.collection('message').doc(conversationId).snapshots(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          // Ensure the document exists and has data
+          if (!snapshot.hasData || !snapshot.data!.exists) {
+            return const Center(child: Text('Document does not exist'));
+          }
+
+          // Get the messages array
+          List<dynamic> messages = snapshot.data!.get('messages') ?? [];
+
+          String  formattedDate = "";
+          int lastmessageindex = 0;
+
+          if (messages.isNotEmpty) {
+            lastmessageindex = messages.length - 1;
+
+            Timestamp timestamp = messages[lastmessageindex]["date"] as Timestamp;
+            formattedDate = DateFormat('HH:mm, dd/MM/yyyy').format(timestamp.toDate());
+          }
+
+          
+          return Column(
+            children: [
+
+              Row(
+                mainAxisAlignment:
+                    MainAxisAlignment.start,
+                children: [
+                  Text(
+                    messages.isNotEmpty ? "${messages[lastmessageindex]["sender"] == user.uid ? "Me:" : "They:"} ${messages[lastmessageindex]["message"]}" : "No messages yet",
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'Quicksand',
+                      fontWeight:
+                          FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              
+              Row(
+                  mainAxisAlignment:
+                      MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      formattedDate,
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                        fontSize: 8,
+                        color: Colors.grey[500],
+                        fontFamily: 'Quicksand',
+                      ),
+                    ),
+                  ])
+            ]);
+    });
+  }
+
   ListView messagesList(){
     return ListView(
                 children: messages.entries.map<Widget>((entry) {
                   final key = entry.key;
                   final value = entry.value;
-
-                  String  formattedDate = "";
-                  int lastmessageindex = 0;
-
-                  if (value["messages"].isNotEmpty) {
-                    lastmessageindex = value["messages"].length - 1;
-
-                    Timestamp timestamp = value["messages"][lastmessageindex]["date"] as Timestamp;
-                    formattedDate = DateFormat('HH:mm, dd/MM/yyyy').format(timestamp.toDate());
-                  }
 
                   return Padding(
                       padding: const EdgeInsets.all(10),
@@ -119,40 +180,12 @@ class MessagesState extends State<Messages> {
                                                             TextDecoration
                                                                 .underline),
                                                   ),
-                                                  
-                                                  value["messages"].isNotEmpty ? newMessageTag(value["messages"][lastmessageindex]) : Container(),
+
+                                                  value["messages"].isNotEmpty ? newMessageTag(value["messages"][value["messages"].length-1]) : Container(),
                                                 ],
                                               ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    value["messages"].isNotEmpty ? "${value["messages"][lastmessageindex]["sender"] == user.uid ? "Me:" : "They:"} ${value["messages"][lastmessageindex]["message"]}" : "No messages yet",
-                                                    style: const TextStyle(
-                                                      fontSize: 12,
-                                                      fontFamily: 'Quicksand',
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                             
-                                              Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
-                                                  children: [
-                                                    Text(
-                                                      formattedDate,
-                                                      textAlign: TextAlign.end,
-                                                      style: TextStyle(
-                                                        fontSize: 8,
-                                                        color: Colors.grey[500],
-                                                        fontFamily: 'Quicksand',
-                                                      ),
-                                                    ),
-                                                  ])
+                                              
+                                              lastMessage(key),
                                             ])))
                               ]))));
                 }).toList(),
