@@ -109,7 +109,7 @@ class ChatState extends State<Chat> {
   Widget conversation() {
     return StreamBuilder(
       stream:
-          FirebaseFirestore.instance.collection('message').doc("0").snapshots(),
+          FirebaseFirestore.instance.collection('message').doc(conversationId).snapshots(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
