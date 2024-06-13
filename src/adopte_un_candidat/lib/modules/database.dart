@@ -74,11 +74,30 @@ class Database {
       for (final QueryDocumentSnapshot doc in querySnapshot.docs) {
         userCard = doc.data() as Map<String, dynamic>?;
 
+        userCard?['id'] = doc.id;
         userCard?['type'] = 'user';
 
-        cardStack.add(userCard);
+         if (userData['card_liked']["${doc.id}"] != null) {
+            DateTime currentTimestamp = DateTime.now();
+            Timestamp savedTimestamp =
+                userData['card_liked']["${doc.id}"];
+            DateTime savedTimestampdate = savedTimestamp.toDate();
+
+            if (savedTimestampdate
+                .isBefore(currentTimestamp.subtract(const Duration(days: 7)))) {
+              await FirebaseFirestore.instance
+                  .collection("user")
+                  .doc(user.uid)
+                  .update({
+                'card_liked.${doc.id}': FieldValue.delete(),
+              });
+              cardStack.add(userCard);
+            }
+          } else {
+            cardStack.add(userCard);
+          }
         if (cardStack.length >= 20 ||
-            cardStack.length >= querySnapshot.docs.length) {
+            cardStack.length >= querySnapshot.docs.length - userData['card_liked'].length) {
           return cardStack;
         }
       }
@@ -235,7 +254,10 @@ class Database {
   Future<void> likeCard(String id, dynamic card) async {
     Map<dynamic, dynamic>? user = await getUser(id);
     if (user!["type"] == 'company') {
-      // TODO: Add company liking logic
+      await FirebaseFirestore.instance.collection("company").doc(id).update({
+        'card_liked.${card["id"]}':
+            FieldValue.serverTimestamp(),
+      });
       return;
     } else if (user["type"] == 'user') {
       await FirebaseFirestore.instance.collection("user").doc(id).update({
