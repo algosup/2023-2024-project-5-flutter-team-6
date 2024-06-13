@@ -44,7 +44,7 @@ class ProfileRowCommon extends StatelessWidget {
   final String functiontype;
   final String uid;
 
-  ProfileRowCommon(
+  const ProfileRowCommon(
       {super.key,
       required this.title,
       required this.content,

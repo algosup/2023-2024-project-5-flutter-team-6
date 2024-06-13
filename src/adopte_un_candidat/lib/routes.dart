@@ -20,9 +20,9 @@ final GoRouter router = GoRouter(
           future: Authentication().isUserAuthenticated(),
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();  // Show a loading spinner while waiting
+              return const CircularProgressIndicator();
             } else if (snapshot.data == true) {
-              return const Home();
+              return Home();
             } else {
               return const Login();
             }
@@ -38,7 +38,7 @@ final GoRouter router = GoRouter(
           future: Authentication().isUserAuthenticated(),
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();  // Show a loading spinner while waiting
+              return const CircularProgressIndicator();
             } else if (snapshot.data == true) {
               return const Messages();
             } else {
@@ -56,7 +56,7 @@ final GoRouter router = GoRouter(
           future: Authentication().isUserAuthenticated(),
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();  // Show a loading spinner while waiting
+              return const CircularProgressIndicator();
             } else if (snapshot.data == true) {
               return const Profile();
             } else {
@@ -77,7 +77,19 @@ final GoRouter router = GoRouter(
       path: '/chat',
       name: 'chat',
       builder: (BuildContext context, GoRouterState state) {
-        return const Chat();
+        final Map<String, dynamic> args = state.extra as Map<String, dynamic>;
+        final String conversationId = args["convId"];
+        return FutureBuilder<bool>(
+          future: Authentication().isUserAuthenticated(),
+          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            } else if (snapshot.data == true) {
+              return Chat(conversationId: conversationId);
+            } else {
+              return const Login();
+            }
+        });
       },
     ),
     GoRoute(

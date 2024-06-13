@@ -3,7 +3,7 @@ import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import './widgets/navigation_bar.dart';
-import './widgets/profile_row.dart';  
+import './widgets/profile_row.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -65,7 +65,7 @@ class ProfileState extends State<Profile> {
       widgets.add(ProfileRowCompany(name: userData['name'],),);
       widgets.add(ProfileRowCommon(title: 'Slogan', content: userData['motto'], type: TextInputType.name, uid: user.uid, functiontype: "",),);
       widgets.add(ProfileRowCommon(title: 'Description', content: userData['description']['fr'], type: TextInputType.name, uid: user.uid, functiontype: "",),);
-      widgets.add(ProfileRowCommon(title: 'Adresse', content: '${userData['location']['address']} ${userData['location']['zip_code']} ${userData['location']['town']}, ${userData['location']['country']}', type: TextInputType.streetAddress, uid: user.uid, functiontype: "",),);
+      widgets.add(ProfileRowCommon(title: 'Adresse', content: '${userData['location']['address']} ${userData['location']['zip']} ${userData['location']['town']}, ${userData['location']['country']}', type: TextInputType.streetAddress, uid: user.uid, functiontype: "",),);
       widgets.add(ProfileRowCommon(title: 'Adresse E-Mail', content: userData['email'], type: TextInputType.emailAddress, uid: user.uid, functiontype: "",),);
       widgets.add(ProfileRowCommon(title: 'Numéro de téléphone', content: userData['phone'], type: TextInputType.phone, uid: user.uid, functiontype: "",),);          
       widgets.add( ProfileRowSoft(title: 'Soft skills', content: userData["soft_skill"[0]]),);
@@ -105,7 +105,7 @@ class ProfileState extends State<Profile> {
             elevation: 0,
             backgroundColor: const Color(0xFFFFFFFF),
             onPressed: () {
-              // Add the remove this.user on the database here
+              //TODO: Add the remove this.user on the database here
               Authentication().signOutUser();
               context.replaceNamed('login');
             },

@@ -12,7 +12,7 @@ class ChangeInfosProfile extends StatelessWidget {
 
   final TextEditingController textFieldController = TextEditingController();
 
-  void getAction(String type) {
+  void getAction(BuildContext context, String type) {
     Database database = Database();
     switch (type) {
       case "lastname":
@@ -22,7 +22,7 @@ class ChangeInfosProfile extends StatelessWidget {
         database.firstNameUpdate(uid, textFieldController.text.trim());
         break;
       case "email":
-        database.emailUpdate(uid, textFieldController.text.trim());
+        database.emailUpdate(context, uid, textFieldController.text.trim());
         break;
       case "phone":
         database.phoneUpdate(uid, textFieldController.text.trim());
@@ -58,8 +58,7 @@ class ChangeInfosProfile extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              // Add your save functionality here
-              getAction(functiontype);
+              getAction(context, functiontype);
               Navigator.of(context).pop();
             },
             child: const Text(

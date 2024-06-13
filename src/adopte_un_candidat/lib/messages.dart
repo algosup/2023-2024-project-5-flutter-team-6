@@ -1,9 +1,11 @@
 import 'package:adopte_un_candidat/modules/authentication.dart';
 import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:adopte_un_candidat/widgets/navigation_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 class Messages extends StatefulWidget {
   const Messages({super.key});
@@ -15,6 +17,7 @@ class Messages extends StatefulWidget {
 class MessagesState extends State<Messages> {
   dynamic messages;
   dynamic user;
+  int currentLastmessageindex = 0;
 
   @override
   void initState() {
@@ -33,21 +36,115 @@ class MessagesState extends State<Messages> {
     });
   }
 
+  dynamic newMessageTag(dynamic message) {
+    if (message["seen"] == false && message["sender"] != user.uid) {
+      return Flexible(
+        child: Container(
+        padding: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25.0),
+          color: Colors.white,
+        ),
+        child: Text(
+            'NOUVEAU',
+            textAlign: TextAlign.end,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: TextStyle(
+              fontSize: 24,
+              color: Colors.yellowAccent[700],
+              fontFamily: 'Quicksand',
+          ),
+          )
+        )
+      );
+    } else {
+      return Container();
+    }
+  }
+
+  lastMessage(String conversationId) {
+    return StreamBuilder(
+      stream:
+          FirebaseFirestore.instance.collection('message').doc(conversationId).snapshots(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          // Ensure the document exists and has data
+          if (!snapshot.hasData || !snapshot.data!.exists) {
+            return const Center(child: Text('Document does not exist'));
+          }
+
+          // Get the messages array
+          List<dynamic> messages = snapshot.data!.get('messages') ?? [];
+
+          String  formattedDate = "";
+          int lastmessageindex = 0;
+
+          if (messages.isNotEmpty) {
+            lastmessageindex = messages.length - 1;
+
+            Timestamp timestamp = messages[lastmessageindex]["date"] as Timestamp;
+            formattedDate = DateFormat('HH:mm, dd/MM/yyyy').format(timestamp.toDate());
+          }
+
+          
+          return Column(
+            children: [
+
+              Row(
+                mainAxisAlignment:
+                    MainAxisAlignment.start,
+                children: [
+                  Text(
+                    messages.isNotEmpty ? "${messages[lastmessageindex]["sender"] == user.uid ? "Me:" : "They:"} ${messages[lastmessageindex]["message"]}" : "No messages yet",
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'Quicksand',
+                      fontWeight:
+                          FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              
+              Row(
+                  mainAxisAlignment:
+                      MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      formattedDate,
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                        fontSize: 8,
+                        color: Colors.grey[500],
+                        fontFamily: 'Quicksand',
+                      ),
+                    ),
+                  ])
+            ]);
+    });
+  }
+
   ListView messagesList(){
     return ListView(
                 children: messages.entries.map<Widget>((entry) {
                   final key = entry.key;
                   final value = entry.value;
 
-                  print(value);
-                  
                   return Padding(
                       padding: const EdgeInsets.all(10),
                       child: GestureDetector(
                           onTap: () {
                             if (kDebugMode) {
-                              context.pushNamed('chat');
-                              print("id: $key");
+                              context.pushNamed('chat', extra: {"convId": key});
                             }
                           },
                           child: Container(
@@ -70,7 +167,7 @@ class MessagesState extends State<Messages> {
                                             children: [
                                               Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.start,
+                                                    MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Text(
                                                     value["userData"]["name"],
@@ -83,37 +180,12 @@ class MessagesState extends State<Messages> {
                                                             TextDecoration
                                                                 .underline),
                                                   ),
+
+                                                  value["messages"].isNotEmpty ? newMessageTag(value["messages"][value["messages"].length-1]) : Container(),
                                                 ],
                                               ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    "${value["messages"][0]["sender"] == user.uid ? "Me:" : "They:"} ${value["messages"][0]["message"]}",
-                                                    style: const TextStyle(
-                                                      fontSize: 12,
-                                                      fontFamily: 'Quicksand',
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
-                                                  children: [
-                                                    Text(
-                                                      '7:37, 24/03/2024',
-                                                      textAlign: TextAlign.end,
-                                                      style: TextStyle(
-                                                        fontSize: 8,
-                                                        color: Colors.grey[500],
-                                                        fontFamily: 'Quicksand',
-                                                      ),
-                                                    ),
-                                                  ])
+                                              
+                                              lastMessage(key),
                                             ])))
                               ]))));
                 }).toList(),
@@ -132,25 +204,23 @@ class MessagesState extends State<Messages> {
                 child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     alignment: Alignment.center,
-                    height: 25.0,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15.0),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 4.0,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: const TextField(
+                    height: 50,
+                    child: TextField(
                       decoration: InputDecoration(
-                        hintText: 'Rechercher...',
-                        border: InputBorder.none,
-                        suffixIcon: Icon(Icons.search),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 5), // Adjusted padding
+                        filled: true,
+                        fillColor: const Color(0xFFEEEEEE),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        hintText: 'Rechercher',
+                        suffixIcon: IconButton(
+                          padding: const EdgeInsets.only(right: 10),
+                          onPressed: () {
+                            // TODO: research the profile written
+                          },
+                          icon: Image.asset('assets/icons/search-icon.png', width: MediaQuery.of(context).size.width * 0.06),
+                        )
                       ),
                     ))),
             Expanded(
