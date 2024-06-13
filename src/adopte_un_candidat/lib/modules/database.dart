@@ -173,6 +173,29 @@ class Database {
     return null;
   }
 
+  void readMessage(String messagesId, String uid) {
+    bool hasBeenUpdated = false;
+    FirebaseFirestore.instance.collection("message").doc(messagesId).get().then((data){
+      if (data.exists) {
+        List<dynamic> messages = data.data()!["messages"];
+
+        for (int i = 0; i < messages.length; i++) {
+          if (messages[i]["receiver"] == uid) {
+            messages[i]["seen"] = true;
+            hasBeenUpdated = true;
+          }
+        }
+
+        if (hasBeenUpdated) {
+          FirebaseFirestore.instance.collection("message").doc(messagesId).update({
+            "messages": messages
+          });
+        }
+      }
+    }
+    );
+  }
+
   Future<String?> getPicture(int id) async {
     final Reference storageRef =
         FirebaseStorage.instance.ref().child('users/$id.png');

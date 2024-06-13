@@ -1,9 +1,12 @@
+import 'package:adopte_un_candidat/modules/authentication.dart';
+import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:adopte_un_candidat/widgets/navigation_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Chat extends StatefulWidget {
-  const Chat({super.key});
+  final String conversationId;
+  const Chat({super.key, required this.conversationId});
 
   @override
   ChatState createState() => ChatState();
@@ -11,9 +14,36 @@ class Chat extends StatefulWidget {
 
 class ChatState extends State<Chat> {
   final TextEditingController _controller = TextEditingController();
-  final List<String> messages = <String>[];
+  dynamic user;
+  dynamic secondaryUser;
+  dynamic messages;
+  late String conversationId;
 
-  Widget senderMessage(){
+  @override
+  void initState() {
+    super.initState();
+    conversationId = widget.conversationId;
+    Authentication().getCurrentUser().then(
+      (value) {
+        setState(() {
+          user = value;
+        });
+        Database().getMessages(value!.uid).then(
+        (data) {
+          setState(() {
+            messages = data![conversationId]["messages"];
+            secondaryUser = data[conversationId]["userData"];
+          });
+          Database().readMessage(conversationId, user.uid);
+        },
+      );
+      }
+    );
+  }
+
+  
+
+  Widget senderMessage(String content, String picture){
     return ListTile(
       contentPadding: const EdgeInsets.only(left: 10, right: 118),
       title: Container(
@@ -22,25 +52,25 @@ class ChatState extends State<Chat> {
             color: Colors.grey[300],
             borderRadius: BorderRadius.circular(10.0),
           ),
-          child: const Text(
-            "Hello, How can I help you?",
-            style: TextStyle(
+          child: Text(
+            content,
+            style: const TextStyle(
               color: Colors.black,
               fontSize: 12
             ),
           )
         ),
-      leading: const CircleAvatar(
+      leading: CircleAvatar(
         radius: 14,
         foregroundImage: NetworkImage(
-          "https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Falgosup.png?alt=media&token=34e1a449-5117-4333-8ed8-561cff132621",
+          picture,
         ),
-        backgroundColor: Color(0x00FFFFFF),
+        backgroundColor: const Color(0x00FFFFFF),
       ),
     );
   }
 
-  Widget reveiverMessage() {
+  Widget reveiverMessage(String content) {
     return ListTile(
       contentPadding: const EdgeInsets.only(left: 118, right: 10),
       title: Container(
@@ -49,9 +79,9 @@ class ChatState extends State<Chat> {
           color: Colors.black,
           borderRadius: BorderRadius.circular(10.0),
         ),
-        child: const Text(
-          "Hello, I would like to know more about your company.",
-          style: TextStyle(
+        child: Text(
+          content,
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 12
           ),
@@ -60,13 +90,19 @@ class ChatState extends State<Chat> {
     );
   }
 
-  Widget loadMessages(int index) {
-  
-    if (index % 2 == 0) {
-      return senderMessage();
-    } else {
-      return reveiverMessage();
-    }
+  Widget conversation() {
+    return ListView.builder(
+      itemCount: messages.length,
+      itemBuilder: (context, index) {
+        final message = messages[index];
+
+        if (message['sender'] == user.uid) {
+          return reveiverMessage(message['message']);
+        } else {
+          return senderMessage(message['message'], secondaryUser["profile_picture"]);
+        }
+      },
+    );
   }
 
   @override
@@ -75,7 +111,7 @@ class ChatState extends State<Chat> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Row(
+        title: Row(
           mainAxisSize: MainAxisSize.min, // Ensures the Row takes minimal space
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -83,14 +119,14 @@ class ChatState extends State<Chat> {
                 radius: 20,
                 foregroundImage:
                     NetworkImage(
-                      "https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Falgosup.png?alt=media&token=34e1a449-5117-4333-8ed8-561cff132621",
+                      secondaryUser != null ? secondaryUser["profile_picture"] : "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
                     ),
-                backgroundColor: Color(0x00FFFFFF),
+                backgroundColor: const Color(0x00FFFFFF),
               ),
-              SizedBox(width: 10,),
+              const SizedBox(width: 10,),
               Text(
-                'ALGOSUP',
-                style: TextStyle(
+                secondaryUser != null ? secondaryUser["name"] : 'Loading...',
+                style: const TextStyle(
                   fontSize: 30,
                   fontFamily: 'Quicksand',
                   decoration: TextDecoration.underline,
@@ -103,12 +139,7 @@ class ChatState extends State<Chat> {
       body: Column(
         children: <Widget>[
           Expanded(
-            child: ListView.builder(
-              itemCount: 4,//messages.length,
-              itemBuilder: (BuildContext context, int index) {
-                return loadMessages(index);
-              },
-            ),
+            child: messages != null ? conversation() : const Center(child: CircularProgressIndicator()),
           ),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
