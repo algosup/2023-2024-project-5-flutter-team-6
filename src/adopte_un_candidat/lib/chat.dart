@@ -4,6 +4,7 @@ import 'package:adopte_un_candidat/widgets/navigation_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 
 class Chat extends StatefulWidget {
@@ -21,12 +22,22 @@ class ChatState extends State<Chat> {
   dynamic secondaryUser;
   dynamic messages;
   late String conversationId;
+  bool userScrolling = false;
 
   @override
   void initState() {
     super.initState();
     conversationId = widget.conversationId;
     scrollController = ScrollController();
+    scrollController.addListener(() {
+      // Check if the user has manually scrolled
+      if ((scrollController.position.userScrollDirection == ScrollDirection.reverse ||
+          scrollController.position.userScrollDirection == ScrollDirection.forward) && userScrolling == false) {
+        userScrolling = true;
+      } else if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+        userScrolling = false;
+      }
+    });
     Authentication().getCurrentUser().then((value) {
       setState(() {
         user = value;
@@ -50,8 +61,20 @@ class ChatState extends State<Chat> {
   }
 
   void scrollToBottom() {
-    SchedulerBinding.instance!.addPostFrameCallback((_) {
-      if (scrollController.hasClients) {
+    // scrollController.addListener(() {
+      // Check if the user has manually scrolled
+    //   if (scrollController.position.userScrollDirection == ScrollDirection.reverse ||
+    //       scrollController.position.userScrollDirection == ScrollDirection.forward) {
+    //     userScrolling = true;
+    //     print("1");
+    //   } else if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+    //     userScrolling = false;
+    //     print("2");
+    //   }
+    // });
+
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      if (!userScrolling && scrollController.hasClients) {
         scrollController.animateTo(
           scrollController.position.maxScrollExtent,
           duration: const Duration(milliseconds: 300),
@@ -117,12 +140,12 @@ class ChatState extends State<Chat> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
 
         // Ensure the document exists and has data
         if (!snapshot.hasData || !snapshot.data!.exists) {
-          return Center(child: Text('Document does not exist'));
+          return const Center(child: Text('Document does not exist'));
         }
 
         // Get the messages array

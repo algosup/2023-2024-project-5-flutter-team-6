@@ -37,7 +37,8 @@ class MessagesState extends State<Messages> {
 
   dynamic newMessageTag(dynamic message) {
     if (message["seen"] == false && message["sender"] != user.uid) {
-      return Container(
+      return Flexible(
+        child: Container(
         padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25.0),
@@ -46,12 +47,15 @@ class MessagesState extends State<Messages> {
         child: Text(
             'NOUVEAU',
             textAlign: TextAlign.end,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
             style: TextStyle(
               fontSize: 24,
               color: Colors.yellowAccent[700],
               fontFamily: 'Quicksand',
           ),
           )
+        )
       );
     } else {
       return Container();
