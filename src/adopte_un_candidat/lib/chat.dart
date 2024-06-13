@@ -184,7 +184,6 @@ class ChatState extends State<Chat> {
                   hintText: 'Message ...',
                   suffixIcon: IconButton(
                     onPressed: () {
-                      print(messageController.text.trim().length);
                       if (messageController.text.trim().isNotEmpty){
                         if (kDebugMode) {
                           print("Message sent: ${messageController.text.trim()}");
