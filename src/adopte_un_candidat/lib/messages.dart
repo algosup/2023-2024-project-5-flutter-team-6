@@ -72,9 +72,9 @@ class MessagesState extends State<Messages> {
                   int lastmessageindex = 0;
 
                   if (value["messages"].isNotEmpty) {
-                    final lastmessageindex = value["messages"].length - 1;
+                    lastmessageindex = value["messages"].length - 1;
 
-                    final timestamp = value["messages"][lastmessageindex]["date"] as Timestamp;
+                    Timestamp timestamp = value["messages"][lastmessageindex]["date"] as Timestamp;
                     formattedDate = DateFormat('HH:mm, dd/MM/yyyy').format(timestamp.toDate());
                   }
 
