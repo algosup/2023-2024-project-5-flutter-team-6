@@ -128,7 +128,7 @@ class SwiperFeatureState extends State<SwiperFeature> {
   // }
 
   Widget cards() {
-    if (cardStack != null) {
+    if (cardStack != null && cardStack!.isNotEmpty) {
       return AppinioSwiper(
         invertAngleOnBottomDrag: true,
         backgroundCardCount: cardStack!.length > 1 ? 1 : 0,
