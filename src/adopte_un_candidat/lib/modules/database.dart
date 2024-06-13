@@ -147,14 +147,19 @@ class Database {
         if (querySnapshot.exists) {
           var message = querySnapshot.data()!;
           dynamic receiver;
+          String secondaryUserId;
 
           if (message["uids"][0] == uid) {
-            receiver = await getUser(message["uids"][1]);
+            secondaryUserId = message["uids"][1];
+            
           } else {
-            receiver = await getUser(message["uids"][0]);
+            secondaryUserId = message["uids"][0];
           }
+          receiver = await getUser(secondaryUserId);
+
           messages[id] = {
             "userData": {
+              "uid": secondaryUserId,
               "type": receiver["type"],
               "colors": receiver["colors"],
               "name": receiver["name"],
@@ -194,6 +199,22 @@ class Database {
       }
     }
     );
+  }
+
+  void sendMessage(String messagesId, String uid, String receiverUid, String content) {
+    
+    FirebaseFirestore.instance.collection("message").doc(messagesId).update({
+      "messages": FieldValue.arrayUnion([
+      {
+          "message": content,
+          "date": Timestamp.now(),
+          "receiver": receiverUid,
+          "seen": false,
+          "sender": uid
+      }
+
+      ])
+    });
   }
 
   Future<String?> getPicture(int id) async {
