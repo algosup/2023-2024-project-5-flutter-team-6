@@ -97,7 +97,9 @@ class Cards extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          Expanded(
+            flex: 5,
+            child: Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: CupertinoColors.white,
@@ -164,112 +166,137 @@ class Cards extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-              padding: const EdgeInsets.all(15),
-              child:
-                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                const Text(
-                  "Informations:",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 8,
-                    fontWeight: FontWeight.bold,
+          ),
+          Expanded(
+            flex: 6,
+            child: Container(
+              padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+              child: Column( crossAxisAlignment: CrossAxisAlignment.start, 
+                children: [
+                  const Expanded(
+                    flex: 1,
+                    child: Text(
+                      "Informations:",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 8,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
-                GridView.count(
-                  crossAxisCount: 3,
-                  padding: const EdgeInsets.all(5),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  childAspectRatio: 4,
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 5,
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFB565F4),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Text(
-                        user["proposal"]["activity_sector"],
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 8,
+                  Expanded(
+                    flex: 4,
+                    child: GridView.count(
+                      crossAxisCount: 3,
+                      padding: const EdgeInsets.all(5),
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      childAspectRatio: 4,
+                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 5,
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFB565F4),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Text(
+                            user["proposal"]["activity_sector"],
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 8,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF7DC3EA),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Text(
-                        getRemoteLabel(user["proposal"]["location"]["on_remote"]),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 8,
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF7DC3EA),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Text(
+                            getRemoteLabel(user["proposal"]["location"]["on_remote"]),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 8,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFB565F4),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: const Text(
-                        "54km",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 8,
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFB565F4),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: const Text(
+                            "54km",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 8,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF7DC3EA),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Text(
-                        user["proposal"]["salary"],
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 8,
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF7DC3EA),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Text(
+                            user["proposal"]["salary"],
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 8,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFB565F4),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Text(
-                        user["proposal"]["contract"],
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 8,
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFB565F4),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Text(
+                            user["proposal"]["contract"],
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 8,
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
-                Divider(
-                  color: Colors.grey[300],
-                  thickness: 2,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      alignment: Alignment.topCenter,
+                      child: Divider(
+                        color: Colors.grey[300],
+                        thickness: 2,
+                      ),
+                    )
+                  )
+                ]
+              )
+            )
+          ),
+          Expanded(
+            flex: 6,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Expanded(
+                    flex: 1,
+                    child: Text(
                       "Soft skills en commun:",
                       style: TextStyle(
                         color: Colors.black,
@@ -277,17 +304,36 @@ class Cards extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    displayCommonSoftSkills()
-                  ],
-                ),
-                Divider(
-                  color: Colors.grey[300],
-                  thickness: 2,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
+
+                  ),
+                  Expanded(
+                    flex: 4,
+                    child: displayCommonSoftSkills(),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      alignment: Alignment.topCenter,
+                      child: Divider(
+                        color: Colors.grey[300],
+                        thickness: 2,
+                      ),
+                    )
+                  )
+                ],
+              )
+            )
+          ),
+          Expanded(
+            flex: 8,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Expanded(
+                    flex: 1,
+                    child: Text(
                       "Taux de compatibilité:",
                       style: TextStyle(
                         color: Colors.black,
@@ -295,45 +341,44 @@ class Cards extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                  alignment: Alignment.center,
-                                  width: 82,
-                                  height: 82,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    border:
-                                        Border.all(color: Colors.green, width: 8),
-                                  ),
-                                  child: const Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "Bon",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                        Text(
-                                          "60%",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                      ])),
-                            ]))
-                  ],
-                )
-              ])),
+                  ),
+                  Expanded(
+                    flex: 8,
+                    child: Center(
+                      child: Container(
+                        width: 82,
+                        height: 82,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          border: Border.all(color: Colors.green, width: 8),
+                        ),
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Bon",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                              ),
+                            ),
+                            Text(
+                              "60%",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ]
+                        )
+                      )
+                    ),
+                  )
+                ],
+              )
+            )
+          )
         ],
       );
     } else {
@@ -341,7 +386,9 @@ class Cards extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          Expanded(
+            flex: 4,
+            child: Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: CupertinoColors.white,
@@ -357,71 +404,92 @@ class Cards extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Expanded(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
+                    child: Text(
                       user["name"],
                       textAlign: TextAlign.left,
                       style: const TextStyle(
-                          color: CupertinoColors.black,
-                          fontFamily: 'QuickSand',
-                          fontSize: 14,
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.bold),
+                        color: CupertinoColors.black,
+                        fontFamily: 'QuickSand',
+                        fontSize: 18,
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.bold
+                      ),
                     ),
-                  ],
-                ))
-              ],
+                  )
+                ],
+              ),
             ),
           ),
-          Padding(
-              padding: const EdgeInsets.all(15),
-              child:
-                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                const Text(
-                  "Distance:",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 8,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                GridView.count(
-                  crossAxisCount: 3,
-                  padding: const EdgeInsets.all(5),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  childAspectRatio: 4,
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 5,
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFB565F4),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: const Text(
-                        "54km",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 8,
-                        ),
+          Expanded(
+            flex: 3,
+            child: Container(
+              padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+              child: Column( crossAxisAlignment: CrossAxisAlignment.start, 
+                children: [
+                  const Expanded(
+                    flex: 1,
+                    child: Text(
+                      "Disctance:",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 8,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                ),
-                Divider(
-                  color: Colors.grey[300],
-                  thickness: 2,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
+                  ),
+                  Expanded(
+                    flex: 4,
+                    child: GridView.count(
+                      crossAxisCount: 3,
+                      padding: const EdgeInsets.all(5),
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      childAspectRatio: 4,
+                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 5,
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFB565F4),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: const Text(
+                            "54km",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 8,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      alignment: Alignment.topCenter,
+                      child: Divider(
+                        color: Colors.grey[300],
+                        thickness: 2,
+                      ),
+                    )
+                  )
+                ]
+              )
+            )
+          ),
+          Expanded(
+            flex: 6,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Expanded(
+                    flex: 1,
+                    child: Text(
                       "Soft skills en commun:",
                       style: TextStyle(
                         color: Colors.black,
@@ -429,17 +497,35 @@ class Cards extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    displayCandidatSoftSkills()
-                  ],
-                ),
-                Divider(
-                  color: Colors.grey[300],
-                  thickness: 2,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
+                  ),
+                  Expanded(
+                    flex: 4,
+                    child: displayCandidatSoftSkills(),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      alignment: Alignment.topCenter,
+                      child: Divider(
+                        color: Colors.grey[300],
+                        thickness: 2,
+                      ),
+                    )
+                  )
+                ],
+              )
+            )
+          ),
+          Expanded(
+            flex: 8,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Expanded(
+                    flex: 1,
+                    child: Text(
                       "Taux de compatibilité:",
                       style: TextStyle(
                         color: Colors.black,
@@ -447,45 +533,44 @@ class Cards extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                  alignment: Alignment.center,
-                                  width: 82,
-                                  height: 82,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    border:
-                                        Border.all(color: Colors.green, width: 8),
-                                  ),
-                                  child: const Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "Bon",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                        Text(
-                                          "60%",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                      ])),
-                            ]))
-                  ],
-                )
-              ])),
+                  ),
+                  Expanded(
+                    flex: 8,
+                    child: Center(
+                      child: Container(
+                        width: 82,
+                        height: 82,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          border: Border.all(color: Colors.green, width: 8),
+                        ),
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Bon",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                              ),
+                            ),
+                            Text(
+                              "60%",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ]
+                        )
+                      )
+                    ),
+                  )
+                ],
+              )
+            )
+          )
         ],
       );
     }
