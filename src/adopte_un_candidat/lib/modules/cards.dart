@@ -9,8 +9,8 @@ class Cards extends StatelessWidget {
 
   final bool versoShowed = false;
 
-  String getRemoteLabel(int on_remote){
-    switch (on_remote) {
+  String getRemoteLabel(int onRemote){
+    switch (onRemote) {
       case 0:
         return "Non renseigné";
       case 1:
@@ -682,7 +682,6 @@ class Cards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // debugPaintSizeEnabled = true;
     return Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),

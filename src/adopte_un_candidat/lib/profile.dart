@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import './widgets/navigation_bar.dart';
 import './widgets/profile_row.dart';
-import './modules/database.dart';
-import 'routes.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -107,7 +105,7 @@ class ProfileState extends State<Profile> {
             elevation: 0,
             backgroundColor: const Color(0xFFFFFFFF),
             onPressed: () {
-              // Add the remove this.user on the database here
+              //TODO: Add the remove this.user on the database here
               Authentication().signOutUser();
               context.replaceNamed('login');
             },

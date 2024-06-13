@@ -2,17 +2,15 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'modules/buttons.dart';
-// import 'package:flutter/services.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _RegisterState createState() => _RegisterState();
+  RegisterState createState() => RegisterState();
 }
 
-class _RegisterState extends State<Register> {
+class RegisterState extends State<Register> {
 
   int? page;
 
@@ -251,7 +249,7 @@ class _RegisterState extends State<Register> {
                             setState(() {
                               page = 3;
                             });
-                            // name validation
+                            // TODO: Add name validation
 
                           },
                         )
@@ -381,7 +379,7 @@ class _RegisterState extends State<Register> {
                             setState(() {
                               page = 4;
                             });
-                            // email validation
+                            // TODO: Add email validation
 
                           },
                         )
@@ -517,7 +515,7 @@ class _RegisterState extends State<Register> {
                       setState(() {
                         page = 5;
                       });
-                      // password validation ---
+                      // TODO: Add password validation ---
 
                     },
                   )
@@ -666,7 +664,7 @@ class _RegisterState extends State<Register> {
                       setState(() {
                         page = 6;
                       });
-                      // validate information
+                      // TODO: Add validate information
 
                     },
                   )
@@ -761,7 +759,7 @@ class _RegisterState extends State<Register> {
                                 child: Center(
                                   child: IconButton(
                                     onPressed: () {
-                                      // Nickname randomizer
+                                      // TODO: Add Nickname randomizer
                                       
                                     },
                                     icon: const Icon(Icons.shuffle_rounded, size: 40),
@@ -827,7 +825,7 @@ class _RegisterState extends State<Register> {
                               setState(() {
                                 page = 7;
                               });
-                              // Register nickname
+                              // TODO: Add Register nickname
 
                             },
                           ),
@@ -973,7 +971,7 @@ class _RegisterState extends State<Register> {
                               setState(() {
                                 page = 8;
                               });
-                              // register avatar
+                              // TODO: Add register avatar
 
                             },
                           ),
@@ -1106,7 +1104,7 @@ class _RegisterState extends State<Register> {
                         Expanded(
                           flex: 5,
                           child: Container(
-                            // Soft-skills area (not selected)
+                            // TODO: Add Soft-skills area (not selected)
 
                           ),
                         ),
@@ -1194,7 +1192,7 @@ class _RegisterState extends State<Register> {
                         Expanded(
                           flex: 3,
                           child: Container(
-                            // Soft-skills area (selected)
+                            // TODO: Add Soft-skills area (selected)
                             
                           ),
                         ),
@@ -1288,7 +1286,6 @@ class _RegisterState extends State<Register> {
   }
 
   Widget _registerPage(BuildContext context) {
-    // print(page);
     switch(page) {
       case 1:
         return registerChoicePage(context);

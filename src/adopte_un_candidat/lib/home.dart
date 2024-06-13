@@ -5,7 +5,9 @@ import 'modules/buttons.dart';
 import 'swiper_feature.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+ Home({super.key});
+
+  final GlobalKey<SwiperFeatureState> _swiperFeatureKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,6 @@ class Home extends StatelessWidget {
           backgroundColor: Colors.white,
           body: Column(
             children: [
-              //Start of Top Section (logo, top)
               Expanded(
                 flex: 1,
                 child: Row(
@@ -24,13 +25,12 @@ class Home extends StatelessWidget {
                       flex: 1,
                       child: Container(
                         padding: const EdgeInsets.all(
-                            10.0), // Add padding to the container to center the image !!!WIP - Need to find solution to avoid being placed next to iphone notch.
-                        //color: Colors.yellow, // Set the background color of the top section for viewing purposes
+                            10.0),
                         child: Center(
                           child: Container(
                             alignment: Alignment.bottomCenter,
                             child: Image.asset(
-                                'assets/images/adopte-logo.png'), // Logo image for GIT
+                                'assets/images/adopte-logo.png'),
                           ),
                         ),
                       ),
@@ -38,36 +38,24 @@ class Home extends StatelessWidget {
                     Expanded(
                       flex: 2,
                       child: Container(
-                          //Color: Colors.red, // Set the background color of the top section for viewing purposes
-                          //child: Center(
-                          //child: Text('Top Section'), // Text for the top section for viewing purposes
-                          //), // VIEWING PURPOSES Line 99 - 102
+                          
                           ),
                     ),
                   ],
                 ),
               ),
-              //End of Top Section (logo, top)
-
-              //---//
-
-              //Start of Middle Section (left, right, center)
-              const Expanded(
+              Expanded(
                 flex: 4,
                 child: Row(
                   children: [
                     Expanded(
                       flex: 3,
-                      child: SwiperFeature(),
+                      child: SwiperFeature(key: _swiperFeatureKey),
                     ),
                   ],
                 ),
               ),
-              //End of Middle Section (left, right, center)
 
-              //---//
-
-              //Start of Bottom Section (yes,no,save,back)
               Expanded(
                 flex: 1,
                 child: Center(
@@ -78,6 +66,7 @@ class Home extends StatelessWidget {
                         onPressed: () {
                           // Back button logic
                           HapticFeedback.lightImpact();
+                          _swiperFeatureKey.currentState?.unSwipe();
                         },
                         child: const Icon(Icons.arrow_back_rounded,
                             size: 35, color: Color(0xFF959595)),
@@ -86,6 +75,7 @@ class Home extends StatelessWidget {
                         onPressed: () {
                           // Refuse button logic
                           HapticFeedback.mediumImpact();
+                          _swiperFeatureKey.currentState?.swipeLeft();
                         },
                         gradient: myGradientRefuse,
                         child: const Icon(Icons.clear_rounded,
@@ -95,11 +85,10 @@ class Home extends StatelessWidget {
                         onPressed: () {
                           // Accept button logic
                           HapticFeedback.mediumImpact();
-
-                          // End of Accept Button logic
+                          _swiperFeatureKey.currentState?.swipeRight();
                         },
                         gradient:
-                            myGradientAccept, // Increase the size of the icon
+                            myGradientAccept,
 
                         child: const Icon(Icons.check_rounded,
                             size: 60.0, color: Colors.white),
@@ -108,6 +97,7 @@ class Home extends StatelessWidget {
                         onPressed: () {
                           // Save button logic
                           HapticFeedback.lightImpact();
+                          _swiperFeatureKey.currentState?.addFavorite();
                         },
                         child: const Icon(Icons.bookmark_rounded,
                             size: 35, color: Color(0xFF959595)),
@@ -116,9 +106,6 @@ class Home extends StatelessWidget {
                   ),
                 ),
               ),
-              //End of Bottom Section (yes,no,save,back)
-
-              //---//
             ],
           ),
           bottomNavigationBar: const SuperNavigationBar(index: 1),

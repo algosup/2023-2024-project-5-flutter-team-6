@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class Database {
   Future<List?> getStack() async {
@@ -19,28 +20,39 @@ class Database {
 
     Map<String, dynamic>? userCard;
     if (typeAccount == 'user') {
-      final QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("company").get();
+      final QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await FirebaseFirestore.instance.collection("company").get();
 
       for (final QueryDocumentSnapshot doc in querySnapshot.docs) {
         userCard = doc.data() as Map<String, dynamic>?;
         userCard?['type'] = 'company';
-        QuerySnapshot<Map<String, dynamic>> proposalList = await doc.reference.collection("proposal").get();
-        int porposalIndex = proposalList.docs.length > 1 ? Random().nextInt(proposalList.docs.length) - 1 : 0;
+        QuerySnapshot<Map<String, dynamic>> proposalList =
+            await doc.reference.collection("proposal").get();
+        int porposalIndex = proposalList.docs.length > 1
+            ? Random().nextInt(proposalList.docs.length) - 1
+            : 0;
 
         if (porposalIndex < 0) porposalIndex = 0;
 
         if (proposalList.docs.isNotEmpty) {
+          userCard?['id'] = doc.id;
           userCard?['proposal'] = proposalList.docs[porposalIndex].data();
+          userCard?['proposal']['id'] = proposalList.docs[porposalIndex].id;
 
           String proposalId = proposalList.docs[porposalIndex].id.toString();
 
           if (userData['card_liked']["${doc.id}-$proposalId"] != null) {
             DateTime currentTimestamp = DateTime.now();
-            Timestamp savedTimestamp = userData['card_liked']["${doc.id}-$proposalId"];
+            Timestamp savedTimestamp =
+                userData['card_liked']["${doc.id}-$proposalId"];
             DateTime savedTimestampdate = savedTimestamp.toDate();
 
-            if (savedTimestampdate.isBefore(currentTimestamp.subtract(const Duration(days: 7)))) {
-              await FirebaseFirestore.instance.collection("user").doc(user.uid).update({
+            if (savedTimestampdate
+                .isBefore(currentTimestamp.subtract(const Duration(days: 7)))) {
+              await FirebaseFirestore.instance
+                  .collection("user")
+                  .doc(user.uid)
+                  .update({
                 'card_liked.${doc.id}-$proposalId': FieldValue.delete(),
               });
               cardStack.add(userCard);
@@ -50,12 +62,14 @@ class Database {
           }
         }
         if (cardStack.length >= 20 ||
-            cardStack.length >= querySnapshot.docs.length) {
+            cardStack.length >=
+                querySnapshot.docs.length - userData['card_liked'].length) {
           return cardStack;
         }
       }
     } else if (typeAccount == 'company') {
-      final QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection("user").get();
+      final QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await FirebaseFirestore.instance.collection("user").get();
 
       for (final QueryDocumentSnapshot doc in querySnapshot.docs) {
         userCard = doc.data() as Map<String, dynamic>?;
@@ -120,7 +134,6 @@ class Database {
     Map<dynamic, dynamic>? user = await getUser(uid);
 
     if (user != null) {
-
       var conversationsids = user['messages'];
 
       var messages = {};
@@ -134,15 +147,21 @@ class Database {
         if (querySnapshot.exists) {
           var message = querySnapshot.data()!;
           dynamic receiver;
-          
+
           if (message["uids"][0] == uid) {
             receiver = await getUser(message["uids"][1]);
           } else {
             receiver = await getUser(message["uids"][0]);
           }
-          // print(receiver);
-          messages[id] = {"userData": {"type": receiver["type"], "colors": receiver["colors"], "name": receiver["name"], "profile_picture": receiver["profile_picture"]}, "messages": message["messages"]};
-          // print(messages);
+          messages[id] = {
+            "userData": {
+              "type": receiver["type"],
+              "colors": receiver["colors"],
+              "name": receiver["name"],
+              "profile_picture": receiver["profile_picture"]
+            },
+            "messages": message["messages"]
+          };
         } else {
           if (kDebugMode) {
             print("No such document!");
@@ -167,6 +186,45 @@ class Database {
       }
       return null;
     }
+  }
+
+  Future<void> likeCard(String id, dynamic card) async {
+    Map<dynamic, dynamic>? user = await getUser(id);
+    if (user!["type"] == 'company') {
+      // TODO: Add company liking logic
+      return;
+    } else if (user["type"] == 'user') {
+      await FirebaseFirestore.instance.collection("user").doc(id).update({
+        'card_liked.${card["id"]}-${card["proposal"]["id"]}':
+            FieldValue.serverTimestamp(),
+      });
+    } else {
+      return;
+    }
+  }
+
+  Future<List?> getFavorites(String id) async {
+    var favorites = [];
+    final DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+        await FirebaseFirestore.instance.collection("user").doc(id).get();
+
+    if (querySnapshot.exists) {
+      favorites = querySnapshot.data()!['favorite'];
+      return favorites;
+    } else {
+      if (kDebugMode) {
+        print("No such document!");
+      }
+      return null;
+    }
+  }
+
+  void addFavorite(String id, dynamic card) async {
+    await FirebaseFirestore.instance.collection("user").doc(id).update({
+      'favorite': FieldValue.arrayUnion([
+        {"company": card["id"], "proposal": card["proposal"]["id"]}
+      ]),
+    });
   }
 
   Future<void> createUser(String uid) async {
@@ -210,7 +268,8 @@ class Database {
       },
       'motto': "On aime l'argent !",
       'name': 'Ledger',
-      'profile_picture': 'https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Fformule1.png?alt=media&token=daddbbaa-0d0d-4fda-9c8e-7cb718d1101c',
+      'profile_picture':
+          'https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Fformule1.png?alt=media&token=daddbbaa-0d0d-4fda-9c8e-7cb718d1101c',
       'website': 'www.ledger.com',
     });
   }
@@ -231,10 +290,45 @@ class Database {
     });
   }
 
-  Future<void> emailUpdate(String id, String email) async {
-    await FirebaseFirestore.instance.collection("user").doc(id).update({
-      'email': email,
-    });
+  Future<void> emailUpdate(
+      BuildContext context, String id, String email) async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        await user.verifyBeforeUpdateEmail(email);
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                  'Email changé avec succès. Un email de verification a été envoyé à $email.'),
+            ),
+          );
+        }
+        await user.reload();
+        user = FirebaseAuth.instance.currentUser;
+        await FirebaseFirestore.instance.collection("user").doc(id).update({
+          'email': email,
+        });
+        if (kDebugMode) {
+          print('Email updated successfully to: ${user?.email}');
+        }
+      } else {
+        if (kDebugMode) {
+          print('No user is signed in.');
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Impossible de changer l\'email: $e'),
+          ),
+        );
+      }
+      if (kDebugMode) {
+        print('Failed to update email: $e');
+      }
+    }
   }
 
   Future<void> phoneUpdate(String id, String phone) async {
