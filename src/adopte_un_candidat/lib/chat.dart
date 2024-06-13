@@ -114,6 +114,10 @@ class ChatState extends State<Chat> {
           // Get the messages array
           List<dynamic> messages = snapshot.data!.get('messages') ?? [];
 
+          if (messages.isEmpty) {
+            return const Center(child: Text('No messages yet'));
+          }
+
           return ListView.builder(
             itemCount: messages.length,
             itemBuilder: (context, index) {
