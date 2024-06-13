@@ -184,11 +184,14 @@ class ChatState extends State<Chat> {
                   hintText: 'Message ...',
                   suffixIcon: IconButton(
                     onPressed: () {
-                      if (kDebugMode) {
-                        print("Message sent: ${messageController.text.trim()}");
+                      print(messageController.text.trim().length);
+                      if (messageController.text.trim().isNotEmpty){
+                        if (kDebugMode) {
+                          print("Message sent: ${messageController.text.trim()}");
+                        }
+                        Database().sendMessage(conversationId, user.uid, secondaryUser["uid"], messageController.text.trim());
+                        messageController.clear();
                       }
-                      Database().sendMessage(conversationId, user.uid, secondaryUser["uid"], messageController.text.trim());
-                      messageController.clear();
                     },
                     icon: const Icon(Icons.send),
                   )
