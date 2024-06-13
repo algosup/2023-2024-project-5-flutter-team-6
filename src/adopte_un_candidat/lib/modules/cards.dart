@@ -97,9 +97,7 @@ class Cards extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            flex: 5,
-            child: Container(
+          Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: CupertinoColors.white,
@@ -165,7 +163,6 @@ class Cards extends StatelessWidget {
                 ))
               ],
             ),
-          ),
           ),
           Expanded(
             flex: 6,
