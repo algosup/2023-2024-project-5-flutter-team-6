@@ -13,7 +13,7 @@ class Chat extends StatefulWidget {
 }
 
 class ChatState extends State<Chat> {
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController messageController = TextEditingController();
   dynamic user;
   dynamic secondaryUser;
   dynamic messages;
@@ -148,6 +148,7 @@ class ChatState extends State<Chat> {
               height: 50,
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: TextField(
+                controller: messageController,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: const Color(0xFFEEEEEE),
@@ -159,9 +160,12 @@ class ChatState extends State<Chat> {
                   suffixIcon: IconButton(
                     onPressed: () {
                       if (kDebugMode) {
-                        print("Message sent: ${_controller.text.trim()}");
+                        print("Message sent: ${messageController.text.trim()}");
                       }
-                      // TODO: Add message logic
+                      print(secondaryUser);
+                      print(user.uid);
+                      Database().sendMessage(conversationId, user.uid, secondaryUser["uid"], messageController.text.trim());
+                      messageController.clear();
                     },
                     icon: const Icon(Icons.send),
                   )

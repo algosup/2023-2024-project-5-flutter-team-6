@@ -64,11 +64,15 @@ class MessagesState extends State<Messages> {
                   final key = entry.key;
                   final value = entry.value;
 
-                  final lastmessageindex = value["messages"].length - 1;
+                  String  formattedDate = "";
+                  int lastmessageindex = 0;
 
-                  final timestamp = value["messages"][lastmessageindex]["date"] as Timestamp;
-                  final formattedDate = DateFormat('HH:mm, dd/MM/yyyy').format(timestamp.toDate());
-                  
+                  if (value["messages"].isNotEmpty) {
+                    final lastmessageindex = value["messages"].length - 1;
+
+                    final timestamp = value["messages"][lastmessageindex]["date"] as Timestamp;
+                    formattedDate = DateFormat('HH:mm, dd/MM/yyyy').format(timestamp.toDate());
+                  }
 
                   return Padding(
                       padding: const EdgeInsets.all(10),
@@ -111,8 +115,8 @@ class MessagesState extends State<Messages> {
                                                             TextDecoration
                                                                 .underline),
                                                   ),
-
-                                                  newMessageTag(value["messages"][lastmessageindex]),
+                                                  
+                                                  value["messages"].isNotEmpty ? newMessageTag(value["messages"][lastmessageindex]) : Container(),
                                                 ],
                                               ),
                                               Row(
@@ -120,7 +124,7 @@ class MessagesState extends State<Messages> {
                                                     MainAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    "${value["messages"][lastmessageindex]["sender"] == user.uid ? "Me:" : "They:"} ${value["messages"][lastmessageindex]["message"]}",
+                                                    value["messages"].isNotEmpty ? "${value["messages"][lastmessageindex]["sender"] == user.uid ? "Me:" : "They:"} ${value["messages"][lastmessageindex]["message"]}" : "No messages yet",
                                                     style: const TextStyle(
                                                       fontSize: 12,
                                                       fontFamily: 'Quicksand',
