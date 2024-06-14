@@ -1594,7 +1594,7 @@ class _RegisterState extends State<Register> {
               ),
             ),
             Expanded(
-              flex: 1,
+              flex: 2,
               child: Container(
                 alignment: Alignment.bottomLeft,
                 padding: const EdgeInsets.only(left: 40, right: 1),
@@ -1680,17 +1680,39 @@ class _RegisterState extends State<Register> {
                           )),
                       Expanded(
                         flex: 2,
-                        child: Container(
-                          alignment: Alignment.topRight,
-                          child: NextButton(
-                            onPressed: () {
-                              setState(() {
-                                page = 7.7;
-                              });
-                              // Register nickname
-                            },
+                        child: Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.topLeft,
+                              padding: const EdgeInsets.only(left: 10),
+                              child: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  page = 5.5;
+                                });
+                              },
+                              icon: const Icon(Icons.arrow_back_rounded,
+                                  size: 40),
+                              )
+                            )
                           ),
-                        ),
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.topRight,
+                              padding: const EdgeInsets.only(right: 10),
+                              child: NextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    page = 7.7;
+                                  });
+                                  // validate information
+                                },
+                              )
+                            )
+                          )
+                        ]
+                      )
                       )
                     ])))
           ])),
@@ -1722,7 +1744,7 @@ class _RegisterState extends State<Register> {
                   ),
                 )),
             Expanded(
-                flex: 2,
+                flex: 3,
                 child: Container(
                   alignment: Alignment.topLeft,
                   padding: const EdgeInsets.only(left: 40, right: 1, bottom: 5),
@@ -1948,7 +1970,25 @@ class _RegisterState extends State<Register> {
                 )),
             Expanded(
                 flex: 2,
-                child: Container(
+                child: Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.bottomLeft,
+                              padding: const EdgeInsets.only(left: 40),
+                              child: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  page = 6.6;
+                                });
+                              },
+                              icon: const Icon(Icons.arrow_back_rounded,
+                                  size: 40),
+                              )
+                            )
+                          ),
+                          Expanded(
+                            child: Container(
                     alignment: Alignment.bottomRight,
                     padding: const EdgeInsets.only(right: 40, left: 1),
                     child: NextButton(
@@ -1958,7 +1998,7 @@ class _RegisterState extends State<Register> {
                         });
                         // validate information
                       },
-                    ))),
+                        )))])),
             Expanded(
               flex: 2,
               child: Container(
@@ -1987,7 +2027,9 @@ class _RegisterState extends State<Register> {
                 ),
               ),
             ),
-          ])),
+          ]
+        )
+        ),
       Expanded(
         flex: 1,
         child: extraInformation(),
