@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,6 +29,42 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   double? page;
+
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordVerificationController =
+      TextEditingController();
+  final TextEditingController professionalStatusController =
+      TextEditingController();
+  final TextEditingController activitySectorController = TextEditingController();
+  final TextEditingController professionalExperienceController =
+      TextEditingController();
+  
+  bool userRealName() {
+    return lastNameController.text.trim().isNotEmpty &&
+        firstNameController.text.trim().isNotEmpty;
+  }
+
+  bool userEmail() {
+      final emailRegex = RegExp(r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$');
+
+    return emailController.text.trim().isNotEmpty && emailRegex.hasMatch(emailController.text.trim());
+  }
+
+  bool userPassword() {
+    return (passwordController.text.trim().isNotEmpty &&
+        passwordVerificationController.text.trim().isNotEmpty) && (passwordController.text.trim() == passwordVerificationController.text.trim());
+  }
+
+  bool userInformation() {
+    return professionalStatusController.text.trim().isNotEmpty &&
+        activitySectorController.text.trim().isNotEmpty &&
+        professionalExperienceController.text.trim().isNotEmpty;
+  }
+
+  // ------- Widget -------
 
   Widget registerChoicePage(BuildContext context) {
     return Column(
@@ -177,6 +214,7 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(
                                 right: 40, left: 40, top: 10),
                             child: TextField(
+                              controller: lastNameController,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: const Color(0xFFEEEEEE),
@@ -193,6 +231,7 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(
                                 right: 40, left: 40, top: 10),
                             child: TextField(
+                              controller: firstNameController,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: const Color(0xFFEEEEEE),
@@ -216,9 +255,9 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(left: 40, right: 1),
                             child: IconButton(
                               onPressed: () {
-                                setState(() {
-                                  page = 1;
-                                });
+                                  setState(() {
+                                    page = 1;
+                                  });
                               },
                               icon: const Icon(Icons.arrow_back_rounded,
                                   size: 40),
@@ -230,10 +269,15 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(right: 40, left: 1),
                             child: NextButton(
                               onPressed: () {
+                                if (userRealName()) {
                                 setState(() {
                                   page = 3;
                                 });
-                                // TODO: Add name validation
+                                } else {
+                                  if (kDebugMode) {
+                                    print("Please fill the fields");
+                                  }
+                                }
                               },
                             )))
                   ],
@@ -304,6 +348,7 @@ class _RegisterState extends State<Register> {
                     padding:
                         const EdgeInsets.only(right: 40, left: 40, top: 10),
                     child: TextField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: const Color(0xFFEEEEEE),
@@ -339,10 +384,15 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(right: 40, left: 1),
                             child: NextButton(
                               onPressed: () {
+                                if (userEmail()) {
                                 setState(() {
                                   page = 4;
                                 });
-                                // TODO: Add email validation
+                                } else {
+                                  if (kDebugMode) {
+                                    print("Please enter a valid email address");
+                                  }
+                                }
                               },
                             )))
                   ],
@@ -417,6 +467,7 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(
                                 right: 40, left: 40, top: 10),
                             child: TextField(
+                              controller: passwordController,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: const Color(0xFFEEEEEE),
@@ -433,6 +484,7 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(
                                 right: 40, left: 40, top: 10),
                             child: TextField(
+                              controller: passwordVerificationController,
                               obscureText: true,
                               decoration: InputDecoration(
                                 filled: true,
@@ -453,10 +505,16 @@ class _RegisterState extends State<Register> {
                     padding: const EdgeInsets.only(right: 40, left: 1, top: 15),
                     child: NextButton(
                       onPressed: () {
+                        if (userPassword()) {
                         setState(() {
                           page = 5;
                         });
-                        // TODO: Add password validation ---
+                        }
+                        else {
+                          if (kDebugMode) {
+                            print("Please enter a valid password or verify both password are the same");
+                          }
+                        }
                       },
                     )))
           ])),
@@ -529,6 +587,7 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(
                                 right: 40, left: 40, top: 10),
                             child: TextField(
+                              controller: professionalStatusController,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: const Color(0xFFEEEEEE),
@@ -545,6 +604,7 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(
                                 right: 40, left: 40, top: 10),
                             child: TextField(
+                              controller: activitySectorController,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: const Color(0xFFEEEEEE),
@@ -561,6 +621,7 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(
                                 right: 40, left: 40, top: 10),
                             child: TextFormField(
+                              controller: professionalExperienceController,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: const Color(0xFFEEEEEE),
@@ -580,10 +641,15 @@ class _RegisterState extends State<Register> {
                     padding: const EdgeInsets.only(right: 40, left: 1),
                     child: NextButton(
                       onPressed: () {
-                        setState(() {
-                          page = 6;
-                        });
-                        // TODO: Add validate information
+                        if (userInformation()) {
+                          setState(() {
+                            page = 6;
+                          });
+                        } else {
+                          if (kDebugMode) {
+                            print("Please fill the fields");
+                          }
+                        }
                       },
                     )))
           ])),
@@ -2107,11 +2173,8 @@ class _RegisterState extends State<Register> {
     ]);
   }
 
-  Widget registerStep4Company(BuildContext context)
-   {
-    
+  Widget registerStep4Company(BuildContext context) {
     return Column(children: [
-      
       Expanded(flex: 2, child: logoAdopte(context)),
       Expanded(
           flex: 3,
@@ -2146,202 +2209,187 @@ class _RegisterState extends State<Register> {
                 )),
             Expanded(
                 flex: 6,
-                child: Column(
-                  children: [
-                    Expanded(
-                    flex:1,
+                child: Column(children: [
+                  Expanded(
+                    flex: 1,
                     child: Container(
-                      padding: const EdgeInsets.only(
-                          right: 40, left: 40, top: 25),
-                    child: DropdownButtonHideUnderline(
-                            child: DropdownButton2<String>(
-                              isExpanded: true,
-                              hint: Text(
-                                'Type de renumeration',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Theme.of(context).hintColor,
-                                ),
-                              ),
-
-                              items: items3
-                                  .map((item) => DropdownItem(
-                                        value: item,
-                                        height: 40,
-                                        child: Text(
-                                          item,
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ))
-                                  .toList(),
-                              valueListenable: valueListenable3,
-                              onChanged: (value3) {
-                                valueListenable3.value = value3;
-                              },
-                              buttonStyleData: ButtonStyleData(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 16),
-                                height: 50,
-                                width: 368,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  color: const Color(0xFFEEEEEE),
-                                ),
-                              ),
-                              dropdownStyleData: const DropdownStyleData(
-                                maxHeight: 200,
-                              ),
-                              dropdownSearchData: DropdownSearchData(
-                                searchController: textEditingController,
-                                searchBarWidgetHeight: 50,
-                                searchBarWidget: Container(
-                                  height: 50,
-                                  padding: const EdgeInsets.only(
-                                    top: 8,
-                                    bottom: 4,
-                                    right: 8,
-                                    left: 8,
-                                  ),
-                                  child: TextFormField(
-                                    expands: true,
-                                    maxLines: null,
-                                    controller: textEditingController,
-                                    decoration: InputDecoration(
-                                      isDense: true,
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                        horizontal: 10,
-                                        vertical: 8,
-                                      ),
-                                      hintText: 'Rechercher...',
-                                      hintStyle: const TextStyle(fontSize: 12),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                noResultsWidget: const Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: Text('Pas de resultat trouvé !'),
-                                ),
-                                searchMatchFn: (item, searchValue) {
-                                  return item.value
-                                      .toString()
-                                      .contains(searchValue);
-                                },
-                              ),
-                              //This to clear the search value when you close the menu
-                              onMenuStateChange: (isOpen) {
-                                if (!isOpen) {
-                                  textEditingController2.clear();
-                                }
-                              },
+                      padding:
+                          const EdgeInsets.only(right: 40, left: 40, top: 25),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton2<String>(
+                          isExpanded: true,
+                          hint: Text(
+                            'Type de renumeration',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Theme.of(context).hintColor,
                             ),
                           ),
-                    ),
-                    ),
-                    Expanded(
-                        flex: 2,
-                        child: Container(
-                            padding: const EdgeInsets.only(
-                                right: 40, left: 40, top: 20),
-                            child:
-                               TextField(
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: const Color(0xFFEEEEEE),
-                                  border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  hintText: 'Salaire brut*',
-                                ),
-                                
-                                
-                                
-                                  onChanged: (value){
-                                  // Add your logic when the user leaves the keyboard focus view
-                                
-                                  int? salary = int.tryParse(value);
-                                
-                                    if (valueListenable3.value == 'Mensuels' && salary != null && salary < 1200) {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Text('Attention'),
-                                      content: const Text('Le salaire mensuel doit être \nsupérieur à 1766,92 € brut.'),
-                                      actions: [
-                                      TextButton(
-                                        onPressed: () {
-                                        Navigator.of(context).pop();
-                                        },
-                                        child: const Text('OK'),
-                                      ),
-                                      ],
-                                    );
-                                    },
-                                  );
-                                  }
-                                  else if (valueListenable3.value == 'Horaires' && salary != null && salary < 11.65 ) {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Text('Attention'),
-                                      content: const Text('Le salaire horaire doit être \nsupérieur à 11,65 € brut.'),
-                                      actions: [
-                                      TextButton(
-                                        onPressed: () {
-                                        Navigator.of(context).pop();
-                                        },
-                                        child: const Text('OK'),
-                                      ),
-                                      ],
-                                    );
-                                    },
-                                  );
-                                  }
-                                  },
-                                
 
-                                  
-                                
-                               
-                                )
+                          items: items3
+                              .map((item) => DropdownItem(
+                                    value: item,
+                                    height: 40,
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ))
+                              .toList(),
+                          valueListenable: valueListenable3,
+                          onChanged: (value3) {
+                            valueListenable3.value = value3;
+                          },
+                          buttonStyleData: ButtonStyleData(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            height: 50,
+                            width: 368,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: const Color(0xFFEEEEEE),
+                            ),
+                          ),
+                          dropdownStyleData: const DropdownStyleData(
+                            maxHeight: 200,
+                          ),
+                          dropdownSearchData: DropdownSearchData(
+                            searchController: textEditingController,
+                            searchBarWidgetHeight: 50,
+                            searchBarWidget: Container(
+                              height: 50,
+                              padding: const EdgeInsets.only(
+                                top: 8,
+                                bottom: 4,
+                                right: 8,
+                                left: 8,
+                              ),
+                              child: TextFormField(
+                                expands: true,
+                                maxLines: null,
+                                controller: textEditingController,
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 8,
+                                  ),
+                                  hintText: 'Rechercher...',
+                                  hintStyle: const TextStyle(fontSize: 12),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            noResultsWidget: const Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text('Pas de resultat trouvé !'),
+                            ),
+                            searchMatchFn: (item, searchValue) {
+                              return item.value
+                                  .toString()
+                                  .contains(searchValue);
+                            },
+                          ),
+                          //This to clear the search value when you close the menu
+                          onMenuStateChange: (isOpen) {
+                            if (!isOpen) {
+                              textEditingController2.clear();
+                            }
+                          },
                         ),
+                      ),
                     ),
-                                  
-                                
-                      
-                
-                
-            Expanded(
-                flex: 2,
-                child: Container(
-                    alignment: Alignment.bottomRight,
-                    padding: const EdgeInsets.only(right: 40, left: 1),
-                    child: NextButton(
-                      onPressed: () {
-                        setState(() {
-                          page = 8.8;
-                        });
-                        // validate information
-                      },
-                    ))),
-                  ]))
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                        padding:
+                            const EdgeInsets.only(right: 40, left: 40, top: 20),
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: const Color(0xFFEEEEEE),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            hintText: 'Salaire brut*',
+                          ),
+                          onChanged: (value) {
+                            // Add your logic when the user leaves the keyboard focus view
+
+                            int? salary = int.tryParse(value);
+
+                            if (valueListenable3.value == 'Mensuels' &&
+                                salary != null &&
+                                salary < 1200) {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('Attention'),
+                                    content: const Text(
+                                        'Le salaire mensuel doit être \nsupérieur à 1766,92 € brut.'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            } else if (valueListenable3.value == 'Horaires' &&
+                                salary != null &&
+                                salary < 11.65) {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('Attention'),
+                                    content: const Text(
+                                        'Le salaire horaire doit être \nsupérieur à 11,65 € brut.'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
+                          },
+                        )),
+                  ),
+                  Expanded(
+                      flex: 2,
+                      child: Container(
+                          alignment: Alignment.bottomRight,
+                          padding: const EdgeInsets.only(right: 40, left: 1),
+                          child: NextButton(
+                            onPressed: () {
+                              setState(() {
+                                page = 8.8;
+                              });
+                              // validate information
+                            },
+                          ))),
+                ]))
           ])),
       Expanded(
         flex: 1,
         child: extraInformation(),
       )
     ]);
-          
-      
   }
 
   Widget _registerPage(BuildContext context) {
@@ -2395,8 +2443,3 @@ class _RegisterState extends State<Register> {
     );
   }
 }
-
-
-
-
-
