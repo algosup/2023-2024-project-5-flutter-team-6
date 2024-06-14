@@ -34,7 +34,7 @@ Due to the limited project time this week, we did not hold any meetings. The tea
 
 ## Week feedback
 
-This week, we caught up on the delayed management documents, including the Gantt Chart, Risks & Assumptions, and KPIs, making it easier to keep track of the project. However, the advancement of the Technical Specifications did not meet the expected objective and only progressed slightly beyond its initial stages. We need to double down on this next time. The Test Plan progressed very well and exceeded expectations, nearing the review stage. The User Manual also started, with its overall plan created. The code progressed well but was suddenly slowed down due to the Firebase issue that needs to be fixed quickly.
+This week, a total of 3 hours and 30 minutes of absences were noted. We caught up on the delayed management documents, including the Gantt Chart, Risks & Assumptions, and KPIs, making it easier to keep track of the project. However, the advancement of the Technical Specifications did not meet the expected objective and only progressed slightly beyond its initial stages. We need to double down on this next time. The Test Plan progressed very well and exceeded expectations, nearing the review stage. The User Manual also started, with its overall plan created. The code progressed well but was suddenly slowed down due to the Firebase issue that needs to be fixed quickly.
 
 Overall, the team atmosphere was positive, with everyone focused on their tasks.
 
