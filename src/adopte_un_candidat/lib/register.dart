@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:adopte_un_candidat/modules/database.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,6 +32,60 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   double? page;
+
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordVerificationController =
+      TextEditingController();
+  final TextEditingController professionalStatusController =
+      TextEditingController();
+  final TextEditingController activitySectorController = TextEditingController();
+  final TextEditingController professionalExperienceController =
+      TextEditingController();
+
+  List<String> colors = ["FFFFFF", "FFFFFF"];
+  String pictureLink = "";
+  String userName = "River Stone";
+
+  @override
+  void initState() {
+    super.initState();
+    Database().getPicture(Random().nextInt(47)).then((value) {
+      pictureLink = value!;
+    });
+    Database().getRandomName().then((value) {
+      userName = value;
+    });
+    Database().getColors().then((value) {
+      colors = value;
+    });
+  }
+
+  bool userRealName() {
+    return lastNameController.text.trim().isNotEmpty &&
+        firstNameController.text.trim().isNotEmpty;
+  }
+
+  bool userEmail() {
+      final emailRegex = RegExp(r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$');
+
+    return emailController.text.trim().isNotEmpty && emailRegex.hasMatch(emailController.text.trim());
+  }
+
+  bool userPassword() {
+    return (passwordController.text.trim().isNotEmpty &&
+        passwordVerificationController.text.trim().isNotEmpty) && (passwordController.text.trim() == passwordVerificationController.text.trim());
+  }
+
+  bool userInformation() {
+    return professionalStatusController.text.trim().isNotEmpty &&
+        activitySectorController.text.trim().isNotEmpty &&
+        professionalExperienceController.text.trim().isNotEmpty;
+  }
+
+  // ------- Widget -------
 
   Widget registerChoicePage(BuildContext context) {
     return Column(
@@ -177,6 +235,7 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(
                                 right: 40, left: 40, top: 10),
                             child: TextField(
+                              controller: lastNameController,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: const Color(0xFFEEEEEE),
@@ -193,6 +252,7 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(
                                 right: 40, left: 40, top: 10),
                             child: TextField(
+                              controller: firstNameController,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: const Color(0xFFEEEEEE),
@@ -216,9 +276,9 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(left: 40, right: 1),
                             child: IconButton(
                               onPressed: () {
-                                setState(() {
-                                  page = 1;
-                                });
+                                  setState(() {
+                                    page = 1;
+                                  });
                               },
                               icon: const Icon(Icons.arrow_back_rounded,
                                   size: 40),
@@ -230,10 +290,15 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(right: 40, left: 1),
                             child: NextButton(
                               onPressed: () {
+                                if (userRealName()) {
                                 setState(() {
                                   page = 3;
                                 });
-                                // TODO: Add name validation
+                                } else {
+                                  if (kDebugMode) {
+                                    print("Please fill the fields");
+                                  }
+                                }
                               },
                             )))
                   ],
@@ -304,6 +369,7 @@ class _RegisterState extends State<Register> {
                     padding:
                         const EdgeInsets.only(right: 40, left: 40, top: 10),
                     child: TextField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: const Color(0xFFEEEEEE),
@@ -339,10 +405,15 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(right: 40, left: 1),
                             child: NextButton(
                               onPressed: () {
+                                if (userEmail()) {
                                 setState(() {
                                   page = 4;
                                 });
-                                // TODO: Add email validation
+                                } else {
+                                  if (kDebugMode) {
+                                    print("Please enter a valid email address");
+                                  }
+                                }
                               },
                             )))
                   ],
@@ -417,6 +488,7 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(
                                 right: 40, left: 40, top: 10),
                             child: TextField(
+                              controller: passwordController,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: const Color(0xFFEEEEEE),
@@ -433,6 +505,7 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(
                                 right: 40, left: 40, top: 10),
                             child: TextField(
+                              controller: passwordVerificationController,
                               obscureText: true,
                               decoration: InputDecoration(
                                 filled: true,
@@ -453,10 +526,16 @@ class _RegisterState extends State<Register> {
                     padding: const EdgeInsets.only(right: 40, left: 1, top: 15),
                     child: NextButton(
                       onPressed: () {
+                        if (userPassword()) {
                         setState(() {
                           page = 5;
                         });
-                        // TODO: Add password validation ---
+                        }
+                        else {
+                          if (kDebugMode) {
+                            print("Please enter a valid password or verify both password are the same");
+                          }
+                        }
                       },
                     )))
           ])),
@@ -529,6 +608,7 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(
                                 right: 40, left: 40, top: 10),
                             child: TextField(
+                              controller: professionalStatusController,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: const Color(0xFFEEEEEE),
@@ -545,6 +625,7 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(
                                 right: 40, left: 40, top: 10),
                             child: TextField(
+                              controller: activitySectorController,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: const Color(0xFFEEEEEE),
@@ -561,6 +642,7 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(
                                 right: 40, left: 40, top: 10),
                             child: TextFormField(
+                              controller: professionalExperienceController,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: const Color(0xFFEEEEEE),
@@ -579,11 +661,17 @@ class _RegisterState extends State<Register> {
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsets.only(right: 40, left: 1),
                     child: NextButton(
-                      onPressed: () {
-                        setState(() {
-                          page = 6;
-                        });
-                        // TODO: Add validate information
+                      onPressed: () async {
+                        if (userInformation()) {
+                          await Database().InitializeUser(emailController.text.trim(), passwordController.text.trim(), firstNameController.text.trim(), lastNameController.text.trim(), userName, pictureLink, colors);
+                          setState(() {
+                            page = 6;
+                          });
+                        } else {
+                          if (kDebugMode) {
+                            print("Please fill the fields");
+                          }
+                        }
                       },
                     )))
           ])),
@@ -652,9 +740,9 @@ class _RegisterState extends State<Register> {
                                         alignment: Alignment.centerLeft,
                                         padding:
                                             const EdgeInsets.only(left: 30),
-                                        child: const Text(
-                                          'Nickname',
-                                          style: TextStyle(
+                                        child: Text(
+                                          userName,
+                                          style: const TextStyle(
                                             fontFamily: 'Quicksand',
                                             color: Color(0xFF3C3C3C),
                                             fontSize: 26,
@@ -665,7 +753,9 @@ class _RegisterState extends State<Register> {
                                     child: Center(
                                         child: IconButton(
                                       onPressed: () {
-                                        // TODO: Add Nickname randomizer
+                                        setState(() async {
+                                          userName = await Database().getRandomName();
+                                      });
                                       },
                                       icon: const Icon(Icons.shuffle_rounded,
                                           size: 40),
@@ -798,18 +888,18 @@ class _RegisterState extends State<Register> {
                                   flex: 3,
                                   child: Center(
                                     child: Container(
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                           gradient: LinearGradient(
                                             colors: [
-                                              Color(0xFFE02800),
-                                              Color(0xFFF8CAC0)
+                                              Color(int.parse("0xFF${colors[0]}")),
+                                              Color(int.parse("0xFF${colors[1]}")),
                                             ], // will be changeable
                                             begin: Alignment.topCenter,
                                             end: Alignment.bottomCenter,
                                           )),
-                                      child: Image.asset(
-                                          'assets/images/cat-avatar.png',
+                                      child: Image.network(
+                                          pictureLink,
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *

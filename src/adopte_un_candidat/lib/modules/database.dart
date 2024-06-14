@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:adopte_un_candidat/modules/authentication.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -381,34 +382,91 @@ class Database {
     });
   }
 
-  Future<void> createUser(String uid) async {
-    String? pictureLink = await getPicture(Random().nextInt(47));
+  Future<String> getRandomName() async {
+    var usernameQuery = await FirebaseFirestore.instance.collection("username").doc("list").get();
+
+    if (usernameQuery.exists) {
+        var adjectives = usernameQuery.data()!['adjective'];
+        var names = usernameQuery.data()!['name'];
+
+        var adjective = adjectives[Random().nextInt(adjectives.length)];
+        var name = names[Random().nextInt(names.length)];
+
+        return "$adjective $name";
+    }
+    return "River Stone";
+  }
+
+  Future<List<String>> getColors() async {
+    var usernameQuery = await FirebaseFirestore.instance.collection("username").doc("list").get();
+
+    if (usernameQuery.exists) {
+      var colors = List<String>.from(usernameQuery.data()!['colors']);
+
+      // Select a random color from the list
+      var firstColorHex = colors[Random().nextInt(colors.length)];
+
+      // Convert the hex string to a Color object
+      int colorValue = int.parse(firstColorHex, radix: 16);
+      Color firstColor = Color(colorValue).withOpacity(1.0);
+
+      int whiteValue = (255 * 0.7).round();
+      int red = firstColor.red;
+      int green = firstColor.green;
+      int blue = firstColor.blue;
+      int alpha = firstColor.alpha;
+
+      int secondRed = ((red * 0.3) + (whiteValue * 0.7)).round();
+      int secondGreen = ((green * 0.3) + (whiteValue * 0.7)).round();
+      int secondBlue = ((blue * 0.3) + (whiteValue * 0.7)).round();
+
+      Color secondColor = Color.fromARGB(alpha, secondRed, secondGreen, secondBlue);
+
+      // Convert Color object back to hex string
+      String secondColorHex = secondColor.value.toRadixString(16).padLeft(8, '0').substring(2).toUpperCase();
+
+      return [firstColorHex, secondColorHex];
+    }
+    return ["FFFFFF", "FFFFFF"];
+  }
+
+  InitializeUser(String email, String password, String firstName, String lastName, String userName, String picture, List<String> colors) async {
+    FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    ).then((userCredential) {
+      // User creation successful
+      User? user = userCredential.user;
+      // Add additional user data to Firestore
+      createUser(user!.uid, email, firstName, lastName, userName, picture, colors);
+    }).catchError((error) {
+      // User creation failed
+      print("Error creating user: $error");
+    });
+  }
+
+  Future<void> createUser(String uid, String email, String firstName, String lastName, String userName, String picture, List<String> colors) async {
     await FirebaseFirestore.instance.collection("user").doc(uid).set({
-      'name': "Mossy Pebble",
-      'activity_sector': 'Restauration',
-      'card_liked': {}, //{'0-0': FieldValue.serverTimestamp()},
-      'email': "email",
-      'experience': ['Cuisinier', 'Hacker'],
+      'name': userName,
+      'activity_sector': '',
+      'card_liked': {},
+      'email': email,
+      'experience': [],
       'favorite': [],
-      'first_name': 'Tom',
-      'last_name': 'Hanks',
+      'first_name': firstName,
+      'last_name': lastName,
       'location': 'Paris',
-      'phone': '0123456789',
-      'colors': ["#FF0000", "#00FF00"],
-      'professional_status': 'Etudiant',
-      'profile_picture': pictureLink ?? '',
-      'soft_skills': {
-        "Analytical": [],
-        "Interpersonal": [],
-        "Self-management": [],
-        "Social": [],
-      }
+      'phone': '',
+      'colors': colors,
+      'professional_status': '',
+      'profile_picture': picture,
+      'soft_skills': {}
     });
   }
 
   Future<void> createCompany(String uid) async {
     await FirebaseFirestore.instance.collection("company").doc(uid).set({
-      'colors': ["#FF0000", "#00FF00"],
+      'colors': ["FF0000", "00FF00"],
       'description': {
         'en': "",
         'fr': "MONEY MONEY MONEY",
