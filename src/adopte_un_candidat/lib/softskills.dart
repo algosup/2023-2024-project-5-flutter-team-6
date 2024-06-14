@@ -14,23 +14,62 @@ class Softskills extends StatefulWidget {
 class _SoftskillsState extends State<Softskills> {
 
   Database database = Database();
-  dynamic categories= {};
+  dynamic data = {};
+  dynamic categories = [];
   dynamic skills;
 
-  @override
-  void initState() {
-    super.initState();
-    database.softSkills().then((value) {
-      setState(() {
-        print(value?.entries.first.value.entries.first);
-        categories = value?.keys.toList();
-        // print(categories);
-        for (var category in categories) {
-          // print(category);
+@override
+void initState() {
+  super.initState();
+  database.softSkills().then((value) {
+    setState(() {
+      data = value?.entries;
+      print(data);
+
+      // Liste pour stocker les compétences en français avec leur valeur
+      List<Map<String, dynamic>> frenchSkills = [];
+
+      // Itération sur les entrées pour sélectionner les compétences en français
+      data.forEach((entry) {
+        String category = entry.key;
+        Map<String, dynamic> skills = entry.value;
+
+        // Vérification de la présence de compétences en français
+        if (skills.containsKey('fr')) {
+          List<Map<String, dynamic>> categorySkills = [];
+
+          // Itération sur les compétences de la catégorie
+          skills['fr']['skill'].forEach((skillKey, skillValue) {
+            Map<String, dynamic> skillData = {
+              'skillName': skillKey,
+              'value': skillValue,
+            };
+            categorySkills.add(skillData);
+          });
+
+          // Ajouter toutes les compétences de la catégorie à frenchSkills
+          frenchSkills.addAll(categorySkills.map((skillData) {
+            return {
+              'category': category,
+              'title': skills['fr']['title'],
+              'skill': skillData['skillName'],
+              'value': skillData['value']
+            };
+          }).toList());
         }
       });
+
+      // Affichage des compétences en français avec leur valeur
+      frenchSkills.forEach((skill) {
+        print('Category: ${skill['category']}');
+        print('Title: ${skill['title']}');
+        print('Skill: ${skill['skill']}');
+        print('Value: ${skill['value']}'); // Affiche la valeur du skill
+        print('---');
+      });
     });
-  }
+  });
+}
 
   @override
   Widget build(BuildContext context) {

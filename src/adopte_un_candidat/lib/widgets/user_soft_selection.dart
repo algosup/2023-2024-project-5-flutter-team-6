@@ -12,6 +12,6 @@ class SoftSkillsUserSelection extends StatefulWidget {
 class _SoftSkillsUserSelectionState extends State<SoftSkillsUserSelection> {
   @override
   Widget build(BuildContext context) {
-    return Text("Connard");
+    return Text("Selection utilisateur");
   }
 }
