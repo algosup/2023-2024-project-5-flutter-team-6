@@ -127,10 +127,10 @@ class _RegisterState extends State<Register> {
                 child: Column(
                   children: [
                     Expanded(
-                        flex: 2,
+                        flex: 3,
                         child: Container(
-                          alignment: Alignment.topLeft,
-                          padding: const EdgeInsets.only(left: 40, right: 1),
+                          alignment: Alignment.centerLeft,
+                          padding: const EdgeInsets.only(left: 40),
                           child: const Text(
                             'Faisons connaisance !',
                             style: TextStyle(
@@ -258,9 +258,9 @@ class _RegisterState extends State<Register> {
                 child: Column(
                   children: [
                     Expanded(
-                        flex: 3,
+                        flex: 4,
                         child: Container(
-                          alignment: Alignment.topLeft,
+                          alignment: Alignment.centerLeft,
                           padding: const EdgeInsets.only(left: 40, right: 1),
                           child: const Text(
                             'Entrez votre\nadresse E-mail',
@@ -367,9 +367,9 @@ class _RegisterState extends State<Register> {
                 child: Column(
                   children: [
                     Expanded(
-                        flex: 4,
+                        flex: 5,
                         child: Container(
-                          alignment: Alignment.topLeft,
+                          alignment: Alignment.centerLeft,
                           padding: const EdgeInsets.only(left: 40, right: 1),
                           child: const Text(
                             'Enregistrez un\nmot de passe',
@@ -479,9 +479,9 @@ class _RegisterState extends State<Register> {
                 child: Column(
                   children: [
                     Expanded(
-                        flex: 2,
+                        flex: 3,
                         child: Container(
-                          alignment: Alignment.topLeft,
+                          alignment: Alignment.centerLeft,
                           padding: const EdgeInsets.only(left: 40, right: 1),
                           child: const Text(
                             'Dites-en plus sur vous !',
