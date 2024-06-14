@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:adopte_un_candidat/modules/buttons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -607,7 +608,7 @@ class FavoritesState extends State<Favorites> {
                     ),
                   ),
                   Expanded(
-                    flex: 8,
+                    flex: 4,
                     child: Center(
                       child: Container(
                         width: 82,
@@ -638,6 +639,31 @@ class FavoritesState extends State<Favorites> {
                         )
                       )
                     ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: LargeFloatingActionButton(
+                            onPressed: () {
+
+                            },
+                            gradient: myGradientRefuse,
+                            child: const Icon(Icons.clear_rounded, size: 25.0, color: Colors.white),
+                          ),
+                        ),
+                        Expanded(
+                          child: LargeFloatingActionButton(
+                            onPressed: () {
+
+                            },
+                            gradient: myGradientAccept,
+                            child: const Icon(Icons.check_rounded, size: 25.0, color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    )
                   )
                 ],
               )
@@ -645,7 +671,225 @@ class FavoritesState extends State<Favorites> {
           )
         ],
       );
+    // } else {
+      // return Column(
+      //   mainAxisAlignment: MainAxisAlignment.start,
+      //   crossAxisAlignment: CrossAxisAlignment.start,
+      //   children: [
+      //     Expanded(
+      //       flex: 4,
+      //       child: Container(
+      //       padding: const EdgeInsets.all(10),
+      //       decoration: BoxDecoration(
+      //         color: CupertinoColors.white,
+      //         borderRadius: BorderRadius.circular(15),
+      //       ),
+      //       child: Row(
+      //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //         children: [
+      //           Image.network(
+      //             user["profile_picture"],
+      //             width: 48,
+      //             height: 48,
+      //           ),
+      //           const SizedBox(width: 10),
+      //           Expanded(
+      //               child: Text(
+      //                 user["name"],
+      //                 textAlign: TextAlign.left,
+      //                 style: const TextStyle(
+      //                   color: CupertinoColors.black,
+      //                   fontFamily: 'QuickSand',
+      //                   fontSize: 18,
+      //                   decoration: TextDecoration.underline,
+      //                   fontWeight: FontWeight.bold
+      //                 ),
+      //               ),
+      //             )
+      //           ],
+      //         ),
+      //       ),
+      //     ),
+      //     Expanded(
+      //       flex: 3,
+      //       child: Container(
+      //         padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+      //         child: Column( crossAxisAlignment: CrossAxisAlignment.start, 
+      //           children: [
+      //             const Expanded(
+      //               flex: 1,
+      //               child: Text(
+      //                 "Disctance:",
+      //                 style: TextStyle(
+      //                   color: Colors.black,
+      //                   fontSize: 8,
+      //                   fontWeight: FontWeight.bold,
+      //                 ),
+      //               ),
+      //             ),
+      //             Expanded(
+      //               flex: 4,
+      //               child: GridView.count(
+      //                 crossAxisCount: 3,
+      //                 padding: const EdgeInsets.all(5),
+      //                 shrinkWrap: true,
+      //                 physics: const NeverScrollableScrollPhysics(),
+      //                 childAspectRatio: 4,
+      //                 mainAxisSpacing: 5,
+      //                 crossAxisSpacing: 5,
+      //                 children: [
+      //                   Container(
+      //                     alignment: Alignment.center,
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xFFB565F4),
+      //                       borderRadius: BorderRadius.circular(15),
+      //                     ),
+      //                     child: const Text(
+      //                       "54km",
+      //                       textAlign: TextAlign.center,
+      //                       style: TextStyle(
+      //                         color: Colors.white,
+      //                         fontSize: 8,
+      //                       ),
+      //                     ),
+      //                   ),
+      //                 ],
+      //               ),
+      //             ),
+      //             Expanded(
+      //               flex: 1,
+      //               child: Container(
+      //                 alignment: Alignment.topCenter,
+      //                 child: Divider(
+      //                   color: Colors.grey[300],
+      //                   thickness: 2,
+      //                 ),
+      //               )
+      //             )
+      //           ]
+      //         )
+      //       )
+      //     ),
+      //     Expanded(
+      //       flex: 6,
+      //       child: Padding(
+      //         padding: const EdgeInsets.only(left: 15, right: 15),
+      //         child: Column(
+      //           crossAxisAlignment: CrossAxisAlignment.start,
+      //           children: [
+      //             const Expanded(
+      //               flex: 1,
+      //               child: Text(
+      //                 "Soft skills en commun:",
+      //                 style: TextStyle(
+      //                   color: Colors.black,
+      //                   fontSize: 8,
+      //                   fontWeight: FontWeight.bold,
+      //                 ),
+      //               ),
+      //             ),
+      //             Expanded(
+      //               flex: 4,
+      //               child: displayCandidatSoftSkills(),
+      //             ),
+      //             Expanded(
+      //               flex: 1,
+      //               child: Container(
+      //                 alignment: Alignment.topCenter,
+      //                 child: Divider(
+      //                   color: Colors.grey[300],
+      //                   thickness: 2,
+      //                 ),
+      //               )
+      //             )
+      //           ],
+      //         )
+      //       )
+      //     ),
+      //     Expanded(
+      //       flex: 8,
+      //       child: Padding(
+      //         padding: const EdgeInsets.only(left: 15, right: 15),
+      //         child: Column(
+      //           crossAxisAlignment: CrossAxisAlignment.start,
+      //           children: [
+      //             const Expanded(
+      //               flex: 1,
+      //               child: Text(
+      //                 "Taux de compatibilité:",
+      //                 style: TextStyle(
+      //                   color: Colors.black,
+      //                   fontSize: 8,
+      //                   fontWeight: FontWeight.bold,
+      //                 ),
+      //               ),
+      //             ),
+      //             Expanded(
+      //               flex: 4,
+      //               child: Center(
+      //                 child: Container(
+      //                   width: 82,
+      //                   height: 82,
+      //                   decoration: BoxDecoration(
+      //                     borderRadius: BorderRadius.circular(100),
+      //                     border: Border.all(color: Colors.green, width: 8),
+      //                   ),
+      //                   child: const Column(
+      //                     mainAxisAlignment: MainAxisAlignment.center,
+      //                     crossAxisAlignment: CrossAxisAlignment.center,
+      //                     children: [
+      //                       Text(
+      //                         "Bon",
+      //                         style: TextStyle(
+      //                           color: Colors.black,
+      //                           fontSize: 12,
+      //                         ),
+      //                       ),
+      //                       Text(
+      //                         "60%",
+      //                         style: TextStyle(
+      //                           color: Colors.black,
+      //                           fontSize: 18,
+      //                         ),
+      //                       ),
+      //                     ]
+      //                   )
+      //                 )
+      //               ),
+      //             ),
+                  //   Expanded(
+                  //   flex: 2,
+                  //   child: Row(
+                  //     children: [
+                  //       Expanded(
+                  //         child: LargeFloatingActionButton(
+                  //           onPressed: () {
+
+                  //           },
+                  //           gradient: myGradientRefuse,
+                  //           child: const Icon(Icons.clear_rounded, size: 25.0, color: Colors.white),
+                  //         ),
+                  //       ),
+                  //       Expanded(
+                  //         child: LargeFloatingActionButton(
+                  //           onPressed: () {
+
+                  //           },
+                  //           gradient: myGradientAccept,
+                  //           child: const Icon(Icons.check_rounded, size: 25.0, color: Colors.white),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   )
+                  // )
+      //           ],
+      //         )
+      //       )
+      //     )
+      //   ],
+      // );
     // }
+    
   }
 
   @override
