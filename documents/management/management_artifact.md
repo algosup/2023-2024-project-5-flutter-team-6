@@ -6,17 +6,18 @@ The purpose of this document is to consolidate various management documents, inc
 
 <summary style="font-size:1.2em; font-weight:bold;">📒 Table of content</summary>
 
-- [Task management](#task-management)
+- [Task Management](#task-management)
 - [RACI Matrix](#raci-matrix)
 - [Key Performance Indicators](#key-performance-indicators)
 - [Risks & Assumptions](#risks--assumptions)
-- [Weekly reports](#weekly-reports)
+- [Work Breakdown Structure](#work-breakdown-structure)
+- [Weekly Reports](#weekly-reports)
 
 </details>
 
 --- 
 
-## Task management
+## Task Management
 
 Task management involves planning, tracking, and overseeing tasks to ensure project goals are achieved efficiently and on time.
 
@@ -51,7 +52,12 @@ Please find the link to access the Key Performance Indicators (KPIs):
 | 8 | Work style | Members of the team may experience misunderstandings if there are differences in documentation and coding styles. | ![Medium](https://img.shields.io/badge/Medium-e6b400) | ![Medium](https://img.shields.io/badge/Medium-e6b400) | Establish the style and coding conventions to be used in advance. |
 | 9 | Team burnout | One or multiple team members experience burnout, resulting in either a halt in their work or a decline in the quality of their deliverables. | ![High](https://img.shields.io/badge/High-bb2124) | ![Low](https://img.shields.io/badge/Low-0b6623) | Do not leave the member(s) alone and provide support by offering mental assistance, aiding with their tasks, and offering advice. |
 
-## Weekly reports
+
+## Work Breakdown Structure
+
+![WBS](/documents/images/management/Work%20breakdown%20structure.png)
+
+## Weekly Reports
 
 #### 1. [Weekly report week 1](/documents/management/weekly_reports/week_1.md)
 #### 2. [Weekly report week 2](/documents/management/weekly_reports/week_2.md)

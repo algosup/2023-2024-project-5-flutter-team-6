@@ -29,7 +29,7 @@ This project started the 05/13/2024, we had 4 project times during the week. Our
 
 ## Week feedback
 
-The kick-off of the project was fairly satisfying, we decided as a team to come up with different mock-ups which we will present to the client. Two main mock-ups has been kept, and will be sent next week to the client.
+The kick-off of the project was quite satisfactory. As a team, we decided to create various mock-ups to present to the client. Two main mock-ups have been selected, and we will send them to the client next week. A total of 14 hours of absences were noted.
 
 Globally, all team members has contributing to allow the team to come up with theses final mock-ups, the team members motivation is on-point and few team members feels confident with Dart and Flutter technologies.
 
