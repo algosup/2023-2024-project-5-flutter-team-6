@@ -70,6 +70,7 @@ class ProfileState extends State<Profile> {
       widgets.add(ProfileRowCommon(title: 'Numéro de téléphone', content: userData['phone'], type: TextInputType.phone, uid: user.uid, functiontype: "",),);          
       widgets.add( ProfileRowSoft(title: 'Soft skills', content: userData["soft_skill"[0]]),);
       widgets.add(ProfileRowPage(title: 'Vos offres', onTap: () {}),);
+      widgets.add(ProfileRowPage(title: 'Cartes enregistrées', onTap: () { context.pushNamed('favorites'); },),);
       widgets.add(const ProfileRowCategory(title: 'Paramètres'),);
       widgets.add(ProfileRowPage(title: 'Modifier les paramètres', onTap: () {}),);
       widgets.add(ProfileRowCommon(title: 'Langue', content: 'Français', type: TextInputType.none, uid: user.uid, functiontype: "",));
