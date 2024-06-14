@@ -74,11 +74,30 @@ class Database {
       for (final QueryDocumentSnapshot doc in querySnapshot.docs) {
         userCard = doc.data() as Map<String, dynamic>?;
 
+        userCard?['id'] = doc.id;
         userCard?['type'] = 'user';
 
-        cardStack.add(userCard);
+         if (userData['card_liked']["${doc.id}"] != null) {
+            DateTime currentTimestamp = DateTime.now();
+            Timestamp savedTimestamp =
+                userData['card_liked']["${doc.id}"];
+            DateTime savedTimestampdate = savedTimestamp.toDate();
+
+            if (savedTimestampdate
+                .isBefore(currentTimestamp.subtract(const Duration(days: 7)))) {
+              await FirebaseFirestore.instance
+                  .collection("user")
+                  .doc(user.uid)
+                  .update({
+                'card_liked.${doc.id}': FieldValue.delete(),
+              });
+              cardStack.add(userCard);
+            }
+          } else {
+            cardStack.add(userCard);
+          }
         if (cardStack.length >= 20 ||
-            cardStack.length >= querySnapshot.docs.length) {
+            cardStack.length >= querySnapshot.docs.length - userData['card_liked'].length) {
           return cardStack;
         }
       }
@@ -235,13 +254,104 @@ class Database {
   Future<void> likeCard(String id, dynamic card) async {
     Map<dynamic, dynamic>? user = await getUser(id);
     if (user!["type"] == 'company') {
-      // TODO: Add company liking logic
+      await FirebaseFirestore.instance.collection("company").doc(id).update({
+        'card_liked.${card["id"]}':
+            FieldValue.serverTimestamp(),
+      });  
+
+
+
+      CollectionReference proposalCollection = FirebaseFirestore.instance
+          .collection('company')
+          .doc(id)
+          .collection('proposal');
+      
+      // Get the documents from the subcollection
+      QuerySnapshot querySnapshot = await proposalCollection.get();
+
+      final DocumentSnapshot<Map<String, dynamic>> userCardLikedQuery =
+        await FirebaseFirestore.instance.collection("user").doc(card["id"]).get();
+
+    if (userCardLikedQuery.exists) {
+      for (var doc in querySnapshot.docs) {
+
+
+        var cardsLike = userCardLikedQuery.data()!['card_liked'];
+
+        for (var cardLike in cardsLike.keys) {
+
+          List<String> splitString = cardLike.split("-");
+
+          if (doc.id == splitString[1] && id == splitString[0]) { 
+            
+            String conversationId = "${id}${card["id"]}";
+
+            await FirebaseFirestore.instance.collection("message").doc(conversationId).set({
+              'uids': [id, card["id"]],
+              'messages': [],
+            });
+
+            await FirebaseFirestore.instance.collection("company").doc(id).update({
+              'messages': FieldValue.arrayUnion([conversationId]),
+            });
+
+            await FirebaseFirestore.instance.collection("user").doc(card["id"]).update({
+              'messages': FieldValue.arrayUnion([conversationId]),
+            });
+          }
+        }
+      }
+    }
+    
       return;
     } else if (user["type"] == 'user') {
       await FirebaseFirestore.instance.collection("user").doc(id).update({
         'card_liked.${card["id"]}-${card["proposal"]["id"]}':
             FieldValue.serverTimestamp(),
       });
+
+      CollectionReference proposalCollection = FirebaseFirestore.instance
+          .collection('company')
+          .doc(card["id"])
+          .collection('proposal');
+      
+      // Get the documents from the subcollection
+      QuerySnapshot querySnapshot = await proposalCollection.get();
+
+      final DocumentSnapshot<Map<String, dynamic>> userCardLikedQuery =
+        await FirebaseFirestore.instance.collection("user").doc(id).get();
+
+      if (userCardLikedQuery.exists) {
+        for (var doc in querySnapshot.docs) {
+
+
+          var cardsLike = userCardLikedQuery.data()!['card_liked'];
+
+          for (var cardLike in cardsLike.keys) {
+
+            List<String> splitString = cardLike.split("-");
+
+            if (doc.id == splitString[1] && card["id"] == splitString[0]) { 
+              
+              String conversationId = "${card["id"]}${id}";
+
+              await FirebaseFirestore.instance.collection("message").doc(conversationId).set({
+                'uids': [id, card["id"]],
+                'messages': [],
+              });
+
+              await FirebaseFirestore.instance.collection("company").doc(card["id"]).update({
+                'messages': FieldValue.arrayUnion([conversationId]),
+              });
+
+              await FirebaseFirestore.instance.collection("user").doc(id).update({
+                'messages': FieldValue.arrayUnion([conversationId]),
+              });
+            }
+          }
+        }
+      }
+
     } else {
       return;
     }
