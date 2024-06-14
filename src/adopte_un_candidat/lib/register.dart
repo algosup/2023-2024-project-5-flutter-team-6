@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +44,25 @@ class _RegisterState extends State<Register> {
   final TextEditingController activitySectorController = TextEditingController();
   final TextEditingController professionalExperienceController =
       TextEditingController();
-  
+
+  List<String> colors = ["FFFFFF", "FFFFFF"];
+  String pictureLink = "";
+  String userName = "River Stone";
+
+  @override
+  void initState() {
+    super.initState();
+    Database().getPicture(Random().nextInt(47)).then((value) {
+      pictureLink = value!;
+    });
+    Database().getRandomName().then((value) {
+      userName = value;
+    });
+    Database().getColors().then((value) {
+      colors = value;
+    });
+  }
+
   bool userRealName() {
     return lastNameController.text.trim().isNotEmpty &&
         firstNameController.text.trim().isNotEmpty;
@@ -640,8 +661,9 @@ class _RegisterState extends State<Register> {
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsets.only(right: 40, left: 1),
                     child: NextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (userInformation()) {
+                          await Database().InitializeUser(emailController.text.trim(), passwordController.text.trim(), firstNameController.text.trim(), lastNameController.text.trim(), userName, pictureLink, colors);
                           setState(() {
                             page = 6;
                           });
@@ -718,9 +740,9 @@ class _RegisterState extends State<Register> {
                                         alignment: Alignment.centerLeft,
                                         padding:
                                             const EdgeInsets.only(left: 30),
-                                        child: const Text(
-                                          'Nickname',
-                                          style: TextStyle(
+                                        child: Text(
+                                          userName,
+                                          style: const TextStyle(
                                             fontFamily: 'Quicksand',
                                             color: Color(0xFF3C3C3C),
                                             fontSize: 26,
@@ -731,7 +753,9 @@ class _RegisterState extends State<Register> {
                                     child: Center(
                                         child: IconButton(
                                       onPressed: () {
-                                        // TODO: Add Nickname randomizer
+                                        setState(() async {
+                                          userName = await Database().getRandomName();
+                                      });
                                       },
                                       icon: const Icon(Icons.shuffle_rounded,
                                           size: 40),
@@ -864,18 +888,18 @@ class _RegisterState extends State<Register> {
                                   flex: 3,
                                   child: Center(
                                     child: Container(
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                           gradient: LinearGradient(
                                             colors: [
-                                              Color(0xFFE02800),
-                                              Color(0xFFF8CAC0)
+                                              Color(int.parse("0xFF${colors[0]}")),
+                                              Color(int.parse("0xFF${colors[1]}")),
                                             ], // will be changeable
                                             begin: Alignment.topCenter,
                                             end: Alignment.bottomCenter,
                                           )),
-                                      child: Image.asset(
-                                          'assets/images/cat-avatar.png',
+                                      child: Image.network(
+                                          pictureLink,
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *
