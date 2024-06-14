@@ -35,7 +35,7 @@ This week we had four project sessions. The primary focus was on continuing the 
 
 ## Week feedback
 
-This week, we presented two different mock-ups to the client. After a choice was made, we added more details to the selected mock-up. The Functional Specifications were completed and delivered. Although coding began, progress was slowed due to the absence of our Software Engineer. Work on the Technical Specifications and the Test Plan has started. However, we are slightly behind schedule on the management documents, and this needs to be addressed next week.
+This week, a total of 7 hours of absences were noted. We presented two different mock-ups to the client. After a choice was made, we added more details to the selected mock-up. The Functional Specifications were completed and delivered. However, progress in coding was slowed due to the absence of our Software Engineer. Work on the Technical Specifications and the Test Plan has commenced. However, we are slightly behind schedule on the management documents, which need to be addressed next week.
 
 All team members contributed significantly to the project again this week. Communication among the team is strong, and everyone is able to focus deeply on their tasks. One member experienced a challenging moment, but the group successfully encouraged and assisted him.
 
