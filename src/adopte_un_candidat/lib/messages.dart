@@ -105,6 +105,8 @@ class MessagesState extends State<Messages> {
                 children: [
                   Text(
                     messages.isNotEmpty ? "${messages[lastmessageindex]["sender"] == user.uid ? "Me:" : "They:"} ${messages[lastmessageindex]["message"]}" : "No messages yet",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                     style: const TextStyle(
                       fontSize: 12,
                       fontFamily: 'Quicksand',
