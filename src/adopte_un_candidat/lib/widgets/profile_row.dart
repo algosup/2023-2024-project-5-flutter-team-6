@@ -267,8 +267,9 @@ class ProfileRowUser extends StatelessWidget {
 
 class ProfileRowCompany extends StatelessWidget {
   final String name;
+  final String image;
 
-  const ProfileRowCompany({super.key, required this.name});
+  const ProfileRowCompany({super.key, required this.name, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -287,12 +288,10 @@ class ProfileRowCompany extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               radius: 24,
               backgroundColor: Colors.transparent,
-              foregroundImage: NetworkImage(
-                "https://firebasestorage.googleapis.com/v0/b/adopte-un-candidat.appspot.com/o/company%2Falgosup.png?alt=media&token=34e1a449-5117-4333-8ed8-561cff132621",
-              ),
+              foregroundImage: NetworkImage(image),
             ),
             const SizedBox(width: 16),
             Text(

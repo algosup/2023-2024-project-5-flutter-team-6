@@ -62,7 +62,7 @@ class ProfileState extends State<Profile> {
     }
     else if (typeAccount == 'company'){
       widgets.add(const ProfileRowCategory(title: 'Entreprise'),);
-      widgets.add(ProfileRowCompany(name: userData['name'],),);
+      widgets.add(ProfileRowCompany(name: userData['name'], image: userData["profile_picture"]),);
       widgets.add(ProfileRowCommon(title: 'Slogan', content: userData['motto'], type: TextInputType.name, uid: user.uid, functiontype: "",),);
       widgets.add(ProfileRowCommon(title: 'Description', content: userData['description']['fr'], type: TextInputType.name, uid: user.uid, functiontype: "",),);
       widgets.add(ProfileRowCommon(title: 'Adresse', content: '${userData['location']['address']} ${userData['location']['zip']} ${userData['location']['town']}, ${userData['location']['country']}', type: TextInputType.streetAddress, uid: user.uid, functiontype: "",),);
