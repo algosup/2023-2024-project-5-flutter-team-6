@@ -1,5 +1,5 @@
 
-# ![ADOPTE UN CANDIDAT®](https://github.com/algosup/2023-2024-project-5-flutter-team-6/blob/dev/src/adopte_un_candidat/assets/images/adopte-logo.png)
+# ![ADOPTE UN CANDIDAT®](https://github.com/algosup/2023-2024-project-5-flutter-team-6/blob/dev/src/adopte_un_candidat/assets/images/image%20(2).png)
 
 Welcome to ADOPTE UN CANDIDAT® – the new recruiting solution based on soft skills. This app is the coolest way to match companies with job seekers by keeping profiles anonymous so that companies can recruit only based on their soft skills! Swipe right to find your perfect job or ideal candidate. 🚀
 
