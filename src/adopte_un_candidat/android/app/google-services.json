@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1020480123168",
+    "project_id": "adopte-un-candidat",
+    "storage_bucket": "adopte-un-candidat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020480123168:android:d361e6eca257d2d006a745",
+        "android_client_info": {
+          "package_name": "com.example.adopte_un_candidat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApvBVc_j9fQYxGnqDAGRRKRSXowDW9umo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
