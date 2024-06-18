@@ -323,7 +323,7 @@ class _RegisterState extends State<Register> {
                 child: Column(
                   children: [
                     Expanded(
-                        flex: 4,
+                        flex: 5,
                         child: Container(
                           alignment: Alignment.centerLeft,
                           padding: const EdgeInsets.only(left: 40, right: 1),
@@ -438,7 +438,7 @@ class _RegisterState extends State<Register> {
                 child: Column(
                   children: [
                     Expanded(
-                        flex: 5,
+                        flex: 6,
                         child: Container(
                           alignment: Alignment.centerLeft,
                           padding: const EdgeInsets.only(left: 40, right: 1),
