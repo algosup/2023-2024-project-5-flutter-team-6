@@ -63,6 +63,26 @@ class _RegisterState extends State<Register> {
     });
   }
 
+  Future<void> _updateColors() async {
+    List<String> newColors = await Database().getColors();
+
+    setState(() {
+      colors = newColors;
+    });
+  }
+
+  Future<void> _updatePicture() async {
+    try {
+      String? newPictureLink = await Database().getPicture(Random().nextInt(47));
+      setState(() {
+        pictureLink = newPictureLink ?? pictureLink;
+      });
+    } catch (e) {
+      print('Error updating picture: $e');
+      // Handle the error appropriately in your app
+    }
+  }
+
   bool userRealName() {
     return lastNameController.text.trim().isNotEmpty &&
         firstNameController.text.trim().isNotEmpty;
@@ -752,9 +772,11 @@ class _RegisterState extends State<Register> {
                                     flex: 2,
                                     child: Center(
                                         child: IconButton(
-                                      onPressed: () {
-                                        setState(() async {
-                                          userName = await Database().getRandomName();
+                                      onPressed: () async {
+                                        String newName = await Database().getRandomName();
+
+                                        setState(()  {
+                                          userName = newName; 
                                       });
                                       },
                                       icon: const Icon(Icons.shuffle_rounded,
@@ -872,7 +894,7 @@ class _RegisterState extends State<Register> {
                               Expanded(
                                   flex: 1,
                                   child: AvatarRandomizerButton(
-                                    onPressed: () {},
+                                    onPressed: _updateColors,
                                     icon: Transform.flip(
                                       flipX: true,
                                       flipY: true,
@@ -909,7 +931,7 @@ class _RegisterState extends State<Register> {
                               Expanded(
                                   flex: 1,
                                   child: AvatarRandomizerButton(
-                                    onPressed: () {},
+                                    onPressed: _updatePicture,
                                     icon: const Icon(Icons.shuffle_rounded,
                                         color: Color(0xFF939393), size: 35),
                                     text: 'Image',
@@ -926,7 +948,7 @@ class _RegisterState extends State<Register> {
                                       alignment: Alignment.bottomLeft,
                                       padding: const EdgeInsets.only(top: 10),
                                       child: const Text(
-                                        'Une fois choisi, vous ne pourrez pas changer de d\'image et de couleur de profile',
+                                        'Une fois choisi, vous ne pourrez pas changer de d\'image et de couleur de profil.',
                                         style: TextStyle(
                                           fontFamily: 'Roboto',
                                           color: Color(0xFF3C3C3C),

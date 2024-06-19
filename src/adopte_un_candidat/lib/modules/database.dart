@@ -382,6 +382,7 @@ class Database {
     });
   }
 
+
   Future<String> getRandomName() async {
     var usernameQuery = await FirebaseFirestore.instance.collection("username").doc("list").get();
 
