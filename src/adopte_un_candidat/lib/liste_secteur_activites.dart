@@ -1,5 +1,3 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:adopte_un_candidat/register.dart';
 
 final List<String> items = [
   'administration et gestion',
