@@ -62,7 +62,7 @@ class Database {
             cardStack.add(userCard);
           }
         }
-        if (cardStack.length >= 20 ||
+        if (/*cardStack.length >= 20 ||*/
             cardStack.length >=
                 querySnapshot.docs.length - userData['card_liked'].length) {
           return cardStack;
@@ -273,17 +273,22 @@ class Database {
       final DocumentSnapshot<Map<String, dynamic>> userCardLikedQuery =
         await FirebaseFirestore.instance.collection("user").doc(card["id"]).get();
 
+      final DocumentSnapshot<Map<String, dynamic>> companyCardLikedQuery =
+        await FirebaseFirestore.instance.collection("company").doc(id).get();
+
     if (userCardLikedQuery.exists) {
       for (var doc in querySnapshot.docs) {
 
 
         var cardsLike = userCardLikedQuery.data()!['card_liked'];
 
+        var companyCardsLike = companyCardLikedQuery.data()!['card_liked'];
+
         for (var cardLike in cardsLike.keys) {
 
           List<String> splitString = cardLike.split("-");
 
-          if (doc.id == splitString[1] && id == splitString[0]) { 
+          if (doc.id == splitString[1] && id == splitString[0] && companyCardsLike[card["id"]] != null) { 
             
             String conversationId = "${id}${card["id"]}";
 
@@ -322,17 +327,21 @@ class Database {
       final DocumentSnapshot<Map<String, dynamic>> userCardLikedQuery =
         await FirebaseFirestore.instance.collection("user").doc(id).get();
 
-      if (userCardLikedQuery.exists) {
+      final DocumentSnapshot<Map<String, dynamic>> companyCardLikedQuery =
+        await FirebaseFirestore.instance.collection("company").doc(card["id"]).get();
+
+      if (userCardLikedQuery.exists && companyCardLikedQuery.exists) {
         for (var doc in querySnapshot.docs) {
 
 
           var cardsLike = userCardLikedQuery.data()!['card_liked'];
+          var companyCardsLike = companyCardLikedQuery.data()!['card_liked'];
 
           for (var cardLike in cardsLike.keys) {
 
             List<String> splitString = cardLike.split("-");
 
-            if (doc.id == splitString[1] && card["id"] == splitString[0]) { 
+            if (doc.id == splitString[1] && card["id"] == splitString[0] && companyCardsLike[id] != null) { 
               
               String conversationId = "${card["id"]}${id}";
 
