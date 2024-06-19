@@ -1,12 +1,9 @@
-import 'dart:math';
 
 import 'package:adopte_un_candidat/modules/buttons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'widgets/navigation_bar.dart';
-import 'modules/cards.dart';
 import 'modules/database.dart';
 
 // TODO: everything is prepared, the cards of the companies as well of the users. They just need to link them to the database.
@@ -64,7 +61,7 @@ class FavoritesState extends State<Favorites> {
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(25),
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
@@ -102,7 +99,7 @@ class FavoritesState extends State<Favorites> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(15),
             ),
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 // Image.network(
@@ -110,12 +107,12 @@ class FavoritesState extends State<Favorites> {
                 //   width: 48,
                 //   height: 48,
                 // ),
-                const SizedBox(width: 10),
+                SizedBox(width: 10),
                 Expanded(
                     child: Text(
                       'feur',// user["name"],
                       textAlign: TextAlign.left,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.black,
                         fontFamily: 'QuickSand',
                         fontSize: 18,
@@ -345,7 +342,7 @@ class FavoritesState extends State<Favorites> {
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(25),
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
@@ -383,7 +380,7 @@ class FavoritesState extends State<Favorites> {
               color: CupertinoColors.white,
               borderRadius: BorderRadius.circular(15),
             ),
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 // Image.network(
@@ -391,7 +388,7 @@ class FavoritesState extends State<Favorites> {
                 //   width: 48,
                 //   height: 48,
                 // ),
-                const SizedBox(width: 10),
+                SizedBox(width: 10),
                 Expanded(
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

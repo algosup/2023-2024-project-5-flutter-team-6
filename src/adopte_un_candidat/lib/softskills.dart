@@ -1,5 +1,6 @@
 import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:adopte_un_candidat/widgets/navigation_bar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import './widgets/carousel.dart';
 import './widgets/user_soft_selection.dart';
@@ -24,7 +25,9 @@ void initState() {
   database.softSkills().then((value) {
     setState(() {
       data = value?.entries;
-      print(data);
+      if (kDebugMode) {
+        print(data);
+      }
 
       // Liste pour stocker les compétences en français avec leur valeur
       List<Map<String, dynamic>> frenchSkills = [];
@@ -60,13 +63,15 @@ void initState() {
       });
 
       // Affichage des compétences en français avec leur valeur
-      frenchSkills.forEach((skill) {
-        print('Category: ${skill['category']}');
-        print('Title: ${skill['title']}');
-        print('Skill: ${skill['skill']}');
-        print('Value: ${skill['value']}'); // Affiche la valeur du skill
-        print('---');
-      });
+      for (var skill in frenchSkills) {
+        if (kDebugMode) {
+          print('Category: ${skill['category']}');
+          print('Title: ${skill['title']}');
+          print('Skill: ${skill['skill']}');
+          print('Value: ${skill['value']}'); // Affiche la valeur du skill
+          print('---');
+        }
+      }
     });
   });
 }

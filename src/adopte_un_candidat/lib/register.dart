@@ -4,11 +4,8 @@ import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'modules/buttons.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:adopte_un_candidat/liste_secteur_activites.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -27,10 +24,10 @@ class Register extends StatefulWidget {
   const Register({super.key});
 
   @override
-  _RegisterState createState() => _RegisterState();
+  RegisterState createState() => RegisterState();
 }
 
-class _RegisterState extends State<Register> {
+class RegisterState extends State<Register> {
   double? page;
 
   final TextEditingController lastNameController = TextEditingController();
@@ -61,6 +58,26 @@ class _RegisterState extends State<Register> {
     Database().getColors().then((value) {
       colors = value;
     });
+  }
+
+  Future<void> _updateColors() async {
+    List<String> newColors = await Database().getColors();
+
+    setState(() {
+      colors = newColors;
+    });
+  }
+
+  Future<void> _updatePicture() async {
+    try {
+      String? newPictureLink = await Database().getPicture(Random().nextInt(47));
+      setState(() {
+        pictureLink = newPictureLink ?? pictureLink;
+      });
+    } catch (e) {
+      print('Error updating picture: $e');
+      // Handle the error appropriately in your app
+    }
   }
 
   bool userRealName() {
@@ -663,7 +680,7 @@ class _RegisterState extends State<Register> {
                     child: NextButton(
                       onPressed: () async {
                         if (userInformation()) {
-                          await Database().InitializeUser(emailController.text.trim(), passwordController.text.trim(), firstNameController.text.trim(), lastNameController.text.trim(), userName, pictureLink, colors);
+                          await Database().initializeUser(emailController.text.trim(), passwordController.text.trim(), firstNameController.text.trim(), lastNameController.text.trim(), userName, pictureLink, colors);
                           setState(() {
                             page = 6;
                           });
@@ -752,9 +769,11 @@ class _RegisterState extends State<Register> {
                                     flex: 2,
                                     child: Center(
                                         child: IconButton(
-                                      onPressed: () {
-                                        setState(() async {
-                                          userName = await Database().getRandomName();
+                                      onPressed: () async {
+                                        String newName = await Database().getRandomName();
+
+                                        setState(()  {
+                                          userName = newName; 
                                       });
                                       },
                                       icon: const Icon(Icons.shuffle_rounded,
@@ -872,7 +891,7 @@ class _RegisterState extends State<Register> {
                               Expanded(
                                   flex: 1,
                                   child: AvatarRandomizerButton(
-                                    onPressed: () {},
+                                    onPressed: _updateColors,
                                     icon: Transform.flip(
                                       flipX: true,
                                       flipY: true,
@@ -909,7 +928,7 @@ class _RegisterState extends State<Register> {
                               Expanded(
                                   flex: 1,
                                   child: AvatarRandomizerButton(
-                                    onPressed: () {},
+                                    onPressed: _updatePicture,
                                     icon: const Icon(Icons.shuffle_rounded,
                                         color: Color(0xFF939393), size: 35),
                                     text: 'Image',
@@ -926,7 +945,7 @@ class _RegisterState extends State<Register> {
                                       alignment: Alignment.bottomLeft,
                                       padding: const EdgeInsets.only(top: 10),
                                       child: const Text(
-                                        'Une fois choisi, vous ne pourrez pas changer de d\'image et de couleur de profile',
+                                        'Une fois choisi, vous ne pourrez pas changer de d\'image et de couleur de profil.',
                                         style: TextStyle(
                                           fontFamily: 'Roboto',
                                           color: Color(0xFF3C3C3C),
@@ -1527,14 +1546,12 @@ class _RegisterState extends State<Register> {
                 )),
             Expanded(
               flex: 2,
-              child: Container(
-                child: OtpTextField(
-                  numberOfFields: 5,
-                  borderColor: Color.fromARGB(255, 116, 116, 116),
-                  focusedBorderColor: Colors.black26,
-                  showFieldAsBox: true,
-                  margin: const EdgeInsets.only(left: 10, right: 10, top: 0),
-                ),
+              child: OtpTextField(
+                numberOfFields: 5,
+                borderColor: const Color.fromARGB(255, 116, 116, 116),
+                focusedBorderColor: Colors.black26,
+                showFieldAsBox: true,
+                margin: const EdgeInsets.only(left: 10, right: 10, top: 0),
               ),
             ),
             Expanded(
@@ -1542,14 +1559,16 @@ class _RegisterState extends State<Register> {
               child: TimerCountdown(
                 format: CountDownTimerFormat.minutesSeconds,
                 endTime: DateTime.now().add(
-                  Duration(
+                  const Duration(
                     minutes: 05,
                     seconds: 00,
                   ),
                 ),
                 onEnd: () async {
-                  print(
+                  if (kDebugMode) {
+                    print(
                       "Le temps est écoulé, un nouveau code vous sera envoyé");
+                  }
                   await Future.delayed(const Duration(seconds: 5));
                   setState(() {
                     page = 4.4;
@@ -1633,7 +1652,7 @@ class _RegisterState extends State<Register> {
                     color: Colors.grey,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.add_photo_alternate,
                     color: Colors.white,
                     size: 40,
@@ -2398,7 +2417,7 @@ class _RegisterState extends State<Register> {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Text('Attention'),
+                                    title: const Text('Attention'),
                                     content: const Text(
                                         'Le salaire mensuel doit être \nsupérieur à 1766,92 € brut.'),
                                     actions: [
@@ -2419,7 +2438,7 @@ class _RegisterState extends State<Register> {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Text('Attention'),
+                                    title: const Text('Attention'),
                                     content: const Text(
                                         'Le salaire horaire doit être \nsupérieur à 11,65 € brut.'),
                                     actions: [

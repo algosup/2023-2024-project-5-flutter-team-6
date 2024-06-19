@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:adopte_un_candidat/modules/authentication.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +61,7 @@ class Database {
             cardStack.add(userCard);
           }
         }
-        if (cardStack.length >= 20 ||
+        if (/*cardStack.length >= 20 ||*/
             cardStack.length >=
                 querySnapshot.docs.length - userData['card_liked'].length) {
           return cardStack;
@@ -78,10 +77,10 @@ class Database {
         userCard?['id'] = doc.id;
         userCard?['type'] = 'user';
 
-         if (userData['card_liked']["${doc.id}"] != null) {
+         if (userData['card_liked'][doc.id] != null) {
             DateTime currentTimestamp = DateTime.now();
             Timestamp savedTimestamp =
-                userData['card_liked']["${doc.id}"];
+                userData['card_liked'][doc.id];
             DateTime savedTimestampdate = savedTimestamp.toDate();
 
             if (savedTimestampdate
@@ -273,19 +272,24 @@ class Database {
       final DocumentSnapshot<Map<String, dynamic>> userCardLikedQuery =
         await FirebaseFirestore.instance.collection("user").doc(card["id"]).get();
 
+      final DocumentSnapshot<Map<String, dynamic>> companyCardLikedQuery =
+        await FirebaseFirestore.instance.collection("company").doc(id).get();
+
     if (userCardLikedQuery.exists) {
       for (var doc in querySnapshot.docs) {
 
 
         var cardsLike = userCardLikedQuery.data()!['card_liked'];
 
+        var companyCardsLike = companyCardLikedQuery.data()!['card_liked'];
+
         for (var cardLike in cardsLike.keys) {
 
           List<String> splitString = cardLike.split("-");
 
-          if (doc.id == splitString[1] && id == splitString[0]) { 
+          if (doc.id == splitString[1] && id == splitString[0] && companyCardsLike[card["id"]] != null) { 
             
-            String conversationId = "${id}${card["id"]}";
+            String conversationId = "$id${card["id"]}";
 
             await FirebaseFirestore.instance.collection("message").doc(conversationId).set({
               'uids': [id, card["id"]],
@@ -322,19 +326,23 @@ class Database {
       final DocumentSnapshot<Map<String, dynamic>> userCardLikedQuery =
         await FirebaseFirestore.instance.collection("user").doc(id).get();
 
-      if (userCardLikedQuery.exists) {
+      final DocumentSnapshot<Map<String, dynamic>> companyCardLikedQuery =
+        await FirebaseFirestore.instance.collection("company").doc(card["id"]).get();
+
+      if (userCardLikedQuery.exists && companyCardLikedQuery.exists) {
         for (var doc in querySnapshot.docs) {
 
 
           var cardsLike = userCardLikedQuery.data()!['card_liked'];
+          var companyCardsLike = companyCardLikedQuery.data()!['card_liked'];
 
           for (var cardLike in cardsLike.keys) {
 
             List<String> splitString = cardLike.split("-");
 
-            if (doc.id == splitString[1] && card["id"] == splitString[0]) { 
+            if (doc.id == splitString[1] && card["id"] == splitString[0] && companyCardsLike[id] != null) { 
               
-              String conversationId = "${card["id"]}${id}";
+              String conversationId = "${card["id"]}$id";
 
               await FirebaseFirestore.instance.collection("message").doc(conversationId).set({
                 'uids': [id, card["id"]],
@@ -381,6 +389,7 @@ class Database {
       ]),
     });
   }
+
 
   Future<String> getRandomName() async {
     var usernameQuery = await FirebaseFirestore.instance.collection("username").doc("list").get();
@@ -430,7 +439,7 @@ class Database {
     return ["FFFFFF", "FFFFFF"];
   }
 
-  InitializeUser(String email, String password, String firstName, String lastName, String userName, String picture, List<String> colors) async {
+  initializeUser(String email, String password, String firstName, String lastName, String userName, String picture, List<String> colors) async {
     FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: email,
       password: password,
@@ -441,7 +450,9 @@ class Database {
       createUser(user!.uid, email, firstName, lastName, userName, picture, colors);
     }).catchError((error) {
       // User creation failed
-      print("Error creating user: $error");
+      if (kDebugMode) {
+        print("Error creating user: $error");
+      }
     });
   }
 

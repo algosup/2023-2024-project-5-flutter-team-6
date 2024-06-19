@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import './soft_skills_button.dart';
-import './carousel.dart';
 
 class SoftSkillsUserSelection extends StatefulWidget {
   const SoftSkillsUserSelection({super.key});
@@ -12,6 +10,6 @@ class SoftSkillsUserSelection extends StatefulWidget {
 class _SoftSkillsUserSelectionState extends State<SoftSkillsUserSelection> {
   @override
   Widget build(BuildContext context) {
-    return Text("Selection utilisateur");
+    return const Text("Selection utilisateur");
   }
 }
