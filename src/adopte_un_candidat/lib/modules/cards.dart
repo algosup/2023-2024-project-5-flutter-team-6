@@ -34,27 +34,100 @@ class Cards extends StatelessWidget {
             childAspectRatio: 4,
             mainAxisSpacing: 5,
             crossAxisSpacing: 5,
-            children: List.generate(
-                user["proposal"]["soft_skill"]["Analytical"].length,
-                (index) {
-              return Container(
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF38A0FF),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  user["proposal"]["soft_skill"]["Analytical"][index],
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 8,
-                  ),
-                ),
-              );
-            }),
+            children: generateSoftskills(user["proposal"]["soft_skill"]),
           )
         : Container(); // return an empty Container if softskill is null
+  }
+
+  List<Widget> generateSoftskills(Map<String, dynamic> softskills) {
+
+    List<Widget> softskillsList = [];
+
+    for (int i = 0; i < softskills["Analytical"].length; i++) {
+      softskillsList.add(
+        Container(
+          padding: const EdgeInsets.all(5),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: const Color(0xFFFFFC4F),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Text(
+            softskills["Analytical"][i],
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 8,
+            ),
+          ),
+        )
+      );
+    }
+
+    for (int i = 0; i < softskills["Interpersonal"].length; i++) {
+      softskillsList.add(
+        Container(
+          padding: const EdgeInsets.all(5),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: const Color(0xFF84FF7B),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Text(
+            softskills["Interpersonal"][i],
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 8,
+            ),
+          ),
+        )
+      );
+    }
+
+    for (int i = 0; i < softskills["Self-management"].length; i++) {
+      softskillsList.add(
+        Container(
+          padding: const EdgeInsets.all(5),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: const Color(0xFFFF7474),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Text(
+            softskills["Self-management"][i],
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 8,
+            ),
+          ),
+        )
+      );
+    }
+
+    for (int i = 0; i < softskills["Social"].length; i++) {
+      softskillsList.add(
+        Container(
+          padding: const EdgeInsets.all(5),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: const Color(0xFF38A0FF),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Text(
+            softskills["Social"][i],
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 8,
+            ),
+          ),
+        )
+      );
+    }
+
+    return softskillsList;
   }
 
   Widget displayCandidatSoftSkills() {
@@ -67,25 +140,7 @@ class Cards extends StatelessWidget {
             childAspectRatio: 4,
             mainAxisSpacing: 5,
             crossAxisSpacing: 5,
-            children: List.generate(
-                user["soft_skills"]["Analytical"].length,
-                (index) {
-              return Container(
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF38A0FF),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  user["soft_skills"]["Analytical"][index],
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 8,
-                  ),
-                ),
-              );
-            }),
+            children:generateSoftskills(user["soft_skills"]),
           )
         : Container(); // return an empty Container if softskill is null
   }
