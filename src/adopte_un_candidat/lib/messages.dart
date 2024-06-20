@@ -103,6 +103,8 @@ class MessagesState extends State<Messages> {
                 mainAxisAlignment:
                     MainAxisAlignment.start,
                 children: [
+                  Expanded(
+                    child:
                   Text(
                     messages.isNotEmpty ? "${messages[lastmessageindex]["sender"] == user.uid ? "Me:" : "They:"} ${messages[lastmessageindex]["message"]}" : "No messages yet",
                     overflow: TextOverflow.ellipsis,
@@ -113,7 +115,7 @@ class MessagesState extends State<Messages> {
                       fontWeight:
                           FontWeight.bold,
                     ),
-                  ),
+                  ),)
                 ],
               ),
               
