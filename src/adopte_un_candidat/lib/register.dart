@@ -45,6 +45,7 @@ class RegisterState extends State<Register> {
   List<String> colors = ["FFFFFF", "FFFFFF"];
   String pictureLink = "";
   String userName = "River Stone";
+  String userId = "";
 
   @override
   void initState() {
@@ -681,9 +682,11 @@ class RegisterState extends State<Register> {
                     child: NextButton(
                       onPressed: () async {
                         if (userInformation()) {
-                          await Database().initializeUser(emailController.text.trim(), passwordController.text.trim(), firstNameController.text.trim(), lastNameController.text.trim(), userName, pictureLink, colors);
-                          setState(() {
-                            page = 6;
+                          await Database().initializeUser(emailController.text.trim(), passwordController.text.trim(), firstNameController.text.trim(), lastNameController.text.trim(), userName, pictureLink, colors).then((value) {
+                            setState(() {
+                              page = 6;
+                              userId = value;
+                            });
                           });
                         } else {
                           if (kDebugMode) {
@@ -829,6 +832,7 @@ class RegisterState extends State<Register> {
                               setState(() {
                                 page = 7;
                               });
+                              Database().updateUsername(userId, userName);
                             },
                           ),
                         ),
@@ -962,6 +966,7 @@ class RegisterState extends State<Register> {
                             onPressed: () {
                               setState(() {
                                 page = 8;
+                                Database().updatePictureAndColors(userId, pictureLink, colors);
                               });
                             },
                           ),
@@ -1185,7 +1190,9 @@ class RegisterState extends State<Register> {
                 alignment: Alignment.centerRight,
                 padding: const EdgeInsets.only(right: 40),
                 child: NextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.replaceNamed('home');
+                  },
                 ),
               ),
             )
