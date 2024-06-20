@@ -75,8 +75,9 @@ class RegisterState extends State<Register> {
         pictureLink = newPictureLink ?? pictureLink;
       });
     } catch (e) {
-      print('Error updating picture: $e');
-      // Handle the error appropriately in your app
+      if (kDebugMode) {
+        print('Error updating picture: $e');
+      }
     }
   }
 
@@ -828,7 +829,6 @@ class RegisterState extends State<Register> {
                               setState(() {
                                 page = 7;
                               });
-                              // TODO: Add Register nickname
                             },
                           ),
                         ),
@@ -913,7 +913,7 @@ class RegisterState extends State<Register> {
                                             colors: [
                                               Color(int.parse("0xFF${colors[0]}")),
                                               Color(int.parse("0xFF${colors[1]}")),
-                                            ], // will be changeable
+                                            ],
                                             begin: Alignment.topCenter,
                                             end: Alignment.bottomCenter,
                                           )),
@@ -922,7 +922,7 @@ class RegisterState extends State<Register> {
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *
-                                              0.5), // will be changeable
+                                              0.5),
                                     ),
                                   )),
                               Expanded(
@@ -963,7 +963,6 @@ class RegisterState extends State<Register> {
                               setState(() {
                                 page = 8;
                               });
-                              // TODO: Add register avatar
                             },
                           ),
                         ),

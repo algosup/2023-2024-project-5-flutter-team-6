@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import './alert_dialogue.dart';
-import './soft_skills_button.dart';
 
 class ProfileRowCategory extends StatelessWidget {
   final String title;
