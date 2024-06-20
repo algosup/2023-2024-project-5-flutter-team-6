@@ -58,7 +58,8 @@ class Cards extends StatelessWidget {
   }
 
   Widget displayCandidatSoftSkills() {
-    return user["soft_skill"] != null
+    print(user["soft_skills"]);
+    return user["soft_skills"] != null
         ? GridView.count(
             crossAxisCount: 3,
             padding: const EdgeInsets.all(5),
@@ -68,7 +69,7 @@ class Cards extends StatelessWidget {
             mainAxisSpacing: 5,
             crossAxisSpacing: 5,
             children: List.generate(
-                user["soft_skill"]["Analytical"].length,
+                user["soft_skills"]["Analytical"].length,
                 (index) {
               return Container(
                 alignment: Alignment.center,
@@ -77,7 +78,7 @@ class Cards extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Text(
-                  user["soft_skill"]["Analytical"][index],
+                  user["soft_skills"]["Analytical"][index],
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,
