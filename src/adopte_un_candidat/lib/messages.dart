@@ -145,9 +145,7 @@ class MessagesState extends State<Messages> {
                       padding: const EdgeInsets.all(10),
                       child: GestureDetector(
                           onTap: () {
-                            if (kDebugMode) {
                               context.pushNamed('chat', extra: {"convId": key});
-                            }
                           },
                           child: Container(
                               decoration: BoxDecoration(
