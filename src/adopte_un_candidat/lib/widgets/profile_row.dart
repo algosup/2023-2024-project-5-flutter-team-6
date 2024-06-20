@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import './alert_dialogue.dart';
-import './soft_skills_button.dart';
 
 class ProfileRowCategory extends StatelessWidget {
   final String title;
@@ -37,23 +36,30 @@ class ProfileRowCategory extends StatelessWidget {
   }
 }
 
-class ProfileRowCommon extends StatelessWidget {
+// ignore: must_be_immutable
+class ProfileRowCommon extends StatefulWidget {
   final String title;
-  final String content;
+  // ignore: prefer_typing_uninitialized_variables
+  var content;
   final TextInputType type;
   final String functiontype;
   final String uid;
 
-  const ProfileRowCommon(
-      {super.key,
-      required this.title,
-      required this.content,
-      required this.type,
-      required this.functiontype,
-      required this.uid});
+  ProfileRowCommon({
+    super.key,
+    required this.title,
+    required this.content,
+    required this.type,
+    required this.functiontype,
+    required this.uid,
+  });
 
-  void _showChangeInfoDialog(BuildContext context, String title,
-      TextInputType type, String uid, String functiontype) {
+  @override
+  State<ProfileRowCommon> createState() => _ProfileRowCommonState();
+}
+
+class _ProfileRowCommonState extends State<ProfileRowCommon> {
+  void _showChangeInfoDialog(BuildContext context, String title, TextInputType type, String uid, String functiontype) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -62,6 +68,11 @@ class ProfileRowCommon extends StatelessWidget {
           type: type,
           uid: uid,
           functiontype: functiontype,
+          onSave: (newContent) {
+            setState(() {
+              widget.content = newContent;
+            });
+          },
         );
       },
     );
@@ -71,7 +82,7 @@ class ProfileRowCommon extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _showChangeInfoDialog(context, title, type, uid, functiontype);
+        _showChangeInfoDialog(context, widget.title, widget.type, widget.uid, widget.functiontype);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -90,7 +101,7 @@ class ProfileRowCommon extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    title,
+                    widget.title,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -104,13 +115,14 @@ class ProfileRowCommon extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Flexible(
-                      child: SingleChildScrollView(
-                    child: Text(
-                      content,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 10,
+                    child: SingleChildScrollView(
+                      child: Text(
+                        widget.content,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 10,
+                      ),
                     ),
-                  ))
+                  ),
                 ],
               ),
             ),
@@ -131,15 +143,97 @@ class ProfileRowSoft extends StatelessWidget {
     required this.content,
   });
 
+  List<Widget> generateSoftskills(Map<String, dynamic> softskills) {
+    List<Widget> softskillsList = [];
+
+    for (int i = 0; i < softskills["Analytical"].length; i++) {
+      softskillsList.add(Container(
+        padding: const EdgeInsets.all(5),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFFC4F),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Text(
+          softskills["Analytical"][i],
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 8,
+          ),
+        ),
+      ));
+    }
+
+    for (int i = 0; i < softskills["Interpersonal"].length; i++) {
+      softskillsList.add(Container(
+        padding: const EdgeInsets.all(5),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: const Color(0xFF84FF7B),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Text(
+          softskills["Interpersonal"][i],
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 8,
+          ),
+        ),
+      ));
+    }
+
+    for (int i = 0; i < softskills["Self-management"].length; i++) {
+      softskillsList.add(Container(
+        padding: const EdgeInsets.all(5),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: const Color(0xFFFF7474),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Text(
+          softskills["Self-management"][i],
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 8,
+          ),
+        ),
+      ));
+    }
+
+    for (int i = 0; i < softskills["Social"].length; i++) {
+      softskillsList.add(Container(
+        padding: const EdgeInsets.all(5),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: const Color(0xFF38A0FF),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Text(
+          softskills["Social"][i],
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 8,
+          ),
+        ),
+      ));
+    }
+
+    return softskillsList;
+  }
+
   @override
-Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         context.pushNamed("softskills");
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 32),
-        height: MediaQuery.of(context).size.height * 0.10,
+        height: MediaQuery.of(context).size.height * 0.12,
         decoration: const BoxDecoration(
           border: Border(
             bottom: BorderSide(
@@ -158,29 +252,30 @@ Widget build(BuildContext context) {
               ),
             ),
             const SizedBox(height: 8),
+
+            Expanded(child:
+            SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child:
             content != null
-                ? Expanded(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: content!.entries.map((entry) {
-                          return ProfileSoftSkillView(
-                            title: entry.key,
-                            skill: entry.value[0],
-                          );
-                        }).toList(),
-                      ),
-                    ),
+                ? GridView.count(
+                    crossAxisCount: 3,
+                    padding: const EdgeInsets.all(5),
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    childAspectRatio: 4,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 5,
+                    children: generateSoftskills(content!),
                   )
                 : const Text('Aucun soft skill séléctionné.'),
+            ))
           ],
         ),
       ),
     );
   }
 }
-
 
 class ProfileRowPage extends StatelessWidget {
   final String title;

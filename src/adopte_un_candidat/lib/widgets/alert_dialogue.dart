@@ -6,9 +6,10 @@ class ChangeInfosProfile extends StatelessWidget {
   final TextInputType type;
   final String functiontype;
   final String uid;
+  final Function(String) onSave;
 
   ChangeInfosProfile(
-      {super.key, required this.title, required this.type, required this.uid, required this.functiontype});
+      {super.key, required this.title, required this.type, required this.uid, required this.functiontype, required this.onSave});
 
   final TextEditingController textFieldController = TextEditingController();
 
@@ -30,6 +31,7 @@ class ChangeInfosProfile extends StatelessWidget {
       default:
         break;
     }
+    onSave(textFieldController.text.trim());
   }
 
   @override

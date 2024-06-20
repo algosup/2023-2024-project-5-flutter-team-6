@@ -135,13 +135,13 @@ class _SuperNavigationBarState extends State<SuperNavigationBar> {
             });
             switch (index) {
               case 0:
-                context.replaceNamed('messages');
+                GoRouter.of(context).go('/messages');
                 break;
               case 1:
-                context.replaceNamed('home');
+                GoRouter.of(context).go('/');
                 break;
               case 2:
-                context.replaceNamed('profile');
+                GoRouter.of(context).go('/profile');
                 break;
             }
           },
