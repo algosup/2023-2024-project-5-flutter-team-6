@@ -438,9 +438,8 @@ class Database {
     }
     return ["FFFFFF", "FFFFFF"];
   }
-
-  initializeUser(String email, String password, String firstName, String lastName, String userName, String picture, List<String> colors) async {
-    FirebaseAuth.instance.createUserWithEmailAndPassword(
+  Future<String> initializeUser(String email, String password, String firstName, String lastName, String userName, String picture, List<String> colors) async {
+    return FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: email,
       password: password,
     ).then((userCredential) {
@@ -448,10 +447,11 @@ class Database {
       User? user = userCredential.user;
       // Add additional user data to Firestore
       createUser(user!.uid, email, firstName, lastName, userName, picture, colors);
+      return user.uid;
     }).catchError((error) {
-      // User creation failed
+      // User creation fail
       if (kDebugMode) {
-        print("Error creating user: $error");
+      print("Error creating ur: $error");
       }
     });
   }
@@ -471,7 +471,12 @@ class Database {
       'colors': colors,
       'professional_status': '',
       'profile_picture': picture,
-      'soft_skills': {}
+      'soft_skills': {
+        'Analytical': [],
+        'Self-management': [],
+        'Interpersonal': [],
+        'Social': []
+      }
     });
   }
 
@@ -557,6 +562,19 @@ class Database {
   Future<void> phoneUpdate(String id, String phone) async {
     await FirebaseFirestore.instance.collection("user").doc(id).update({
       'phone': phone,
+    });
+  }
+
+  updatePictureAndColors(String id, String picture, List<String> colors) async {
+    await FirebaseFirestore.instance.collection("user").doc(id).update({
+      'profile_picture': picture,
+      'colors': colors,
+    });
+  }
+
+  updateUsername(String id, String username) async {
+    await FirebaseFirestore.instance.collection("user").doc(id).update({
+      'name': username,
     });
   }
 
