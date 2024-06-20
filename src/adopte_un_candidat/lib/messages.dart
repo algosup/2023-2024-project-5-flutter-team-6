@@ -2,7 +2,6 @@ import 'package:adopte_un_candidat/modules/authentication.dart';
 import 'package:adopte_un_candidat/modules/database.dart';
 import 'package:adopte_un_candidat/widgets/navigation_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
