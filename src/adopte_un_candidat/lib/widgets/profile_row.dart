@@ -131,6 +131,88 @@ class ProfileRowSoft extends StatelessWidget {
     required this.content,
   });
 
+  List<Widget> generateSoftskills(Map<String, dynamic> softskills) {
+    List<Widget> softskillsList = [];
+
+    for (int i = 0; i < softskills["Analytical"].length; i++) {
+      softskillsList.add(Container(
+        padding: const EdgeInsets.all(5),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFFC4F),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Text(
+          softskills["Analytical"][i],
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 8,
+          ),
+        ),
+      ));
+    }
+
+    for (int i = 0; i < softskills["Interpersonal"].length; i++) {
+      softskillsList.add(Container(
+        padding: const EdgeInsets.all(5),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: const Color(0xFF84FF7B),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Text(
+          softskills["Interpersonal"][i],
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 8,
+          ),
+        ),
+      ));
+    }
+
+    for (int i = 0; i < softskills["Self-management"].length; i++) {
+      softskillsList.add(Container(
+        padding: const EdgeInsets.all(5),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: const Color(0xFFFF7474),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Text(
+          softskills["Self-management"][i],
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 8,
+          ),
+        ),
+      ));
+    }
+
+    for (int i = 0; i < softskills["Social"].length; i++) {
+      softskillsList.add(Container(
+        padding: const EdgeInsets.all(5),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: const Color(0xFF38A0FF),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Text(
+          softskills["Social"][i],
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 8,
+          ),
+        ),
+      ));
+    }
+
+    return softskillsList;
+  }
+
   @override
 Widget build(BuildContext context) {
     return GestureDetector(
@@ -139,7 +221,7 @@ Widget build(BuildContext context) {
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 32),
-        height: MediaQuery.of(context).size.height * 0.10,
+        height: MediaQuery.of(context).size.height * 0.12,
         decoration: const BoxDecoration(
           border: Border(
             bottom: BorderSide(
@@ -158,22 +240,24 @@ Widget build(BuildContext context) {
               ),
             ),
             const SizedBox(height: 8),
+
+            Expanded(child:
+            SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child:
             content != null
-                ? Expanded(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: content!.entries.map((entry) {
-                          return ProfileSoftSkillView(
-                            title: entry.key,
-                            skill: entry.value[0],
-                          );
-                        }).toList(),
-                      ),
-                    ),
+                ? GridView.count(
+                    crossAxisCount: 3,
+                    padding: const EdgeInsets.all(5),
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    childAspectRatio: 4,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 5,
+                    children: generateSoftskills(content!),
                   )
                 : const Text('Aucun soft skill séléctionné.'),
+            ))
           ],
         ),
       ),
