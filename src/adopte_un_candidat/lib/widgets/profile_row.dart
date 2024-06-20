@@ -37,23 +37,30 @@ class ProfileRowCategory extends StatelessWidget {
   }
 }
 
-class ProfileRowCommon extends StatelessWidget {
+// ignore: must_be_immutable
+class ProfileRowCommon extends StatefulWidget {
   final String title;
-  final String content;
+  // ignore: prefer_typing_uninitialized_variables
+  var content;
   final TextInputType type;
   final String functiontype;
   final String uid;
 
-  const ProfileRowCommon(
-      {super.key,
-      required this.title,
-      required this.content,
-      required this.type,
-      required this.functiontype,
-      required this.uid});
+  ProfileRowCommon({
+    super.key,
+    required this.title,
+    required this.content,
+    required this.type,
+    required this.functiontype,
+    required this.uid,
+  });
 
-  void _showChangeInfoDialog(BuildContext context, String title,
-      TextInputType type, String uid, String functiontype) {
+  @override
+  State<ProfileRowCommon> createState() => _ProfileRowCommonState();
+}
+
+class _ProfileRowCommonState extends State<ProfileRowCommon> {
+  void _showChangeInfoDialog(BuildContext context, String title, TextInputType type, String uid, String functiontype) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -62,6 +69,11 @@ class ProfileRowCommon extends StatelessWidget {
           type: type,
           uid: uid,
           functiontype: functiontype,
+          onSave: (newContent) {
+            setState(() {
+              widget.content = newContent;
+            });
+          },
         );
       },
     );
@@ -71,7 +83,7 @@ class ProfileRowCommon extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _showChangeInfoDialog(context, title, type, uid, functiontype);
+        _showChangeInfoDialog(context, widget.title, widget.type, widget.uid, widget.functiontype);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -90,7 +102,7 @@ class ProfileRowCommon extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    title,
+                    widget.title,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -104,13 +116,14 @@ class ProfileRowCommon extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Flexible(
-                      child: SingleChildScrollView(
-                    child: Text(
-                      content,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 10,
+                    child: SingleChildScrollView(
+                      child: Text(
+                        widget.content,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 10,
+                      ),
                     ),
-                  ))
+                  ),
                 ],
               ),
             ),
@@ -132,7 +145,7 @@ class ProfileRowSoft extends StatelessWidget {
   });
 
   @override
-Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         context.pushNamed("softskills");
@@ -180,7 +193,6 @@ Widget build(BuildContext context) {
     );
   }
 }
-
 
 class ProfileRowPage extends StatelessWidget {
   final String title;
