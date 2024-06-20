@@ -508,6 +508,7 @@ class RegisterState extends State<Register> {
                                 right: 40, left: 40, top: 10),
                             child: TextField(
                               controller: passwordController,
+                              obscureText: true,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: const Color(0xFFEEEEEE),
