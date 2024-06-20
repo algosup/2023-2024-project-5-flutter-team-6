@@ -181,7 +181,12 @@ class SwiperFeatureState extends State<SwiperFeature> {
                     return Text('Error: ${snapshot.error}');
                   } else {
                     cardStack = snapshot.data;
-                    return cards();
+                    return cardStack != null && cardStack!.isNotEmpty ? cards() : const Center(child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                      Text('Il n\'y a plus de cartes à afficher pour le moment. 😢😢', textAlign: TextAlign.center,),
+                      Text('Revenez plus tard !'),
+                    ],));
                   }
                 },
               )),
