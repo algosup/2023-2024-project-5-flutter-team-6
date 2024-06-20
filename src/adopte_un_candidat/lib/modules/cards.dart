@@ -58,7 +58,6 @@ class Cards extends StatelessWidget {
   }
 
   Widget displayCandidatSoftSkills() {
-    print(user["soft_skills"]);
     return user["soft_skills"] != null
         ? GridView.count(
             crossAxisCount: 3,
